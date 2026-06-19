@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  title: "Lemon's Website"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: Information-Theory/js-div-boundedness-proof.html
+        text: Information Theory
+
+format:
+  html:
+    theme: 
+      - darkly
+      - custom.scss
+    code-fold: true
+    code-highlight: dracula
+    toc: true

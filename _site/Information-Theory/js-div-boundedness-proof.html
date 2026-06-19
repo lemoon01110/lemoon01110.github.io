@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>js-div-boundedness-proof – Lemon's Website</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8a8d1c7e2a24ffb8db6754aa05af7a4a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Lemon’s Website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../Information-Theory/js-div-boundedness-proof.html" aria-current="page"> 
+<span class="menu-text">Information Theory</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#interactive-animation" id="toc-interactive-animation" class="nav-link active" data-scroll-target="#interactive-animation">Interactive Animation</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<p>Short Summary The lower bound (<span class="math inline">\(0\)</span>) exists because Jensen-Shannon Divergence (JSD) is built by adding two Kullback-Leibler (KL) divergences together, and we already proved via Gibbs’ Inequality that KL divergence can never be negative. The upper bound (<span class="math inline">\(\log_b(2)\)</span>) happens because JSD measures the distance from each distribution to their exact 50/50 midpoint (<span class="math inline">\(M\)</span>). The maximum possible distance occurs when the two distributions have zero overlap. In that extreme case, the probability of <span class="math inline">\(P\)</span> is exactly twice as large as the midpoint <span class="math inline">\(M\)</span>, which elegantly reduces the entire complex formula down to the logarithm of <span class="math inline">\(2\)</span>.</p>
+<p>Long Summary While KL Divergence is a fantastic tool, it has two major mathematical flaws for measuring distance: it is asymmetrical (<span class="math inline">\(D_{KL}(P \parallel Q) \neq D_{KL}(Q \parallel P)\)</span>), and it can shoot off to infinity. Jensen-Shannon Divergence (JSD) fixes both by introducing a shared “middle ground” distribution, <span class="math inline">\(M = \frac{1}{2}(P + Q)\)</span>. Instead of asking “How far is <span class="math inline">\(P\)</span> from <span class="math inline">\(Q\)</span>?”, JSD asks “How far are <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> from their own average?”</p>
+<p>Because we are dealing with probabilities that must sum to 1, there is a hard limit on how “far apart” two distributions can be. The absolute worst-case scenario is that <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> are completely disjoint (e.g., <span class="math inline">\(P\)</span> only happens on even numbers, <span class="math inline">\(Q\)</span> only happens on odd numbers). Because the mixture <span class="math inline">\(M\)</span> is a 50/50 split of the two, the fraction <span class="math inline">\(\frac{P}{M}\)</span> hits a hard mathematical ceiling of exactly <span class="math inline">\(2\)</span>. The log rule immediately locks the maximum divergence to <span class="math inline">\(\log_b(2)\)</span>.</p>
+<ol type="1">
+<li>The Setup</li>
+</ol>
+<p>Let’s look at the definition of the Jensen-Shannon Divergence. It takes the KL divergence from <span class="math inline">\(P\)</span> to the midpoint <span class="math inline">\(M\)</span>, and averages it with the KL divergence from <span class="math inline">\(Q\)</span> to the midpoint <span class="math inline">\(M\)</span>:</p>
+<p><span class="math display">\[JSD(P \parallel Q) = \frac{1}{2} D_{KL}(P \parallel M) + \frac{1}{2} D_{KL}(Q \parallel M)\]</span></p>
+<p>Where the midpoint <span class="math inline">\(M\)</span> is defined as the perfect average of the two distributions:</p>
+<p><span class="math display">\[M(x) = \frac{P(x) + Q(x)}{2}\]</span></p>
+<ol start="2" type="1">
+<li>Proving the Lower Bound (<span class="math inline">\(JSD \ge 0\)</span>)</li>
+</ol>
+<p>This is the easy part, because you already laid the groundwork for it!</p>
+<p>In our previous proof of Gibbs’ Inequality, we proved definitively that for any valid distributions, the KL divergence is strictly non-negative (<span class="math inline">\(D_{KL} \ge 0\)</span>).</p>
+<p>Because JSD is just the sum of two KL divergences multiplied by positive fractions (<span class="math inline">\(\frac{1}{2}\)</span>), it is mathematically impossible for the result to be negative.</p>
+<p><span class="math display">\[JSD(P \parallel Q) \ge 0\]</span></p>
+<p>When does it equal 0? It equals <span class="math inline">\(0\)</span> only when <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> perfectly match the midpoint <span class="math inline">\(M\)</span>, meaning <span class="math inline">\(P = Q\)</span>.</p>
+<ol start="3" type="1">
+<li>Proving the Upper Bound (<span class="math inline">\(JSD \le \log_b(2)\)</span>)</li>
+</ol>
+<p>To find the absolute maximum value, let’s zoom in on just the first half of the JSD formula: <span class="math inline">\(D_{KL}(P \parallel M)\)</span>.</p>
+<p><span class="math display">\[D_{KL}(P \parallel M) = \sum_{x} P(x) \log_b\left( \frac{P(x)}{M(x)} \right)\]</span></p>
+<p>Let’s substitute our definition of <span class="math inline">\(M(x)\)</span> into the denominator:</p>
+<p><span class="math display">\[D_{KL}(P \parallel M) = \sum_{x} P(x) \log_b\left( \frac{P(x)}{\frac{1}{2}P(x) + \frac{1}{2}Q(x)} \right)\]</span></p>
+<p>The Crucial Logic Step: Look at that denominator: <span class="math inline">\(\frac{1}{2}P(x) + \frac{1}{2}Q(x)\)</span>. Because <span class="math inline">\(Q(x)\)</span> is a probability, we know for an absolute fact that <span class="math inline">\(Q(x) \ge 0\)</span>.</p>
+<p>If we completely delete <span class="math inline">\(\frac{1}{2}Q(x)\)</span> from the denominator, the denominator must get smaller (or stay the same if <span class="math inline">\(Q(x)\)</span> was 0). When you make the denominator of a fraction smaller, the overall fraction gets bigger.</p>
+<p>Therefore, we can establish a strict mathematical inequality:</p>
+<p><span class="math display">\[\frac{P(x)}{\frac{1}{2}P(x) + \frac{1}{2}Q(x)} \le \frac{P(x)}{\frac{1}{2}P(x)}\]</span></p>
+<p>The <span class="math inline">\(P(x)\)</span> on the top and bottom of that right-side fraction perfectly cancel out, leaving just <span class="math inline">\(\frac{1}{1/2}\)</span>, which is <span class="math inline">\(2\)</span>.</p>
+<p><span class="math display">\[\frac{P(x)}{M(x)} \le 2\]</span></p>
+<p>Finishing the Bound: Because the logarithm is a strictly increasing function, if the inside of the log is <span class="math inline">\(\le 2\)</span>, the whole log is <span class="math inline">\(\le \log_b(2)\)</span>. We can substitute this maximum value back into our KL sum:</p>
+<p><span class="math display">\[D_{KL}(P \parallel M) \le \sum_{x} P(x) \log_b(2)\]</span></p>
+<p>Since <span class="math inline">\(\log_b(2)\)</span> is just a constant number, pull it out to the front:</p>
+<p><span class="math display">\[D_{KL}(P \parallel M) \le \log_b(2) \sum_{x} P(x)\]</span></p>
+<p>Since the sum of all probabilities <span class="math inline">\(\sum P(x)\)</span> must equal <span class="math inline">\(1\)</span>:</p>
+<p><span class="math display">\[D_{KL}(P \parallel M) \le \log_b(2)\]</span></p>
+<p>By the exact same logic, the second half of the equation is also bounded:</p>
+<p><span class="math display">\[D_{KL}(Q \parallel M) \le \log_b(2)\]</span></p>
+<p>The Final Combination: Plug these maximums back into the main JSD formula:</p>
+<p><span class="math display">\[JSD(P \parallel Q) \le \frac{1}{2}(\log_b(2)) + \frac{1}{2}(\log_b(2))\]</span></p>
+<p><span class="math display">\[JSD(P \parallel Q) \le \log_b(2)\]</span></p>
+<p>Conclusion</p>
+<p>The math proves that JSD is beautifully bounded. If you are calculating it in bits (base 2), the maximum divergence is exactly <span class="math inline">\(\log_2(2) = 1\)</span>. If you are calculating it in nats (base <span class="math inline">\(e\)</span>), the maximum divergence is exactly <span class="math inline">\(\ln(2) \approx 0.693\)</span>.</p>
+<p>This hard upper limit is why JSD is often preferred over standard KL Divergence when you need a stable, normalized metric for machine learning models (like in Generative Adversarial Networks, or GANs)!</p>
+<section id="interactive-animation" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-animation">Interactive Animation</h2>
+<p>The following Python script uses <code>plotly</code> to render a live, interactive animation of the distributions directly in the browser! Press the “Play Animation” button below or use the slider to see how the Jensen-Shannon Divergence responds as the two distributions separate.</p>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+<div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+  <!-- Blue Card -->
+  <div style="flex: 1; min-width: 250px; background: rgba(96, 165, 250, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(96, 165, 250, 0.3);">
+    <h4 style="color: #60a5fa; margin-top: 0; margin-bottom: 15px; font-weight: bold;" class="anchored">Distribution P</h4>
+    <div>
+      <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span style="color: #e0e0e0; font-size: 0.9em;">Mean P</span>
+        <span id="mu1-val">-2.0</span>
+      </label>
+      <input type="range" id="mu1" min="-10" max="10" step="0.1" value="-2" style="width: 100%; accent-color: #60a5fa;">
+    </div>
+    <div style="margin-top: 15px;">
+      <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span style="color: #e0e0e0; font-size: 0.9em;">Variance P</span>
+        <span id="var1-val">1.0</span>
+      </label>
+      <input type="range" id="var1" min="0.1" max="15" step="0.1" value="1" style="width: 100%; accent-color: #60a5fa;">
+    </div>
+  </div>
+
+  <!-- Orange Card -->
+  <div style="flex: 1; min-width: 250px; background: rgba(251, 146, 60, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(251, 146, 60, 0.3);">
+    <h4 style="color: #fb923c; margin-top: 0; margin-bottom: 15px; font-weight: bold;" class="anchored">Distribution Q</h4>
+    <div>
+      <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span style="color: #e0e0e0; font-size: 0.9em;">Mean Q</span>
+        <span id="mu2-val">2.0</span>
+      </label>
+      <input type="range" id="mu2" min="-10" max="10" step="0.1" value="2" style="width: 100%; accent-color: #fb923c;">
+    </div>
+    <div style="margin-top: 15px;">
+      <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span style="color: #e0e0e0; font-size: 0.9em;">Variance Q</span>
+        <span id="var2-val">1.0</span>
+      </label>
+      <input type="range" id="var2" min="0.1" max="15" step="0.1" value="1" style="width: 100%; accent-color: #fb923c;">
+    </div>
+  </div>
+</div>
+
+<div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+  <button id="reset-btn" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+    ✨ Reset to Cool Arrangement
+  </button>
+</div>
+
+<div id="jsd-plot" style="width: 100%; height: 850px;"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const x = [];
+    for(let i = -15; i <= 15; i += 0.1) {
+        x.push(i);
+    }
+
+    function gaussian(x_arr, mu, variance) {
+        const sigma = Math.sqrt(variance);
+        return x_arr.map(val => 
+            Math.exp(-0.5 * Math.pow((val - mu) / sigma, 2)) / (sigma * Math.sqrt(2 * Math.PI))
+        );
+    }
+
+    function calcJSD(p, q) {
+        let p_sum = 0, q_sum = 0;
+        for(let i=0; i<p.length; i++) {
+            p_sum += p[i];
+            q_sum += q[i];
+        }
+        
+        let jsd = 0;
+        for(let i=0; i<p.length; i++) {
+            let pNorm = p[i] / p_sum;
+            let qNorm = q[i] / q_sum;
+            let mNorm = 0.5 * (pNorm + qNorm);
+            
+            if(pNorm > 0) jsd += 0.5 * pNorm * Math.log(pNorm / mNorm);
+            if(qNorm > 0) jsd += 0.5 * qNorm * Math.log(qNorm / mNorm);
+        }
+        return jsd;
+    }
+
+    let history = [];
+    let smoothedJSD = null;
+    const EMA_ALPHA = 0.15; // smoothing factor (0 to 1)
+    
+    // UI elements
+    const inputs = ['mu1', 'var1', 'mu2', 'var2'];
+    const state = {mu1: -2.0, var1: 1.0, mu2: 2.0, var2: 1.0};
+    
+    inputs.forEach(id => {
+        const el = document.getElementById(id);
+        const valEl = document.getElementById(id + '-val');
+        el.addEventListener('input', (e) => {
+            state[id] = parseFloat(e.target.value);
+            valEl.textContent = state[id].toFixed(1);
+        });
+    });
+
+    const resetBtn = document.getElementById('reset-btn');
+    resetBtn.addEventListener('click', () => {
+        state.mu1 = -4.0;
+        state.var1 = 0.5;
+        state.mu2 = 2.5;
+        state.var2 = 4.0;
+        
+        inputs.forEach(id => {
+            const el = document.getElementById(id);
+            const valEl = document.getElementById(id + '-val');
+            el.value = state[id];
+            valEl.textContent = state[id].toFixed(1);
+        });
+    });
+
+    // Add slight hover effect to reset button
+    resetBtn.addEventListener('mouseenter', () => resetBtn.style.background = 'rgba(255,255,255,0.2)');
+    resetBtn.addEventListener('mouseleave', () => resetBtn.style.background = 'rgba(255,255,255,0.1)');
+
+    const layout = {
+        height: 850,
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: { color: '#e0e0e0', family: '"Inter", "Google Sans", sans-serif' },
+        xaxis: {domain: [0, 1], range: [-15, 15], title: 'x', gridcolor: 'rgba(255,255,255,0.1)'},
+        yaxis: {domain: [0.55, 1], range: [0, 0.8], title: 'Probability Density', gridcolor: 'rgba(255,255,255,0.1)'},
+        xaxis2: {domain: [0, 1], range: [-10, 0], title: 'Time (seconds ago)', anchor: 'y2', gridcolor: 'rgba(255,255,255,0.1)'},
+        yaxis2: {domain: [0, 0.45], range: [0, 0.8], title: 'JS Divergence (nats)', anchor: 'x2', gridcolor: 'rgba(255,255,255,0.1)'},
+        margin: {l: 50, r: 20, t: 40, b: 50},
+        legend: {
+            x: 0.82,
+            y: 0.98,
+            bgcolor: 'rgba(0,0,0,0.6)',
+            bordercolor: 'rgba(255,255,255,0.2)',
+            borderwidth: 1
+        },
+        hovermode: 'closest'
+    };
+
+    let lastDrawTime = 0;
+    function tick(timestamp) {
+        requestAnimationFrame(tick);
+        
+        // Target ~30 FPS for smooth updates
+        if (timestamp - lastDrawTime < 33) return;
+        lastDrawTime = timestamp;
+        
+        let now = Date.now() / 1000;
+        
+        let P = gaussian(x, state.mu1, state.var1);
+        let Q = gaussian(x, state.mu2, state.var2);
+        let M = P.map((p, i) => 0.5 * (p + Q[i]));
+        
+        let rawJSD = calcJSD(P, Q);
+        
+        if (smoothedJSD === null) {
+            smoothedJSD = rawJSD;
+        } else {
+            smoothedJSD = (EMA_ALPHA * rawJSD) + ((1 - EMA_ALPHA) * smoothedJSD);
+        }
+        
+        history.push({t: now, jsd: smoothedJSD});
+        history = history.filter(d => now - d.t <= 10);
+        
+        let time_vals = history.map(d => d.t - now);
+        let jsd_vals = history.map(d => d.jsd);
+
+        const data = [
+            { x: x, y: P, name: 'P', type: 'scatter', mode: 'lines', line: {color: '#60a5fa', width: 3} },
+            { x: x, y: Q, name: 'Q', type: 'scatter', mode: 'lines', line: {color: '#fb923c', width: 3} },
+            { x: x, y: M, name: 'M = (P+Q)/2', type: 'scatter', mode: 'lines', line: {color: '#4ade80', width: 2, dash: 'dash'} },
+            { x: time_vals, y: jsd_vals, xaxis: 'x2', yaxis: 'y2', name: 'JS Divergence', type: 'scatter', mode: 'lines', line: {color: '#c084fc', width: 3} },
+            { x: [-10, 0], y: [Math.LN2, Math.LN2], xaxis: 'x2', yaxis: 'y2', name: 'Bound (ln 2)', type: 'scatter', mode: 'lines', line: {color: '#f87171', width: 2, dash: 'dash'} }
+        ];
+
+        Plotly.react('jsd-plot', data, layout, {displayModeBar: false});
+    }
+
+    requestAnimationFrame(tick);
+});
+</script>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
