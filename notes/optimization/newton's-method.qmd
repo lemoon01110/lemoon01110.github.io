@@ -1,0 +1,5 @@
+---
+title: "Newton's Method"
+---
+
+Content for Newton's Method goes here.

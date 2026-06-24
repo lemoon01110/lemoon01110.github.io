@@ -1,0 +1,5 @@
+---
+title: "Bernoulli Distribution"
+---
+
+Content for Bernoulli Distribution goes here.

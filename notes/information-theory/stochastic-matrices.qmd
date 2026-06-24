@@ -1,0 +1,51 @@
+---
+title: "Stochastic Matrices"
+toc: true
+toc-depth: 3
+---
+
+
+## Definition
+
+::: {.thm-box .thm-definition}
+### Definition: Stochastic Matrix
+A matrix $P \in \mathbb{R}^{N \times N}$ is called a **stochastic matrix** (or **Markov matrix**) if:
+1. All entries are non-negative: $[P]_{ij} \ge 0$.
+2. It is **row stochastic**: Each row sums to 1 ($\sum_{j=0}^{N-1} [P]_{ij} = 1$).
+
+If the matrix also satisfies that every **column** sums to 1, it is called a **doubly stochastic matrix**.
+:::
+
+A stationary distribution $\boldsymbol\pi$ (represented as a column vector) for a Markov chain with transition matrix $P$ satisfies:
+$$
+\boldsymbol\pi^\top P = \boldsymbol\pi^\top
+$$
+meaning it is the left eigenvector corresponding to the eigenvalue $\lambda = 1$.
+
+## Intuition
+
+A stochastic matrix encodes all the probabilistic transitions between states in a Markov chain. The rows represent the current state, and the columns represent the next state. Because a state must transition *somewhere*, the probabilities across the row must sum to 1.
+
+Important properties:
+- The dominant eigenvalue is exactly 1. 
+- Repeatedly multiplying a probability vector by the transition matrix simulates moving forward in time. Over a long time period ($P^k$ as $k \to \infty$), an ergodic Markov chain converges to its **stationary distribution**, meaning the long-term proportion of time spent in each state stabilizes.
+- **Doubly stochastic matrices** uniquely have a **uniform** stationary distribution. The Birkhoff-von Neumann theorem states they can be expressed as convex combinations of permutation matrices. Algorithms like Sinkhorn-Knopp are used to convert non-negative matrices into doubly stochastic matrices.
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### 1. Stationary Distribution
+Given a stochastic matrix, set up the linear system to solve for the stationary distribution $\boldsymbol\pi^\top P = \boldsymbol\pi^\top$ with the constraint $\sum \pi_i = 1$.
+:::
+
+::: {.thm-box .thm-problem}
+### 2. Matrix Powers
+Prove that if $P$ is a stochastic matrix, then the power $P^k$ is also a stochastic matrix for any positive integer $k$.
+:::
+
+::: {.thm-box .thm-problem}
+### 3. Doubly Stochastic Stationary Distribution
+For an ergodic doubly stochastic matrix $P$ of size $N \times N$, prove that the stationary distribution is uniform: $\boldsymbol\pi = \frac{1}{N} \mathbf{1}_N$.
+
+:::
+

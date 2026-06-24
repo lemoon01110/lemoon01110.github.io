@@ -1,0 +1,71 @@
+---
+title: "Information Bottleneck"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### The Core Philosophy
+
+The **Information Bottleneck (IB)** principle, introduced by Naftali Tishby in 1999, provides a rigorous information-theoretic framework for extracting the most relevant features from data.
+
+Suppose you have an input variable $X$ (e.g., an image of an animal) and a target variable $Y$ (e.g., the label "Dog"). You want to construct an internal representation $Z$ (e.g., the hidden activations in a neural network) that captures the essence of $X$ needed to predict $Y$.
+
+The Information Bottleneck states that the optimal representation $Z$ must satisfy two conflicting goals:
+1. **Prediction**: $Z$ should retain as much information as possible about the target $Y$.
+2. **Compression**: $Z$ should "forget" as much irrelevant information as possible about the input $X$.
+
+By forcing the information to pass through a narrow "bottleneck", the system is forced to strip away noise and memorize only the minimal sufficient statistics necessary for the task.
+
+:::
+
+::: {.thm-box .thm-remark}
+### Mathematical Objective
+
+The Information Bottleneck principle formalizes this trade-off using Mutual Information $I(\cdot ; \cdot)$. We seek to find a mapping $P(Z|X)$ that minimizes the following Lagrangian objective:
+
+$$
+\mathcal{L}_{IB} = I(X; Z) - \beta I(Z; Y)
+$$
+
+#### Breaking down the terms:
+1. $I(X; Z)$: The Mutual Information between the input and the representation. Minimizing this forces **compression**. It prevents $Z$ from just being an exact copy of $X$.
+2. $I(Z; Y)$: The Mutual Information between the representation and the target. Maximizing this (hence the minus sign) forces **prediction accuracy**.
+3. $\beta$: The Lagrange multiplier that controls the trade-off. 
+   - If $\beta \to 0$, compression dominates, and $Z$ collapses to a constant (forgetting everything).
+   - If $\beta \to \infty$, prediction dominates, and $Z$ retains all features of $X$ without compressing anything.
+
+:::
+
+::: {.thm-box .thm-remark}
+### Deep Learning and the IB Framework
+
+In 2015, Tishby applied the Information Bottleneck principle to Deep Neural Networks (DNNs), offering a profound theory for how deep learning actually works. 
+
+According to Tishby, training a neural network via Stochastic Gradient Descent (SGD) naturally consists of two distinct phases:
+1. **The Fitting Phase**: Early in training, the network rapidly memorizes the data. $I(Z; Y)$ increases sharply, but $I(X; Z)$ also remains high as the network absorbs raw features.
+2. **The Compression Phase**: Later in training, as the gradients become noisy due to minibatches, the network begins to naturally "forget" irrelevant details. $I(X; Z)$ decreases, while $I(Z; Y)$ remains stable. This compression phase is what leads to the miraculous **generalization** capabilities of deep networks, preventing overfitting.
+
+:::
+
+::: {.thm-box .thm-remark}
+### Variational Information Bottleneck (VIB)
+
+Directly optimizing the IB objective $\mathcal{L}_{IB}$ is computationally intractable for high-dimensional continuous data because calculating exact mutual information requires integrating over unknown joint distributions.
+
+In 2016, Alemi et al. introduced the **Variational Information Bottleneck (VIB)**. By using the same variational inference techniques that power VAEs, they derived a tractable lower bound for the IB objective. 
+
+The resulting loss function is stunningly similar to a VAE, but conditioned on labels:
+$$
+\mathcal{L}_{VIB} = \frac{1}{N} \sum_{i=1}^N \Big[ \int p(z|x_i) \log q(y_i|z) \, dz - \beta D_{KL} \big( p(z|x_i) \| r(z) \big) \Big]
+$$
+Here, $q(y|z)$ is the final classification layer, $p(z|x)$ is the stochastic encoder, and $r(z)$ is a standard prior like a Gaussian. This explicitly forces neural networks to learn robust, noise-invariant representations, drastically improving adversarial robustness and generalization.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: The IB Trade-off
+In the Information Bottleneck objective $\mathcal{L} = I(X;Z) - \beta I(Z;Y)$, what happens to the learned representation $Z$ as the Lagrange multiplier $\beta \to 0$? What happens when $\beta \to \infty$?
+:::

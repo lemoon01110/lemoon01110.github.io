@@ -1,0 +1,5 @@
+---
+title: "Partial Differentiation and Gradients"
+---
+
+Content for Partial Differentiation and Gradients goes here.

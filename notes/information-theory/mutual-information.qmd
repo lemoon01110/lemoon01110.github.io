@@ -1,0 +1,87 @@
+---
+title: "Mutual Information"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### Understanding Mutual Information
+
+**Mutual Information (MI)** quantifies the amount of information obtained about one random variable by observing another random variable. Intuitively, it measures how much knowing $Y$ reduces the uncertainty about $X$.
+
+If $X$ and $Y$ are completely independent, knowing $Y$ tells you absolutely nothing about $X$, and their mutual information is zero. If $X$ is a deterministic function of $Y$, knowing $Y$ tells you everything about $X$, and their mutual information is maximized.
+
+Unlike correlation, which only captures *linear* dependencies, Mutual Information captures **all non-linear dependencies** between variables.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition
+
+For two discrete random variables $X$ and $Y$ with a joint probability mass function $P(X, Y)$ and marginals $P(X)$ and $P(Y)$, Mutual Information $I(X;Y)$ is defined as:
+
+$$
+I(X;Y) = \sum_{y \in Y} \sum_{x \in X} P(x, y) \log \left( \frac{P(x, y)}{P(x)P(y)} \right)
+$$
+
+For continuous variables, the summations are replaced by double integrals:
+$$
+I(X;Y) = \int_{\mathcal{Y}} \int_{\mathcal{X}} p(x, y) \log \left( \frac{p(x, y)}{p(x)p(y)} \right) dx dy
+$$
+
+:::
+
+::: {.thm-box .thm-theorem}
+### Relationships to Entropy and Divergence
+
+Mutual Information has beautiful, symmetric relationships with Shannon Entropy and Kullback-Leibler (KL) Divergence.
+
+#### 1. The Entropy Perspective
+We can rewrite MI in terms of Marginal and Conditional Entropies:
+
+$$
+\begin{aligned}
+I(X;Y) &= H(X) - H(X|Y) \\
+&= H(Y) - H(Y|X) \\
+&= H(X) + H(Y) - H(X,Y) \\
+&= H(X,Y) - H(X|Y) - H(Y|X)
+\end{aligned}
+$$
+
+The first equation, $H(X) - H(X|Y)$, perfectly matches the intuition: it is the total uncertainty in $X$, minus the remaining uncertainty in $X$ after we have observed $Y$.
+
+#### 2. The KL Divergence Perspective
+Notice that the term inside the log of the definition is the ratio between the joint distribution $P(X, Y)$ and the product of the marginals $P(X)P(Y)$. 
+
+Therefore, Mutual Information is precisely the **Kullback-Leibler Divergence** between the true joint distribution and the joint distribution assuming $X$ and $Y$ are independent:
+
+$$
+I(X;Y) = D_{KL} \Big( P(X,Y) \Big\| P(X)P(Y) \Big)
+$$
+
+Because KL Divergence is always non-negative, $I(X;Y) \ge 0$, with equality if and only if $X$ and $Y$ are strictly independent.
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context
+
+Mutual Information is heavily utilized across modern ML and Representation Learning paradigms:
+
+#### 1. InfoGAN
+Standard GANs suffer from highly entangled latent spaces. InfoGAN solves this by maximizing the Mutual Information $I(c; G(z, c))$ between a subset of latent variables $c$ and the generated image $G$. This forces the network to learn disentangled, interpretable representations (e.g., allocating one dimension of $c$ to rotation, another to lighting).
+
+#### 2. Feature Selection
+In classical ML, estimating $I(Feature; Label)$ is a powerful method for filtering features. Features with high mutual information regarding the target variable are retained, while those with near-zero MI are pruned, handling complex non-linear correlations that ANOVA or Pearson correlation would miss.
+
+#### 3. Contrastive Predictive Coding (CPC)
+In self-supervised learning, calculating exact mutual information is often intractable in high dimensions. Methods like InfoNCE provide a lower bound on MI, allowing networks to learn robust representations by maximizing the mutual information between different "views" (e.g., augmented crops) of the same image.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Independence
+If two random variables $X$ and $Y$ are statistically independent, prove directly from the summation definition that their Mutual Information $I(X;Y)$ is exactly zero.
+:::

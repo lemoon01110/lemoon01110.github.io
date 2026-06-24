@@ -1,0 +1,79 @@
+---
+title: "f-Divergence"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-theorem}
+### A Generalized Family of Divergences
+
+The **$f$-Divergence** (also known as the Ali-Silvey distance) is not a single formula, but a vast mathematical family that generalizes the concept of differences between probability distributions. 
+
+By simply plugging in different scalar functions $f(t)$, you can retrieve almost all the famous divergences used in machine learning, including KL Divergence, Jensen-Shannon Divergence, and Total Variation Distance.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition
+
+Let $P$ and $Q$ be two probability distributions defined over a space $\mathcal{X}$, such that $P$ is absolutely continuous with respect to $Q$ (meaning $Q(x) = 0 \implies P(x) = 0$). 
+
+Let $f(t)$ be a **convex function** defined for $t > 0$, with the condition that $f(1) = 0$.
+
+The $f$-Divergence of $P$ from $Q$ is defined as the expectation under $Q$ of the function $f$ applied to the likelihood ratio $\frac{P(x)}{Q(x)}$:
+
+$$
+D_f(P \| Q) = \mathbb{E}_{x \sim Q} \left[ f \left( \frac{P(x)}{Q(x)} \right) \right] = \int_{\mathcal{X}} q(x) f \left( \frac{p(x)}{q(x)} \right) dx
+$$
+
+#### Intuition
+If $P$ and $Q$ are perfectly identical distributions, then the ratio $\frac{p(x)}{q(x)} = 1$ everywhere. Because we enforce the rule $f(1) = 0$, the $f$-Divergence becomes exactly $0$. If the distributions differ, the convexity of $f$ ensures that the divergence will inherently grow positive (via Jensen's inequality).
+
+:::
+
+::: {.thm-box .thm-remark}
+### Famous Members of the Family
+
+By simply selecting a different convex generator function $f(t)$, we spawn different famous distance metrics.
+
+#### 1. Kullback-Leibler (KL) Divergence
+Let $f(t) = t \log(t)$. 
+$$
+D_{KL}(P \| Q) = \int q(x) \left( \frac{p(x)}{q(x)} \log \frac{p(x)}{q(x)} \right) dx = \int p(x) \log \frac{p(x)}{q(x)} dx
+$$
+
+#### 2. Reverse KL Divergence
+Let $f(t) = -\log(t)$.
+$$
+D_{ReverseKL}(P \| Q) = \int q(x) \left( -\log \frac{p(x)}{q(x)} \right) dx = \int q(x) \log \frac{q(x)}{p(x)} dx
+$$
+
+#### 3. Total Variation Distance
+Let $f(t) = \frac{1}{2} |t - 1|$.
+$$
+TV(P, Q) = \int q(x) \frac{1}{2} \left| \frac{p(x)}{q(x)} - 1 \right| dx = \frac{1}{2} \int |p(x) - q(x)| dx
+$$
+
+#### 4. Squared Hellinger Distance
+Let $f(t) = (\sqrt{t} - 1)^2$.
+This yields a divergence closely related to quantum information theory.
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context: f-GANs
+
+In 2016, researchers realized that the original GAN objective (which minimized Jensen-Shannon Divergence) was just one specific instantiation of a broader concept.
+
+Using the **Fenchel Conjugate** of the function $f(t)$, mathematically denoted as $f^*(u)$, any $f$-Divergence can be approximated using a neural network discriminator. 
+
+The paper *f-GAN* demonstrated that you can train a Generative Adversarial Network to minimize **any** $f$-divergence by modifying the discriminator's activation function and the overall minimax loss objective. This allowed researchers to switch a GAN from mode-seeking behavior to mean-seeking behavior simply by swapping the mathematical $f(t)$ function, unifing the entire field of generative adversarial models under one mathematical framework.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Deriving KL from f-Divergence
+Starting from the generalized f-divergence integral formula $D_f(P \| Q) = \int q(x) f\left(\frac{p(x)}{q(x)}\right) dx$, prove that setting the generator function to $f(t) = t \log t$ successfully recovers the Kullback-Leibler divergence.
+:::

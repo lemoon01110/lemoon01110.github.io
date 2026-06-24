@@ -1,0 +1,5 @@
+---
+title: "Joint Probabilities of Multiple Variables"
+---
+
+Content for Joint Probabilities of Multiple Variables goes here.

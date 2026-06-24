@@ -1,0 +1,5 @@
+---
+title: "Moore-Penrose Pseudoinverse"
+---
+
+Content for Moore-Penrose Pseudoinverse goes here.

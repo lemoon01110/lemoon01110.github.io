@@ -1,0 +1,331 @@
+---
+title: ""
+page-layout: custom
+---
+
+```{=html}
+<style>
+  .navbar::before {
+    background: transparent !important;
+  }
+</style>
+
+<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+
+  <div class="subject-hero">
+    <h1 class="hero-title" style="color: #fff;">Stochastic Dynamics</h1>
+    <p class="hero-subtitle">Comprehensive mathematical foundations and techniques.</p>
+  </div>
+
+  <div class="subject-intro">
+    <p>
+      Select a topic from the sections below to explore detailed derivations, proofs, and
+      applications in modern machine learning.
+    </p>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 4rem 0;">
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Langevin Dynamics and Sampling</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Motivation: Why Gradients Are Not Enough</h3>
+      <p>Explore detailed notes on motivation: why gradients are not enough.</p>
+      <a href="stochastic-dynamics/motivation-why-gradients-are-not-enough.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Langevin Dynamics</h3>
+      <p>Explore detailed notes on langevin dynamics.</p>
+      <a href="stochastic-dynamics/langevin-dynamics.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Stationary Distribution</h3>
+      <p>Explore detailed notes on stationary distribution.</p>
+      <a href="stochastic-dynamics/stationary-distribution.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Connection to Energy-Based Models</h3>
+      <p>Explore detailed notes on connection to energy-based models.</p>
+      <a href="stochastic-dynamics/connection-to-energy-based-models.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Markov Chain Monte Carlo</h3>
+      <p>Explore detailed notes on markov chain monte carlo.</p>
+      <a href="stochastic-dynamics/markov-chain-monte-carlo.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Metropolis-Adjusted Langevin Algorithm</h3>
+      <p>Explore detailed notes on metropolis-adjusted langevin algorithm.</p>
+      <a href="stochastic-dynamics/metropolis-adjusted-langevin-algorithm.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Stochastic Gradient Langevin Dynamics</h3>
+      <p>Explore detailed notes on stochastic gradient langevin dynamics.</p>
+      <a href="stochastic-dynamics/stochastic-gradient-langevin-dynamics.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Practical Considerations</h3>
+      <p>Explore detailed notes on practical considerations.</p>
+      <a href="stochastic-dynamics/practical-considerations.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Score-Based Sampling Algorithm</h3>
+      <p>Explore detailed notes on score-based sampling algorithm.</p>
+      <a href="stochastic-dynamics/score-based-sampling-algorithm.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Why Noise Is Not Optional</h3>
+      <p>Explore detailed notes on why noise is not optional.</p>
+      <a href="stochastic-dynamics/why-noise-is-not-optional.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Discrete-Time vs Continuous-Time View</h3>
+      <p>Explore detailed notes on discrete-time vs continuous-time view.</p>
+      <a href="stochastic-dynamics/discrete-time-vs-continuous-time-view.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Stochastic Differential Equations</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Brownian Motion</h3>
+      <p>Explore detailed notes on brownian motion.</p>
+      <a href="stochastic-dynamics/brownian-motion.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Stochastic Differential Equations</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Itô vs Stratonovich</h3>
+      <p>Explore detailed notes on itô vs stratonovich.</p>
+      <a href="stochastic-dynamics/itô-vs-stratonovich.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Itô's Lemma</h3>
+      <p>Explore detailed notes on itô's lemma.</p>
+      <a href="stochastic-dynamics/itô's-lemma.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>SDEs as Limits of Algorithms</h3>
+      <p>Explore detailed notes on sdes as limits of algorithms.</p>
+      <a href="stochastic-dynamics/sdes-as-limits-of-algorithms.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Stochastic Optimization and Continuous Limits</h3>
+      <p>Explore detailed notes on stochastic optimization and continuous limits.</p>
+      <a href="stochastic-dynamics/stochastic-optimization-and-continuous-limits.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Probability Evolution Viewpoint</h3>
+      <p>Explore detailed notes on probability evolution viewpoint.</p>
+      <a href="stochastic-dynamics/probability-evolution-viewpoint.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Reversibility and Time Reversal</h3>
+      <p>Explore detailed notes on reversibility and time reversal.</p>
+      <a href="stochastic-dynamics/reversibility-and-time-reversal.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">ODE, SDE, and Continuous Limits</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Motivation: Why Remove Noise?</h3>
+      <p>Explore detailed notes on motivation: why remove noise?.</p>
+      <a href="stochastic-dynamics/motivation-why-remove-noise?.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Discrete Algorithms and Their Continuous Limits</h3>
+      <p>Explore detailed notes on discrete algorithms and their continuous limits.</p>
+      <a href="stochastic-dynamics/discrete-algorithms-and-their-continuous-limits.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Two Views of the Same Evolution</h3>
+      <p>Explore detailed notes on two views of the same evolution.</p>
+      <a href="stochastic-dynamics/two-views-of-the-same-evolution.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Probability Flow Perspective</h3>
+      <p>Explore detailed notes on probability flow perspective.</p>
+      <a href="stochastic-dynamics/probability-flow-perspective.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Probability Flow ODE</h3>
+      <p>Explore detailed notes on probability flow ode.</p>
+      <a href="stochastic-dynamics/probability-flow-ode.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Why Deterministic Sampling Works</h3>
+      <p>Explore detailed notes on why deterministic sampling works.</p>
+      <a href="stochastic-dynamics/why-deterministic-sampling-works.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Flow Matching and Deterministic Probability Flows</h3>
+      <p>Explore detailed notes on flow matching and deterministic probability flows.</p>
+      <a href="stochastic-dynamics/flow-matching-and-deterministic-probability-flows.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Linear State-Space Models</h3>
+      <p>Explore detailed notes on linear state-space models.</p>
+      <a href="stochastic-dynamics/linear-state-space-models.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Discretization of Linear ODEs</h3>
+      <p>Explore detailed notes on discretization of linear odes.</p>
+      <a href="stochastic-dynamics/discretization-of-linear-odes.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Reverse-Time Dynamics Revisited</h3>
+      <p>Explore detailed notes on reverse-time dynamics revisited.</p>
+      <a href="stochastic-dynamics/reverse-time-dynamics-revisited.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Relationship Between ODE and SDE</h3>
+      <p>Explore detailed notes on relationship between ode and sde.</p>
+      <a href="stochastic-dynamics/relationship-between-ode-and-sde.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Continuous Limits of Diffusion Models</h3>
+      <p>Explore detailed notes on continuous limits of diffusion models.</p>
+      <a href="stochastic-dynamics/continuous-limits-of-diffusion-models.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Applications in Modern AI/ML</h3>
+      <p>Explore detailed notes on applications in modern ai/ml.</p>
+      <a href="stochastic-dynamics/applications-in-modern-ai-ml.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Distribution Dynamics</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Distributional Viewpoint</h3>
+      <p>Explore detailed notes on distributional viewpoint.</p>
+      <a href="stochastic-dynamics/distributional-viewpoint.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Fokker-Planck Equation</h3>
+      <p>Explore detailed notes on fokker-planck equation.</p>
+      <a href="stochastic-dynamics/fokker-planck-equation.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Continuity Equation Perspective</h3>
+      <p>Explore detailed notes on continuity equation perspective.</p>
+      <a href="stochastic-dynamics/continuity-equation-perspective.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Example: Langevin Dynamics</h3>
+      <p>Explore detailed notes on example: langevin dynamics.</p>
+      <a href="stochastic-dynamics/example-langevin-dynamics.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Forward Diffusion in Generative Models</h3>
+      <p>Explore detailed notes on forward diffusion in generative models.</p>
+      <a href="stochastic-dynamics/forward-diffusion-in-generative-models.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Reverse-Time Fokker-Planck Equation</h3>
+      <p>Explore detailed notes on reverse-time fokker-planck equation.</p>
+      <a href="stochastic-dynamics/reverse-time-fokker-planck-equation.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Connection to Probability Flow ODE</h3>
+      <p>Explore detailed notes on connection to probability flow ode.</p>
+      <a href="stochastic-dynamics/connection-to-probability-flow-ode.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Why Fokker-Planck Is the Right Abstraction</h3>
+      <p>Explore detailed notes on why fokker-planck is the right abstraction.</p>
+      <a href="stochastic-dynamics/why-fokker-planck-is-the-right-abstraction.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Analytical Solutions and Special Cases</h3>
+      <p>Explore detailed notes on analytical solutions and special cases.</p>
+      <a href="stochastic-dynamics/analytical-solutions-and-special-cases.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Numerical Methods for Fokker-Planck Equations</h3>
+      <p>Explore detailed notes on numerical methods for fokker-planck equations.</p>
+      <a href="stochastic-dynamics/numerical-methods-for-fokker-planck-equations.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Applications in Modern AI/ML</h3>
+      <p>Explore detailed notes on applications in modern ai/ml.</p>
+      <a href="stochastic-dynamics/applications-in-modern-ai-ml.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Detailed Balance and Equilibrium</h3>
+      <p>Explore detailed notes on detailed balance and equilibrium.</p>
+      <a href="stochastic-dynamics/detailed-balance-and-equilibrium.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Closing Perspective</h3>
+      <p>Explore detailed notes on closing perspective.</p>
+      <a href="stochastic-dynamics/closing-perspective.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="/assets/card-tilt.js"></script>
+```

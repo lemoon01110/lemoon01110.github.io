@@ -1,0 +1,5 @@
+---
+title: "Trace"
+---
+
+Content for Trace goes here.

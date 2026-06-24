@@ -1,0 +1,88 @@
+---
+title: "Information Content (Surprisal)"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### The Intuition of Surprise
+
+In Information Theory, **Information Content**, often referred to as **Surprisal**, quantifies the amount of "surprise" or "information" gained when observing a specific outcome of a random variable.
+
+The core intuition relies on a simple premise:
+> Observing a highly probable event provides very little information, whereas observing a rare or highly improbable event provides a massive amount of information.
+
+If someone tells you, "The sun rose this morning," you have gained almost zero information because the probability of that event is near $1$. Conversely, if someone tells you, "It is currently snowing in the Sahara Desert," you have gained a tremendous amount of information because the prior probability of that event is near $0$.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition
+
+For a discrete random variable $X$ with a probability mass function $P(X)$, the information content of an event $x$ is defined as the negative logarithm of its probability:
+
+$$
+h(x) = -\log_b P(x) = \log_b \left( \frac{1}{P(x)} \right)
+$$
+
+#### Choice of Base ($b$)
+The base of the logarithm $b$ determines the unit of information:
+- **Base 2 ($b=2$)**: Information is measured in **bits** (or shannons). This is the standard in computer science. One bit represents the information gained from a single fair coin flip.
+- **Base $e$ ($b=e$)**: Information is measured in **nats**. This is commonly used in machine learning and continuous mathematics because the natural logarithm is easier to differentiate.
+- **Base 10 ($b=10$)**: Information is measured in **bans** (or dits/hartleys), though this is rarely used in modern contexts.
+
+:::
+
+::: {.thm-box .thm-theorem}
+### Key Properties
+
+The definition of surprisal $h(x) = -\log P(x)$ was specifically chosen by Claude Shannon because it perfectly satisfies the necessary axioms of information:
+
+#### 1. Non-negativity
+Information cannot be negative. You cannot "lose" information by observing an event.
+$$
+P(x) \in [0, 1] \implies h(x) \ge 0
+$$
+
+#### 2. Zero Surprise for Certainty
+If an event is guaranteed to happen ($P(x) = 1$), observing it yields no new information.
+$$
+h(x) = -\log(1) = 0
+$$
+
+#### 3. Additivity of Independent Events
+If two events $x$ and $y$ are statistically independent, the joint probability is the product of their individual probabilities: $P(x, y) = P(x)P(y)$.
+Consequently, the total information gained from observing both events should be the sum of the information gained from observing them individually. The logarithm elegantly handles this:
+
+$$
+\begin{aligned}
+h(x, y) &= -\log \big( P(x, y) \big) \\
+&= -\log \big( P(x)P(y) \big) \\
+&= -\log P(x) - \log P(y) \\
+&= h(x) + h(y)
+\end{aligned}
+$$
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context
+
+While we rarely calculate the surprisal of a single event in isolation in machine learning, $h(x)$ forms the foundational building block for almost all probabilistic loss functions. 
+
+When you train a classifier using **Negative Log-Likelihood (NLL)**, you are actively attempting to *minimize the surprisal* of the true labels given the model's predictions. If the true label is $y$, and the model outputs a probability $P(y | x)$, the loss is exactly the surprisal:
+
+$$
+\mathcal{L} = -\log P(y | x) = h(y | x)
+$$
+
+By minimizing this loss, the neural network learns to be "less surprised" by the actual ground-truth data in the training set.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Calculating Surprisal
+Calculate the surprisal of rolling a 6 on a fair 6-sided die, in both bits and nats. How does this compare to flipping two heads in a row on a fair coin?
+:::

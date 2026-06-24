@@ -1,0 +1,78 @@
+---
+title: "Jensen-Shannon Divergence"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-theorem}
+### A Symmetric Fix to KL Divergence
+
+While the Kullback-Leibler (KL) Divergence is foundational, it suffers from two major mathematical flaws that limit its utility as a true distance metric:
+1. It is **asymmetric** ($D_{KL}(P \| Q) \neq D_{KL}(Q \| P)$).
+2. It can **explode to infinity** if the distributions do not share the exact same support (i.e., if $Q(x) = 0$ where $P(x) > 0$).
+
+The **Jensen-Shannon Divergence (JSD)** solves both of these problems by creating a smoothed, symmetric version of the KL divergence. It does this by measuring the KL divergence of both $P$ and $Q$ relative to their "average" distribution $M$.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition
+
+Given two probability distributions $P$ and $Q$, we first define the mixture distribution $M$ as their exact point-wise average:
+
+$$
+M = \frac{1}{2}(P + Q)
+$$
+
+The Jensen-Shannon Divergence is then defined as the average of the KL divergences from $P$ to $M$, and from $Q$ to $M$:
+
+$$
+JSD(P \| Q) = \frac{1}{2} D_{KL}(P \| M) + \frac{1}{2} D_{KL}(Q \| M)
+$$
+
+:::
+
+::: {.thm-box .thm-theorem}
+### Key Properties
+
+#### 1. Symmetry
+Unlike KL divergence, JSD is perfectly symmetric. It doesn't matter which distribution is the "reference" and which is the "approximation."
+$$
+JSD(P \| Q) = JSD(Q \| P)
+$$
+
+#### 2. Strict Bounds
+Unlike KL divergence which stretches from $0$ to $\infty$, JSD is strictly bounded between $0$ and $\log(2)$ (or $1$ if using base-2 logarithms). 
+$$
+0 \le JSD(P \| Q) \le \log(2)
+$$
+This boundedness provides immense numerical stability during machine learning training.
+
+#### 3. A True Mathematical Metric
+While JSD itself does not satisfy the triangle inequality, its square root actually does! The quantity $\sqrt{JSD(P \| Q)}$ satisfies non-negativity, symmetry, identity of indiscernibles, and the triangle inequality, making it a true mathematical distance metric.
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context: The Birth of GANs
+
+The Jensen-Shannon Divergence is permanently etched into machine learning history due to its central role in the original **Generative Adversarial Network (GAN)** paper by Ian Goodfellow (2014).
+
+In a standard GAN, a Generator network $G$ tries to produce fake data to fool a Discriminator network $D$, while $D$ tries to distinguish between true data ($P_{data}$) and fake data ($P_{generator}$). 
+
+Goodfellow mathematically proved that if the discriminator $D$ is trained to absolute optimality at any given step, the loss function of the generator precisely collapses into minimizing the Jensen-Shannon Divergence between the true data distribution and the generated distribution:
+
+$$
+\mathcal{L}_G = 2 \cdot JSD(P_{data} \| P_{generator}) - \log(4)
+$$
+
+By engaging in this minimax game, the generator is implicitly forcing its probability distribution to perfectly match the training data, guided by the smoothed, stable gradients of the JSD.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: GAN Stabilization
+Explain why the strict boundedness ($0 \le JSD \le \log 2$) makes Jensen-Shannon Divergence vastly superior to KL divergence for training early-stage Generative Adversarial Networks (GANs), especially when the generator and real distributions have disjoint supports.
+:::

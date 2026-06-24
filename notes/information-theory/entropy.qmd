@@ -1,0 +1,84 @@
+---
+title: "Entropy"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### Understanding Entropy
+
+While Information Content (Surprisal) measures the information gained from a *single specific event*, **Entropy** measures the *average* amount of information produced by a stochastic source of data. 
+
+In other words, Entropy is the **Expected Information Content**. It quantifies the intrinsic uncertainty, unpredictability, or "chaos" inherent in a probability distribution.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition (Shannon Entropy)
+
+For a discrete random variable $X$ with possible states $x_1, \dots, x_n$ and probability mass function $P(x)$, the Shannon Entropy $H(X)$ is the expectation of the surprisal $h(X)$:
+
+$$
+H(X) = \mathbb{E}_{X \sim P}[h(X)] = -\sum_{x \in X} P(x) \log P(x)
+$$
+
+*(Note: In the case where $P(x) = 0$, we adopt the convention that $0 \log 0 = 0$, which is consistent with the limit $\lim_{p \to 0} p \log p = 0$.)*
+
+#### Interpretation
+- **Low Entropy**: The distribution is highly skewed or deterministic. The outcomes are predictable, so on average, observing an outcome yields very little new information.
+- **High Entropy**: The distribution is flat and uniform. The outcomes are highly unpredictable, meaning each observation provides a lot of information.
+
+:::
+
+::: {.thm-box .thm-theorem}
+### Properties of Entropy
+
+#### 1. Bounds
+For a discrete variable with $k$ possible states, the entropy is strictly bounded:
+$$
+0 \le H(X) \le \log k
+$$
+- $H(X) = 0$ if and only if the outcome is completely certain (i.e., $P(x_i) = 1$ for some $i$ and $0$ for all others).
+- $H(X) = \log k$ if and only if $X$ follows a **Uniform Distribution** ($P(x_i) = \frac{1}{k}$ for all $i$). The uniform distribution represents the state of maximum uncertainty.
+
+#### 2. Concavity
+Entropy $H(P)$ is a strictly concave function of the probability distribution $P$. This means that mixing two probability distributions together increases the overall uncertainty.
+
+:::
+
+::: {.thm-box .thm-remark}
+### Continuous Extension: Differential Entropy
+
+For a continuous random variable $X$ with a probability density function $p(x)$, the sum is replaced by an integral, resulting in **Differential Entropy**:
+
+$$
+h(X) = -\int_{\mathcal{X}} p(x) \log p(x) \, dx
+$$
+
+*Warning*: Unlike discrete entropy, differential entropy is **not** invariant to changes in coordinates (reparameterization), and it can actually take on **negative values**. For example, the differential entropy of a uniform distribution over the interval $[0, a]$ is $\log(a)$. If $a < 1$, the entropy is negative.
+
+#### Maximum Entropy Distributions
+When subjected to specific constraints, certain continuous distributions maximize differential entropy:
+- **Constraint: Defined on an interval $[a,b]$** $\to$ Uniform Distribution is Max-Ent.
+- **Constraint: Fixed Mean $\mu$ and Variance $\sigma^2$** $\to$ Gaussian (Normal) Distribution is Max-Ent.
+- **Constraint: Defined on $[0, \infty)$ with fixed Mean $\mu$** $\to$ Exponential Distribution is Max-Ent.
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context
+
+Entropy appears everywhere in Machine Learning:
+
+1. **Decision Trees**: Algorithms like ID3 and C4.5 use *Information Gain* (which is the reduction in Entropy) to choose the best features to split nodes. A good split minimizes the entropy of the resulting child nodes.
+2. **Regularization**: Maximum Entropy Reinforcement Learning (e.g., Soft Actor-Critic) adds an entropy bonus to the reward function to encourage the agent to explore different actions, preventing premature convergence to suboptimal deterministic policies.
+3. **Data Compression**: Shannon's Source Coding Theorem proves that $H(X)$ is the absolute theoretical lower bound on the average number of bits required to compress data sampled from $X$ without loss.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Biased Coin Entropy
+Prove that the entropy of a fair coin flip is exactly 1 bit. What happens to the theoretical entropy $H(X)$ if the coin is heavily biased such that $P(Heads) = 0.99$?
+:::

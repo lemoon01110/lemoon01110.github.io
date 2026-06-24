@@ -1,0 +1,71 @@
+---
+title: "Perplexity"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### What is Perplexity?
+
+**Perplexity** is a measurement of how well a probability model predicts a sample. It is an exponentiated version of entropy (or cross-entropy) that transforms the logarithmic scale of bits back into a more intuitive, linear scale of "equivalent choices."
+
+If a model has a perplexity of $K$, it means the model is, on average, as "confused" or "perplexed" as if it had to guess uniformly among $K$ equally likely options.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition
+
+For a discrete probability distribution $P$, the perplexity is defined as $2$ raised to the power of the Shannon Entropy (if the entropy is calculated in bits):
+
+$$
+PP(P) = 2^{H(P)} = 2^{-\sum x P(x) \log_2 P(x)}
+$$
+
+If the natural logarithm (nats) is used, perplexity is exponentiated using $e$:
+$$
+PP(P) = e^{H(P)}
+$$
+
+#### Example
+Suppose a model is predicting the outcome of a fair 6-sided die. The entropy is $\log_2(6) \approx 2.58$ bits. 
+The perplexity is $2^{2.58} = 6$. 
+This matches our intuition perfectly: the model is facing $6$ equally likely choices. If a biased die model achieves a perplexity of $3.5$, it means the model is as confident as if it were choosing between $3.5$ equally likely options.
+
+:::
+
+::: {.thm-box .thm-remark}
+### Perplexity of a Model (Cross-Entropy Perplexity)
+
+In practice, we don't calculate the perplexity of the true distribution; we calculate the perplexity of a **model** $Q$ given a true test sequence $x_1, \dots, x_N$ drawn from the true distribution $P$. 
+
+This is simply the exponentiated Cross-Entropy $H(P, Q)$:
+
+$$
+PP(Q) = 2^{H(P, Q)} = 2^{ -\frac{1}{N} \sum_{i=1}^N \log_2 Q(x_i) }
+$$
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context: NLP Language Models
+
+Perplexity is the gold-standard evaluation metric for **Language Models (LMs)** like GPT or BERT. 
+
+A language model assigns probabilities to sequences of words. When evaluating an LM on a held-out test dataset of $N$ words, we calculate the perplexity of the model's predictions.
+
+#### Interpreting LM Perplexity
+If a language model achieves a perplexity of **15** on a test corpus, it means that at every step of generating a sentence, the model is as confused as if it had to choose uniformly among **15** possible next words.
+
+- **Lower is Better**: A perplexity of 1 means perfect prediction (absolute certainty).
+- A model predicting words completely at random from a vocabulary of $50,000$ words would have a perplexity of $50,000$.
+- State-of-the-art Large Language Models (LLMs) often achieve single-digit perplexities on standard English corpora, demonstrating a profound understanding of grammar, context, and semantics.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Language Model Perplexity
+A language model assigns a uniform probability over a vocabulary of $10,000$ words. What is its perplexity? If a better model achieves a perplexity of $50$, what does this physically mean in terms of its predictive power?
+:::

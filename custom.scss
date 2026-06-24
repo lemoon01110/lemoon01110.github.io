@@ -1,10 +1,633 @@
 /*-- scss:defaults --*/
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/new-computer-modern@5.0.3/index.css');
 
 // Apply your preferred fonts
-$font-family-sans-serif: "Google Sans Flex", "Google Sans", "Inter", sans-serif !default;
+$font-family-sans-serif: "Outfit", "Google Sans Flex", "Inter", sans-serif !default;
 $font-family-monospace: 'JetBrains Mono', monospace !default;
 
-// Tweak the dark theme colors for a sleeker look
-$body-bg: #121212;
-$body-color: #e0e0e0;
+/*-- scss:rules --*/
+
+// Force background to a deep dark color on body, but leave containers transparent so the 3D background is visible
+body {
+  background-color: #0d1117 !important;
+  color: #c9d1d9;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+}
+
+// Ensure the main quarto container has relative positioning
+#quarto-content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem;
+  border-radius: 40px;
+}
+
+// Custom Navbar Styles
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.8rem 2rem;
+  background: rgba(13, 17, 23, 0.85); // darker mask for navbar
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid #30363d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-sizing: border-box;
+  // Masking shadow to fade contour lines near the top
+  box-shadow: 0 20px 50px rgba(8, 8, 10, 0.9);
+
+  .nav-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+
+    a {
+      color: #a0a0a0;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #00ff88;
+      }
+    }
+  }
+}
+
+// Typography Enhancements
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hero-section {
+  /* Fills the screen perfectly by offsetting Quarto's 4rem top padding */
+  height: 100vh;
+  margin-top: -4rem;
+  /* Shift content up visually to account for the navbar height */
+  padding-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+// Subject landing pages (e.g. Information Theory): a shorter centered hero
+// than the full-height homepage hero, followed by an in-depth intro block.
+.subject-hero {
+  text-align: center;
+  padding: 7rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+
+.subject-intro {
+  max-width: 820px;
+  margin: 0 auto;
+
+  p {
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: #c8c8d0;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  em {
+    color: #e8e8ef;
+    font-style: italic;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-highlight {
+  // Muted, sophisticated colors for a less intense gradient
+  background: linear-gradient(135deg, #10b981, #8b5cf6, #10b981);
+  // Spreading the background over 300% makes the color transition much softer across the text
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s ease infinite; // Slower animation
+  // Dim the glow opacity and slightly dim the text itself
+  filter: drop-shadow(0 0 3px rgba(16, 185, 129, 0.3)) drop-shadow(0 0 6px rgba(139, 92, 246, 0.3));
+  opacity: 0.9;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #a0a0a0;
+  text-shadow: 0 0 20px rgba(8, 8, 10, 1), 0 0 40px rgba(8, 8, 10, 1);
+}
+
+// Glassmorphism Card System
+.glass-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+  perspective: 1000px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03); // Lighter background for better glass visibility
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2.5rem;
+  color: white;
+  text-align: center;
+  // Use a soft, subtle shadow instead of a massive solid black spread that blocks transparency
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  // Hardware acceleration fixes to prevent text flickering on rapid scroll/resize
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    margin-top: 0;
+    color: #e0e0e0;
+  }
+  
+  p {
+    color: #a0a0a0;
+  }
+  
+  .card-btn {
+    display: inline-block;
+    margin-top: auto;
+    align-self: center;
+    padding: 0.75rem 1.5rem;
+    background: rgba(138, 43, 226, 0.2);
+    border: 1px solid rgba(138, 43, 226, 0.5);
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    
+    &:hover {
+      background: rgba(0, 255, 136, 0.2);
+      border-color: rgba(0, 255, 136, 0.5);
+      color: white;
+      transform: scale(1.05);
+    }
+  }
+
+  // Hover states for the card
+  &:hover {
+    // Elegant glassy glow on hover, reduced by half again
+    box-shadow: 0 3.75px 10px 0 rgba(0, 255, 136, 0.1), 0 0 10px rgba(138, 43, 226, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    // Background brightens slightly (cut in half from 0.08 to 0.055 to prevent it from lighting up too much)
+    background: rgba(255, 255, 255, 0.055);
+  }
+}
+html, .quarto-container, main, .page-layout-custom {
+  background-color: transparent !important;
+}
+
+// Quarto Native Navbar Styling
+.navbar {
+  padding: 0.8rem 2rem !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 20px 50px rgba(8, 8, 10, 0.9) !important;
+  position: relative !important;
+}
+
+.navbar::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(8, 8, 10, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  z-index: -1 !important;
+}
+
+.navbar-brand {
+  font-weight: 800 !important;
+  font-size: 1.5rem !important;
+  color: white !important;
+  letter-spacing: -0.02em !important;
+}
+
+.nav-link {
+  color: #a0a0a0 !important;
+  font-weight: 600 !important;
+  transition: color 0.3s ease !important;
+  &:hover {
+    color: #00ff88 !important;
+  }
+}
+
+@keyframes slideTray {
+  0% {
+    opacity: 0;
+    translate: 0 -100vh;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.dropdown-menu {
+  position: fixed !important;
+  top: 50vh !important; /* Fixed relative to viewport height */
+  left: 50vw !important; /* Fixed relative to viewport width */
+  transform: translate(-50%, -50%) !important;
+  width: 900px !important;
+  max-width: 90vw !important;
+  padding: 1.5rem !important;
+  margin: 0 !important;
+  
+  background: rgba(15, 15, 18, 0.3) !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6) !important;
+}
+
+.dropdown-menu.show {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1rem !important;
+  animation: slideTray 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  white-space: normal !important;
+  height: 100% !important;
+  padding: 1.5rem 1rem !important;
+  
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+  color: #e0e0e0 !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(0, 255, 136, 0.4) !important;
+    color: #fff !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.1) !important;
+  }
+}
+
+/// Notes Pages Layout and Typography (Premium Academic Paper Style)
+#quarto-document-content {
+  padding: 3rem !important;
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 28px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  
+  font-family: "Google Sans Flex", "Outfit", "Inter", sans-serif !important;
+  font-size: 16.5px !important;
+  line-height: 1.75 !important;
+  color: #e8edf5 !important;
+  
+  header.quarto-title-block {
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18) !important;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    
+    h1.title {
+      font-size: 2.5rem !important;
+      color: #ffffff !important;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  p {
+    font-size: 16.5px !important;
+    line-height: 1.75 !important;
+    color: #e8edf5 !important;
+    margin-bottom: 1.25rem !important;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  h2 {
+    color: #ffffff !important;
+    margin-top: 3rem !important;
+    margin-bottom: 1.25rem !important;
+    font-size: 1.72rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    padding-left: 0.95rem !important;
+    border-left: 4px solid #60a5fa !important;
+  }
+
+  h3 {
+    color: #eeeeee !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+  }
+
+  ul, ol {
+    padding-left: 1.75rem !important;
+    margin-bottom: 1.5rem !important;
+    li {
+      margin-bottom: 0.5rem !important;
+      color: #e8edf5 !important;
+      line-height: 1.7 !important;
+    }
+  }
+
+  /* Inline and Block math rendering enhancements */
+  .math {
+    color: inherit;
+    font-size: 1.05em;
+  }
+
+  .math.display {
+    display: block !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    max-width: 100%;
+    padding-bottom: 0.5rem;
+    
+    /* Custom scrollbar for math */
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+/* Sidebar & TOC Layout exactly like lin-alg-notes-ocw */
+.margin-sidebar {
+  padding: 0 !important;
+  border-right: none !important;
+  border-left: none !important;
+}
+
+/* Left Navigation Sidebar */
+#quarto-sidebar {
+  background: rgba(12, 17, 25, 0.82) !important;
+  border-right: 1px solid rgba(148, 163, 184, 0.18) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  
+  .sidebar-item-text, a, .nav-link {
+    color: #98a2b6 !important;
+    font-weight: 600 !important;
+    transition: color 0.2s ease !important;
+    
+    &:hover {
+      color: #60a5fa !important;
+      text-decoration: none !important;
+    }
+  }
+  
+  .sidebar-item.active, .active > a, .nav-link.active {
+    color: #60a5fa !important;
+    background: rgba(96, 165, 250, 0.12) !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Right TOC sidebar */
+#TOC {
+  padding: 1rem 0 !important;
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  margin-top: 1rem !important;
+  
+  h2#toc-title {
+    font-size: 0.92rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #98a2b6 !important;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+    border: none !important;
+    padding: 0 1rem !important;
+    font-family: "Outfit", sans-serif !important;
+  }
+  
+  ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+    
+    /* Nesting tabs */
+    ul {
+      display: block !important;
+      border-left: 2px solid #30363d !important;
+      padding-left: 0.5rem !important;
+      margin-left: 1.2rem !important;
+      margin-top: 0.25rem !important;
+      margin-bottom: 0.25rem !important;
+      
+      /* Animation for popping in/out */
+      overflow: hidden !important;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.4s ease !important;
+    }
+    
+    li {
+      margin-bottom: 0.25rem !important;
+      
+      a {
+        color: #8b949e !important;
+        font-size: 0.85rem !important;
+        text-decoration: none !important;
+        transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+        display: block !important;
+        padding: 0.4rem 0.75rem !important;
+        border-radius: 8px !important;
+        margin: 0 0.75rem !important;
+        border-left: none !important;
+        
+        &:hover {
+          color: #c9d1d9 !important;
+          background: rgba(255, 255, 255, 0.05) !important;
+        }
+      }
+      
+      /* Active state and parent of active state */
+      &.active > a, a.active, &:has(a.active) > a {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        font-weight: 600 !important;
+        border-left: none !important;
+      }
+
+      /* Trigger nested UL visibility */
+      &.active > ul, &:hover > ul, &:focus-within > ul, &:has(a.active) > ul {
+        max-height: 1000px !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+}
+
+/* Quarto sidebar left just in case */
+#quarto-sidebar {
+  background: rgba(20, 24, 34, 0.6) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Premium Hacker Neon Theorem Box System */
+.thm-box {
+  padding: 1.5rem !important;
+  margin: 2rem 0 !important;
+  background: rgba(10, 15, 20, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-left: 4px solid !important;
+  border-radius: 16px !important;
+  text-align: left !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  transition: transform 0.3s ease !important;
+  
+  &:hover {
+    transform: translateY(-2px) !important;
+  }
+
+  h3 {
+    margin: 0 0 0.45em !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+  
+  p {
+    margin-bottom: 0 !important;
+    color: #e8edf5 !important;
+  }
+}
+
+.thm-theorem, .thm-lemma, .thm-proposition, .thm-corollary, .thm-conjecture,
+.thm-definition, .thm-problem, .thm-example, .thm-remark, .thm-claim {
+  border-left-color: #60a5fa !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  background: rgba(10, 15, 20, 0.5) !important;
+  h3 { 
+    color: #60a5fa !important; 
+    text-shadow: none !important; 
+  }
+}
+
+/* Proofs and Solutions styles */
+.thm-proof, .thm-solution {
+  margin: 1.5rem 0 !important;
+  border-left: 3px solid rgba(148, 163, 184, 0.3) !important;
+  padding-left: 1.2rem !important;
+  font-style: italic !important;
+  position: relative !important;
+  
+  h3 {
+    margin: 0 0 0.5em !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #e8edf5 !important;
+  }
+  
+  p {
+    color: #e8edf5 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  &::after {
+    content: "■" !important;
+    display: block !important;
+    text-align: right !important;
+    font-size: 0.9rem !important;
+    color: rgba(148, 163, 184, 0.6) !important;
+    margin-top: 0.5rem !important;
+    font-style: normal !important;
+  }
+}

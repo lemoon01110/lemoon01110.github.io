@@ -1,0 +1,5 @@
+---
+title: "Stochastic Variational Inference"
+---
+
+Content for Stochastic Variational Inference goes here.

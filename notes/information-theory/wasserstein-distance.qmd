@@ -1,0 +1,72 @@
+---
+title: "Wasserstein Distance"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-theorem}
+### The Problem with KL and JS Divergence
+
+Both the Kullback-Leibler (KL) and Jensen-Shannon (JSD) divergences are fundamentally based on the *ratio* of probabilities $P(x) / Q(x)$. 
+
+This mathematical foundation creates a severe problem: if the two distributions have **disjoint supports** (meaning they don't overlap in space), these divergences either become infinite or saturate at a constant value ($\log 2$ for JSD). 
+When divergences saturate, their gradients become **exactly zero**. In Machine Learning, if your loss function has zero gradient, your neural network cannot learn.
+
+:::
+
+::: {.thm-box .thm-remark}
+### Earth Mover's Distance (EMD)
+
+The **Wasserstein Distance**, intuitively known as the Earth Mover's Distance, completely bypasses this issue. 
+
+Imagine probability distributions as piles of dirt (Earth). The Wasserstein distance asks: *What is the minimum amount of "work" required to physically shovel the dirt from distribution $P$ until it perfectly matches the shape of distribution $Q$?* 
+
+Work is defined as: `Amount of dirt moved` $\times$ `Distance moved`.
+
+Because it measures the *physical distance* the mass must travel, the Wasserstein distance provides a smooth, meaningful value (and a non-zero gradient) even when the distributions are miles apart and do not overlap at all.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition
+
+For two probability distributions $P$ and $Q$, the $1^{st}$ Wasserstein Distance $W_1$ is defined as:
+
+$$
+W_1(P, Q) = \inf_{\gamma \in \Pi(P, Q)} \mathbb{E}_{(x, y) \sim \gamma} \big[ \|x - y\| \big]
+$$
+
+#### Breaking down the math:
+1. $\Pi(P, Q)$: The set of all possible "transport plans". A plan $\gamma(x, y)$ dictates how much dirt to move from location $x$ to location $y$. To be a valid plan, the marginals of $\gamma$ must exactly equal $P$ and $Q$.
+2. $\|x - y\|$: The physical distance between location $x$ and $y$.
+3. $\mathbb{E}$: The expected cost (work) of the transport plan.
+4. $\inf$: The infimum (minimum). We are searching for the single *optimal* transport plan that requires the absolute least amount of work.
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context: Wasserstein GAN (WGAN)
+
+The mathematical definition of $W_1(P, Q)$ is beautiful, but computationally intractable to calculate directly because searching over all possible joint distributions $\Pi(P, Q)$ is impossible for high-dimensional data like images.
+
+In 2017, the landmark paper *Wasserstein GAN* solved this by applying the **Kantorovich-Rubinstein Duality**. The duality theorem states that instead of searching for the optimal transport plan, you can calculate the Wasserstein distance by finding a **1-Lipschitz continuous function** $f$ that maximizes the difference in expectations:
+
+$$
+W_1(P, Q) = \sup_{\|f\|_L \le 1} \left( \mathbb{E}_{x \sim P}[f(x)] - \mathbb{E}_{y \sim Q}[f(y)] \right)
+$$
+
+#### The WGAN Architecture
+In a WGAN, the Discriminator (now called a "Critic") is simply a neural network parameterized to represent $f(x)$. 
+- The network is trained to maximize the output for real images (from $P$) and minimize the output for fake images (from $Q$).
+- To enforce the $1$-Lipschitz constraint ($\|f\|_L \le 1$), early versions of WGAN used *Weight Clipping*, while modern implementations use *Gradient Penalty* (WGAN-GP), ensuring the gradients of the critic respect a norm of $1$.
+
+By training the generator to minimize this approximated Wasserstein distance, WGANs completely eliminate the vanishing gradient problem, resulting in vastly more stable training and preventing mode collapse.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Earth Mover's Gradients
+Explain intuitively why the Earth Mover's distance between two completely non-overlapping distributions still provides a meaningful, continuous gradient, whereas JS Divergence saturates and provides a gradient of exactly zero.
+:::

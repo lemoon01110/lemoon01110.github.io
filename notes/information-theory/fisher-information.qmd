@@ -1,0 +1,80 @@
+---
+title: "Fisher Information"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### Information About Parameters
+
+In classical Information Theory (Shannon Entropy), we measure the information inherent in the data itself. In statistical inference, however, we often care about **Fisher Information**: a measure of the amount of information that an observable random variable $X$ carries about an unknown, unobservable parameter $\theta$.
+
+If the probability distribution $p(x | \theta)$ changes rapidly when $\theta$ changes slightly, then observing $X$ gives us a massive amount of information about the true value of $\theta$. If $p(x | \theta)$ is flat and barely reacts to changes in $\theta$, observing $X$ tells us almost nothing.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition
+
+The Fisher Information $\mathcal{I}(\theta)$ is defined as the variance of the **score function**. The score function is simply the gradient of the log-likelihood with respect to the parameter $\theta$:
+
+$$
+s(\theta) = \nabla_\theta \log p(x | \theta)
+$$
+
+Because the expected value of the score function is always mathematically zero, the variance is simply the expected value of the square of the score:
+
+$$
+\mathcal{I}(\theta) = \mathbb{E}_{x \sim p(x|\theta)} \left[ \left( \nabla_\theta \log p(x | \theta) \right) \left( \nabla_\theta \log p(x | \theta) \right)^T \right]
+$$
+
+#### The Hessian Equivalence
+Under certain regularity conditions (specifically, that you can swap the order of integration and differentiation), the Fisher Information is also identically equal to the **negative expected Hessian** of the log-likelihood:
+
+$$
+\mathcal{I}(\theta) = -\mathbb{E}_{x \sim p(x|\theta)} \left[ \nabla^2_\theta \log p(x | \theta) \right]
+$$
+
+This equivalence provides brilliant intuition: Fisher Information measures the **local curvature** of the log-likelihood function. 
+- High Fisher Information = High curvature (a sharp peak). The parameter $\theta$ is tightly constrained, meaning we can estimate it with high precision.
+- Low Fisher Information = Low curvature (a flat valley). The parameter $\theta$ is poorly constrained, meaning our estimation will have high variance.
+
+:::
+
+::: {.thm-box .thm-theorem}
+### The Cramér-Rao Bound
+
+Fisher Information establishes the absolute theoretical limit on how accurately we can estimate a parameter. The **Cramér-Rao Bound** states that the variance of any unbiased estimator $\hat{\theta}$ must be greater than or equal to the inverse of the Fisher Information:
+
+$$
+\text{Var}(\hat{\theta}) \ge \mathcal{I}(\theta)^{-1}
+$$
+
+No matter how clever your algorithm is, you can never beat the Cramér-Rao Bound.
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context: Natural Gradient Descent
+
+In standard Gradient Descent, we update parameters $\theta$ by taking a step in the direction of the steepest gradient of the loss. 
+However, standard gradients assume that the parameter space is Euclidean. In reality, the parameters $\theta$ define a probability distribution $p(x|\theta)$, and the space of probability distributions is a curved Riemannian manifold. 
+
+Moving $1$ unit in $\theta$-space might drastically alter the probability distribution, while moving $10$ units in another direction might barely change it at all.
+
+**Natural Gradient Descent (NGD)** corrects this by precondition the gradient using the inverse of the Fisher Information Matrix (FIM):
+
+$$
+\theta_{t+1} = \theta_t - \eta \cdot \mathcal{I}(\theta_t)^{-1} \nabla_\theta \mathcal{L}(\theta)
+$$
+
+By dividing by the Fisher Information, NGD automatically takes smaller steps in directions of high curvature (where the distribution changes rapidly) and larger steps in directions of low curvature, fundamentally tying optimization back to KL divergence and the true geometry of probability space.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Natural Gradients
+How does Natural Gradient Descent utilize the inverse of the Fisher Information Matrix to precondition its gradient steps? Why is this necessary when moving through the Riemannian manifold of probability distributions?
+:::

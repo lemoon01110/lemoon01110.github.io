@@ -1,0 +1,1077 @@
+[
+  {
+    "title": "Linear Algebra and Matrix Mechanics for Machine Learning",
+    "slug": "linear-algebra",
+    "subcategories": [
+      {
+        "title": "Vector Spaces and Functional Spaces",
+        "notes": [
+          {
+            "title": "Vector Basics",
+            "slug": "vector-basics"
+          },
+          {
+            "title": "Vector Space",
+            "slug": "vector-space"
+          },
+          {
+            "title": "Banach Space",
+            "slug": "banach-space"
+          },
+          {
+            "title": "Hilbert Space",
+            "slug": "hilbert-space"
+          }
+        ]
+      },
+      {
+        "title": "Matrix Fundamentals",
+        "notes": [
+          {
+            "title": "Matrix Representation",
+            "slug": "matrix-representation"
+          },
+          {
+            "title": "Transpose",
+            "slug": "transpose"
+          },
+          {
+            "title": "Summation and Scalar Multiplication",
+            "slug": "summation-and-scalar-multiplication"
+          },
+          {
+            "title": "Matrix-Vector Multiplication (Two Views)",
+            "slug": "matrix-vector-multiplication-two-views"
+          },
+          {
+            "title": "Matrix Multiplication (Four Views)",
+            "slug": "matrix-multiplication-four-views"
+          },
+          {
+            "title": "Hadamard Product",
+            "slug": "hadamard-product"
+          },
+          {
+            "title": "Diagonal Matrices",
+            "slug": "diagonal-matrices"
+          },
+          {
+            "title": "Singular Values and Singular Vectors",
+            "slug": "singular-values-and-singular-vectors"
+          },
+          {
+            "title": "Matrix Inverse",
+            "slug": "matrix-inverse"
+          },
+          {
+            "title": "Projection Matrix",
+            "slug": "projection-matrix"
+          },
+          {
+            "title": "Change of Basis",
+            "slug": "change-of-basis"
+          },
+          {
+            "title": "Matrix Norms",
+            "slug": "matrix-norms"
+          },
+          {
+            "title": "Linear Independence and Rank",
+            "slug": "linear-independence-and-rank"
+          }
+        ]
+      },
+      {
+        "title": "Subspaces and Orthogonality",
+        "notes": [
+          {
+            "title": "Four Fundamental Subspaces",
+            "slug": "four-fundamental-subspaces"
+          },
+          {
+            "title": "Rank-Nullity Theorem",
+            "slug": "rank-nullity-theorem"
+          },
+          {
+            "title": "Dimensions and Orthogonality of Four Fundamental Subspaces",
+            "slug": "dimensions-and-orthogonality-of-four-fundamental-subspaces"
+          },
+          {
+            "title": "Gram-Schmidt Algorithm",
+            "slug": "gram-schmidt-algorithm"
+          }
+        ]
+      },
+      {
+        "title": "Orthonormal Matrices",
+        "notes": [
+          {
+            "title": "General Properties of Orthonormal Matrices",
+            "slug": "general-properties-of-orthonormal-matrices"
+          },
+          {
+            "title": "Square Orthonormal Matrices",
+            "slug": "square-orthonormal-matrices"
+          },
+          {
+            "title": "Complex Numbers and Rotations",
+            "slug": "complex-numbers-and-rotations"
+          }
+        ]
+      },
+      {
+        "title": "Geometric Transformations and Spectral Theory",
+        "notes": [
+          {
+            "title": "Geometric Transformation and Matrix",
+            "slug": "geometric-transformation-and-matrix"
+          },
+          {
+            "title": "Eigenvalues and Eigenvectors",
+            "slug": "eigenvalues-and-eigenvectors"
+          },
+          {
+            "title": "Power Method",
+            "slug": "power-method"
+          },
+          {
+            "title": "Matrix Functions",
+            "slug": "matrix-functions"
+          }
+        ]
+      },
+      {
+        "title": "Symmetric Matrices and Spectral Geometry",
+        "notes": [
+          {
+            "title": "Symmetric Matrix",
+            "slug": "symmetric-matrix"
+          },
+          {
+            "title": "Spectral Decomposition",
+            "slug": "spectral-decomposition"
+          },
+          {
+            "title": "Quadratic Forms and Definiteness",
+            "slug": "quadratic-forms-and-definiteness"
+          },
+          {
+            "title": "Rayleigh Quotient",
+            "slug": "rayleigh-quotient"
+          },
+          {
+            "title": "Gram Matrices",
+            "slug": "gram-matrices"
+          },
+          {
+            "title": "From Spectral Methods to Graph Neural Networks",
+            "slug": "from-spectral-methods-to-graph-neural-networks"
+          }
+        ]
+      },
+      {
+        "title": "Block Matrix Methods",
+        "notes": [
+          {
+            "title": "Kronecker Product",
+            "slug": "kronecker-product"
+          },
+          {
+            "title": "Matrix Partitioning",
+            "slug": "matrix-partitioning"
+          },
+          {
+            "title": "Block Matrix Decompositions",
+            "slug": "block-matrix-decompositions"
+          },
+          {
+            "title": "Geometric and Computational Interpretations",
+            "slug": "geometric-and-computational-interpretations"
+          },
+          {
+            "title": "Applications in AI and Optimization",
+            "slug": "applications-in-ai-and-optimization"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Matrix Decompositions for Machine Learning",
+    "slug": "matrix-decompositions",
+    "subcategories": [
+      {
+        "title": "QR Methods",
+        "notes": [
+          {
+            "title": "Rank: Advanced Properties and Numerical Computation",
+            "slug": "rank-advanced-properties-and-numerical-computation"
+          },
+          {
+            "title": "Numerical Rank Computation",
+            "slug": "numerical-rank-computation"
+          },
+          {
+            "title": "Generalized Upper Triangular Matrices",
+            "slug": "generalized-upper-triangular-matrices"
+          },
+          {
+            "title": "QR Decomposition",
+            "slug": "qr-decomposition"
+          },
+          {
+            "title": "Gram-Schmidt Algorithm for QR Decomposition",
+            "slug": "gram-schmidt-algorithm-for-qr-decomposition"
+          },
+          {
+            "title": "Householder Matrix and Householder Transformation",
+            "slug": "householder-matrix-and-householder-transformation"
+          },
+          {
+            "title": "Rank-1 Perturbation Theory",
+            "slug": "rank-1-perturbation-theory"
+          }
+        ]
+      },
+      {
+        "title": "LU Methods",
+        "notes": [
+          {
+            "title": "Triangular Matrices",
+            "slug": "triangular-matrices"
+          },
+          {
+            "title": "Trace",
+            "slug": "trace"
+          },
+          {
+            "title": "Determinant",
+            "slug": "determinant"
+          },
+          {
+            "title": "LU Decomposition",
+            "slug": "lu-decomposition"
+          },
+          {
+            "title": "PLU Decomposition",
+            "slug": "plu-decomposition"
+          },
+          {
+            "title": "LDU Decomposition",
+            "slug": "ldu-decomposition"
+          }
+        ]
+      },
+      {
+        "title": "Singular Value Decomposition",
+        "notes": [
+          {
+            "title": "SVD Formulae",
+            "slug": "svd-formulae"
+          },
+          {
+            "title": "Thin, Compact and Truncated Forms",
+            "slug": "thin-compact-and-truncated-forms"
+          },
+          {
+            "title": "Polar Decomposition",
+            "slug": "polar-decomposition"
+          },
+          {
+            "title": "Four Subspaces via SVD",
+            "slug": "four-subspaces-via-svd"
+          },
+          {
+            "title": "Linear Equations",
+            "slug": "linear-equations"
+          },
+          {
+            "title": "Moore-Penrose Pseudoinverse",
+            "slug": "moore-penrose-pseudoinverse"
+          },
+          {
+            "title": "Energy from Singular Values",
+            "slug": "energy-from-singular-values"
+          },
+          {
+            "title": "Truncated SVD",
+            "slug": "truncated-svd"
+          },
+          {
+            "title": "Randomized SVD",
+            "slug": "randomized-svd"
+          },
+          {
+            "title": "Latent Representation and Embedding",
+            "slug": "latent-representation-and-embedding"
+          },
+          {
+            "title": "Transformation Perspective",
+            "slug": "transformation-perspective"
+          }
+        ]
+      },
+      {
+        "title": "Advanced Matrix Factorizations",
+        "notes": [
+          {
+            "title": "LDL Decomposition",
+            "slug": "ldl-decomposition"
+          },
+          {
+            "title": "Rank-Revealing QR",
+            "slug": "rank-revealing-qr"
+          },
+          {
+            "title": "Interpolative Decomposition",
+            "slug": "interpolative-decomposition"
+          },
+          {
+            "title": "Skeleton Decomposition (CUR)",
+            "slug": "skeleton-decomposition-cur"
+          },
+          {
+            "title": "Non-Negative Matrix Factorization",
+            "slug": "non-negative-matrix-factorization"
+          },
+          {
+            "title": "LQ Decomposition",
+            "slug": "lq-decomposition"
+          },
+          {
+            "title": "Schur Decomposition",
+            "slug": "schur-decomposition"
+          },
+          {
+            "title": "Low-Rank Matrix Factorization",
+            "slug": "low-rank-matrix-factorization"
+          },
+          {
+            "title": "Tensor Decompositions",
+            "slug": "tensor-decompositions"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Matrix Calculus for Machine Learning",
+    "slug": "matrix-calculus",
+    "subcategories": [
+      {
+        "title": "Differential Foundations",
+        "notes": [
+          {
+            "title": "Calculus Conceptual Hierarchy",
+            "slug": "calculus-conceptual-hierarchy"
+          },
+          {
+            "title": "Scalar and Vector Fields",
+            "slug": "scalar-and-vector-fields"
+          },
+          {
+            "title": "Single-Variable Derivative",
+            "slug": "single-variable-derivative"
+          },
+          {
+            "title": "Partial Differentiation and Gradients",
+            "slug": "partial-differentiation-and-gradients"
+          }
+        ]
+      },
+      {
+        "title": "Matrix Derivatives",
+        "notes": [
+          {
+            "title": "Jacobian Matrix",
+            "slug": "jacobian-matrix"
+          },
+          {
+            "title": "Non-Differentiable Operations in Chain Rule",
+            "slug": "non-differentiable-operations-in-chain-rule"
+          },
+          {
+            "title": "Fr\u00e9chet Derivative",
+            "slug": "fr\u00e9chet-derivative"
+          },
+          {
+            "title": "Hessian Matrix",
+            "slug": "hessian-matrix"
+          }
+        ]
+      },
+      {
+        "title": "Approximation Theory",
+        "notes": [
+          {
+            "title": "Taylor Expansion",
+            "slug": "taylor-expansion"
+          },
+          {
+            "title": "Unified View of Derivatives",
+            "slug": "unified-view-of-derivatives"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Optimization for Machine Learning",
+    "slug": "optimization",
+    "subcategories": [
+      {
+        "title": "Convex Optimization",
+        "notes": [
+          {
+            "title": "Convex Sets",
+            "slug": "convex-sets"
+          },
+          {
+            "title": "Convex and Concave Functions",
+            "slug": "convex-and-concave-functions"
+          },
+          {
+            "title": "Convex Optimization Problems",
+            "slug": "convex-optimization-problems"
+          }
+        ]
+      },
+      {
+        "title": "Duality and Constraints",
+        "notes": [
+          {
+            "title": "Duality",
+            "slug": "duality"
+          },
+          {
+            "title": "KKT Conditions",
+            "slug": "kkt-conditions"
+          },
+          {
+            "title": "Constrained Optimization",
+            "slug": "constrained-optimization"
+          }
+        ]
+      },
+      {
+        "title": "Numerical Optimization",
+        "notes": [
+          {
+            "title": "Unconstrained Optimization",
+            "slug": "unconstrained-optimization"
+          },
+          {
+            "title": "Gradient Descent",
+            "slug": "gradient-descent"
+          },
+          {
+            "title": "Newton's Method",
+            "slug": "newton's-method"
+          },
+          {
+            "title": "Minimax Optimization",
+            "slug": "minimax-optimization"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Probability for Machine Learning",
+    "slug": "probability",
+    "subcategories": [
+      {
+        "title": "Probability Foundations",
+        "notes": [
+          {
+            "title": "Sets and Cardinality",
+            "slug": "sets-and-cardinality"
+          },
+          {
+            "title": "Probability Basics",
+            "slug": "probability-basics"
+          },
+          {
+            "title": "Probability Distributions of a Single Random Variable",
+            "slug": "probability-distributions-of-a-single-random-variable"
+          },
+          {
+            "title": "Joint Probabilities of Multiple Variables",
+            "slug": "joint-probabilities-of-multiple-variables"
+          },
+          {
+            "title": "Marginal Probabilities",
+            "slug": "marginal-probabilities"
+          },
+          {
+            "title": "Conditional Probabilities",
+            "slug": "conditional-probabilities"
+          },
+          {
+            "title": "Independence",
+            "slug": "independence"
+          },
+          {
+            "title": "Bayes' Rule",
+            "slug": "bayes'-rule"
+          }
+        ]
+      },
+      {
+        "title": "Statistical Foundations",
+        "notes": [
+          {
+            "title": "Statistics Basics",
+            "slug": "statistics-basics"
+          },
+          {
+            "title": "Transformation of Random Variables",
+            "slug": "transformation-of-random-variables"
+          }
+        ]
+      },
+      {
+        "title": "Classical Probability Distributions",
+        "notes": [
+          {
+            "title": "Uniform Distribution",
+            "slug": "uniform-distribution"
+          },
+          {
+            "title": "Bernoulli Distribution",
+            "slug": "bernoulli-distribution"
+          },
+          {
+            "title": "Categorical and Multinomial Distributions",
+            "slug": "categorical-and-multinomial-distributions"
+          },
+          {
+            "title": "Gaussian Distribution",
+            "slug": "gaussian-distribution"
+          },
+          {
+            "title": "Beta Distribution",
+            "slug": "beta-distribution"
+          },
+          {
+            "title": "Dirichlet Distribution",
+            "slug": "dirichlet-distribution"
+          },
+          {
+            "title": "Mixture Distributions",
+            "slug": "mixture-distributions"
+          },
+          {
+            "title": "Von Mises-Fisher Distribution",
+            "slug": "von-mises-fisher-distribution"
+          },
+          {
+            "title": "Distribution Summary",
+            "slug": "distribution-summary"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Information Theory for Machine Learning",
+    "slug": "information-theory",
+    "subcategories": [
+      {
+        "title": "Core Information Measures",
+        "notes": [
+          {
+            "title": "Information Content",
+            "slug": "information-content"
+          },
+          {
+            "title": "Entropy",
+            "slug": "entropy"
+          },
+          {
+            "title": "Mutual Information",
+            "slug": "mutual-information"
+          },
+          {
+            "title": "Cross-Entropy",
+            "slug": "cross-entropy"
+          },
+          {
+            "title": "Perplexity",
+            "slug": "perplexity"
+          }
+        ]
+      },
+      {
+        "title": "Divergences and Distances",
+        "notes": [
+          {
+            "title": "KL Divergence",
+            "slug": "kl-divergence"
+          },
+          {
+            "title": "Jensen-Shannon Divergence",
+            "slug": "jensen-shannon-divergence"
+          },
+          {
+            "title": "f-Divergence",
+            "slug": "f-divergence"
+          },
+          {
+            "title": "Wasserstein Distance",
+            "slug": "wasserstein-distance"
+          }
+        ]
+      },
+      {
+        "title": "Statistical Information",
+        "notes": [
+          {
+            "title": "Fisher Information",
+            "slug": "fisher-information"
+          }
+        ]
+      },
+      {
+        "title": "Variational Objectives",
+        "notes": [
+          {
+            "title": "Evidence Lower Bound (ELBO)",
+            "slug": "evidence-lower-bound-elbo"
+          }
+        ]
+      },
+      {
+        "title": "Markov Information Processes",
+        "notes": [
+          {
+            "title": "Markov Chain",
+            "slug": "markov-chain"
+          },
+          {
+            "title": "Stochastic Matrices and Markov Chains",
+            "slug": "stochastic-matrices-and-markov-chains"
+          }
+        ]
+      },
+      {
+        "title": "Information-Theoretic Learning",
+        "notes": [
+          {
+            "title": "Information Bottleneck",
+            "slug": "information-bottleneck"
+          },
+          {
+            "title": "Evaluation Metrics for Ranking and Information Retrieval",
+            "slug": "evaluation-metrics-for-ranking-and-information-retrieval"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Reinforcement Learning",
+    "slug": "reinforcement-learning",
+    "subcategories": [
+      {
+        "title": "Markov Decision Processes",
+        "notes": [
+          {
+            "title": "Notation and Conventions",
+            "slug": "notation-and-conventions"
+          }
+        ]
+      },
+      {
+        "title": "Markov Decision Processes",
+        "notes": [
+          {
+            "title": "Policies",
+            "slug": "policies"
+          },
+          {
+            "title": "Value Functions",
+            "slug": "value-functions"
+          }
+        ]
+      },
+      {
+        "title": "Bellman Theory",
+        "notes": [
+          {
+            "title": "Bellman Equations",
+            "slug": "bellman-equations"
+          },
+          {
+            "title": "Bellman Operators",
+            "slug": "bellman-operators"
+          },
+          {
+            "title": "Contraction Mapping Theorem",
+            "slug": "contraction-mapping-theorem"
+          },
+          {
+            "title": "Optimal Policies and Value Functions",
+            "slug": "optimal-policies-and-value-functions"
+          }
+        ]
+      },
+      {
+        "title": "Dynamic Programming",
+        "notes": [
+          {
+            "title": "State Distribution and Stationarity",
+            "slug": "state-distribution-and-stationarity"
+          },
+          {
+            "title": "Continuous-Time RL",
+            "slug": "continuous-time-rl"
+          },
+          {
+            "title": "Continuous-Time Markov Chains",
+            "slug": "continuous-time-markov-chains"
+          }
+        ]
+      },
+      {
+        "title": "Policy Optimization",
+        "notes": [
+          {
+            "title": "Policy Gradient Theorem",
+            "slug": "policy-gradient-theorem"
+          },
+          {
+            "title": "Stochastic Approximation",
+            "slug": "stochastic-approximation"
+          },
+          {
+            "title": "Function Approximation",
+            "slug": "function-approximation"
+          },
+          {
+            "title": "Importance Sampling",
+            "slug": "importance-sampling"
+          },
+          {
+            "title": "Trust Region and Natural Policy Gradient",
+            "slug": "trust-region-and-natural-policy-gradient"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Probabilistic Models for Machine Learning",
+    "slug": "probabilistic-ml",
+    "subcategories": [
+      {
+        "title": "Latent Variable Models",
+        "notes": [
+          {
+            "title": "The Inference Problem p(z\u2223x)",
+            "slug": "the-inference-problem-pz\u2223x"
+          }
+        ]
+      },
+      {
+        "title": "Variational Inference",
+        "notes": [
+          {
+            "title": "Expectation-Maximization",
+            "slug": "expectation-maximization"
+          }
+        ]
+      },
+      {
+        "title": "Variational Inference",
+        "notes": [
+          {
+            "title": "Mean Field Variational Inference",
+            "slug": "mean-field-variational-inference"
+          },
+          {
+            "title": "Stochastic Variational Inference",
+            "slug": "stochastic-variational-inference"
+          },
+          {
+            "title": "Amortized Variational Inference",
+            "slug": "amortized-variational-inference"
+          }
+        ]
+      },
+      {
+        "title": "Generative Modeling",
+        "notes": [
+          {
+            "title": "Applications of Variational Inference",
+            "slug": "applications-of-variational-inference"
+          },
+          {
+            "title": "Other Generative Modeling Approaches",
+            "slug": "other-generative-modeling-approaches"
+          },
+          {
+            "title": "Variational Inference vs Other Methods",
+            "slug": "variational-inference-vs-other-methods"
+          },
+          {
+            "title": "Variational Inference in Other Domains",
+            "slug": "variational-inference-in-other-domains"
+          }
+        ]
+      },
+      {
+        "title": "Energy-Based and Score-Based Models",
+        "notes": [
+          {
+            "title": "Motivation: From Density to Geometry",
+            "slug": "motivation-from-density-to-geometry"
+          },
+          {
+            "title": "Score Function",
+            "slug": "score-function"
+          },
+          {
+            "title": "Score vs Density",
+            "slug": "score-vs-density"
+          },
+          {
+            "title": "Energy-Based Models",
+            "slug": "energy-based-models"
+          },
+          {
+            "title": "Score Matching",
+            "slug": "score-matching"
+          },
+          {
+            "title": "Denoising Score Matching",
+            "slug": "denoising-score-matching"
+          },
+          {
+            "title": "Applications of Score-Based Models",
+            "slug": "applications-of-score-based-models"
+          },
+          {
+            "title": "From Score to Sampling",
+            "slug": "from-score-to-sampling"
+          },
+          {
+            "title": "Conceptual Unification",
+            "slug": "conceptual-unification"
+          },
+          {
+            "title": "Diffusion as Time-Indexed Scores",
+            "slug": "diffusion-as-time-indexed-scores"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Stochastic Dynamics",
+    "slug": "stochastic-dynamics",
+    "subcategories": [
+      {
+        "title": "Langevin Dynamics and Sampling",
+        "notes": [
+          {
+            "title": "Motivation: Why Gradients Are Not Enough",
+            "slug": "motivation-why-gradients-are-not-enough"
+          },
+          {
+            "title": "Langevin Dynamics",
+            "slug": "langevin-dynamics"
+          },
+          {
+            "title": "Stationary Distribution",
+            "slug": "stationary-distribution"
+          },
+          {
+            "title": "Connection to Energy-Based Models",
+            "slug": "connection-to-energy-based-models"
+          },
+          {
+            "title": "Markov Chain Monte Carlo",
+            "slug": "markov-chain-monte-carlo"
+          },
+          {
+            "title": "Metropolis-Adjusted Langevin Algorithm",
+            "slug": "metropolis-adjusted-langevin-algorithm"
+          },
+          {
+            "title": "Stochastic Gradient Langevin Dynamics",
+            "slug": "stochastic-gradient-langevin-dynamics"
+          },
+          {
+            "title": "Practical Considerations",
+            "slug": "practical-considerations"
+          },
+          {
+            "title": "Score-Based Sampling Algorithm",
+            "slug": "score-based-sampling-algorithm"
+          },
+          {
+            "title": "Why Noise Is Not Optional",
+            "slug": "why-noise-is-not-optional"
+          },
+          {
+            "title": "Discrete-Time vs Continuous-Time View",
+            "slug": "discrete-time-vs-continuous-time-view"
+          }
+        ]
+      },
+      {
+        "title": "Stochastic Differential Equations",
+        "notes": [
+          {
+            "title": "Brownian Motion",
+            "slug": "brownian-motion"
+          }
+        ]
+      },
+      {
+        "title": "Stochastic Differential Equations",
+        "notes": [
+          {
+            "title": "It\u00f4 vs Stratonovich",
+            "slug": "it\u00f4-vs-stratonovich"
+          },
+          {
+            "title": "It\u00f4's Lemma",
+            "slug": "it\u00f4's-lemma"
+          },
+          {
+            "title": "SDEs as Limits of Algorithms",
+            "slug": "sdes-as-limits-of-algorithms"
+          },
+          {
+            "title": "Stochastic Optimization and Continuous Limits",
+            "slug": "stochastic-optimization-and-continuous-limits"
+          },
+          {
+            "title": "Probability Evolution Viewpoint",
+            "slug": "probability-evolution-viewpoint"
+          },
+          {
+            "title": "Reversibility and Time Reversal",
+            "slug": "reversibility-and-time-reversal"
+          }
+        ]
+      },
+      {
+        "title": "ODE, SDE, and Continuous Limits",
+        "notes": [
+          {
+            "title": "Motivation: Why Remove Noise?",
+            "slug": "motivation-why-remove-noise?"
+          },
+          {
+            "title": "Discrete Algorithms and Their Continuous Limits",
+            "slug": "discrete-algorithms-and-their-continuous-limits"
+          },
+          {
+            "title": "Two Views of the Same Evolution",
+            "slug": "two-views-of-the-same-evolution"
+          },
+          {
+            "title": "Probability Flow Perspective",
+            "slug": "probability-flow-perspective"
+          },
+          {
+            "title": "Probability Flow ODE",
+            "slug": "probability-flow-ode"
+          },
+          {
+            "title": "Why Deterministic Sampling Works",
+            "slug": "why-deterministic-sampling-works"
+          },
+          {
+            "title": "Flow Matching and Deterministic Probability Flows",
+            "slug": "flow-matching-and-deterministic-probability-flows"
+          },
+          {
+            "title": "Linear State-Space Models",
+            "slug": "linear-state-space-models"
+          },
+          {
+            "title": "Discretization of Linear ODEs",
+            "slug": "discretization-of-linear-odes"
+          },
+          {
+            "title": "Reverse-Time Dynamics Revisited",
+            "slug": "reverse-time-dynamics-revisited"
+          },
+          {
+            "title": "Relationship Between ODE and SDE",
+            "slug": "relationship-between-ode-and-sde"
+          },
+          {
+            "title": "Continuous Limits of Diffusion Models",
+            "slug": "continuous-limits-of-diffusion-models"
+          },
+          {
+            "title": "Applications in Modern AI/ML",
+            "slug": "applications-in-modern-ai-ml"
+          }
+        ]
+      },
+      {
+        "title": "Distribution Dynamics",
+        "notes": [
+          {
+            "title": "Distributional Viewpoint",
+            "slug": "distributional-viewpoint"
+          },
+          {
+            "title": "Fokker-Planck Equation",
+            "slug": "fokker-planck-equation"
+          },
+          {
+            "title": "Continuity Equation Perspective",
+            "slug": "continuity-equation-perspective"
+          },
+          {
+            "title": "Example: Langevin Dynamics",
+            "slug": "example-langevin-dynamics"
+          },
+          {
+            "title": "Forward Diffusion in Generative Models",
+            "slug": "forward-diffusion-in-generative-models"
+          },
+          {
+            "title": "Reverse-Time Fokker-Planck Equation",
+            "slug": "reverse-time-fokker-planck-equation"
+          },
+          {
+            "title": "Connection to Probability Flow ODE",
+            "slug": "connection-to-probability-flow-ode"
+          },
+          {
+            "title": "Why Fokker-Planck Is the Right Abstraction",
+            "slug": "why-fokker-planck-is-the-right-abstraction"
+          },
+          {
+            "title": "Analytical Solutions and Special Cases",
+            "slug": "analytical-solutions-and-special-cases"
+          },
+          {
+            "title": "Numerical Methods for Fokker-Planck Equations",
+            "slug": "numerical-methods-for-fokker-planck-equations"
+          },
+          {
+            "title": "Applications in Modern AI/ML",
+            "slug": "applications-in-modern-ai-ml"
+          },
+          {
+            "title": "Detailed Balance and Equilibrium",
+            "slug": "detailed-balance-and-equilibrium"
+          },
+          {
+            "title": "Closing Perspective",
+            "slug": "closing-perspective"
+          }
+        ]
+      }
+    ]
+  }
+]

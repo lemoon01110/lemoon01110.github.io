@@ -1,0 +1,167 @@
+---
+title: ""
+page-layout: custom
+---
+
+```{=html}
+<style>
+  .navbar::before {
+    background: transparent !important;
+  }
+</style>
+
+<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+
+  <div class="subject-hero">
+    <h1 class="hero-title" style="color: #fff;">Probability for Machine Learning</h1>
+    <p class="hero-subtitle">Comprehensive mathematical foundations and techniques.</p>
+  </div>
+
+  <div class="subject-intro">
+    <p>
+      Select a topic from the sections below to explore detailed derivations, proofs, and
+      applications in modern machine learning.
+    </p>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 4rem 0;">
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Probability Foundations</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Sets and Cardinality</h3>
+      <p>Explore detailed notes on sets and cardinality.</p>
+      <a href="probability/sets-and-cardinality.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Probability Basics</h3>
+      <p>Explore detailed notes on probability basics.</p>
+      <a href="probability/probability-basics.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Probability Distributions of a Single Random Variable</h3>
+      <p>Explore detailed notes on probability distributions of a single random variable.</p>
+      <a href="probability/probability-distributions-of-a-single-random-variable.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Joint Probabilities of Multiple Variables</h3>
+      <p>Explore detailed notes on joint probabilities of multiple variables.</p>
+      <a href="probability/joint-probabilities-of-multiple-variables.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Marginal Probabilities</h3>
+      <p>Explore detailed notes on marginal probabilities.</p>
+      <a href="probability/marginal-probabilities.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Conditional Probabilities</h3>
+      <p>Explore detailed notes on conditional probabilities.</p>
+      <a href="probability/conditional-probabilities.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Independence</h3>
+      <p>Explore detailed notes on independence.</p>
+      <a href="probability/independence.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Bayes' Rule</h3>
+      <p>Explore detailed notes on bayes' rule.</p>
+      <a href="probability/bayes'-rule.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Statistical Foundations</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Statistics Basics</h3>
+      <p>Explore detailed notes on statistics basics.</p>
+      <a href="probability/statistics-basics.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Transformation of Random Variables</h3>
+      <p>Explore detailed notes on transformation of random variables.</p>
+      <a href="probability/transformation-of-random-variables.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Classical Probability Distributions</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Uniform Distribution</h3>
+      <p>Explore detailed notes on uniform distribution.</p>
+      <a href="probability/uniform-distribution.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Bernoulli Distribution</h3>
+      <p>Explore detailed notes on bernoulli distribution.</p>
+      <a href="probability/bernoulli-distribution.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Categorical and Multinomial Distributions</h3>
+      <p>Explore detailed notes on categorical and multinomial distributions.</p>
+      <a href="probability/categorical-and-multinomial-distributions.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Gaussian Distribution</h3>
+      <p>Explore detailed notes on gaussian distribution.</p>
+      <a href="probability/gaussian-distribution.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Beta Distribution</h3>
+      <p>Explore detailed notes on beta distribution.</p>
+      <a href="probability/beta-distribution.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Dirichlet Distribution</h3>
+      <p>Explore detailed notes on dirichlet distribution.</p>
+      <a href="probability/dirichlet-distribution.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Mixture Distributions</h3>
+      <p>Explore detailed notes on mixture distributions.</p>
+      <a href="probability/mixture-distributions.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Von Mises-Fisher Distribution</h3>
+      <p>Explore detailed notes on von mises-fisher distribution.</p>
+      <a href="probability/von-mises-fisher-distribution.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Distribution Summary</h3>
+      <p>Explore detailed notes on distribution summary.</p>
+      <a href="probability/distribution-summary.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="/assets/card-tilt.js"></script>
+```

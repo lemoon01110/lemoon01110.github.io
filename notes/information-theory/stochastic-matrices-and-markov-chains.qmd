@@ -1,0 +1,84 @@
+---
+title: "Stochastic Matrices and Markov Chains"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### Linear Algebra Meets Probability
+
+While the definition of a Markov Chain is fundamentally probabilistic, executing operations and simulating transitions over time is vastly more efficient when framed using the language of **Linear Algebra**.
+
+To achieve this, we encode the transition probabilities of a Markov Chain into a specific type of matrix known as a **Stochastic Matrix**.
+
+:::
+
+::: {.thm-box .thm-remark}
+### The Stochastic Matrix ($P$)
+
+For a Markov Chain with $N$ discrete states, the transition matrix $P$ is an $N \times N$ square matrix where each entry $P_{ij}$ represents the probability of transitioning from state $i$ to state $j$:
+
+$$
+P_{ij} = P(X_{t+1} = j \mid X_t = i)
+$$
+
+#### Row Stochasticity
+Because the system *must* transition to *some* state (even if it stays in the same state), the sum of the probabilities originating from state $i$ must exactly equal $1$. Therefore, every single row in a valid Stochastic Matrix must sum to $1$:
+
+$$
+\sum_{j=1}^N P_{ij} = 1 \quad \text{for all } i
+$$
+*(Note: Some literature defines column-stochastic matrices where the columns sum to $1$. In this case, state vectors are treated as column vectors and multiplied on the right. Both are mathematically equivalent).*
+
+:::
+
+::: {.thm-box .thm-remark}
+### State Transitions as Matrix Multiplication
+
+Let $\pi_t$ be a row vector of length $N$ representing the probability distribution over all states at time $t$. The $i$-th element of $\pi_t$ is the probability that the system is currently in state $i$.
+
+To find the probability distribution at the next time step $t+1$, we simply multiply the current state vector by the transition matrix:
+
+$$
+\pi_{t+1} = \pi_t P
+$$
+
+To find the distribution $k$ steps into the future, we multiply by the matrix $k$ times:
+$$
+\pi_{t+k} = \pi_t P^k
+$$
+
+:::
+
+::: {.thm-box .thm-remark}
+### The Stationary Distribution as an Eigenvector
+
+Recall that the stationary distribution $\pi^*$ is defined as the distribution that remains completely unchanged after a transition:
+$$
+\pi^* P = \pi^*
+$$
+
+Look closely at this equation. This is the exact definition of a **Left Eigenvector**! 
+Specifically, the stationary distribution $\pi^*$ is the normalized left eigenvector of the transition matrix $P$ corresponding to the eigenvalue $\lambda = 1$. 
+
+*(Note: The Perron-Frobenius theorem guarantees that every valid stochastic matrix has a largest eigenvalue of exactly $1$, ensuring that a stationary distribution always exists).*
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context
+
+#### 1. Google's PageRank Algorithm
+The original algorithm that made Google a multi-billion dollar company was a massive Markov Chain. The internet was modeled as a transition matrix $P$, where each web page was a state, and hyperlinks were the transition probabilities. The "importance" of a web page was calculated simply by finding the principal eigenvector of $P$ (the stationary distribution).
+
+#### 2. Denoising Diffusion Probabilistic Models (DDPM)
+The models that power modern AI image generation (like Midjourney and Stable Diffusion) are built entirely on Markov Chains. The forward diffusion process systematically adds Gaussian noise to an image over $T$ steps via a fixed continuous transition matrix kernel. The neural network's entire job is to learn the **reverse transition matrix**, predicting the transition $P(X_{t-1} | X_t)$ to denoise the image step-by-step from pure static back to a high-resolution photograph.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Stationary Distributions
+Given a $2 \times 2$ stochastic transition matrix $P = \begin{bmatrix} 0.8 & 0.2 \\ 0.3 & 0.7 \end{bmatrix}$, find the stationary distribution $\pi$ by solving the left-eigenvector equation $\pi P = \pi$.
+:::

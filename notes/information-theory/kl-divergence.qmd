@@ -1,0 +1,87 @@
+---
+title: "Kullback-Leibler Divergence"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### Defining Relative Entropy
+
+The **Kullback-Leibler (KL) Divergence**, often called Relative Entropy, is a fundamental measure of how one probability distribution $Q$ diverges from a reference probability distribution $P$.
+
+If $P$ represents the "true" distribution of data and $Q$ represents our model's approximation of that distribution, $D_{KL}(P \| Q)$ quantifies the exact amount of information lost when $Q$ is used to approximate $P$.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition
+
+For discrete probability distributions $P$ and $Q$ defined on the same probability space $\mathcal{X}$, the KL Divergence from $Q$ to $P$ is defined as:
+
+$$
+D_{KL}(P \| Q) = \sum_{x \in \mathcal{X}} P(x) \log \left( \frac{P(x)}{Q(x)} \right)
+$$
+
+For continuous distributions with density functions $p$ and $q$:
+$$
+D_{KL}(P \| Q) = \int_{\mathcal{X}} p(x) \log \left( \frac{p(x)}{q(x)} \right) dx
+$$
+
+*(Note: The double vertical bars $\|$ emphasize that this is a divergence, not a conditional probability. It is read as "The KL divergence of P with respect to Q".)*
+
+:::
+
+::: {.thm-box .thm-theorem}
+### Key Properties
+
+#### 1. Gibbs' Inequality (Non-negativity)
+KL Divergence is strictly non-negative.
+$$
+D_{KL}(P \| Q) \ge 0
+$$
+Equality $D_{KL}(P \| Q) = 0$ holds **if and only if** $P$ and $Q$ are identical almost everywhere.
+
+#### 2. Lack of Symmetry
+KL Divergence is **not** a true mathematical distance metric because it is asymmetric:
+$$
+D_{KL}(P \| Q) \neq D_{KL}(Q \| P)
+$$
+This asymmetry has profound implications in machine learning, dictating whether models exhibit "mode-seeking" or "mean-seeking" behavior.
+
+#### 3. Lack of Triangle Inequality
+It does not satisfy the triangle inequality. You cannot compute $D_{KL}(P \| R)$ simply by bridging through a distribution $Q$.
+
+:::
+
+::: {.thm-box .thm-theorem}
+### Forward vs. Reverse KL Divergence
+
+Because of the asymmetry, the order of $P$ and $Q$ drastically alters the geometric behavior of the approximation.
+
+#### Forward KL: $D_{KL}(P \| Q)$ (Mean-Seeking)
+- **Penalty**: If $P(x) > 0$ but $Q(x) \to 0$, the log ratio explodes to infinity. Therefore, $Q$ is forced to place probability mass *everywhere* $P$ places mass.
+- **Result**: $Q$ tends to stretch out and "cover" all the modes (peaks) of $P$, resulting in a broad, **mean-seeking** approximation. This is the behavior driven by standard Cross-Entropy Loss / Maximum Likelihood Estimation.
+
+#### Reverse KL: $D_{KL}(Q \| P)$ (Mode-Seeking)
+- **Penalty**: If $Q(x) > 0$ but $P(x) \to 0$, the log ratio explodes. Therefore, $Q$ must absolutely avoid placing mass where $P$ has no mass.
+- **Result**: $Q$ tends to "collapse" into a single valid peak (mode) of $P$ to safely avoid areas where $P=0$. This results in a highly focused, **mode-seeking** approximation.
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context
+
+KL Divergence is arguably the backbone of modern probabilistic modeling.
+
+1. **Variational Autoencoders (VAEs)**: In Variational Inference, we try to approximate complex intractable posterior distributions with a simple Gaussian network. The loss function explicitly minimizes the Reverse KL Divergence between the approximate posterior $q_\phi(z|x)$ and the true prior $p(z)$.
+2. **Reinforcement Learning**: In algorithms like Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO), a KL penalty is added to the objective function to ensure that the newly updated policy distribution does not diverge too far from the old policy distribution, preventing catastrophic forgetting.
+3. **Information Bottleneck**: Deep neural networks can be analyzed as trying to maximize the mutual information with the target label while simultaneously minimizing the KL divergence with the input feature space to compress out irrelevant noise.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: The Asymmetry of KL
+Provide a concrete, numerical example showing that $D_{KL}(P \| Q) \neq D_{KL}(Q \| P)$ using two simple discrete probability distributions (e.g., $P=[0.5, 0.5]$ and $Q=[0.9, 0.1]$).
+:::

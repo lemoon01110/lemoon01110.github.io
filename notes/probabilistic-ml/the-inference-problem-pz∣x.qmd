@@ -1,0 +1,5 @@
+---
+title: "The Inference Problem p(z∣x)"
+---
+
+Content for The Inference Problem p(z∣x) goes here.

@@ -1,0 +1,60 @@
+---
+title: "Evidence Lower Bound (ELBO)"
+toc: true
+toc-depth: 3
+---
+
+## Definition
+
+::: {.thm-box .thm-definition}
+### Definition: Evidence Lower Bound (ELBO)
+For a probabilistic model with observed data $\mathbf{x}$, latent variables $\mathbf{z}$, parameters $\boldsymbol\theta$, and a variational approximation $q(\mathbf{z})$, the **Evidence Lower Bound (ELBO)** bounds the log-marginal likelihood $\log p(\mathbf{x} | \boldsymbol\theta)$:
+
+$$
+\log p(\mathbf{x} | \boldsymbol\theta) \ge \mathrm{ELBO}(q, \boldsymbol\theta)
+$$
+
+It can be decomposed into a reconstruction term and a KL-divergence regularization term:
+$$
+\mathrm{ELBO}(q, \boldsymbol\theta) = \mathbb{E}_{q(\mathbf{z})}[\log p(\mathbf{x} | \mathbf{z}, \boldsymbol\theta)] - D_{\mathrm{KL}}(q(\mathbf{z}) || p(\mathbf{z} | \boldsymbol\theta))
+$$
+:::
+
+## Intuition
+
+In many complex generative models with latent variables (like Variational Autoencoders), calculating the true evidence (the probability of the data $p(\mathbf{x})$) is intractable because it requires integrating over all possible latent states $\mathbf{z}$. 
+
+Instead of maximizing the true likelihood, Variational Inference maximizes a lower bound: the **ELBO**. 
+By maximizing the ELBO, we implicitly push up the true log-likelihood. 
+
+The decomposition perfectly illustrates the trade-off in VAEs:
+
+::: {.thm-box .thm-problem}
+### 1. Reconstruction Term ($\mathbb{E}_{q}[\log p]$)
+Encourages the model to reconstruct the data well from the latent representation.
+:::
+
+::: {.thm-box .thm-problem}
+### 2. Regularization Term ($-D_{\mathrm{KL}}(q || p)$)
+Penalizes the approximate posterior $q(\mathbf{z})$ for deviating from the prior $p(\mathbf{z})$, forcing the latent space to remain structured and smooth.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### 1. ELBO Inequality
+Prove that $\mathrm{ELBO}(q, \boldsymbol\theta) \le \log p(\mathbf{x} | \boldsymbol\theta)$ for any variational distribution $q(\mathbf{z})$ by using Jensen's inequality or by showing that the difference is a KL divergence.
+:::
+
+::: {.thm-box .thm-problem}
+### 2. Decomposition
+Show algebraically that the ELBO can be decomposed into the reconstruction term and the KL divergence term: $\mathrm{ELBO}(q, \boldsymbol\theta) = \mathbb{E}_{q(\mathbf{z})}[\log p(\mathbf{x} | \mathbf{z}, \boldsymbol\theta)] - D_{\mathrm{KL}}(q(\mathbf{z}) || p(\mathbf{z} | \boldsymbol\theta))$.
+:::
+
+::: {.thm-box .thm-problem}
+### 3. VAE Regularization
+In a VAE, explain how the KL divergence term acts as a regularizer. What happens to the learned representations if the KL term dominates the loss? What happens if it is too small?
+
+:::
+

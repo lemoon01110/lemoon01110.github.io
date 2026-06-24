@@ -1,0 +1,5 @@
+---
+title: "Thin, Compact and Truncated Forms"
+---
+
+Content for Thin, Compact and Truncated Forms goes here.

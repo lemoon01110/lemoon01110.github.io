@@ -1,23 +1,2536 @@
 [
   {
-    "objectID": "Information-Theory/differential-entropy-problems.html",
-    "href": "Information-Theory/differential-entropy-problems.html",
-    "title": "Jack's Learning Journey",
+    "objectID": "notes/information-theory/markov-chain.html",
+    "href": "notes/information-theory/markov-chain.html",
+    "title": "Markov Chain",
+    "section": "",
+    "text": "A Markov Chain is a stochastic model describing a sequence of possible events where the probability of each event depends only on the state attained in the previous event.\nThis strict assumption is known as the Markov Property, or “memorylessness.” It asserts that if you know the present state of a system, the entire past history of the system is completely irrelevant for predicting the future."
+  },
+  {
+    "objectID": "notes/information-theory/markov-chain.html#practice-problems",
+    "href": "notes/information-theory/markov-chain.html#practice-problems",
+    "title": "Markov Chain",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: The Markov Property\nDefine the Markov Property in your own words. Why is this memoryless assumption absolutely mathematically necessary for formulating Reinforcement Learning environments as Markov Decision Processes (MDPs)?"
+  },
+  {
+    "objectID": "notes/information-theory/entropy.html",
+    "href": "notes/information-theory/entropy.html",
+    "title": "Entropy",
+    "section": "",
+    "text": "While Information Content (Surprisal) measures the information gained from a single specific event, Entropy measures the average amount of information produced by a stochastic source of data.\nIn other words, Entropy is the Expected Information Content. It quantifies the intrinsic uncertainty, unpredictability, or “chaos” inherent in a probability distribution."
+  },
+  {
+    "objectID": "notes/information-theory/entropy.html#practice-problems",
+    "href": "notes/information-theory/entropy.html#practice-problems",
+    "title": "Entropy",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Biased Coin Entropy\nProve that the entropy of a fair coin flip is exactly 1 bit. What happens to the theoretical entropy \\(H(X)\\) if the coin is heavily biased such that \\(P(Heads) = 0.99\\)?"
+  },
+  {
+    "objectID": "notes/information-theory/stochastic-matrices-and-markov-chains.html",
+    "href": "notes/information-theory/stochastic-matrices-and-markov-chains.html",
+    "title": "Stochastic Matrices and Markov Chains",
+    "section": "",
+    "text": "While the definition of a Markov Chain is fundamentally probabilistic, executing operations and simulating transitions over time is vastly more efficient when framed using the language of Linear Algebra.\nTo achieve this, we encode the transition probabilities of a Markov Chain into a specific type of matrix known as a Stochastic Matrix."
+  },
+  {
+    "objectID": "notes/information-theory/stochastic-matrices-and-markov-chains.html#practice-problems",
+    "href": "notes/information-theory/stochastic-matrices-and-markov-chains.html#practice-problems",
+    "title": "Stochastic Matrices and Markov Chains",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Stationary Distributions\nGiven a \\(2 \\times 2\\) stochastic transition matrix \\(P = \\begin{bmatrix} 0.8 & 0.2 \\\\ 0.3 & 0.7 \\end{bmatrix}\\), find the stationary distribution \\(\\pi\\) by solving the left-eigenvector equation \\(\\pi P = \\pi\\)."
+  },
+  {
+    "objectID": "notes/information-theory/wasserstein-distance.html",
+    "href": "notes/information-theory/wasserstein-distance.html",
+    "title": "Wasserstein Distance",
+    "section": "",
+    "text": "Both the Kullback-Leibler (KL) and Jensen-Shannon (JSD) divergences are fundamentally based on the ratio of probabilities \\(P(x) / Q(x)\\).\nThis mathematical foundation creates a severe problem: if the two distributions have disjoint supports (meaning they don’t overlap in space), these divergences either become infinite or saturate at a constant value (\\(\\log 2\\) for JSD). When divergences saturate, their gradients become exactly zero. In Machine Learning, if your loss function has zero gradient, your neural network cannot learn."
+  },
+  {
+    "objectID": "notes/information-theory/wasserstein-distance.html#practice-problems",
+    "href": "notes/information-theory/wasserstein-distance.html#practice-problems",
+    "title": "Wasserstein Distance",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Earth Mover’s Gradients\nExplain intuitively why the Earth Mover’s distance between two completely non-overlapping distributions still provides a meaningful, continuous gradient, whereas JS Divergence saturates and provides a gradient of exactly zero."
+  },
+  {
+    "objectID": "notes/information-theory/perplexity.html",
+    "href": "notes/information-theory/perplexity.html",
+    "title": "Perplexity",
+    "section": "",
+    "text": "Perplexity is a measurement of how well a probability model predicts a sample. It is an exponentiated version of entropy (or cross-entropy) that transforms the logarithmic scale of bits back into a more intuitive, linear scale of “equivalent choices.”\nIf a model has a perplexity of \\(K\\), it means the model is, on average, as “confused” or “perplexed” as if it had to guess uniformly among \\(K\\) equally likely options."
+  },
+  {
+    "objectID": "notes/information-theory/perplexity.html#practice-problems",
+    "href": "notes/information-theory/perplexity.html#practice-problems",
+    "title": "Perplexity",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Language Model Perplexity\nA language model assigns a uniform probability over a vocabulary of \\(10,000\\) words. What is its perplexity? If a better model achieves a perplexity of \\(50\\), what does this physically mean in terms of its predictive power?"
+  },
+  {
+    "objectID": "notes/information-theory/elbo.html",
+    "href": "notes/information-theory/elbo.html",
+    "title": "Evidence Lower Bound (ELBO)",
+    "section": "",
+    "text": "For a probabilistic model with observed data \\(\\mathbf{x}\\), latent variables \\(\\mathbf{z}\\), parameters \\(\\boldsymbol\\theta\\), and a variational approximation \\(q(\\mathbf{z})\\), the Evidence Lower Bound (ELBO) bounds the log-marginal likelihood \\(\\log p(\\mathbf{x} | \\boldsymbol\\theta)\\):\n\\[\n\\log p(\\mathbf{x} | \\boldsymbol\\theta) \\ge \\mathrm{ELBO}(q, \\boldsymbol\\theta)\n\\]\nIt can be decomposed into a reconstruction term and a KL-divergence regularization term: \\[\n\\mathrm{ELBO}(q, \\boldsymbol\\theta) = \\mathbb{E}_{q(\\mathbf{z})}[\\log p(\\mathbf{x} | \\mathbf{z}, \\boldsymbol\\theta)] - D_{\\mathrm{KL}}(q(\\mathbf{z}) || p(\\mathbf{z} | \\boldsymbol\\theta))\n\\]"
+  },
+  {
+    "objectID": "notes/information-theory/elbo.html#definition",
+    "href": "notes/information-theory/elbo.html#definition",
+    "title": "Evidence Lower Bound (ELBO)",
+    "section": "",
+    "text": "For a probabilistic model with observed data \\(\\mathbf{x}\\), latent variables \\(\\mathbf{z}\\), parameters \\(\\boldsymbol\\theta\\), and a variational approximation \\(q(\\mathbf{z})\\), the Evidence Lower Bound (ELBO) bounds the log-marginal likelihood \\(\\log p(\\mathbf{x} | \\boldsymbol\\theta)\\):\n\\[\n\\log p(\\mathbf{x} | \\boldsymbol\\theta) \\ge \\mathrm{ELBO}(q, \\boldsymbol\\theta)\n\\]\nIt can be decomposed into a reconstruction term and a KL-divergence regularization term: \\[\n\\mathrm{ELBO}(q, \\boldsymbol\\theta) = \\mathbb{E}_{q(\\mathbf{z})}[\\log p(\\mathbf{x} | \\mathbf{z}, \\boldsymbol\\theta)] - D_{\\mathrm{KL}}(q(\\mathbf{z}) || p(\\mathbf{z} | \\boldsymbol\\theta))\n\\]"
+  },
+  {
+    "objectID": "notes/information-theory/elbo.html#intuition",
+    "href": "notes/information-theory/elbo.html#intuition",
+    "title": "Evidence Lower Bound (ELBO)",
+    "section": "Intuition",
+    "text": "Intuition\nIn many complex generative models with latent variables (like Variational Autoencoders), calculating the true evidence (the probability of the data \\(p(\\mathbf{x})\\)) is intractable because it requires integrating over all possible latent states \\(\\mathbf{z}\\).\nInstead of maximizing the true likelihood, Variational Inference maximizes a lower bound: the ELBO. By maximizing the ELBO, we implicitly push up the true log-likelihood.\nThe decomposition perfectly illustrates the trade-off in VAEs:\n\n1. Reconstruction Term (\\(\\mathbb{E}_{q}[\\log p]\\))\nEncourages the model to reconstruct the data well from the latent representation.\n\n\n2. Regularization Term (\\(-D_{\\mathrm{KL}}(q || p)\\))\nPenalizes the approximate posterior \\(q(\\mathbf{z})\\) for deviating from the prior \\(p(\\mathbf{z})\\), forcing the latent space to remain structured and smooth."
+  },
+  {
+    "objectID": "notes/information-theory/elbo.html#practice-problems",
+    "href": "notes/information-theory/elbo.html#practice-problems",
+    "title": "Evidence Lower Bound (ELBO)",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\n1. ELBO Inequality\nProve that \\(\\mathrm{ELBO}(q, \\boldsymbol\\theta) \\le \\log p(\\mathbf{x} | \\boldsymbol\\theta)\\) for any variational distribution \\(q(\\mathbf{z})\\) by using Jensen’s inequality or by showing that the difference is a KL divergence.\n\n\n2. Decomposition\nShow algebraically that the ELBO can be decomposed into the reconstruction term and the KL divergence term: \\(\\mathrm{ELBO}(q, \\boldsymbol\\theta) = \\mathbb{E}_{q(\\mathbf{z})}[\\log p(\\mathbf{x} | \\mathbf{z}, \\boldsymbol\\theta)] - D_{\\mathrm{KL}}(q(\\mathbf{z}) || p(\\mathbf{z} | \\boldsymbol\\theta))\\).\n\n\n3. VAE Regularization\nIn a VAE, explain how the KL divergence term acts as a regularizer. What happens to the learned representations if the KL term dominates the loss? What happens if it is too small?"
+  },
+  {
+    "objectID": "notes/information-theory/information-content.html",
+    "href": "notes/information-theory/information-content.html",
+    "title": "Information Content (Surprisal)",
+    "section": "",
+    "text": "In Information Theory, Information Content, often referred to as Surprisal, quantifies the amount of “surprise” or “information” gained when observing a specific outcome of a random variable.\nThe core intuition relies on a simple premise: &gt; Observing a highly probable event provides very little information, whereas observing a rare or highly improbable event provides a massive amount of information.\nIf someone tells you, “The sun rose this morning,” you have gained almost zero information because the probability of that event is near \\(1\\). Conversely, if someone tells you, “It is currently snowing in the Sahara Desert,” you have gained a tremendous amount of information because the prior probability of that event is near \\(0\\)."
+  },
+  {
+    "objectID": "notes/information-theory/information-content.html#practice-problems",
+    "href": "notes/information-theory/information-content.html#practice-problems",
+    "title": "Information Content (Surprisal)",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Calculating Surprisal\nCalculate the surprisal of rolling a 6 on a fair 6-sided die, in both bits and nats. How does this compare to flipping two heads in a row on a fair coin?"
+  },
+  {
+    "objectID": "notes/information-theory/js-divergence.html",
+    "href": "notes/information-theory/js-divergence.html",
+    "title": "Jensen-Shannon (JS) Divergence",
+    "section": "",
+    "text": "For two probability distributions \\(p(x)\\) and \\(q(x)\\), the Jensen-Shannon (JS) divergence is defined as the average of the KL divergences from each distribution to their mixture:\n\\[\nD_{\\mathrm{JS}}(p || q) = \\frac{1}{2} D_{\\mathrm{KL}}\\left(p || \\frac{p+q}{2}\\right) + \\frac{1}{2} D_{\\mathrm{KL}}\\left(q || \\frac{p+q}{2}\\right)\n\\] where \\(\\frac{p+q}{2}\\) is the mixture distribution with equal weights."
+  },
+  {
+    "objectID": "notes/information-theory/js-divergence.html#definition",
+    "href": "notes/information-theory/js-divergence.html#definition",
+    "title": "Jensen-Shannon (JS) Divergence",
+    "section": "",
+    "text": "For two probability distributions \\(p(x)\\) and \\(q(x)\\), the Jensen-Shannon (JS) divergence is defined as the average of the KL divergences from each distribution to their mixture:\n\\[\nD_{\\mathrm{JS}}(p || q) = \\frac{1}{2} D_{\\mathrm{KL}}\\left(p || \\frac{p+q}{2}\\right) + \\frac{1}{2} D_{\\mathrm{KL}}\\left(q || \\frac{p+q}{2}\\right)\n\\] where \\(\\frac{p+q}{2}\\) is the mixture distribution with equal weights."
+  },
+  {
+    "objectID": "notes/information-theory/js-divergence.html#intuition",
+    "href": "notes/information-theory/js-divergence.html#intuition",
+    "title": "Jensen-Shannon (JS) Divergence",
+    "section": "Intuition",
+    "text": "Intuition\nJensen-Shannon divergence addresses some of the mathematical inconveniences of KL divergence. - Symmetry: Unlike KL divergence, JS divergence is perfectly symmetric (\\(D_{\\mathrm{JS}}(p || q) = D_{\\mathrm{JS}}(q || p)\\)). - Boundedness: It is bounded between \\(0\\) and \\(\\ln 2\\) nats (or \\(1\\) bit). It reaches its maximum when \\(p\\) and \\(q\\) have completely disjoint supports. - Metric Property: The square root of JS divergence, \\(\\sqrt{D_{\\mathrm{JS}}(p || q)}\\), satisfies the triangle inequality and is a true distance metric.\nIn machine learning, JS divergence historically played a foundational role in the original formulation of Generative Adversarial Networks (GANs), where the discriminator’s objective implicitly minimizes the JS divergence between the real data distribution and the generated distribution."
+  },
+  {
+    "objectID": "notes/information-theory/js-divergence.html#practice-problems",
+    "href": "notes/information-theory/js-divergence.html#practice-problems",
+    "title": "Jensen-Shannon (JS) Divergence",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\n1. Symmetry\nProve from the definition that JS divergence is symmetric: \\(D_{\\mathrm{JS}}(p || q) = D_{\\mathrm{JS}}(q || p)\\).\n\n\n2. Boundedness\nShow that JS divergence is bounded: \\(0 \\le D_{\\mathrm{JS}}(p || q) \\le \\ln 2\\) nats.\n\n\n3. GAN Objectives\nIn practical GAN training, explain why JS divergence (the theoretical objective) is often replaced with other losses like Wasserstein distance or the non-saturating heuristic loss. How does disjoint support between real and fake data affect JS divergence?"
+  },
+  {
+    "objectID": "notes/information-theory/fisher-information.html",
+    "href": "notes/information-theory/fisher-information.html",
+    "title": "Fisher Information",
+    "section": "",
+    "text": "In classical Information Theory (Shannon Entropy), we measure the information inherent in the data itself. In statistical inference, however, we often care about Fisher Information: a measure of the amount of information that an observable random variable \\(X\\) carries about an unknown, unobservable parameter \\(\\theta\\).\nIf the probability distribution \\(p(x | \\theta)\\) changes rapidly when \\(\\theta\\) changes slightly, then observing \\(X\\) gives us a massive amount of information about the true value of \\(\\theta\\). If \\(p(x | \\theta)\\) is flat and barely reacts to changes in \\(\\theta\\), observing \\(X\\) tells us almost nothing."
+  },
+  {
+    "objectID": "notes/information-theory/fisher-information.html#practice-problems",
+    "href": "notes/information-theory/fisher-information.html#practice-problems",
+    "title": "Fisher Information",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Natural Gradients\nHow does Natural Gradient Descent utilize the inverse of the Fisher Information Matrix to precondition its gradient steps? Why is this necessary when moving through the Riemannian manifold of probability distributions?"
+  },
+  {
+    "objectID": "notes/information-theory/jensen-shannon-divergence.html",
+    "href": "notes/information-theory/jensen-shannon-divergence.html",
+    "title": "Jensen-Shannon Divergence",
+    "section": "",
+    "text": "While the Kullback-Leibler (KL) Divergence is foundational, it suffers from two major mathematical flaws that limit its utility as a true distance metric: 1. It is asymmetric (\\(D_{KL}(P \\| Q) \\neq D_{KL}(Q \\| P)\\)). 2. It can explode to infinity if the distributions do not share the exact same support (i.e., if \\(Q(x) = 0\\) where \\(P(x) &gt; 0\\)).\nThe Jensen-Shannon Divergence (JSD) solves both of these problems by creating a smoothed, symmetric version of the KL divergence. It does this by measuring the KL divergence of both \\(P\\) and \\(Q\\) relative to their “average” distribution \\(M\\)."
+  },
+  {
+    "objectID": "notes/information-theory/jensen-shannon-divergence.html#practice-problems",
+    "href": "notes/information-theory/jensen-shannon-divergence.html#practice-problems",
+    "title": "Jensen-Shannon Divergence",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: GAN Stabilization\nExplain why the strict boundedness (\\(0 \\le JSD \\le \\log 2\\)) makes Jensen-Shannon Divergence vastly superior to KL divergence for training early-stage Generative Adversarial Networks (GANs), especially when the generator and real distributions have disjoint supports."
+  },
+  {
+    "objectID": "notes/information-theory/chapter14.html",
+    "href": "notes/information-theory/chapter14.html",
+    "title": "Chapter 14: Information Theory",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/information-theory/chapter14.html#overview",
+    "href": "notes/information-theory/chapter14.html#overview",
+    "title": "Chapter 14: Information Theory",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/information-theory/chapter14.html#definitions",
+    "href": "notes/information-theory/chapter14.html#definitions",
+    "title": "Chapter 14: Information Theory",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/information-theory/chapter14.html#theorems-and-proofs",
+    "href": "notes/information-theory/chapter14.html#theorems-and-proofs",
+    "title": "Chapter 14: Information Theory",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/information-theory/chapter14.html#examples-and-solutions",
+    "href": "notes/information-theory/chapter14.html#examples-and-solutions",
+    "title": "Chapter 14: Information Theory",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/information-theory/chapter14.html#remarks",
+    "href": "notes/information-theory/chapter14.html#remarks",
+    "title": "Chapter 14: Information Theory",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/matrix-calculus/single-variable-derivative.html",
+    "href": "notes/matrix-calculus/single-variable-derivative.html",
+    "title": "Single-Variable Derivative",
+    "section": "",
+    "text": "Content for Single-Variable Derivative goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/non-differentiable-operations-in-chain-rule.html",
+    "href": "notes/matrix-calculus/non-differentiable-operations-in-chain-rule.html",
+    "title": "Non-Differentiable Operations in Chain Rule",
+    "section": "",
+    "text": "Content for Non-Differentiable Operations in Chain Rule goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/scalar-and-vector-fields.html",
+    "href": "notes/matrix-calculus/scalar-and-vector-fields.html",
+    "title": "Scalar and Vector Fields",
+    "section": "",
+    "text": "Content for Scalar and Vector Fields goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/fréchet-derivative.html",
+    "href": "notes/matrix-calculus/fréchet-derivative.html",
+    "title": "Fréchet Derivative",
+    "section": "",
+    "text": "Content for Fréchet Derivative goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/chapter11.html",
+    "href": "notes/matrix-calculus/chapter11.html",
+    "title": "Chapter 11: Matrix Calculus",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-calculus/chapter11.html#overview",
+    "href": "notes/matrix-calculus/chapter11.html#overview",
+    "title": "Chapter 11: Matrix Calculus",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-calculus/chapter11.html#definitions",
+    "href": "notes/matrix-calculus/chapter11.html#definitions",
+    "title": "Chapter 11: Matrix Calculus",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/matrix-calculus/chapter11.html#theorems-and-proofs",
+    "href": "notes/matrix-calculus/chapter11.html#theorems-and-proofs",
+    "title": "Chapter 11: Matrix Calculus",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/matrix-calculus/chapter11.html#examples-and-solutions",
+    "href": "notes/matrix-calculus/chapter11.html#examples-and-solutions",
+    "title": "Chapter 11: Matrix Calculus",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/matrix-calculus/chapter11.html#remarks",
+    "href": "notes/matrix-calculus/chapter11.html#remarks",
+    "title": "Chapter 11: Matrix Calculus",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/quadratic-forms-and-definiteness.html",
+    "href": "notes/linear-algebra/quadratic-forms-and-definiteness.html",
+    "title": "Quadratic Forms and Definiteness",
+    "section": "",
+    "text": "Content for Quadratic Forms and Definiteness goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/change-of-basis.html",
+    "href": "notes/linear-algebra/change-of-basis.html",
+    "title": "Change of Basis",
+    "section": "",
+    "text": "Content for Change of Basis goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/matrix-partitioning.html",
+    "href": "notes/linear-algebra/matrix-partitioning.html",
+    "title": "Matrix Partitioning",
+    "section": "",
+    "text": "Content for Matrix Partitioning goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/general-properties-of-orthonormal-matrices.html",
+    "href": "notes/linear-algebra/general-properties-of-orthonormal-matrices.html",
+    "title": "General Properties of Orthonormal Matrices",
+    "section": "",
+    "text": "Content for General Properties of Orthonormal Matrices goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/matrix-functions.html",
+    "href": "notes/linear-algebra/matrix-functions.html",
+    "title": "Matrix Functions",
+    "section": "",
+    "text": "Content for Matrix Functions goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter7.html",
+    "href": "notes/linear-algebra/chapter7.html",
+    "title": "Chapter 7: Symmetric Matrix",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter7.html#overview",
+    "href": "notes/linear-algebra/chapter7.html#overview",
+    "title": "Chapter 7: Symmetric Matrix",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter7.html#definitions",
+    "href": "notes/linear-algebra/chapter7.html#definitions",
+    "title": "Chapter 7: Symmetric Matrix",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter7.html#theorems-and-proofs",
+    "href": "notes/linear-algebra/chapter7.html#theorems-and-proofs",
+    "title": "Chapter 7: Symmetric Matrix",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter7.html#examples-and-solutions",
+    "href": "notes/linear-algebra/chapter7.html#examples-and-solutions",
+    "title": "Chapter 7: Symmetric Matrix",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter7.html#remarks",
+    "href": "notes/linear-algebra/chapter7.html#remarks",
+    "title": "Chapter 7: Symmetric Matrix",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/matrix-representation.html",
+    "href": "notes/linear-algebra/matrix-representation.html",
+    "title": "Matrix Representation",
+    "section": "",
+    "text": "Content for Matrix Representation goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/matrix-vector-multiplication-two-views.html",
+    "href": "notes/linear-algebra/matrix-vector-multiplication-two-views.html",
+    "title": "Matrix-Vector Multiplication (Two Views)",
+    "section": "",
+    "text": "Content for Matrix-Vector Multiplication (Two Views) goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/matrix-multiplication-four-views.html",
+    "href": "notes/linear-algebra/matrix-multiplication-four-views.html",
+    "title": "Matrix Multiplication (Four Views)",
+    "section": "",
+    "text": "Content for Matrix Multiplication (Four Views) goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/summation-and-scalar-multiplication.html",
+    "href": "notes/linear-algebra/summation-and-scalar-multiplication.html",
+    "title": "Summation and Scalar Multiplication",
+    "section": "",
+    "text": "Content for Summation and Scalar Multiplication goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/gram-schmidt-algorithm.html",
+    "href": "notes/linear-algebra/gram-schmidt-algorithm.html",
+    "title": "Gram-Schmidt Algorithm",
+    "section": "",
+    "text": "Content for Gram-Schmidt Algorithm goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/dimensions-and-orthogonality-of-four-fundamental-subspaces.html",
+    "href": "notes/linear-algebra/dimensions-and-orthogonality-of-four-fundamental-subspaces.html",
+    "title": "Dimensions and Orthogonality of Four Fundamental Subspaces",
+    "section": "",
+    "text": "Content for Dimensions and Orthogonality of Four Fundamental Subspaces goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/rayleigh-quotient.html",
+    "href": "notes/linear-algebra/rayleigh-quotient.html",
+    "title": "Rayleigh Quotient",
+    "section": "",
+    "text": "Content for Rayleigh Quotient goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/banach-space.html",
+    "href": "notes/linear-algebra/banach-space.html",
+    "title": "Banach Space",
+    "section": "",
+    "text": "Content for Banach Space goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/eigenvalues-and-eigenvectors.html",
+    "href": "notes/linear-algebra/eigenvalues-and-eigenvectors.html",
+    "title": "Eigenvalues and Eigenvectors",
+    "section": "",
+    "text": "Content for Eigenvalues and Eigenvectors goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/rank-nullity-theorem.html",
+    "href": "notes/linear-algebra/rank-nullity-theorem.html",
+    "title": "Rank-Nullity Theorem",
+    "section": "",
+    "text": "Content for Rank-Nullity Theorem goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter2.html",
+    "href": "notes/linear-algebra/chapter2.html",
+    "title": "Chapter 2: Matrix",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter2.html#overview",
+    "href": "notes/linear-algebra/chapter2.html#overview",
+    "title": "Chapter 2: Matrix",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter2.html#definitions",
+    "href": "notes/linear-algebra/chapter2.html#definitions",
+    "title": "Chapter 2: Matrix",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter2.html#theorems-and-proofs",
+    "href": "notes/linear-algebra/chapter2.html#theorems-and-proofs",
+    "title": "Chapter 2: Matrix",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter2.html#examples-and-solutions",
+    "href": "notes/linear-algebra/chapter2.html#examples-and-solutions",
+    "title": "Chapter 2: Matrix",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter2.html#remarks",
+    "href": "notes/linear-algebra/chapter2.html#remarks",
+    "title": "Chapter 2: Matrix",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/block-matrix-decompositions.html",
+    "href": "notes/linear-algebra/block-matrix-decompositions.html",
+    "title": "Block Matrix Decompositions",
+    "section": "",
+    "text": "Content for Block Matrix Decompositions goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/hilbert-space.html",
+    "href": "notes/linear-algebra/hilbert-space.html",
+    "title": "Hilbert Space",
+    "section": "",
+    "text": "Content for Hilbert Space goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/kronecker-product.html",
+    "href": "notes/linear-algebra/kronecker-product.html",
+    "title": "Kronecker Product",
+    "section": "",
+    "text": "Content for Kronecker Product goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/geometric-transformation-and-matrix.html",
+    "href": "notes/linear-algebra/geometric-transformation-and-matrix.html",
+    "title": "Geometric Transformation and Matrix",
+    "section": "",
+    "text": "Content for Geometric Transformation and Matrix goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/matrix-norms.html",
+    "href": "notes/linear-algebra/matrix-norms.html",
+    "title": "Matrix Norms",
+    "section": "",
+    "text": "Content for Matrix Norms goes here."
+  },
+  {
+    "objectID": "notes/optimization/duality.html",
+    "href": "notes/optimization/duality.html",
+    "title": "Duality",
+    "section": "",
+    "text": "Content for Duality goes here."
+  },
+  {
+    "objectID": "notes/optimization/kkt-conditions.html",
+    "href": "notes/optimization/kkt-conditions.html",
+    "title": "KKT Conditions",
+    "section": "",
+    "text": "Content for KKT Conditions goes here."
+  },
+  {
+    "objectID": "notes/optimization/convex-optimization-problems.html",
+    "href": "notes/optimization/convex-optimization-problems.html",
+    "title": "Convex Optimization Problems",
+    "section": "",
+    "text": "Content for Convex Optimization Problems goes here."
+  },
+  {
+    "objectID": "notes/optimization/newton's-method.html",
+    "href": "notes/optimization/newton's-method.html",
+    "title": "Newton’s Method",
+    "section": "",
+    "text": "Content for Newton’s Method goes here."
+  },
+  {
+    "objectID": "notes/optimization/gradient-descent.html",
+    "href": "notes/optimization/gradient-descent.html",
+    "title": "Gradient Descent",
+    "section": "",
+    "text": "Content for Gradient Descent goes here."
+  },
+  {
+    "objectID": "notes/optimization/constrained-optimization.html",
+    "href": "notes/optimization/constrained-optimization.html",
+    "title": "Constrained Optimization",
+    "section": "",
+    "text": "Content for Constrained Optimization goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/variational-inference-vs-other-methods.html",
+    "href": "notes/probabilistic-ml/variational-inference-vs-other-methods.html",
+    "title": "Variational Inference vs Other Methods",
+    "section": "",
+    "text": "Content for Variational Inference vs Other Methods goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/motivation-from-density-to-geometry.html",
+    "href": "notes/probabilistic-ml/motivation-from-density-to-geometry.html",
+    "title": "Motivation: From Density to Geometry",
+    "section": "",
+    "text": "Content for Motivation: From Density to Geometry goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter17.html",
+    "href": "notes/probabilistic-ml/chapter17.html",
+    "title": "Chapter 17: Score Function and Energy-Based Models",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter17.html#overview",
+    "href": "notes/probabilistic-ml/chapter17.html#overview",
+    "title": "Chapter 17: Score Function and Energy-Based Models",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter17.html#definitions",
+    "href": "notes/probabilistic-ml/chapter17.html#definitions",
+    "title": "Chapter 17: Score Function and Energy-Based Models",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter17.html#theorems-and-proofs",
+    "href": "notes/probabilistic-ml/chapter17.html#theorems-and-proofs",
+    "title": "Chapter 17: Score Function and Energy-Based Models",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter17.html#examples-and-solutions",
+    "href": "notes/probabilistic-ml/chapter17.html#examples-and-solutions",
+    "title": "Chapter 17: Score Function and Energy-Based Models",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter17.html#remarks",
+    "href": "notes/probabilistic-ml/chapter17.html#remarks",
+    "title": "Chapter 17: Score Function and Energy-Based Models",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/amortized-variational-inference.html",
+    "href": "notes/probabilistic-ml/amortized-variational-inference.html",
+    "title": "Amortized Variational Inference",
+    "section": "",
+    "text": "Content for Amortized Variational Inference goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/applications-of-variational-inference.html",
+    "href": "notes/probabilistic-ml/applications-of-variational-inference.html",
+    "title": "Applications of Variational Inference",
+    "section": "",
+    "text": "Content for Applications of Variational Inference goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/score-vs-density.html",
+    "href": "notes/probabilistic-ml/score-vs-density.html",
+    "title": "Score vs Density",
+    "section": "",
+    "text": "Content for Score vs Density goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/diffusion-as-time-indexed-scores.html",
+    "href": "notes/probabilistic-ml/diffusion-as-time-indexed-scores.html",
+    "title": "Diffusion as Time-Indexed Scores",
+    "section": "",
+    "text": "Content for Diffusion as Time-Indexed Scores goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/expectation-maximization.html",
+    "href": "notes/probabilistic-ml/expectation-maximization.html",
+    "title": "Expectation-Maximization",
+    "section": "",
+    "text": "Content for Expectation-Maximization goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/denoising-score-matching.html",
+    "href": "notes/probabilistic-ml/denoising-score-matching.html",
+    "title": "Denoising Score Matching",
+    "section": "",
+    "text": "Content for Denoising Score Matching goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/mean-field-variational-inference.html",
+    "href": "notes/probabilistic-ml/mean-field-variational-inference.html",
+    "title": "Mean Field Variational Inference",
+    "section": "",
+    "text": "Content for Mean Field Variational Inference goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/stochastic-approximation.html",
+    "href": "notes/reinforcement-learning/stochastic-approximation.html",
+    "title": "Stochastic Approximation",
+    "section": "",
+    "text": "Content for Stochastic Approximation goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/continuous-time-rl.html",
+    "href": "notes/reinforcement-learning/continuous-time-rl.html",
+    "title": "Continuous-Time RL",
+    "section": "",
+    "text": "Content for Continuous-Time RL goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/state-distribution-and-stationarity.html",
+    "href": "notes/reinforcement-learning/state-distribution-and-stationarity.html",
+    "title": "State Distribution and Stationarity",
+    "section": "",
+    "text": "Content for State Distribution and Stationarity goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/policies.html",
+    "href": "notes/reinforcement-learning/policies.html",
+    "title": "Policies",
+    "section": "",
+    "text": "Content for Policies goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/policy-gradient-theorem.html",
+    "href": "notes/reinforcement-learning/policy-gradient-theorem.html",
+    "title": "Policy Gradient Theorem",
+    "section": "",
+    "text": "Content for Policy Gradient Theorem goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/notation-and-conventions.html",
+    "href": "notes/reinforcement-learning/notation-and-conventions.html",
+    "title": "Notation and Conventions",
+    "section": "",
+    "text": "Content for Notation and Conventions goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/importance-sampling.html",
+    "href": "notes/reinforcement-learning/importance-sampling.html",
+    "title": "Importance Sampling",
+    "section": "",
+    "text": "Content for Importance Sampling goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/bellman-equations.html",
+    "href": "notes/reinforcement-learning/bellman-equations.html",
+    "title": "Bellman Equations",
+    "section": "",
+    "text": "Content for Bellman Equations goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/determinant.html",
+    "href": "notes/matrix-decompositions/determinant.html",
+    "title": "Determinant",
+    "section": "",
+    "text": "Content for Determinant goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/transformation-perspective.html",
+    "href": "notes/matrix-decompositions/transformation-perspective.html",
+    "title": "Transformation Perspective",
+    "section": "",
+    "text": "Content for Transformation Perspective goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/ldl-decomposition.html",
+    "href": "notes/matrix-decompositions/ldl-decomposition.html",
+    "title": "LDL Decomposition",
+    "section": "",
+    "text": "Content for LDL Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/trace.html",
+    "href": "notes/matrix-decompositions/trace.html",
+    "title": "Trace",
+    "section": "",
+    "text": "Content for Trace goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter8.html",
+    "href": "notes/matrix-decompositions/chapter8.html",
+    "title": "Chapter 8: Singular Value Decomposition",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter8.html#overview",
+    "href": "notes/matrix-decompositions/chapter8.html#overview",
+    "title": "Chapter 8: Singular Value Decomposition",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter8.html#definitions",
+    "href": "notes/matrix-decompositions/chapter8.html#definitions",
+    "title": "Chapter 8: Singular Value Decomposition",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter8.html#theorems-and-proofs",
+    "href": "notes/matrix-decompositions/chapter8.html#theorems-and-proofs",
+    "title": "Chapter 8: Singular Value Decomposition",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter8.html#examples-and-solutions",
+    "href": "notes/matrix-decompositions/chapter8.html#examples-and-solutions",
+    "title": "Chapter 8: Singular Value Decomposition",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter8.html#remarks",
+    "href": "notes/matrix-decompositions/chapter8.html#remarks",
+    "title": "Chapter 8: Singular Value Decomposition",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/low-rank-matrix-factorization.html",
+    "href": "notes/matrix-decompositions/low-rank-matrix-factorization.html",
+    "title": "Low-Rank Matrix Factorization",
+    "section": "",
+    "text": "Content for Low-Rank Matrix Factorization goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/rank-revealing-qr.html",
+    "href": "notes/matrix-decompositions/rank-revealing-qr.html",
+    "title": "Rank-Revealing QR",
+    "section": "",
+    "text": "Content for Rank-Revealing QR goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter5.html",
+    "href": "notes/matrix-decompositions/chapter5.html",
+    "title": "Chapter 5: Square Matrix and LU Decomposition",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter5.html#overview",
+    "href": "notes/matrix-decompositions/chapter5.html#overview",
+    "title": "Chapter 5: Square Matrix and LU Decomposition",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter5.html#definitions",
+    "href": "notes/matrix-decompositions/chapter5.html#definitions",
+    "title": "Chapter 5: Square Matrix and LU Decomposition",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter5.html#theorems-and-proofs",
+    "href": "notes/matrix-decompositions/chapter5.html#theorems-and-proofs",
+    "title": "Chapter 5: Square Matrix and LU Decomposition",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter5.html#examples-and-solutions",
+    "href": "notes/matrix-decompositions/chapter5.html#examples-and-solutions",
+    "title": "Chapter 5: Square Matrix and LU Decomposition",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter5.html#remarks",
+    "href": "notes/matrix-decompositions/chapter5.html#remarks",
+    "title": "Chapter 5: Square Matrix and LU Decomposition",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/triangular-matrices.html",
+    "href": "notes/matrix-decompositions/triangular-matrices.html",
+    "title": "Triangular Matrices",
+    "section": "",
+    "text": "Content for Triangular Matrices goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/householder-matrix-and-householder-transformation.html",
+    "href": "notes/matrix-decompositions/householder-matrix-and-householder-transformation.html",
+    "title": "Householder Matrix and Householder Transformation",
+    "section": "",
+    "text": "Content for Householder Matrix and Householder Transformation goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/randomized-svd.html",
+    "href": "notes/matrix-decompositions/randomized-svd.html",
+    "title": "Randomized SVD",
+    "section": "",
+    "text": "Content for Randomized SVD goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/lu-decomposition.html",
+    "href": "notes/matrix-decompositions/lu-decomposition.html",
+    "title": "LU Decomposition",
+    "section": "",
+    "text": "Content for LU Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter9.html",
+    "href": "notes/matrix-decompositions/chapter9.html",
+    "title": "Chapter 9: Matrix Decompositions and Beyond",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter9.html#overview",
+    "href": "notes/matrix-decompositions/chapter9.html#overview",
+    "title": "Chapter 9: Matrix Decompositions and Beyond",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter9.html#definitions",
+    "href": "notes/matrix-decompositions/chapter9.html#definitions",
+    "title": "Chapter 9: Matrix Decompositions and Beyond",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter9.html#theorems-and-proofs",
+    "href": "notes/matrix-decompositions/chapter9.html#theorems-and-proofs",
+    "title": "Chapter 9: Matrix Decompositions and Beyond",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter9.html#examples-and-solutions",
+    "href": "notes/matrix-decompositions/chapter9.html#examples-and-solutions",
+    "title": "Chapter 9: Matrix Decompositions and Beyond",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter9.html#remarks",
+    "href": "notes/matrix-decompositions/chapter9.html#remarks",
+    "title": "Chapter 9: Matrix Decompositions and Beyond",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/svd-formulae.html",
+    "href": "notes/matrix-decompositions/svd-formulae.html",
+    "title": "SVD Formulae",
+    "section": "",
+    "text": "Content for SVD Formulae goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/ldu-decomposition.html",
+    "href": "notes/matrix-decompositions/ldu-decomposition.html",
+    "title": "LDU Decomposition",
+    "section": "",
+    "text": "Content for LDU Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/four-subspaces-via-svd.html",
+    "href": "notes/matrix-decompositions/four-subspaces-via-svd.html",
+    "title": "Four Subspaces via SVD",
+    "section": "",
+    "text": "Content for Four Subspaces via SVD goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/schur-decomposition.html",
+    "href": "notes/matrix-decompositions/schur-decomposition.html",
+    "title": "Schur Decomposition",
+    "section": "",
+    "text": "Content for Schur Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/interpolative-decomposition.html",
+    "href": "notes/matrix-decompositions/interpolative-decomposition.html",
+    "title": "Interpolative Decomposition",
+    "section": "",
+    "text": "Content for Interpolative Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/truncated-svd.html",
+    "href": "notes/matrix-decompositions/truncated-svd.html",
+    "title": "Truncated SVD",
+    "section": "",
+    "text": "Content for Truncated SVD goes here."
+  },
+  {
+    "objectID": "notes/probability/uniform-distribution.html",
+    "href": "notes/probability/uniform-distribution.html",
+    "title": "Uniform Distribution",
+    "section": "",
+    "text": "Content for Uniform Distribution goes here."
+  },
+  {
+    "objectID": "notes/probability/statistics-basics.html",
+    "href": "notes/probability/statistics-basics.html",
+    "title": "Statistics Basics",
+    "section": "",
+    "text": "Content for Statistics Basics goes here."
+  },
+  {
+    "objectID": "notes/probability/von-mises-fisher-distribution.html",
+    "href": "notes/probability/von-mises-fisher-distribution.html",
+    "title": "Von Mises-Fisher Distribution",
+    "section": "",
+    "text": "Content for Von Mises-Fisher Distribution goes here."
+  },
+  {
+    "objectID": "notes/probability/joint-probabilities-of-multiple-variables.html",
+    "href": "notes/probability/joint-probabilities-of-multiple-variables.html",
+    "title": "Joint Probabilities of Multiple Variables",
+    "section": "",
+    "text": "Content for Joint Probabilities of Multiple Variables goes here."
+  },
+  {
+    "objectID": "notes/probability/independence.html",
+    "href": "notes/probability/independence.html",
+    "title": "Independence",
+    "section": "",
+    "text": "Content for Independence goes here."
+  },
+  {
+    "objectID": "notes/probability/probability-distributions-of-a-single-random-variable.html",
+    "href": "notes/probability/probability-distributions-of-a-single-random-variable.html",
+    "title": "Probability Distributions of a Single Random Variable",
+    "section": "",
+    "text": "Content for Probability Distributions of a Single Random Variable goes here."
+  },
+  {
+    "objectID": "notes/probability/transformation-of-random-variables.html",
+    "href": "notes/probability/transformation-of-random-variables.html",
+    "title": "Transformation of Random Variables",
+    "section": "",
+    "text": "Content for Transformation of Random Variables goes here."
+  },
+  {
+    "objectID": "notes/probability/gaussian-distribution.html",
+    "href": "notes/probability/gaussian-distribution.html",
+    "title": "Gaussian Distribution",
+    "section": "",
+    "text": "Content for Gaussian Distribution goes here."
+  },
+  {
+    "objectID": "notes/probability/beta-distribution.html",
+    "href": "notes/probability/beta-distribution.html",
+    "title": "Beta Distribution",
+    "section": "",
+    "text": "Content for Beta Distribution goes here."
+  },
+  {
+    "objectID": "notes/probability/sets-and-cardinality.html",
+    "href": "notes/probability/sets-and-cardinality.html",
+    "title": "Sets and Cardinality",
+    "section": "",
+    "text": "Content for Sets and Cardinality goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/discrete-algorithms-and-their-continuous-limits.html",
+    "href": "notes/stochastic-dynamics/discrete-algorithms-and-their-continuous-limits.html",
+    "title": "Discrete Algorithms and Their Continuous Limits",
+    "section": "",
+    "text": "Content for Discrete Algorithms and Their Continuous Limits goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/numerical-methods-for-fokker-planck-equations.html",
+    "href": "notes/stochastic-dynamics/numerical-methods-for-fokker-planck-equations.html",
+    "title": "Numerical Methods for Fokker-Planck Equations",
+    "section": "",
+    "text": "Content for Numerical Methods for Fokker-Planck Equations goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/example-langevin-dynamics.html",
+    "href": "notes/stochastic-dynamics/example-langevin-dynamics.html",
+    "title": "Example: Langevin Dynamics",
+    "section": "",
+    "text": "Content for Example: Langevin Dynamics goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter18.html",
+    "href": "notes/stochastic-dynamics/chapter18.html",
+    "title": "Chapter 18: Langevin Dynamics and Sampling",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter18.html#overview",
+    "href": "notes/stochastic-dynamics/chapter18.html#overview",
+    "title": "Chapter 18: Langevin Dynamics and Sampling",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter18.html#definitions",
+    "href": "notes/stochastic-dynamics/chapter18.html#definitions",
+    "title": "Chapter 18: Langevin Dynamics and Sampling",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter18.html#theorems-and-proofs",
+    "href": "notes/stochastic-dynamics/chapter18.html#theorems-and-proofs",
+    "title": "Chapter 18: Langevin Dynamics and Sampling",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter18.html#examples-and-solutions",
+    "href": "notes/stochastic-dynamics/chapter18.html#examples-and-solutions",
+    "title": "Chapter 18: Langevin Dynamics and Sampling",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter18.html#remarks",
+    "href": "notes/stochastic-dynamics/chapter18.html#remarks",
+    "title": "Chapter 18: Langevin Dynamics and Sampling",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/probability-flow-ode.html",
+    "href": "notes/stochastic-dynamics/probability-flow-ode.html",
+    "title": "Probability Flow ODE",
+    "section": "",
+    "text": "Content for Probability Flow ODE goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/itô-vs-stratonovich.html",
+    "href": "notes/stochastic-dynamics/itô-vs-stratonovich.html",
+    "title": "Itô vs Stratonovich",
+    "section": "",
+    "text": "Content for Itô vs Stratonovich goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/two-views-of-the-same-evolution.html",
+    "href": "notes/stochastic-dynamics/two-views-of-the-same-evolution.html",
+    "title": "Two Views of the Same Evolution",
+    "section": "",
+    "text": "Content for Two Views of the Same Evolution goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/connection-to-energy-based-models.html",
+    "href": "notes/stochastic-dynamics/connection-to-energy-based-models.html",
+    "title": "Connection to Energy-Based Models",
+    "section": "",
+    "text": "Content for Connection to Energy-Based Models goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/probability-flow-perspective.html",
+    "href": "notes/stochastic-dynamics/probability-flow-perspective.html",
+    "title": "Probability Flow Perspective",
+    "section": "",
+    "text": "Content for Probability Flow Perspective goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/stochastic-optimization-and-continuous-limits.html",
+    "href": "notes/stochastic-dynamics/stochastic-optimization-and-continuous-limits.html",
+    "title": "Stochastic Optimization and Continuous Limits",
+    "section": "",
+    "text": "Content for Stochastic Optimization and Continuous Limits goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/flow-matching-and-deterministic-probability-flows.html",
+    "href": "notes/stochastic-dynamics/flow-matching-and-deterministic-probability-flows.html",
+    "title": "Flow Matching and Deterministic Probability Flows",
+    "section": "",
+    "text": "Content for Flow Matching and Deterministic Probability Flows goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/fokker-planck-equation.html",
+    "href": "notes/stochastic-dynamics/fokker-planck-equation.html",
+    "title": "Fokker-Planck Equation",
+    "section": "",
+    "text": "Content for Fokker-Planck Equation goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/metropolis-adjusted-langevin-algorithm.html",
+    "href": "notes/stochastic-dynamics/metropolis-adjusted-langevin-algorithm.html",
+    "title": "Metropolis-Adjusted Langevin Algorithm",
+    "section": "",
+    "text": "Content for Metropolis-Adjusted Langevin Algorithm goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/connection-to-probability-flow-ode.html",
+    "href": "notes/stochastic-dynamics/connection-to-probability-flow-ode.html",
+    "title": "Connection to Probability Flow ODE",
+    "section": "",
+    "text": "Content for Connection to Probability Flow ODE goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/why-noise-is-not-optional.html",
+    "href": "notes/stochastic-dynamics/why-noise-is-not-optional.html",
+    "title": "Why Noise Is Not Optional",
+    "section": "",
+    "text": "Content for Why Noise Is Not Optional goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/continuity-equation-perspective.html",
+    "href": "notes/stochastic-dynamics/continuity-equation-perspective.html",
+    "title": "Continuity Equation Perspective",
+    "section": "",
+    "text": "Content for Continuity Equation Perspective goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/distributional-viewpoint.html",
+    "href": "notes/stochastic-dynamics/distributional-viewpoint.html",
+    "title": "Distributional Viewpoint",
+    "section": "",
+    "text": "Content for Distributional Viewpoint goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/discrete-time-vs-continuous-time-view.html",
+    "href": "notes/stochastic-dynamics/discrete-time-vs-continuous-time-view.html",
+    "title": "Discrete-Time vs Continuous-Time View",
+    "section": "",
+    "text": "Content for Discrete-Time vs Continuous-Time View goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter21.html",
+    "href": "notes/stochastic-dynamics/chapter21.html",
+    "title": "Chapter 21: Fokker-Planck and Distribution Dynamics",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter21.html#overview",
+    "href": "notes/stochastic-dynamics/chapter21.html#overview",
+    "title": "Chapter 21: Fokker-Planck and Distribution Dynamics",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter21.html#definitions",
+    "href": "notes/stochastic-dynamics/chapter21.html#definitions",
+    "title": "Chapter 21: Fokker-Planck and Distribution Dynamics",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter21.html#theorems-and-proofs",
+    "href": "notes/stochastic-dynamics/chapter21.html#theorems-and-proofs",
+    "title": "Chapter 21: Fokker-Planck and Distribution Dynamics",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter21.html#examples-and-solutions",
+    "href": "notes/stochastic-dynamics/chapter21.html#examples-and-solutions",
+    "title": "Chapter 21: Fokker-Planck and Distribution Dynamics",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter21.html#remarks",
+    "href": "notes/stochastic-dynamics/chapter21.html#remarks",
+    "title": "Chapter 21: Fokker-Planck and Distribution Dynamics",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/relationship-between-ode-and-sde.html",
+    "href": "notes/stochastic-dynamics/relationship-between-ode-and-sde.html",
+    "title": "Relationship Between ODE and SDE",
+    "section": "",
+    "text": "Content for Relationship Between ODE and SDE goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/motivation-why-remove-noise?.html",
+    "href": "notes/stochastic-dynamics/motivation-why-remove-noise?.html",
+    "title": "Motivation: Why Remove Noise?",
+    "section": "",
+    "text": "Content for Motivation: Why Remove Noise? goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/probability-evolution-viewpoint.html",
+    "href": "notes/stochastic-dynamics/probability-evolution-viewpoint.html",
+    "title": "Probability Evolution Viewpoint",
+    "section": "",
+    "text": "Content for Probability Evolution Viewpoint goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/discretization-of-linear-odes.html",
+    "href": "notes/stochastic-dynamics/discretization-of-linear-odes.html",
+    "title": "Discretization of Linear ODEs",
+    "section": "",
+    "text": "Content for Discretization of Linear ODEs goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/stochastic-gradient-langevin-dynamics.html",
+    "href": "notes/stochastic-dynamics/stochastic-gradient-langevin-dynamics.html",
+    "title": "Stochastic Gradient Langevin Dynamics",
+    "section": "",
+    "text": "Content for Stochastic Gradient Langevin Dynamics goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter20.html",
+    "href": "notes/stochastic-dynamics/chapter20.html",
+    "title": "Chapter 20: ODE, SDE, and Continuous Limits of Algorithms",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter20.html#overview",
+    "href": "notes/stochastic-dynamics/chapter20.html#overview",
+    "title": "Chapter 20: ODE, SDE, and Continuous Limits of Algorithms",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter20.html#definitions",
+    "href": "notes/stochastic-dynamics/chapter20.html#definitions",
+    "title": "Chapter 20: ODE, SDE, and Continuous Limits of Algorithms",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter20.html#theorems-and-proofs",
+    "href": "notes/stochastic-dynamics/chapter20.html#theorems-and-proofs",
+    "title": "Chapter 20: ODE, SDE, and Continuous Limits of Algorithms",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter20.html#examples-and-solutions",
+    "href": "notes/stochastic-dynamics/chapter20.html#examples-and-solutions",
+    "title": "Chapter 20: ODE, SDE, and Continuous Limits of Algorithms",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter20.html#remarks",
+    "href": "notes/stochastic-dynamics/chapter20.html#remarks",
+    "title": "Chapter 20: ODE, SDE, and Continuous Limits of Algorithms",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/why-fokker-planck-is-the-right-abstraction.html",
+    "href": "notes/stochastic-dynamics/why-fokker-planck-is-the-right-abstraction.html",
+    "title": "Why Fokker-Planck Is the Right Abstraction",
+    "section": "",
+    "text": "Content for Why Fokker-Planck Is the Right Abstraction goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/linear-state-space-models.html",
+    "href": "notes/stochastic-dynamics/linear-state-space-models.html",
+    "title": "Linear State-Space Models",
+    "section": "",
+    "text": "Content for Linear State-Space Models goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/reverse-time-dynamics-revisited.html",
+    "href": "notes/stochastic-dynamics/reverse-time-dynamics-revisited.html",
+    "title": "Reverse-Time Dynamics Revisited",
+    "section": "",
+    "text": "Content for Reverse-Time Dynamics Revisited goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/applications-in-modern-ai-ml.html",
+    "href": "notes/stochastic-dynamics/applications-in-modern-ai-ml.html",
+    "title": "Applications in Modern AI/ML",
+    "section": "",
+    "text": "Content for Applications in Modern AI/ML goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/practical-considerations.html",
+    "href": "notes/stochastic-dynamics/practical-considerations.html",
+    "title": "Practical Considerations",
+    "section": "",
+    "text": "Content for Practical Considerations goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/score-based-sampling-algorithm.html",
+    "href": "notes/stochastic-dynamics/score-based-sampling-algorithm.html",
+    "title": "Score-Based Sampling Algorithm",
+    "section": "",
+    "text": "Content for Score-Based Sampling Algorithm goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/brownian-motion.html",
+    "href": "notes/stochastic-dynamics/brownian-motion.html",
+    "title": "Brownian Motion",
+    "section": "",
+    "text": "Content for Brownian Motion goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/itô's-lemma.html",
+    "href": "notes/stochastic-dynamics/itô's-lemma.html",
+    "title": "Itô’s Lemma",
+    "section": "",
+    "text": "Content for Itô’s Lemma goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/closing-perspective.html",
+    "href": "notes/stochastic-dynamics/closing-perspective.html",
+    "title": "Closing Perspective",
+    "section": "",
+    "text": "Content for Closing Perspective goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/langevin-dynamics.html",
+    "href": "notes/stochastic-dynamics/langevin-dynamics.html",
+    "title": "Langevin Dynamics",
+    "section": "",
+    "text": "Content for Langevin Dynamics goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/forward-diffusion-in-generative-models.html",
+    "href": "notes/stochastic-dynamics/forward-diffusion-in-generative-models.html",
+    "title": "Forward Diffusion in Generative Models",
+    "section": "",
+    "text": "Content for Forward Diffusion in Generative Models goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/stationary-distribution.html",
+    "href": "notes/stochastic-dynamics/stationary-distribution.html",
+    "title": "Stationary Distribution",
+    "section": "",
+    "text": "Content for Stationary Distribution goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter19.html",
+    "href": "notes/stochastic-dynamics/chapter19.html",
+    "title": "Chapter 19: Stochastic Differential Equations",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter19.html#overview",
+    "href": "notes/stochastic-dynamics/chapter19.html#overview",
+    "title": "Chapter 19: Stochastic Differential Equations",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter19.html#definitions",
+    "href": "notes/stochastic-dynamics/chapter19.html#definitions",
+    "title": "Chapter 19: Stochastic Differential Equations",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter19.html#theorems-and-proofs",
+    "href": "notes/stochastic-dynamics/chapter19.html#theorems-and-proofs",
+    "title": "Chapter 19: Stochastic Differential Equations",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter19.html#examples-and-solutions",
+    "href": "notes/stochastic-dynamics/chapter19.html#examples-and-solutions",
+    "title": "Chapter 19: Stochastic Differential Equations",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/chapter19.html#remarks",
+    "href": "notes/stochastic-dynamics/chapter19.html#remarks",
+    "title": "Chapter 19: Stochastic Differential Equations",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/motivation-why-gradients-are-not-enough.html",
+    "href": "notes/stochastic-dynamics/motivation-why-gradients-are-not-enough.html",
+    "title": "Motivation: Why Gradients Are Not Enough",
+    "section": "",
+    "text": "Content for Motivation: Why Gradients Are Not Enough goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/reversibility-and-time-reversal.html",
+    "href": "notes/stochastic-dynamics/reversibility-and-time-reversal.html",
+    "title": "Reversibility and Time Reversal",
+    "section": "",
+    "text": "Content for Reversibility and Time Reversal goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/analytical-solutions-and-special-cases.html",
+    "href": "notes/stochastic-dynamics/analytical-solutions-and-special-cases.html",
+    "title": "Analytical Solutions and Special Cases",
+    "section": "",
+    "text": "Content for Analytical Solutions and Special Cases goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/why-deterministic-sampling-works.html",
+    "href": "notes/stochastic-dynamics/why-deterministic-sampling-works.html",
+    "title": "Why Deterministic Sampling Works",
+    "section": "",
+    "text": "Content for Why Deterministic Sampling Works goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/detailed-balance-and-equilibrium.html",
+    "href": "notes/stochastic-dynamics/detailed-balance-and-equilibrium.html",
+    "title": "Detailed Balance and Equilibrium",
+    "section": "",
+    "text": "Content for Detailed Balance and Equilibrium goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/sdes-as-limits-of-algorithms.html",
+    "href": "notes/stochastic-dynamics/sdes-as-limits-of-algorithms.html",
+    "title": "SDEs as Limits of Algorithms",
+    "section": "",
+    "text": "Content for SDEs as Limits of Algorithms goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/continuous-limits-of-diffusion-models.html",
+    "href": "notes/stochastic-dynamics/continuous-limits-of-diffusion-models.html",
+    "title": "Continuous Limits of Diffusion Models",
+    "section": "",
+    "text": "Content for Continuous Limits of Diffusion Models goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/reverse-time-fokker-planck-equation.html",
+    "href": "notes/stochastic-dynamics/reverse-time-fokker-planck-equation.html",
+    "title": "Reverse-Time Fokker-Planck Equation",
+    "section": "",
+    "text": "Content for Reverse-Time Fokker-Planck Equation goes here."
+  },
+  {
+    "objectID": "notes/stochastic-dynamics/markov-chain-monte-carlo.html",
+    "href": "notes/stochastic-dynamics/markov-chain-monte-carlo.html",
+    "title": "Markov Chain Monte Carlo",
+    "section": "",
+    "text": "Content for Markov Chain Monte Carlo goes here."
+  },
+  {
+    "objectID": "notes/probability/chapter13.html",
+    "href": "notes/probability/chapter13.html",
+    "title": "Chapter 13: Probability and Random Variables",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/probability/chapter13.html#overview",
+    "href": "notes/probability/chapter13.html#overview",
+    "title": "Chapter 13: Probability and Random Variables",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/probability/chapter13.html#definitions",
+    "href": "notes/probability/chapter13.html#definitions",
+    "title": "Chapter 13: Probability and Random Variables",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/probability/chapter13.html#theorems-and-proofs",
+    "href": "notes/probability/chapter13.html#theorems-and-proofs",
+    "title": "Chapter 13: Probability and Random Variables",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/probability/chapter13.html#examples-and-solutions",
+    "href": "notes/probability/chapter13.html#examples-and-solutions",
+    "title": "Chapter 13: Probability and Random Variables",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/probability/chapter13.html#remarks",
+    "href": "notes/probability/chapter13.html#remarks",
+    "title": "Chapter 13: Probability and Random Variables",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/probability/bayes'-rule.html",
+    "href": "notes/probability/bayes'-rule.html",
+    "title": "Bayes’ Rule",
+    "section": "",
+    "text": "Content for Bayes’ Rule goes here."
+  },
+  {
+    "objectID": "notes/probability/categorical-and-multinomial-distributions.html",
+    "href": "notes/probability/categorical-and-multinomial-distributions.html",
+    "title": "Categorical and Multinomial Distributions",
+    "section": "",
+    "text": "Content for Categorical and Multinomial Distributions goes here."
+  },
+  {
+    "objectID": "notes/probability/mixture-distributions.html",
+    "href": "notes/probability/mixture-distributions.html",
+    "title": "Mixture Distributions",
+    "section": "",
+    "text": "Content for Mixture Distributions goes here."
+  },
+  {
+    "objectID": "notes/probability/dirichlet-distribution.html",
+    "href": "notes/probability/dirichlet-distribution.html",
+    "title": "Dirichlet Distribution",
+    "section": "",
+    "text": "Content for Dirichlet Distribution goes here."
+  },
+  {
+    "objectID": "notes/probability/conditional-probabilities.html",
+    "href": "notes/probability/conditional-probabilities.html",
+    "title": "Conditional Probabilities",
+    "section": "",
+    "text": "Content for Conditional Probabilities goes here."
+  },
+  {
+    "objectID": "notes/probability/bernoulli-distribution.html",
+    "href": "notes/probability/bernoulli-distribution.html",
+    "title": "Bernoulli Distribution",
+    "section": "",
+    "text": "Content for Bernoulli Distribution goes here."
+  },
+  {
+    "objectID": "notes/probability/probability-basics.html",
+    "href": "notes/probability/probability-basics.html",
+    "title": "Probability Basics",
+    "section": "",
+    "text": "Content for Probability Basics goes here."
+  },
+  {
+    "objectID": "notes/probability/distribution-summary.html",
+    "href": "notes/probability/distribution-summary.html",
+    "title": "Distribution Summary",
+    "section": "",
+    "text": "Content for Distribution Summary goes here."
+  },
+  {
+    "objectID": "notes/probability/marginal-probabilities.html",
+    "href": "notes/probability/marginal-probabilities.html",
+    "title": "Marginal Probabilities",
+    "section": "",
+    "text": "Content for Marginal Probabilities goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/thin-compact-and-truncated-forms.html",
+    "href": "notes/matrix-decompositions/thin-compact-and-truncated-forms.html",
+    "title": "Thin, Compact and Truncated Forms",
+    "section": "",
+    "text": "Content for Thin, Compact and Truncated Forms goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/non-negative-matrix-factorization.html",
+    "href": "notes/matrix-decompositions/non-negative-matrix-factorization.html",
+    "title": "Non-Negative Matrix Factorization",
+    "section": "",
+    "text": "Content for Non-Negative Matrix Factorization goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/skeleton-decomposition-cur.html",
+    "href": "notes/matrix-decompositions/skeleton-decomposition-cur.html",
+    "title": "Skeleton Decomposition (CUR)",
+    "section": "",
+    "text": "Content for Skeleton Decomposition (CUR) goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/plu-decomposition.html",
+    "href": "notes/matrix-decompositions/plu-decomposition.html",
+    "title": "PLU Decomposition",
+    "section": "",
+    "text": "Content for PLU Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/latent-representation-and-embedding.html",
+    "href": "notes/matrix-decompositions/latent-representation-and-embedding.html",
+    "title": "Latent Representation and Embedding",
+    "section": "",
+    "text": "Content for Latent Representation and Embedding goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/qr-decomposition.html",
+    "href": "notes/matrix-decompositions/qr-decomposition.html",
+    "title": "QR Decomposition",
+    "section": "",
+    "text": "Content for QR Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/moore-penrose-pseudoinverse.html",
+    "href": "notes/matrix-decompositions/moore-penrose-pseudoinverse.html",
+    "title": "Moore-Penrose Pseudoinverse",
+    "section": "",
+    "text": "Content for Moore-Penrose Pseudoinverse goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/numerical-rank-computation.html",
+    "href": "notes/matrix-decompositions/numerical-rank-computation.html",
+    "title": "Numerical Rank Computation",
+    "section": "",
+    "text": "Content for Numerical Rank Computation goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/linear-equations.html",
+    "href": "notes/matrix-decompositions/linear-equations.html",
+    "title": "Linear Equations",
+    "section": "",
+    "text": "Content for Linear Equations goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/lq-decomposition.html",
+    "href": "notes/matrix-decompositions/lq-decomposition.html",
+    "title": "LQ Decomposition",
+    "section": "",
+    "text": "Content for LQ Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/polar-decomposition.html",
+    "href": "notes/matrix-decompositions/polar-decomposition.html",
+    "title": "Polar Decomposition",
+    "section": "",
+    "text": "Content for Polar Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/gram-schmidt-algorithm-for-qr-decomposition.html",
+    "href": "notes/matrix-decompositions/gram-schmidt-algorithm-for-qr-decomposition.html",
+    "title": "Gram-Schmidt Algorithm for QR Decomposition",
+    "section": "",
+    "text": "Content for Gram-Schmidt Algorithm for QR Decomposition goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/energy-from-singular-values.html",
+    "href": "notes/matrix-decompositions/energy-from-singular-values.html",
+    "title": "Energy from Singular Values",
+    "section": "",
+    "text": "Content for Energy from Singular Values goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/rank-advanced-properties-and-numerical-computation.html",
+    "href": "notes/matrix-decompositions/rank-advanced-properties-and-numerical-computation.html",
+    "title": "Rank: Advanced Properties and Numerical Computation",
+    "section": "",
+    "text": "Content for Rank: Advanced Properties and Numerical Computation goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter4.html",
+    "href": "notes/matrix-decompositions/chapter4.html",
+    "title": "Chapter 4: QR Decomposition and Numerical Rank",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter4.html#overview",
+    "href": "notes/matrix-decompositions/chapter4.html#overview",
+    "title": "Chapter 4: QR Decomposition and Numerical Rank",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter4.html#definitions",
+    "href": "notes/matrix-decompositions/chapter4.html#definitions",
+    "title": "Chapter 4: QR Decomposition and Numerical Rank",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter4.html#theorems-and-proofs",
+    "href": "notes/matrix-decompositions/chapter4.html#theorems-and-proofs",
+    "title": "Chapter 4: QR Decomposition and Numerical Rank",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter4.html#examples-and-solutions",
+    "href": "notes/matrix-decompositions/chapter4.html#examples-and-solutions",
+    "title": "Chapter 4: QR Decomposition and Numerical Rank",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/chapter4.html#remarks",
+    "href": "notes/matrix-decompositions/chapter4.html#remarks",
+    "title": "Chapter 4: QR Decomposition and Numerical Rank",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/matrix-decompositions/rank-1-perturbation-theory.html",
+    "href": "notes/matrix-decompositions/rank-1-perturbation-theory.html",
+    "title": "Rank-1 Perturbation Theory",
+    "section": "",
+    "text": "Content for Rank-1 Perturbation Theory goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/tensor-decompositions.html",
+    "href": "notes/matrix-decompositions/tensor-decompositions.html",
+    "title": "Tensor Decompositions",
+    "section": "",
+    "text": "Content for Tensor Decompositions goes here."
+  },
+  {
+    "objectID": "notes/matrix-decompositions/generalized-upper-triangular-matrices.html",
+    "href": "notes/matrix-decompositions/generalized-upper-triangular-matrices.html",
+    "title": "Generalized Upper Triangular Matrices",
+    "section": "",
+    "text": "Content for Generalized Upper Triangular Matrices goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/contraction-mapping-theorem.html",
+    "href": "notes/reinforcement-learning/contraction-mapping-theorem.html",
+    "title": "Contraction Mapping Theorem",
+    "section": "",
+    "text": "Content for Contraction Mapping Theorem goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/continuous-time-markov-chains.html",
+    "href": "notes/reinforcement-learning/continuous-time-markov-chains.html",
+    "title": "Continuous-Time Markov Chains",
+    "section": "",
+    "text": "Content for Continuous-Time Markov Chains goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/value-functions.html",
+    "href": "notes/reinforcement-learning/value-functions.html",
+    "title": "Value Functions",
+    "section": "",
+    "text": "Content for Value Functions goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/bellman-operators.html",
+    "href": "notes/reinforcement-learning/bellman-operators.html",
+    "title": "Bellman Operators",
+    "section": "",
+    "text": "Content for Bellman Operators goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/function-approximation.html",
+    "href": "notes/reinforcement-learning/function-approximation.html",
+    "title": "Function Approximation",
+    "section": "",
+    "text": "Content for Function Approximation goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/chapter15.html",
+    "href": "notes/reinforcement-learning/chapter15.html",
+    "title": "Chapter 15: Bellman Equations and Operators",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/reinforcement-learning/chapter15.html#overview",
+    "href": "notes/reinforcement-learning/chapter15.html#overview",
+    "title": "Chapter 15: Bellman Equations and Operators",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/reinforcement-learning/chapter15.html#definitions",
+    "href": "notes/reinforcement-learning/chapter15.html#definitions",
+    "title": "Chapter 15: Bellman Equations and Operators",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/reinforcement-learning/chapter15.html#theorems-and-proofs",
+    "href": "notes/reinforcement-learning/chapter15.html#theorems-and-proofs",
+    "title": "Chapter 15: Bellman Equations and Operators",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/reinforcement-learning/chapter15.html#examples-and-solutions",
+    "href": "notes/reinforcement-learning/chapter15.html#examples-and-solutions",
+    "title": "Chapter 15: Bellman Equations and Operators",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/reinforcement-learning/chapter15.html#remarks",
+    "href": "notes/reinforcement-learning/chapter15.html#remarks",
+    "title": "Chapter 15: Bellman Equations and Operators",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/reinforcement-learning/optimal-policies-and-value-functions.html",
+    "href": "notes/reinforcement-learning/optimal-policies-and-value-functions.html",
+    "title": "Optimal Policies and Value Functions",
+    "section": "",
+    "text": "Content for Optimal Policies and Value Functions goes here."
+  },
+  {
+    "objectID": "notes/reinforcement-learning/trust-region-and-natural-policy-gradient.html",
+    "href": "notes/reinforcement-learning/trust-region-and-natural-policy-gradient.html",
+    "title": "Trust Region and Natural Policy Gradient",
+    "section": "",
+    "text": "Content for Trust Region and Natural Policy Gradient goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/stochastic-variational-inference.html",
+    "href": "notes/probabilistic-ml/stochastic-variational-inference.html",
+    "title": "Stochastic Variational Inference",
+    "section": "",
+    "text": "Content for Stochastic Variational Inference goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/conceptual-unification.html",
+    "href": "notes/probabilistic-ml/conceptual-unification.html",
+    "title": "Conceptual Unification",
+    "section": "",
+    "text": "Content for Conceptual Unification goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter16.html",
+    "href": "notes/probabilistic-ml/chapter16.html",
+    "title": "Chapter 16: Variational Inference and Latent Variables",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter16.html#overview",
+    "href": "notes/probabilistic-ml/chapter16.html#overview",
+    "title": "Chapter 16: Variational Inference and Latent Variables",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter16.html#definitions",
+    "href": "notes/probabilistic-ml/chapter16.html#definitions",
+    "title": "Chapter 16: Variational Inference and Latent Variables",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter16.html#theorems-and-proofs",
+    "href": "notes/probabilistic-ml/chapter16.html#theorems-and-proofs",
+    "title": "Chapter 16: Variational Inference and Latent Variables",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter16.html#examples-and-solutions",
+    "href": "notes/probabilistic-ml/chapter16.html#examples-and-solutions",
+    "title": "Chapter 16: Variational Inference and Latent Variables",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/chapter16.html#remarks",
+    "href": "notes/probabilistic-ml/chapter16.html#remarks",
+    "title": "Chapter 16: Variational Inference and Latent Variables",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/probabilistic-ml/other-generative-modeling-approaches.html",
+    "href": "notes/probabilistic-ml/other-generative-modeling-approaches.html",
+    "title": "Other Generative Modeling Approaches",
+    "section": "",
+    "text": "Content for Other Generative Modeling Approaches goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/score-matching.html",
+    "href": "notes/probabilistic-ml/score-matching.html",
+    "title": "Score Matching",
+    "section": "",
+    "text": "Content for Score Matching goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/variational-inference-in-other-domains.html",
+    "href": "notes/probabilistic-ml/variational-inference-in-other-domains.html",
+    "title": "Variational Inference in Other Domains",
+    "section": "",
+    "text": "Content for Variational Inference in Other Domains goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/applications-of-score-based-models.html",
+    "href": "notes/probabilistic-ml/applications-of-score-based-models.html",
+    "title": "Applications of Score-Based Models",
+    "section": "",
+    "text": "Content for Applications of Score-Based Models goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/energy-based-models.html",
+    "href": "notes/probabilistic-ml/energy-based-models.html",
+    "title": "Energy-Based Models",
+    "section": "",
+    "text": "Content for Energy-Based Models goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/from-score-to-sampling.html",
+    "href": "notes/probabilistic-ml/from-score-to-sampling.html",
+    "title": "From Score to Sampling",
+    "section": "",
+    "text": "Content for From Score to Sampling goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/the-inference-problem-pz∣x.html",
+    "href": "notes/probabilistic-ml/the-inference-problem-pz∣x.html",
+    "title": "The Inference Problem p(z∣x)",
+    "section": "",
+    "text": "Content for The Inference Problem p(z∣x) goes here."
+  },
+  {
+    "objectID": "notes/probabilistic-ml/score-function.html",
+    "href": "notes/probabilistic-ml/score-function.html",
+    "title": "Score Function",
+    "section": "",
+    "text": "Content for Score Function goes here."
+  },
+  {
+    "objectID": "notes/optimization/convex-and-concave-functions.html",
+    "href": "notes/optimization/convex-and-concave-functions.html",
+    "title": "Convex and Concave Functions",
+    "section": "",
+    "text": "Content for Convex and Concave Functions goes here."
+  },
+  {
+    "objectID": "notes/optimization/chapter12.html",
+    "href": "notes/optimization/chapter12.html",
+    "title": "Chapter 12: Optimization Methods",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/optimization/chapter12.html#overview",
+    "href": "notes/optimization/chapter12.html#overview",
+    "title": "Chapter 12: Optimization Methods",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/optimization/chapter12.html#definitions",
+    "href": "notes/optimization/chapter12.html#definitions",
+    "title": "Chapter 12: Optimization Methods",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/optimization/chapter12.html#theorems-and-proofs",
+    "href": "notes/optimization/chapter12.html#theorems-and-proofs",
+    "title": "Chapter 12: Optimization Methods",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/optimization/chapter12.html#examples-and-solutions",
+    "href": "notes/optimization/chapter12.html#examples-and-solutions",
+    "title": "Chapter 12: Optimization Methods",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/optimization/chapter12.html#remarks",
+    "href": "notes/optimization/chapter12.html#remarks",
+    "title": "Chapter 12: Optimization Methods",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/optimization/minimax-optimization.html",
+    "href": "notes/optimization/minimax-optimization.html",
+    "title": "Minimax Optimization",
+    "section": "",
+    "text": "Content for Minimax Optimization goes here."
+  },
+  {
+    "objectID": "notes/optimization/convex-sets.html",
+    "href": "notes/optimization/convex-sets.html",
+    "title": "Convex Sets",
+    "section": "",
+    "text": "Content for Convex Sets goes here."
+  },
+  {
+    "objectID": "notes/optimization/unconstrained-optimization.html",
+    "href": "notes/optimization/unconstrained-optimization.html",
+    "title": "Unconstrained Optimization",
+    "section": "",
+    "text": "Content for Unconstrained Optimization goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/linear-independence-and-rank.html",
+    "href": "notes/linear-algebra/linear-independence-and-rank.html",
+    "title": "Linear Independence and Rank",
+    "section": "",
+    "text": "Content for Linear Independence and Rank goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/vector-space.html",
+    "href": "notes/linear-algebra/vector-space.html",
+    "title": "Vector Space",
+    "section": "",
+    "text": "Content for Vector Space goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/hadamard-product.html",
+    "href": "notes/linear-algebra/hadamard-product.html",
+    "title": "Hadamard Product",
+    "section": "",
+    "text": "Content for Hadamard Product goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/symmetric-matrix.html",
+    "href": "notes/linear-algebra/symmetric-matrix.html",
+    "title": "Symmetric Matrix",
+    "section": "",
+    "text": "Content for Symmetric Matrix goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/spectral-decomposition.html",
+    "href": "notes/linear-algebra/spectral-decomposition.html",
+    "title": "Spectral Decomposition",
+    "section": "",
+    "text": "Content for Spectral Decomposition goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/diagonal-matrices.html",
+    "href": "notes/linear-algebra/diagonal-matrices.html",
+    "title": "Diagonal Matrices",
+    "section": "",
+    "text": "Content for Diagonal Matrices goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/gram-matrices.html",
+    "href": "notes/linear-algebra/gram-matrices.html",
+    "title": "Gram Matrices",
+    "section": "",
+    "text": "Content for Gram Matrices goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/singular-values-and-singular-vectors.html",
+    "href": "notes/linear-algebra/singular-values-and-singular-vectors.html",
+    "title": "Singular Values and Singular Vectors",
+    "section": "",
+    "text": "Content for Singular Values and Singular Vectors goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/power-method.html",
+    "href": "notes/linear-algebra/power-method.html",
+    "title": "Power Method",
+    "section": "",
+    "text": "Content for Power Method goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/transpose.html",
+    "href": "notes/linear-algebra/transpose.html",
+    "title": "Transpose",
+    "section": "",
+    "text": "Content for Transpose goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter3.html",
+    "href": "notes/linear-algebra/chapter3.html",
+    "title": "Chapter 3: Subspaces and Orthogonality",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter3.html#overview",
+    "href": "notes/linear-algebra/chapter3.html#overview",
+    "title": "Chapter 3: Subspaces and Orthogonality",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter3.html#definitions",
+    "href": "notes/linear-algebra/chapter3.html#definitions",
+    "title": "Chapter 3: Subspaces and Orthogonality",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter3.html#theorems-and-proofs",
+    "href": "notes/linear-algebra/chapter3.html#theorems-and-proofs",
+    "title": "Chapter 3: Subspaces and Orthogonality",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter3.html#examples-and-solutions",
+    "href": "notes/linear-algebra/chapter3.html#examples-and-solutions",
+    "title": "Chapter 3: Subspaces and Orthogonality",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter3.html#remarks",
+    "href": "notes/linear-algebra/chapter3.html#remarks",
+    "title": "Chapter 3: Subspaces and Orthogonality",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/square-orthonormal-matrices.html",
+    "href": "notes/linear-algebra/square-orthonormal-matrices.html",
+    "title": "Square Orthonormal Matrices",
+    "section": "",
+    "text": "Content for Square Orthonormal Matrices goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/four-fundamental-subspaces.html",
+    "href": "notes/linear-algebra/four-fundamental-subspaces.html",
+    "title": "Four Fundamental Subspaces",
+    "section": "",
+    "text": "Content for Four Fundamental Subspaces goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/applications-in-ai-and-optimization.html",
+    "href": "notes/linear-algebra/applications-in-ai-and-optimization.html",
+    "title": "Applications in AI and Optimization",
+    "section": "",
+    "text": "Content for Applications in AI and Optimization goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/projection-matrix.html",
+    "href": "notes/linear-algebra/projection-matrix.html",
+    "title": "Projection Matrix",
+    "section": "",
+    "text": "Content for Projection Matrix goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/complex-numbers-and-rotations.html",
+    "href": "notes/linear-algebra/complex-numbers-and-rotations.html",
+    "title": "Complex Numbers and Rotations",
+    "section": "",
+    "text": "Content for Complex Numbers and Rotations goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter6.html",
+    "href": "notes/linear-algebra/chapter6.html",
+    "title": "Chapter 6: Geometric Transformation and Eigen Decomposition",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter6.html#overview",
+    "href": "notes/linear-algebra/chapter6.html#overview",
+    "title": "Chapter 6: Geometric Transformation and Eigen Decomposition",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter6.html#definitions",
+    "href": "notes/linear-algebra/chapter6.html#definitions",
+    "title": "Chapter 6: Geometric Transformation and Eigen Decomposition",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter6.html#theorems-and-proofs",
+    "href": "notes/linear-algebra/chapter6.html#theorems-and-proofs",
+    "title": "Chapter 6: Geometric Transformation and Eigen Decomposition",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter6.html#examples-and-solutions",
+    "href": "notes/linear-algebra/chapter6.html#examples-and-solutions",
+    "title": "Chapter 6: Geometric Transformation and Eigen Decomposition",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter6.html#remarks",
+    "href": "notes/linear-algebra/chapter6.html#remarks",
+    "title": "Chapter 6: Geometric Transformation and Eigen Decomposition",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter10.html",
+    "href": "notes/linear-algebra/chapter10.html",
+    "title": "Chapter 10: Matrix Block Partitioning",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter10.html#overview",
+    "href": "notes/linear-algebra/chapter10.html#overview",
+    "title": "Chapter 10: Matrix Block Partitioning",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter10.html#definitions",
+    "href": "notes/linear-algebra/chapter10.html#definitions",
+    "title": "Chapter 10: Matrix Block Partitioning",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter10.html#theorems-and-proofs",
+    "href": "notes/linear-algebra/chapter10.html#theorems-and-proofs",
+    "title": "Chapter 10: Matrix Block Partitioning",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter10.html#examples-and-solutions",
+    "href": "notes/linear-algebra/chapter10.html#examples-and-solutions",
+    "title": "Chapter 10: Matrix Block Partitioning",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter10.html#remarks",
+    "href": "notes/linear-algebra/chapter10.html#remarks",
+    "title": "Chapter 10: Matrix Block Partitioning",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter1.html",
+    "href": "notes/linear-algebra/chapter1.html",
+    "title": "Chapter 1: Vector Space and Inner Product",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter1.html#overview",
+    "href": "notes/linear-algebra/chapter1.html#overview",
+    "title": "Chapter 1: Vector Space and Inner Product",
+    "section": "",
+    "text": "[Overview text]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter1.html#definitions",
+    "href": "notes/linear-algebra/chapter1.html#definitions",
+    "title": "Chapter 1: Vector Space and Inner Product",
+    "section": "Definitions",
+    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter1.html#theorems-and-proofs",
+    "href": "notes/linear-algebra/chapter1.html#theorems-and-proofs",
+    "title": "Chapter 1: Vector Space and Inner Product",
+    "section": "Theorems and Proofs",
+    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter1.html#examples-and-solutions",
+    "href": "notes/linear-algebra/chapter1.html#examples-and-solutions",
+    "title": "Chapter 1: Vector Space and Inner Product",
+    "section": "Examples and Solutions",
+    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/chapter1.html#remarks",
+    "href": "notes/linear-algebra/chapter1.html#remarks",
+    "title": "Chapter 1: Vector Space and Inner Product",
+    "section": "Remarks",
+    "text": "Remarks\n\nRemark\n[Remark content]"
+  },
+  {
+    "objectID": "notes/linear-algebra/matrix-inverse.html",
+    "href": "notes/linear-algebra/matrix-inverse.html",
+    "title": "Matrix Inverse",
+    "section": "",
+    "text": "Content for Matrix Inverse goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/vector-basics.html",
+    "href": "notes/linear-algebra/vector-basics.html",
+    "title": "Vector Basics",
+    "section": "",
+    "text": "Content for Vector Basics goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/geometric-and-computational-interpretations.html",
+    "href": "notes/linear-algebra/geometric-and-computational-interpretations.html",
+    "title": "Geometric and Computational Interpretations",
+    "section": "",
+    "text": "Content for Geometric and Computational Interpretations goes here."
+  },
+  {
+    "objectID": "notes/linear-algebra/from-spectral-methods-to-graph-neural-networks.html",
+    "href": "notes/linear-algebra/from-spectral-methods-to-graph-neural-networks.html",
+    "title": "From Spectral Methods to Graph Neural Networks",
+    "section": "",
+    "text": "Content for From Spectral Methods to Graph Neural Networks goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/jacobian-matrix.html",
+    "href": "notes/matrix-calculus/jacobian-matrix.html",
+    "title": "Jacobian Matrix",
+    "section": "",
+    "text": "Content for Jacobian Matrix goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/taylor-expansion.html",
+    "href": "notes/matrix-calculus/taylor-expansion.html",
+    "title": "Taylor Expansion",
+    "section": "",
+    "text": "Content for Taylor Expansion goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/unified-view-of-derivatives.html",
+    "href": "notes/matrix-calculus/unified-view-of-derivatives.html",
+    "title": "Unified View of Derivatives",
+    "section": "",
+    "text": "Content for Unified View of Derivatives goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/partial-differentiation-and-gradients.html",
+    "href": "notes/matrix-calculus/partial-differentiation-and-gradients.html",
+    "title": "Partial Differentiation and Gradients",
+    "section": "",
+    "text": "Content for Partial Differentiation and Gradients goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/calculus-conceptual-hierarchy.html",
+    "href": "notes/matrix-calculus/calculus-conceptual-hierarchy.html",
+    "title": "Calculus Conceptual Hierarchy",
+    "section": "",
+    "text": "Content for Calculus Conceptual Hierarchy goes here."
+  },
+  {
+    "objectID": "notes/matrix-calculus/hessian-matrix.html",
+    "href": "notes/matrix-calculus/hessian-matrix.html",
+    "title": "Hessian Matrix",
+    "section": "",
+    "text": "Content for Hessian Matrix goes here."
+  },
+  {
+    "objectID": "notes/information-theory/stochastic-matrices.html",
+    "href": "notes/information-theory/stochastic-matrices.html",
+    "title": "Stochastic Matrices",
+    "section": "",
+    "text": "A matrix \\(P \\in \\mathbb{R}^{N \\times N}\\) is called a stochastic matrix (or Markov matrix) if: 1. All entries are non-negative: \\([P]_{ij} \\ge 0\\). 2. It is row stochastic: Each row sums to 1 (\\(\\sum_{j=0}^{N-1} [P]_{ij} = 1\\)).\nIf the matrix also satisfies that every column sums to 1, it is called a doubly stochastic matrix.\n\nA stationary distribution \\(\\boldsymbol\\pi\\) (represented as a column vector) for a Markov chain with transition matrix \\(P\\) satisfies: \\[\n\\boldsymbol\\pi^\\top P = \\boldsymbol\\pi^\\top\n\\] meaning it is the left eigenvector corresponding to the eigenvalue \\(\\lambda = 1\\)."
+  },
+  {
+    "objectID": "notes/information-theory/stochastic-matrices.html#definition",
+    "href": "notes/information-theory/stochastic-matrices.html#definition",
+    "title": "Stochastic Matrices",
+    "section": "",
+    "text": "A matrix \\(P \\in \\mathbb{R}^{N \\times N}\\) is called a stochastic matrix (or Markov matrix) if: 1. All entries are non-negative: \\([P]_{ij} \\ge 0\\). 2. It is row stochastic: Each row sums to 1 (\\(\\sum_{j=0}^{N-1} [P]_{ij} = 1\\)).\nIf the matrix also satisfies that every column sums to 1, it is called a doubly stochastic matrix.\n\nA stationary distribution \\(\\boldsymbol\\pi\\) (represented as a column vector) for a Markov chain with transition matrix \\(P\\) satisfies: \\[\n\\boldsymbol\\pi^\\top P = \\boldsymbol\\pi^\\top\n\\] meaning it is the left eigenvector corresponding to the eigenvalue \\(\\lambda = 1\\)."
+  },
+  {
+    "objectID": "notes/information-theory/stochastic-matrices.html#intuition",
+    "href": "notes/information-theory/stochastic-matrices.html#intuition",
+    "title": "Stochastic Matrices",
+    "section": "Intuition",
+    "text": "Intuition\nA stochastic matrix encodes all the probabilistic transitions between states in a Markov chain. The rows represent the current state, and the columns represent the next state. Because a state must transition somewhere, the probabilities across the row must sum to 1.\nImportant properties: - The dominant eigenvalue is exactly 1. - Repeatedly multiplying a probability vector by the transition matrix simulates moving forward in time. Over a long time period (\\(P^k\\) as \\(k \\to \\infty\\)), an ergodic Markov chain converges to its stationary distribution, meaning the long-term proportion of time spent in each state stabilizes. - Doubly stochastic matrices uniquely have a uniform stationary distribution. The Birkhoff-von Neumann theorem states they can be expressed as convex combinations of permutation matrices. Algorithms like Sinkhorn-Knopp are used to convert non-negative matrices into doubly stochastic matrices."
+  },
+  {
+    "objectID": "notes/information-theory/stochastic-matrices.html#practice-problems",
+    "href": "notes/information-theory/stochastic-matrices.html#practice-problems",
+    "title": "Stochastic Matrices",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\n1. Stationary Distribution\nGiven a stochastic matrix, set up the linear system to solve for the stationary distribution \\(\\boldsymbol\\pi^\\top P = \\boldsymbol\\pi^\\top\\) with the constraint \\(\\sum \\pi_i = 1\\).\n\n\n2. Matrix Powers\nProve that if \\(P\\) is a stochastic matrix, then the power \\(P^k\\) is also a stochastic matrix for any positive integer \\(k\\).\n\n\n3. Doubly Stochastic Stationary Distribution\nFor an ergodic doubly stochastic matrix \\(P\\) of size \\(N \\times N\\), prove that the stationary distribution is uniform: \\(\\boldsymbol\\pi = \\frac{1}{N} \\mathbf{1}_N\\)."
+  },
+  {
+    "objectID": "notes/information-theory/evaluation-metrics-for-ranking-and-information-retrieval.html",
+    "href": "notes/information-theory/evaluation-metrics-for-ranking-and-information-retrieval.html",
+    "title": "Evaluation Metrics for Ranking and Information Retrieval",
+    "section": "",
+    "text": "Information Retrieval (IR) lies at the heart of modern search engines (Google, Bing) and recommendation systems (Netflix, Amazon). The core problem is simple: given a user query, a system retrieves thousands of documents. How do we mathematically evaluate if the system ranked the “most relevant” documents at the top?\nWhile traditional ML classification relies on metrics like Accuracy or Cross-Entropy, Ranking systems require specialized metrics that heavily penalize errors at the top of the list (Rank 1) while forgiving errors at the bottom of the list (Rank 100)."
+  },
+  {
+    "objectID": "notes/information-theory/evaluation-metrics-for-ranking-and-information-retrieval.html#practice-problems",
+    "href": "notes/information-theory/evaluation-metrics-for-ranking-and-information-retrieval.html#practice-problems",
+    "title": "Evaluation Metrics for Ranking and Information Retrieval",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Mean Reciprocal Rank\nCalculate the MRR (Mean Reciprocal Rank) for a search engine that processes three distinct user queries, where the single correct result is found at rank \\(1\\), rank \\(3\\), and rank \\(2\\) respectively."
+  },
+  {
+    "objectID": "notes/information-theory/js-div-boundedness-proof.html",
+    "href": "notes/information-theory/js-div-boundedness-proof.html",
+    "title": "JS Div Boundedness Proof",
+    "section": "",
+    "text": "Theorem\nFor any two probability distributions \\(P\\) and \\(Q\\), the Jensen-Shannon Divergence (JSD) calculated using the natural logarithm (base \\(e\\)) is strictly bounded between \\(0\\) and \\(\\log(2)\\).\n\\[\n0 \\le JSD(P \\| Q) \\le \\log(2)\n\\]\nIf base-2 logarithms are used, the bound is simply \\(1\\) bit.\n\n\nProof of the Lower Bound\nThe lower bound follows trivially from the non-negativity of the Kullback-Leibler (KL) Divergence (Gibbs’ Inequality).\nRecall the definition of JSD: \\[\nJSD(P \\| Q) = \\frac{1}{2} D_{KL}(P \\| M) + \\frac{1}{2} D_{KL}(Q \\| M)\n\\] where \\(M = \\frac{P + Q}{2}\\).\nSince \\(D_{KL}(A \\| B) \\ge 0\\) for any distributions \\(A, B\\), the sum of two positive KL divergences must also be \\(\\ge 0\\). Equality holds if and only if \\(P = M\\) and \\(Q = M\\), which requires \\(P = Q\\).\n\n\nProof of the Upper Bound\nTo prove the upper bound, we will express JSD using Shannon Entropy \\(H(\\cdot)\\). Let’s expand the definition:\n\\[\n\\begin{aligned}\nJSD(P \\| Q) &= \\frac{1}{2} \\left[ \\sum P(x) \\log \\frac{P(x)}{M(x)} \\right] + \\frac{1}{2} \\left[ \\sum Q(x) \\log \\frac{Q(x)}{M(x)} \\right] \\\\\n&= \\frac{1}{2} \\left[ \\sum P(x) \\log P(x) - \\sum P(x) \\log M(x) \\right] \\\\\n&\\quad + \\frac{1}{2} \\left[ \\sum Q(x) \\log Q(x) - \\sum Q(x) \\log M(x) \\right]\n\\end{aligned}\n\\]\nSubstitute the definition of Shannon Entropy \\(H(P) = -\\sum P(x) \\log P(x)\\):\n\\[\n\\begin{aligned}\nJSD(P \\| Q) &= \\frac{1}{2} \\left[ -H(P) - \\sum P(x) \\log M(x) \\right] + \\frac{1}{2} \\left[ -H(Q) - \\sum Q(x) \\log M(x) \\right] \\\\\n&= -\\frac{1}{2} H(P) - \\frac{1}{2} H(Q) - \\frac{1}{2} \\sum \\Big( P(x) + Q(x) \\Big) \\log M(x)\n\\end{aligned}\n\\]\nRecall that \\(M(x) = \\frac{P(x) + Q(x)}{2}\\), meaning \\(P(x) + Q(x) = 2M(x)\\). Let’s substitute this into the summation:\n\\[\n\\begin{aligned}\nJSD(P \\| Q) &= -\\frac{1}{2} H(P) - \\frac{1}{2} H(Q) - \\frac{1}{2} \\sum \\Big( 2M(x) \\Big) \\log M(x) \\\\\n&= -\\frac{1}{2} H(P) - \\frac{1}{2} H(Q) - \\sum M(x) \\log M(x)\n\\end{aligned}\n\\]\nNotice that \\(-\\sum M(x) \\log M(x)\\) is exactly the entropy of the mixture distribution \\(H(M)\\). Therefore:\n\\[\nJSD(P \\| Q) = H(M) - \\frac{H(P) + H(Q)}{2}\n\\]\nBecause entropy \\(H\\) is a strictly concave function, the entropy of the mixture \\(M\\) is bounded by the maximum possible entropy added to the mixture ratio. By applying Jensen’s Inequality to the concave function \\(H\\): \\[\nH(M) = H\\left(\\frac{P+Q}{2}\\right) \\le \\frac{1}{2} H(P) + \\frac{1}{2} H(Q) + \\log(2)\n\\]\nRearranging this inequality gives: \\[\nH(M) - \\left( \\frac{H(P) + H(Q)}{2} \\right) \\le \\log(2)\n\\]\nSince the left side is precisely the \\(JSD(P \\| Q)\\), we arrive at our absolute upper bound: \\[\nJSD(P \\| Q) \\le \\log(2)\n\\]\nThe equality holds if and only if \\(P\\) and \\(Q\\) have completely disjoint supports (i.e., they share zero probability mass). In this scenario of maximum disagreement, the divergence peaks at \\(\\log(2)\\)."
+  },
+  {
+    "objectID": "notes/information-theory/information-bottleneck.html",
+    "href": "notes/information-theory/information-bottleneck.html",
+    "title": "Information Bottleneck",
+    "section": "",
+    "text": "The Information Bottleneck (IB) principle, introduced by Naftali Tishby in 1999, provides a rigorous information-theoretic framework for extracting the most relevant features from data.\nSuppose you have an input variable \\(X\\) (e.g., an image of an animal) and a target variable \\(Y\\) (e.g., the label “Dog”). You want to construct an internal representation \\(Z\\) (e.g., the hidden activations in a neural network) that captures the essence of \\(X\\) needed to predict \\(Y\\).\nThe Information Bottleneck states that the optimal representation \\(Z\\) must satisfy two conflicting goals: 1. Prediction: \\(Z\\) should retain as much information as possible about the target \\(Y\\). 2. Compression: \\(Z\\) should “forget” as much irrelevant information as possible about the input \\(X\\).\nBy forcing the information to pass through a narrow “bottleneck”, the system is forced to strip away noise and memorize only the minimal sufficient statistics necessary for the task."
+  },
+  {
+    "objectID": "notes/information-theory/information-bottleneck.html#practice-problems",
+    "href": "notes/information-theory/information-bottleneck.html#practice-problems",
+    "title": "Information Bottleneck",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: The IB Trade-off\nIn the Information Bottleneck objective \\(\\mathcal{L} = I(X;Z) - \\beta I(Z;Y)\\), what happens to the learned representation \\(Z\\) as the Lagrange multiplier \\(\\beta \\to 0\\)? What happens when \\(\\beta \\to \\infty\\)?"
+  },
+  {
+    "objectID": "notes/information-theory/ranking-ir-metrics.html",
+    "href": "notes/information-theory/ranking-ir-metrics.html",
+    "title": "Evaluation Metrics for Ranking and IR",
+    "section": "",
+    "text": "For a ranking or information retrieval (IR) system, evaluating the top \\(K\\) retrieved items is standard:\nPrecision@K (P@K): The proportion of relevant items among the top \\(K\\) retrieved items: \\[\n\\text{P@K} = \\frac{\\text{Number of relevant items in top } K}{K}\n\\]\nRecall@K (R@K): The proportion of all relevant items that appear in the top \\(K\\): \\[\n\\text{R@K} = \\frac{\\text{Number of relevant items in top } K}{\\text{Total number of relevant items}}\n\\]\n\n\n\nAverage Precision (AP) for a single query is the average of precision values computed at each position \\(k\\) where a relevant item is found: \\[\n\\text{AP} = \\frac{1}{|\\text{Relevant}|} \\sum_{k=1}^{K} \\text{Precision@}k \\cdot \\mathbf{1}\\{\\text{item at position } k \\text{ is relevant}\\}\n\\]\nMean Average Precision (MAP) is the mean of Average Precision scores across \\(Q\\) queries: \\[\n\\text{MAP} = \\frac{1}{Q} \\sum_{q=1}^{Q} \\text{AP}_q\n\\]"
+  },
+  {
+    "objectID": "notes/information-theory/ranking-ir-metrics.html#definition",
+    "href": "notes/information-theory/ranking-ir-metrics.html#definition",
+    "title": "Evaluation Metrics for Ranking and IR",
+    "section": "",
+    "text": "For a ranking or information retrieval (IR) system, evaluating the top \\(K\\) retrieved items is standard:\nPrecision@K (P@K): The proportion of relevant items among the top \\(K\\) retrieved items: \\[\n\\text{P@K} = \\frac{\\text{Number of relevant items in top } K}{K}\n\\]\nRecall@K (R@K): The proportion of all relevant items that appear in the top \\(K\\): \\[\n\\text{R@K} = \\frac{\\text{Number of relevant items in top } K}{\\text{Total number of relevant items}}\n\\]\n\n\n\nAverage Precision (AP) for a single query is the average of precision values computed at each position \\(k\\) where a relevant item is found: \\[\n\\text{AP} = \\frac{1}{|\\text{Relevant}|} \\sum_{k=1}^{K} \\text{Precision@}k \\cdot \\mathbf{1}\\{\\text{item at position } k \\text{ is relevant}\\}\n\\]\nMean Average Precision (MAP) is the mean of Average Precision scores across \\(Q\\) queries: \\[\n\\text{MAP} = \\frac{1}{Q} \\sum_{q=1}^{Q} \\text{AP}_q\n\\]"
+  },
+  {
+    "objectID": "notes/information-theory/ranking-ir-metrics.html#intuition",
+    "href": "notes/information-theory/ranking-ir-metrics.html#intuition",
+    "title": "Evaluation Metrics for Ranking and IR",
+    "section": "Intuition",
+    "text": "Intuition\nWhile precision and recall are useful, they do not care about order. A system that puts the relevant result at position #1 has the same Precision@10 as a system that puts it at position #10.\nMAP naturally solves this. By averaging the precision at every point a relevant item is found, it heavily rewards systems that rank the relevant items near the very top. MAP balances both precision and recall while simultaneously taking the ranking order into account, making it the gold standard metric for search engines, recommendation systems, and object detection."
+  },
+  {
+    "objectID": "notes/information-theory/ranking-ir-metrics.html#practice-problems",
+    "href": "notes/information-theory/ranking-ir-metrics.html#practice-problems",
+    "title": "Evaluation Metrics for Ranking and IR",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\n1. Calculating Precision/Recall\nA search engine retrieves 8 documents for a query. The relevance labels (1 = relevant, 0 = irrelevant) in order are: \\([1, 1, 0, 1, 0, 0, 1, 0]\\). Compute Precision@3, Precision@5, Recall@3, and Recall@5.\n\n\n2. Calculating AP\nUsing the same sequence \\([1, 1, 0, 1, 0, 0, 1, 0]\\) and assuming there are exactly 4 relevant documents total in the entire corpus, calculate the Average Precision (AP).\n\n\n3. Metric Comparison\nIn information retrieval, explain why MAP is preferred over simple precision or recall for evaluating ranking systems. Give a theoretical example where two systems have the exact same precision and recall but vastly different MAP values."
+  },
+  {
+    "objectID": "notes/information-theory/differential-entropy-problems.html",
+    "href": "notes/information-theory/differential-entropy-problems.html",
+    "title": "Lemon's Website",
     "section": "",
     "text": "Problem 1: The Exponential Distribution\nFor a continuous random variable \\(X\\) distributed exponentially with a rate parameter \\(\\lambda &gt; 0\\), the probability density function is \\(f(x) = \\lambda e^{-\\lambda x}\\) for \\(x \\ge 0\\). Part A: Calculate its differential entropy \\(h(X)\\) in nats. Part B: Conceptually, what happens to the differential entropy as the rate \\(\\lambda\\) becomes very large? Why does this make physical sense?\nProblem 2: The Gaussian (Normal) Distribution\nFor a continuous random variable \\(X\\) with a normal distribution, the probability density function is \\(f(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}\\) for \\(-\\infty &lt; x &lt; \\infty\\). Part A: Calculate its differential entropy \\(h(X)\\) in nats. (Hint: You do not need to do complex integration for the second term if you recognize it as the expected value or variance!) Part B: Does the mean (\\(\\mu\\)) affect the entropy of the distribution? Why or why not?\nProblem 3: The Linear Sloped Distribution\nConsider a continuous random variable \\(X\\) with a probability density function \\(f(x) = 2x\\) on the interval \\([0, 1]\\). Part A: Calculate its differential entropy \\(h(X)\\) in nats. (Hint: You will need to use Integration by Parts: \\(\\int u \\, dv = uv - \\int v \\, du\\).) Part B: The uniform distribution on the interval \\([0, 1]\\) has an entropy of exactly \\(0\\). Is the entropy of this linear distribution higher or lower than \\(0\\)? Geometrically, why must this be the case?\nProblem 4: The Laplace Distribution\nFor a continuous random variable \\(X\\) following a Laplace distribution with scale parameter \\(b &gt; 0\\) centered at \\(0\\), the probability density function is \\(f(x) = \\frac{1}{2b} e^{-\\frac{|x|}{b}}\\) for \\(-\\infty &lt; x &lt; \\infty\\). Part A: Calculate its differential entropy \\(h(X)\\) in nats. (Hint: Because the function is perfectly symmetric, you can just integrate from \\(0\\) to \\(\\infty\\) and multiply by 2). Part B: Compare your answer to the Uniform distribution’s entropy (\\(\\ln(w)\\)). If a Laplace distribution and a Uniform distribution have the exact same entropy, how does the scale \\(b\\) relate to the width \\(w\\)?\nProblem 5: The Scaling Property\nSuppose you have a continuous random variable \\(X\\) with a known probability density function \\(f_X(x)\\) and a known differential entropy \\(h(X)\\). You create a new variable \\(Y = cX\\), where \\(c\\) is a positive constant. The probability density function of \\(Y\\) is \\(f_Y(y) = \\frac{1}{c} f_X\\left(\\frac{y}{c}\\right)\\). Part A: Prove that the differential entropy of the new variable is \\(h(Y) = h(X) + \\ln(c)\\). Part B: What happens to the entropy if you multiply your data by a constant \\(c\\) that is less than 1?"
   },
   {
-    "objectID": "Information-Theory/js-div-boundedness-proof.html",
-    "href": "Information-Theory/js-div-boundedness-proof.html",
-    "title": "Lemon's Website",
+    "objectID": "notes/information-theory/cross-entropy.html",
+    "href": "notes/information-theory/cross-entropy.html",
+    "title": "Cross-Entropy",
     "section": "",
-    "text": "Short Summary The lower bound (\\(0\\)) exists because Jensen-Shannon Divergence (JSD) is built by adding two Kullback-Leibler (KL) divergences together, and we already proved via Gibbs’ Inequality that KL divergence can never be negative. The upper bound (\\(\\log_b(2)\\)) happens because JSD measures the distance from each distribution to their exact 50/50 midpoint (\\(M\\)). The maximum possible distance occurs when the two distributions have zero overlap. In that extreme case, the probability of \\(P\\) is exactly twice as large as the midpoint \\(M\\), which elegantly reduces the entire complex formula down to the logarithm of \\(2\\).\nLong Summary While KL Divergence is a fantastic tool, it has two major mathematical flaws for measuring distance: it is asymmetrical (\\(D_{KL}(P \\parallel Q) \\neq D_{KL}(Q \\parallel P)\\)), and it can shoot off to infinity. Jensen-Shannon Divergence (JSD) fixes both by introducing a shared “middle ground” distribution, \\(M = \\frac{1}{2}(P + Q)\\). Instead of asking “How far is \\(P\\) from \\(Q\\)?”, JSD asks “How far are \\(P\\) and \\(Q\\) from their own average?”\nBecause we are dealing with probabilities that must sum to 1, there is a hard limit on how “far apart” two distributions can be. The absolute worst-case scenario is that \\(P\\) and \\(Q\\) are completely disjoint (e.g., \\(P\\) only happens on even numbers, \\(Q\\) only happens on odd numbers). Because the mixture \\(M\\) is a 50/50 split of the two, the fraction \\(\\frac{P}{M}\\) hits a hard mathematical ceiling of exactly \\(2\\). The log rule immediately locks the maximum divergence to \\(\\log_b(2)\\).\nLet’s look at the definition of the Jensen-Shannon Divergence. It takes the KL divergence from \\(P\\) to the midpoint \\(M\\), and averages it with the KL divergence from \\(Q\\) to the midpoint \\(M\\):\n\\[JSD(P \\parallel Q) = \\frac{1}{2} D_{KL}(P \\parallel M) + \\frac{1}{2} D_{KL}(Q \\parallel M)\\]\nWhere the midpoint \\(M\\) is defined as the perfect average of the two distributions:\n\\[M(x) = \\frac{P(x) + Q(x)}{2}\\]\nThis is the easy part, because you already laid the groundwork for it!\nIn our previous proof of Gibbs’ Inequality, we proved definitively that for any valid distributions, the KL divergence is strictly non-negative (\\(D_{KL} \\ge 0\\)).\nBecause JSD is just the sum of two KL divergences multiplied by positive fractions (\\(\\frac{1}{2}\\)), it is mathematically impossible for the result to be negative.\n\\[JSD(P \\parallel Q) \\ge 0\\]\nWhen does it equal 0? It equals \\(0\\) only when \\(P\\) and \\(Q\\) perfectly match the midpoint \\(M\\), meaning \\(P = Q\\).\nTo find the absolute maximum value, let’s zoom in on just the first half of the JSD formula: \\(D_{KL}(P \\parallel M)\\).\n\\[D_{KL}(P \\parallel M) = \\sum_{x} P(x) \\log_b\\left( \\frac{P(x)}{M(x)} \\right)\\]\nLet’s substitute our definition of \\(M(x)\\) into the denominator:\n\\[D_{KL}(P \\parallel M) = \\sum_{x} P(x) \\log_b\\left( \\frac{P(x)}{\\frac{1}{2}P(x) + \\frac{1}{2}Q(x)} \\right)\\]\nThe Crucial Logic Step: Look at that denominator: \\(\\frac{1}{2}P(x) + \\frac{1}{2}Q(x)\\). Because \\(Q(x)\\) is a probability, we know for an absolute fact that \\(Q(x) \\ge 0\\).\nIf we completely delete \\(\\frac{1}{2}Q(x)\\) from the denominator, the denominator must get smaller (or stay the same if \\(Q(x)\\) was 0). When you make the denominator of a fraction smaller, the overall fraction gets bigger.\nTherefore, we can establish a strict mathematical inequality:\n\\[\\frac{P(x)}{\\frac{1}{2}P(x) + \\frac{1}{2}Q(x)} \\le \\frac{P(x)}{\\frac{1}{2}P(x)}\\]\nThe \\(P(x)\\) on the top and bottom of that right-side fraction perfectly cancel out, leaving just \\(\\frac{1}{1/2}\\), which is \\(2\\).\n\\[\\frac{P(x)}{M(x)} \\le 2\\]\nFinishing the Bound: Because the logarithm is a strictly increasing function, if the inside of the log is \\(\\le 2\\), the whole log is \\(\\le \\log_b(2)\\). We can substitute this maximum value back into our KL sum:\n\\[D_{KL}(P \\parallel M) \\le \\sum_{x} P(x) \\log_b(2)\\]\nSince \\(\\log_b(2)\\) is just a constant number, pull it out to the front:\n\\[D_{KL}(P \\parallel M) \\le \\log_b(2) \\sum_{x} P(x)\\]\nSince the sum of all probabilities \\(\\sum P(x)\\) must equal \\(1\\):\n\\[D_{KL}(P \\parallel M) \\le \\log_b(2)\\]\nBy the exact same logic, the second half of the equation is also bounded:\n\\[D_{KL}(Q \\parallel M) \\le \\log_b(2)\\]\nThe Final Combination: Plug these maximums back into the main JSD formula:\n\\[JSD(P \\parallel Q) \\le \\frac{1}{2}(\\log_b(2)) + \\frac{1}{2}(\\log_b(2))\\]\n\\[JSD(P \\parallel Q) \\le \\log_b(2)\\]\nConclusion\nThe math proves that JSD is beautifully bounded. If you are calculating it in bits (base 2), the maximum divergence is exactly \\(\\log_2(2) = 1\\). If you are calculating it in nats (base \\(e\\)), the maximum divergence is exactly \\(\\ln(2) \\approx 0.693\\).\nThis hard upper limit is why JSD is often preferred over standard KL Divergence when you need a stable, normalized metric for machine learning models (like in Generative Adversarial Networks, or GANs)!"
+    "text": "In information theory, Cross-Entropy measures the average number of bits needed to identify an event drawn from a true probability distribution \\(P\\), if a coding scheme is used that is optimized for an estimated (or unnatural) probability distribution \\(Q\\), rather than the true distribution \\(P\\).\nIntuitively, if you believe the weather follows distribution \\(Q\\) (e.g., mostly sunny), you will design a communication protocol that assigns short codes to “sunny”. If the actual weather follows distribution \\(P\\) (e.g., mostly rainy), your protocol will be highly inefficient. Cross-entropy quantifies this exact inefficiency."
   },
   {
-    "objectID": "Information-Theory/js-div-boundedness-proof.html#interactive-animation",
-    "href": "Information-Theory/js-div-boundedness-proof.html#interactive-animation",
-    "title": "Lemon's Website",
-    "section": "Interactive Animation",
-    "text": "Interactive Animation\nThe following Python script uses plotly to render a live, interactive animation of the distributions directly in the browser! Press the “Play Animation” button below or use the slider to see how the Jensen-Shannon Divergence responds as the two distributions separate.\n\n\n\n  \n  \n    Distribution P\n    \n      \n        Mean P\n        -2.0\n      \n      \n    \n    \n      \n        Variance P\n        1.0\n      \n      \n    \n  \n\n  \n  \n    Distribution Q\n    \n      \n        Mean Q\n        2.0\n      \n      \n    \n    \n      \n        Variance Q\n        1.0\n      \n      \n    \n  \n\n\n\n  \n    ✨ Reset to Cool Arrangement"
+    "objectID": "notes/information-theory/cross-entropy.html#practice-problems",
+    "href": "notes/information-theory/cross-entropy.html#practice-problems",
+    "title": "Cross-Entropy",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Binary Cross-Entropy\nCalculate the Binary Cross-Entropy loss for a single data point where the true label is \\(y=1\\) and the model’s predicted probability is \\(p=0.01\\). Why does the loss become so massive?"
+  },
+  {
+    "objectID": "notes/information-theory/f-divergence.html",
+    "href": "notes/information-theory/f-divergence.html",
+    "title": "f-Divergence",
+    "section": "",
+    "text": "The \\(f\\)-Divergence (also known as the Ali-Silvey distance) is not a single formula, but a vast mathematical family that generalizes the concept of differences between probability distributions.\nBy simply plugging in different scalar functions \\(f(t)\\), you can retrieve almost all the famous divergences used in machine learning, including KL Divergence, Jensen-Shannon Divergence, and Total Variation Distance."
+  },
+  {
+    "objectID": "notes/information-theory/f-divergence.html#practice-problems",
+    "href": "notes/information-theory/f-divergence.html#practice-problems",
+    "title": "f-Divergence",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Deriving KL from f-Divergence\nStarting from the generalized f-divergence integral formula \\(D_f(P \\| Q) = \\int q(x) f\\left(\\frac{p(x)}{q(x)}\\right) dx\\), prove that setting the generator function to \\(f(t) = t \\log t\\) successfully recovers the Kullback-Leibler divergence."
+  },
+  {
+    "objectID": "notes/information-theory/evidence-lower-bound-elbo.html",
+    "href": "notes/information-theory/evidence-lower-bound-elbo.html",
+    "title": "Evidence Lower Bound (ELBO)",
+    "section": "",
+    "text": "In probabilistic machine learning, we often posit that our observable data \\(x\\) is generated by some hidden, unobservable latent variables \\(z\\).\nTo perform inference, we need to calculate the posterior probability of the latents given the data, using Bayes’ Theorem:\n\\[\np(z | x) = \\frac{p(x | z) p(z)}{p(x)}\n\\]\nThe denominator \\(p(x)\\) is called the Evidence. To compute it, we must marginalize (integrate) over every possible configuration of the latent variables \\(z\\):\n\\[\np(x) = \\int p(x | z) p(z) \\, dz\n\\]\nFor modern deep learning models, \\(z\\) is continuous and high-dimensional. This integral is mathematically intractable to compute. If we can’t compute the evidence \\(p(x)\\), we can’t compute the posterior \\(p(z | x)\\), and we cannot train our model."
+  },
+  {
+    "objectID": "notes/information-theory/evidence-lower-bound-elbo.html#practice-problems",
+    "href": "notes/information-theory/evidence-lower-bound-elbo.html#practice-problems",
+    "title": "Evidence Lower Bound (ELBO)",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: VAE Trade-offs\nIn the Variational Autoencoder ELBO equation, explain the competing roles of the Reconstruction Term and the KL Regularization term. What happens to the learned latent space if the regularization weight is set to exactly zero?"
+  },
+  {
+    "objectID": "notes/information-theory/mutual-information.html",
+    "href": "notes/information-theory/mutual-information.html",
+    "title": "Mutual Information",
+    "section": "",
+    "text": "Mutual Information (MI) quantifies the amount of information obtained about one random variable by observing another random variable. Intuitively, it measures how much knowing \\(Y\\) reduces the uncertainty about \\(X\\).\nIf \\(X\\) and \\(Y\\) are completely independent, knowing \\(Y\\) tells you absolutely nothing about \\(X\\), and their mutual information is zero. If \\(X\\) is a deterministic function of \\(Y\\), knowing \\(Y\\) tells you everything about \\(X\\), and their mutual information is maximized.\nUnlike correlation, which only captures linear dependencies, Mutual Information captures all non-linear dependencies between variables."
+  },
+  {
+    "objectID": "notes/information-theory/mutual-information.html#practice-problems",
+    "href": "notes/information-theory/mutual-information.html#practice-problems",
+    "title": "Mutual Information",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Independence\nIf two random variables \\(X\\) and \\(Y\\) are statistically independent, prove directly from the summation definition that their Mutual Information \\(I(X;Y)\\) is exactly zero."
+  },
+  {
+    "objectID": "notes/information-theory/kl-divergence.html",
+    "href": "notes/information-theory/kl-divergence.html",
+    "title": "Kullback-Leibler Divergence",
+    "section": "",
+    "text": "The Kullback-Leibler (KL) Divergence, often called Relative Entropy, is a fundamental measure of how one probability distribution \\(Q\\) diverges from a reference probability distribution \\(P\\).\nIf \\(P\\) represents the “true” distribution of data and \\(Q\\) represents our model’s approximation of that distribution, \\(D_{KL}(P \\| Q)\\) quantifies the exact amount of information lost when \\(Q\\) is used to approximate \\(P\\)."
+  },
+  {
+    "objectID": "notes/information-theory/kl-divergence.html#practice-problems",
+    "href": "notes/information-theory/kl-divergence.html#practice-problems",
+    "title": "Kullback-Leibler Divergence",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: The Asymmetry of KL\nProvide a concrete, numerical example showing that \\(D_{KL}(P \\| Q) \\neq D_{KL}(Q \\| P)\\) using two simple discrete probability distributions (e.g., \\(P=[0.5, 0.5]\\) and \\(Q=[0.9, 0.1]\\))."
   }
 ]

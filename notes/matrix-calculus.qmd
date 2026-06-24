@@ -1,0 +1,113 @@
+---
+title: ""
+page-layout: custom
+---
+
+```{=html}
+<style>
+  .navbar::before {
+    background: transparent !important;
+  }
+</style>
+
+<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+
+  <div class="subject-hero">
+    <h1 class="hero-title" style="color: #fff;">Matrix Calculus for Machine Learning</h1>
+    <p class="hero-subtitle">Comprehensive mathematical foundations and techniques.</p>
+  </div>
+
+  <div class="subject-intro">
+    <p>
+      Select a topic from the sections below to explore detailed derivations, proofs, and
+      applications in modern machine learning.
+    </p>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 4rem 0;">
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Differential Foundations</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Calculus Conceptual Hierarchy</h3>
+      <p>Explore detailed notes on calculus conceptual hierarchy.</p>
+      <a href="matrix-calculus/calculus-conceptual-hierarchy.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Scalar and Vector Fields</h3>
+      <p>Explore detailed notes on scalar and vector fields.</p>
+      <a href="matrix-calculus/scalar-and-vector-fields.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Single-Variable Derivative</h3>
+      <p>Explore detailed notes on single-variable derivative.</p>
+      <a href="matrix-calculus/single-variable-derivative.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Partial Differentiation and Gradients</h3>
+      <p>Explore detailed notes on partial differentiation and gradients.</p>
+      <a href="matrix-calculus/partial-differentiation-and-gradients.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Matrix Derivatives</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Jacobian Matrix</h3>
+      <p>Explore detailed notes on jacobian matrix.</p>
+      <a href="matrix-calculus/jacobian-matrix.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Non-Differentiable Operations in Chain Rule</h3>
+      <p>Explore detailed notes on non-differentiable operations in chain rule.</p>
+      <a href="matrix-calculus/non-differentiable-operations-in-chain-rule.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Fréchet Derivative</h3>
+      <p>Explore detailed notes on fréchet derivative.</p>
+      <a href="matrix-calculus/fréchet-derivative.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Hessian Matrix</h3>
+      <p>Explore detailed notes on hessian matrix.</p>
+      <a href="matrix-calculus/hessian-matrix.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Approximation Theory</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Taylor Expansion</h3>
+      <p>Explore detailed notes on taylor expansion.</p>
+      <a href="matrix-calculus/taylor-expansion.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Unified View of Derivatives</h3>
+      <p>Explore detailed notes on unified view of derivatives.</p>
+      <a href="matrix-calculus/unified-view-of-derivatives.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="/assets/card-tilt.js"></script>
+```

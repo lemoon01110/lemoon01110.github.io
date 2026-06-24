@@ -1,0 +1,5 @@
+---
+title: "Bayes' Rule"
+---
+
+Content for Bayes' Rule goes here.

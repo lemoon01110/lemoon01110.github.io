@@ -1,0 +1,5 @@
+---
+title: "Dirichlet Distribution"
+---
+
+Content for Dirichlet Distribution goes here.

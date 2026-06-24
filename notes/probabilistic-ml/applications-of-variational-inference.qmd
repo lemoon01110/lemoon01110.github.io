@@ -1,0 +1,5 @@
+---
+title: "Applications of Variational Inference"
+---
+
+Content for Applications of Variational Inference goes here.

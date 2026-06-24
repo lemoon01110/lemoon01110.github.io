@@ -1,0 +1,5 @@
+---
+title: "Probability Distributions of a Single Random Variable"
+---
+
+Content for Probability Distributions of a Single Random Variable goes here.

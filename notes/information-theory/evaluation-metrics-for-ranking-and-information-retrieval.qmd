@@ -1,0 +1,84 @@
+---
+title: "Evaluation Metrics for Ranking and Information Retrieval"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### The Geometry of Search
+
+Information Retrieval (IR) lies at the heart of modern search engines (Google, Bing) and recommendation systems (Netflix, Amazon). The core problem is simple: given a user query, a system retrieves thousands of documents. How do we mathematically evaluate if the system ranked the "most relevant" documents at the top?
+
+While traditional ML classification relies on metrics like Accuracy or Cross-Entropy, Ranking systems require specialized metrics that heavily penalize errors at the top of the list (Rank 1) while forgiving errors at the bottom of the list (Rank 100).
+
+:::
+
+::: {.thm-box .thm-remark}
+### 1. Mean Reciprocal Rank (MRR)
+
+MRR is the simplest ranking metric, used when there is exactly **one correct answer** (e.g., searching for "Facebook login page"). 
+
+If the system ranks the correct answer at position $k$, the reciprocal rank is $1/k$. MRR is the average over all queries:
+
+$$
+\text{MRR} = \frac{1}{|Q|} \sum_{i=1}^{|Q|} \frac{1}{\text{rank}_i}
+$$
+- If the correct link is 1st, score = $1.0$.
+- If the correct link is 3rd, score = $0.33$.
+
+:::
+
+::: {.thm-box .thm-remark}
+### 2. Precision and Recall @ K
+
+When there are multiple relevant documents, we measure performance at a specific cutoff depth $K$ (e.g., the first page of Google results, $K=10$).
+
+- **Precision@K**: Out of the top $K$ results returned, what fraction are actually relevant?
+  $$ \text{P@K} = \frac{\text{Relevant items in top } K}{K} $$
+- **Recall@K**: Out of *all* the relevant documents that exist in the entire database, what fraction did the system manage to place in the top $K$?
+  $$ \text{R@K} = \frac{\text{Relevant items in top } K}{\text{Total relevant items in database}} $$
+
+:::
+
+::: {.thm-box .thm-remark}
+### 3. Normalized Discounted Cumulative Gain (NDCG)
+
+NDCG is the undisputed gold standard for modern recommendation systems. It solves two major flaws of P@K:
+1. It handles **graded relevance** (e.g., a 5-star rating is better than a 3-star rating, rather than just binary relevant/irrelevant).
+2. It enforces **positional discounting** (a 5-star result at Rank 1 is vastly more valuable than a 5-star result at Rank 9).
+
+#### Step 1: Cumulative Gain (CG)
+Simply sum the relevance scores ($rel_i$) of the top $p$ results. This ignores positioning.
+$$ \text{CG}_p = \sum_{i=1}^p rel_i $$
+
+#### Step 2: Discounted Cumulative Gain (DCG)
+Penalize the relevance score logarithmically based on its rank position $i$. 
+$$ \text{DCG}_p = \sum_{i=1}^p \frac{rel_i}{\log_2(i + 1)} $$
+*(Note: Sometimes the numerator is exponentiated as $2^{rel_i} - 1$ to place even heavier emphasis on highly relevant documents).*
+
+#### Step 3: Normalized DCG (NDCG)
+Because some queries inherently have more relevant documents than others, raw DCG scores cannot be compared across different queries. We fix this by sorting the results perfectly to calculate the **Ideal DCG (IDCG)**, and then normalize:
+
+$$
+\text{NDCG}_p = \frac{\text{DCG}_p}{\text{IDCG}_p}
+$$
+This ensures NDCG is strictly bounded between $0.0$ and $1.0$, regardless of the query.
+
+:::
+
+::: {.thm-box .thm-remark}
+### 4. Information-Theoretic Interpretations
+
+Information theory directly intersects with ranking metrics through **Entropy**. 
+When a search engine presents a ranked list, a user scanning down the list can be modeled as a Markov process. The probability that a user stops searching at rank $k$ forms a probability distribution over the ranks.
+
+If the search engine is terrible, the user has to click through many pages, resulting in a "flat" stopping distribution with **High Entropy**. If the search engine is perfect, the user almost always stops at Rank 1, resulting in a highly skewed stopping distribution with **Low Entropy**. Modern learning-to-rank algorithms often explicitly minimize the cross-entropy between the predicted relevance distribution and the optimal relevance distribution.
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Mean Reciprocal Rank
+Calculate the MRR (Mean Reciprocal Rank) for a search engine that processes three distinct user queries, where the single correct result is found at rank $1$, rank $3$, and rank $2$ respectively.
+:::

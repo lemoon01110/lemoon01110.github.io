@@ -1,0 +1,89 @@
+---
+title: "JS Div Boundedness Proof"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-theorem}
+### Theorem
+
+For any two probability distributions $P$ and $Q$, the Jensen-Shannon Divergence (JSD) calculated using the natural logarithm (base $e$) is strictly bounded between $0$ and $\log(2)$.
+
+$$
+0 \le JSD(P \| Q) \le \log(2)
+$$
+
+If base-2 logarithms are used, the bound is simply $1$ bit.
+
+:::
+
+::: {.thm-box .thm-theorem}
+### Proof of the Lower Bound
+
+The lower bound follows trivially from the non-negativity of the Kullback-Leibler (KL) Divergence (Gibbs' Inequality).
+
+Recall the definition of JSD:
+$$
+JSD(P \| Q) = \frac{1}{2} D_{KL}(P \| M) + \frac{1}{2} D_{KL}(Q \| M)
+$$
+where $M = \frac{P + Q}{2}$.
+
+Since $D_{KL}(A \| B) \ge 0$ for any distributions $A, B$, the sum of two positive KL divergences must also be $\ge 0$.
+Equality holds if and only if $P = M$ and $Q = M$, which requires $P = Q$.
+
+:::
+
+::: {.thm-box .thm-theorem}
+### Proof of the Upper Bound
+
+To prove the upper bound, we will express JSD using Shannon Entropy $H(\cdot)$. Let's expand the definition:
+
+$$
+\begin{aligned}
+JSD(P \| Q) &= \frac{1}{2} \left[ \sum P(x) \log \frac{P(x)}{M(x)} \right] + \frac{1}{2} \left[ \sum Q(x) \log \frac{Q(x)}{M(x)} \right] \\
+&= \frac{1}{2} \left[ \sum P(x) \log P(x) - \sum P(x) \log M(x) \right] \\
+&\quad + \frac{1}{2} \left[ \sum Q(x) \log Q(x) - \sum Q(x) \log M(x) \right]
+\end{aligned}
+$$
+
+Substitute the definition of Shannon Entropy $H(P) = -\sum P(x) \log P(x)$:
+
+$$
+\begin{aligned}
+JSD(P \| Q) &= \frac{1}{2} \left[ -H(P) - \sum P(x) \log M(x) \right] + \frac{1}{2} \left[ -H(Q) - \sum Q(x) \log M(x) \right] \\
+&= -\frac{1}{2} H(P) - \frac{1}{2} H(Q) - \frac{1}{2} \sum \Big( P(x) + Q(x) \Big) \log M(x)
+\end{aligned}
+$$
+
+Recall that $M(x) = \frac{P(x) + Q(x)}{2}$, meaning $P(x) + Q(x) = 2M(x)$. Let's substitute this into the summation:
+
+$$
+\begin{aligned}
+JSD(P \| Q) &= -\frac{1}{2} H(P) - \frac{1}{2} H(Q) - \frac{1}{2} \sum \Big( 2M(x) \Big) \log M(x) \\
+&= -\frac{1}{2} H(P) - \frac{1}{2} H(Q) - \sum M(x) \log M(x)
+\end{aligned}
+$$
+
+Notice that $-\sum M(x) \log M(x)$ is exactly the entropy of the mixture distribution $H(M)$. Therefore:
+
+$$
+JSD(P \| Q) = H(M) - \frac{H(P) + H(Q)}{2}
+$$
+
+Because entropy $H$ is a strictly concave function, the entropy of the mixture $M$ is bounded by the maximum possible entropy added to the mixture ratio. By applying Jensen's Inequality to the concave function $H$:
+$$
+H(M) = H\left(\frac{P+Q}{2}\right) \le \frac{1}{2} H(P) + \frac{1}{2} H(Q) + \log(2)
+$$
+
+Rearranging this inequality gives:
+$$
+H(M) - \left( \frac{H(P) + H(Q)}{2} \right) \le \log(2)
+$$
+
+Since the left side is precisely the $JSD(P \| Q)$, we arrive at our absolute upper bound:
+$$
+JSD(P \| Q) \le \log(2)
+$$
+
+The equality holds if and only if $P$ and $Q$ have completely disjoint supports (i.e., they share zero probability mass). In this scenario of maximum disagreement, the divergence peaks at $\log(2)$.
+:::

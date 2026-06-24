@@ -1,0 +1,81 @@
+---
+title: "Cross-Entropy"
+toc: true
+toc-depth: 3
+---
+
+::: {.thm-box .thm-remark}
+### The Concept of Cross-Entropy
+
+In information theory, **Cross-Entropy** measures the average number of bits needed to identify an event drawn from a true probability distribution $P$, if a coding scheme is used that is optimized for an estimated (or unnatural) probability distribution $Q$, rather than the true distribution $P$.
+
+Intuitively, if you believe the weather follows distribution $Q$ (e.g., mostly sunny), you will design a communication protocol that assigns short codes to "sunny". If the *actual* weather follows distribution $P$ (e.g., mostly rainy), your protocol will be highly inefficient. Cross-entropy quantifies this exact inefficiency.
+
+:::
+
+::: {.thm-box .thm-definition}
+### Mathematical Definition
+
+For discrete distributions $P$ and $Q$ defined over the same sample space $\mathcal{X}$, the cross-entropy $H(P, Q)$ is defined as the expected surprisal of $Q$ relative to the true distribution $P$:
+
+$$
+H(P, Q) = \mathbb{E}_{x \sim P} [ -\log Q(x) ] = -\sum_{x \in \mathcal{X}} P(x) \log Q(x)
+$$
+
+For continuous distributions with probability density functions $p$ and $q$:
+$$
+H(P, Q) = -\int_{\mathcal{X}} p(x) \log q(x) \, dx
+$$
+
+#### Important Properties
+1. **Non-Symmetric**: $H(P, Q) \neq H(Q, P)$.
+2. **Lower Bound**: Cross-entropy is bounded below by the true entropy of $P$.
+   $$ H(P, Q) \ge H(P) $$
+   Equality holds if and only if $P = Q$.
+
+:::
+
+::: {.thm-box .thm-theorem}
+### Relationship to KL Divergence
+
+Cross-entropy is deeply connected to Shannon Entropy and the Kullback-Leibler (KL) Divergence. We can decompose cross-entropy as:
+
+$$
+H(P, Q) = H(P) + D_{KL}(P \| Q)
+$$
+
+This equation is deeply profound. It states that the cost of using the wrong distribution $Q$ (Cross-Entropy) is exactly equal to the optimal theoretical cost if you knew the true distribution $P$ (Shannon Entropy), plus the "penalty" or "distance" for your estimation error (KL Divergence).
+
+:::
+
+::: {.thm-box .thm-example}
+### Machine Learning Context: Cross-Entropy Loss
+
+Cross-Entropy is arguably the most famous and widely used loss function in all of Deep Learning, particularly for classification tasks.
+
+#### Why do we use it?
+When training a neural network classifier, we are trying to predict the true label distribution $P$ using the model's predicted distribution $Q$. 
+- The true distribution $P$ for a single sample is typically a **one-hot encoded vector** (e.g., $[0, 1, 0, 0]$ where the target class has probability 1).
+- The predicted distribution $Q$ is the output of the **Softmax function** (e.g., $[0.1, 0.7, 0.15, 0.05]$).
+
+If we minimize the Cross-Entropy $H(P, Q)$, we are pushing $Q$ to be as close to $P$ as possible. 
+
+#### Why is $H(P)$ ignored in practice?
+Recall the decomposition $H(P, Q) = H(P) + D_{KL}(P \| Q)$. 
+In a classification task, the true labels $P$ are deterministic (one-hot), meaning the true entropy $H(P)$ is exactly $0$. Therefore, minimizing Cross-Entropy is mathematically identical to minimizing the KL Divergence between the predictions and the ground truth.
+
+#### Binary Cross-Entropy (BCE)
+For binary classification tasks where $y \in \{0, 1\}$ and the network predicts $p = \hat{y}$, the formula simplifies entirely:
+
+$$
+\text{BCE} = - \big( y \log(p) + (1 - y) \log(1 - p) \big)
+$$
+
+:::
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### Problem 1: Binary Cross-Entropy
+Calculate the Binary Cross-Entropy loss for a single data point where the true label is $y=1$ and the model's predicted probability is $p=0.01$. Why does the loss become so massive?
+:::

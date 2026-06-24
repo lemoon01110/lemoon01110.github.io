@@ -1,0 +1,5 @@
+---
+title: "Marginal Probabilities"
+---
+
+Content for Marginal Probabilities goes here.

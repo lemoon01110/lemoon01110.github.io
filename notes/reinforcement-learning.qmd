@@ -1,0 +1,157 @@
+---
+title: ""
+page-layout: custom
+---
+
+```{=html}
+<style>
+  .navbar::before {
+    background: transparent !important;
+  }
+</style>
+
+<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+
+  <div class="subject-hero">
+    <h1 class="hero-title" style="color: #fff;">Reinforcement Learning</h1>
+    <p class="hero-subtitle">Comprehensive mathematical foundations and techniques.</p>
+  </div>
+
+  <div class="subject-intro">
+    <p>
+      Select a topic from the sections below to explore detailed derivations, proofs, and
+      applications in modern machine learning.
+    </p>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 4rem 0;">
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Markov Decision Processes</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Notation and Conventions</h3>
+      <p>Explore detailed notes on notation and conventions.</p>
+      <a href="reinforcement-learning/notation-and-conventions.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Markov Decision Processes</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Policies</h3>
+      <p>Explore detailed notes on policies.</p>
+      <a href="reinforcement-learning/policies.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Value Functions</h3>
+      <p>Explore detailed notes on value functions.</p>
+      <a href="reinforcement-learning/value-functions.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Bellman Theory</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Bellman Equations</h3>
+      <p>Explore detailed notes on bellman equations.</p>
+      <a href="reinforcement-learning/bellman-equations.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Bellman Operators</h3>
+      <p>Explore detailed notes on bellman operators.</p>
+      <a href="reinforcement-learning/bellman-operators.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Contraction Mapping Theorem</h3>
+      <p>Explore detailed notes on contraction mapping theorem.</p>
+      <a href="reinforcement-learning/contraction-mapping-theorem.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Optimal Policies and Value Functions</h3>
+      <p>Explore detailed notes on optimal policies and value functions.</p>
+      <a href="reinforcement-learning/optimal-policies-and-value-functions.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Dynamic Programming</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>State Distribution and Stationarity</h3>
+      <p>Explore detailed notes on state distribution and stationarity.</p>
+      <a href="reinforcement-learning/state-distribution-and-stationarity.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Continuous-Time RL</h3>
+      <p>Explore detailed notes on continuous-time rl.</p>
+      <a href="reinforcement-learning/continuous-time-rl.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Continuous-Time Markov Chains</h3>
+      <p>Explore detailed notes on continuous-time markov chains.</p>
+      <a href="reinforcement-learning/continuous-time-markov-chains.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Policy Optimization</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Policy Gradient Theorem</h3>
+      <p>Explore detailed notes on policy gradient theorem.</p>
+      <a href="reinforcement-learning/policy-gradient-theorem.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Stochastic Approximation</h3>
+      <p>Explore detailed notes on stochastic approximation.</p>
+      <a href="reinforcement-learning/stochastic-approximation.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Function Approximation</h3>
+      <p>Explore detailed notes on function approximation.</p>
+      <a href="reinforcement-learning/function-approximation.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Importance Sampling</h3>
+      <p>Explore detailed notes on importance sampling.</p>
+      <a href="reinforcement-learning/importance-sampling.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Trust Region and Natural Policy Gradient</h3>
+      <p>Explore detailed notes on trust region and natural policy gradient.</p>
+      <a href="reinforcement-learning/trust-region-and-natural-policy-gradient.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="/assets/card-tilt.js"></script>
+```

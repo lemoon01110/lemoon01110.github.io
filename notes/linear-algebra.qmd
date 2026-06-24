@@ -1,0 +1,315 @@
+---
+title: ""
+page-layout: custom
+---
+
+```{=html}
+<style>
+  .navbar::before {
+    background: transparent !important;
+  }
+</style>
+
+<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+
+  <div class="subject-hero">
+    <h1 class="hero-title" style="color: #fff;">Linear Algebra and Matrix Mechanics for Machine Learning</h1>
+    <p class="hero-subtitle">Comprehensive mathematical foundations and techniques.</p>
+  </div>
+
+  <div class="subject-intro">
+    <p>
+      Select a topic from the sections below to explore detailed derivations, proofs, and
+      applications in modern machine learning.
+    </p>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 4rem 0;">
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Vector Spaces and Functional Spaces</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Vector Basics</h3>
+      <p>Explore detailed notes on vector basics.</p>
+      <a href="linear-algebra/vector-basics.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Vector Space</h3>
+      <p>Explore detailed notes on vector space.</p>
+      <a href="linear-algebra/vector-space.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Banach Space</h3>
+      <p>Explore detailed notes on banach space.</p>
+      <a href="linear-algebra/banach-space.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Hilbert Space</h3>
+      <p>Explore detailed notes on hilbert space.</p>
+      <a href="linear-algebra/hilbert-space.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Matrix Fundamentals</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Matrix Representation</h3>
+      <p>Explore detailed notes on matrix representation.</p>
+      <a href="linear-algebra/matrix-representation.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Transpose</h3>
+      <p>Explore detailed notes on transpose.</p>
+      <a href="linear-algebra/transpose.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Summation and Scalar Multiplication</h3>
+      <p>Explore detailed notes on summation and scalar multiplication.</p>
+      <a href="linear-algebra/summation-and-scalar-multiplication.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix-Vector Multiplication (Two Views)</h3>
+      <p>Explore detailed notes on matrix-vector multiplication (two views).</p>
+      <a href="linear-algebra/matrix-vector-multiplication-two-views.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix Multiplication (Four Views)</h3>
+      <p>Explore detailed notes on matrix multiplication (four views).</p>
+      <a href="linear-algebra/matrix-multiplication-four-views.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Hadamard Product</h3>
+      <p>Explore detailed notes on hadamard product.</p>
+      <a href="linear-algebra/hadamard-product.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Diagonal Matrices</h3>
+      <p>Explore detailed notes on diagonal matrices.</p>
+      <a href="linear-algebra/diagonal-matrices.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Singular Values and Singular Vectors</h3>
+      <p>Explore detailed notes on singular values and singular vectors.</p>
+      <a href="linear-algebra/singular-values-and-singular-vectors.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix Inverse</h3>
+      <p>Explore detailed notes on matrix inverse.</p>
+      <a href="linear-algebra/matrix-inverse.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Projection Matrix</h3>
+      <p>Explore detailed notes on projection matrix.</p>
+      <a href="linear-algebra/projection-matrix.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Change of Basis</h3>
+      <p>Explore detailed notes on change of basis.</p>
+      <a href="linear-algebra/change-of-basis.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix Norms</h3>
+      <p>Explore detailed notes on matrix norms.</p>
+      <a href="linear-algebra/matrix-norms.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Linear Independence and Rank</h3>
+      <p>Explore detailed notes on linear independence and rank.</p>
+      <a href="linear-algebra/linear-independence-and-rank.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Subspaces and Orthogonality</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Four Fundamental Subspaces</h3>
+      <p>Explore detailed notes on four fundamental subspaces.</p>
+      <a href="linear-algebra/four-fundamental-subspaces.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Rank-Nullity Theorem</h3>
+      <p>Explore detailed notes on rank-nullity theorem.</p>
+      <a href="linear-algebra/rank-nullity-theorem.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Dimensions and Orthogonality of Four Fundamental Subspaces</h3>
+      <p>Explore detailed notes on dimensions and orthogonality of four fundamental subspaces.</p>
+      <a href="linear-algebra/dimensions-and-orthogonality-of-four-fundamental-subspaces.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Gram-Schmidt Algorithm</h3>
+      <p>Explore detailed notes on gram-schmidt algorithm.</p>
+      <a href="linear-algebra/gram-schmidt-algorithm.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Orthonormal Matrices</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>General Properties of Orthonormal Matrices</h3>
+      <p>Explore detailed notes on general properties of orthonormal matrices.</p>
+      <a href="linear-algebra/general-properties-of-orthonormal-matrices.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Square Orthonormal Matrices</h3>
+      <p>Explore detailed notes on square orthonormal matrices.</p>
+      <a href="linear-algebra/square-orthonormal-matrices.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Complex Numbers and Rotations</h3>
+      <p>Explore detailed notes on complex numbers and rotations.</p>
+      <a href="linear-algebra/complex-numbers-and-rotations.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Geometric Transformations and Spectral Theory</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Geometric Transformation and Matrix</h3>
+      <p>Explore detailed notes on geometric transformation and matrix.</p>
+      <a href="linear-algebra/geometric-transformation-and-matrix.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Eigenvalues and Eigenvectors</h3>
+      <p>Explore detailed notes on eigenvalues and eigenvectors.</p>
+      <a href="linear-algebra/eigenvalues-and-eigenvectors.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Power Method</h3>
+      <p>Explore detailed notes on power method.</p>
+      <a href="linear-algebra/power-method.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix Functions</h3>
+      <p>Explore detailed notes on matrix functions.</p>
+      <a href="linear-algebra/matrix-functions.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Symmetric Matrices and Spectral Geometry</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Symmetric Matrix</h3>
+      <p>Explore detailed notes on symmetric matrix.</p>
+      <a href="linear-algebra/symmetric-matrix.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Spectral Decomposition</h3>
+      <p>Explore detailed notes on spectral decomposition.</p>
+      <a href="linear-algebra/spectral-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Quadratic Forms and Definiteness</h3>
+      <p>Explore detailed notes on quadratic forms and definiteness.</p>
+      <a href="linear-algebra/quadratic-forms-and-definiteness.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Rayleigh Quotient</h3>
+      <p>Explore detailed notes on rayleigh quotient.</p>
+      <a href="linear-algebra/rayleigh-quotient.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Gram Matrices</h3>
+      <p>Explore detailed notes on gram matrices.</p>
+      <a href="linear-algebra/gram-matrices.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>From Spectral Methods to Graph Neural Networks</h3>
+      <p>Explore detailed notes on from spectral methods to graph neural networks.</p>
+      <a href="linear-algebra/from-spectral-methods-to-graph-neural-networks.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Block Matrix Methods</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Kronecker Product</h3>
+      <p>Explore detailed notes on kronecker product.</p>
+      <a href="linear-algebra/kronecker-product.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix Partitioning</h3>
+      <p>Explore detailed notes on matrix partitioning.</p>
+      <a href="linear-algebra/matrix-partitioning.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Block Matrix Decompositions</h3>
+      <p>Explore detailed notes on block matrix decompositions.</p>
+      <a href="linear-algebra/block-matrix-decompositions.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Geometric and Computational Interpretations</h3>
+      <p>Explore detailed notes on geometric and computational interpretations.</p>
+      <a href="linear-algebra/geometric-and-computational-interpretations.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Applications in AI and Optimization</h3>
+      <p>Explore detailed notes on applications in ai and optimization.</p>
+      <a href="linear-algebra/applications-in-ai-and-optimization.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="/assets/card-tilt.js"></script>
+```

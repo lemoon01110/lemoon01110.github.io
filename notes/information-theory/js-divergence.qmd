@@ -1,0 +1,45 @@
+---
+title: "Jensen-Shannon (JS) Divergence"
+toc: true
+toc-depth: 3
+---
+
+## Definition
+
+::: {.thm-box .thm-definition}
+### Definition: Jensen-Shannon Divergence
+For two probability distributions $p(x)$ and $q(x)$, the **Jensen-Shannon (JS) divergence** is defined as the average of the KL divergences from each distribution to their mixture:
+
+$$
+D_{\mathrm{JS}}(p || q) = \frac{1}{2} D_{\mathrm{KL}}\left(p || \frac{p+q}{2}\right) + \frac{1}{2} D_{\mathrm{KL}}\left(q || \frac{p+q}{2}\right)
+$$
+where $\frac{p+q}{2}$ is the mixture distribution with equal weights.
+:::
+
+## Intuition
+
+Jensen-Shannon divergence addresses some of the mathematical inconveniences of KL divergence. 
+- **Symmetry**: Unlike KL divergence, JS divergence is perfectly symmetric ($D_{\mathrm{JS}}(p || q) = D_{\mathrm{JS}}(q || p)$).
+- **Boundedness**: It is bounded between $0$ and $\ln 2$ nats (or $1$ bit). It reaches its maximum when $p$ and $q$ have completely disjoint supports.
+- **Metric Property**: The square root of JS divergence, $\sqrt{D_{\mathrm{JS}}(p || q)}$, satisfies the triangle inequality and is a true distance metric.
+
+In machine learning, JS divergence historically played a foundational role in the original formulation of **Generative Adversarial Networks (GANs)**, where the discriminator's objective implicitly minimizes the JS divergence between the real data distribution and the generated distribution.
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### 1. Symmetry
+Prove from the definition that JS divergence is symmetric: $D_{\mathrm{JS}}(p || q) = D_{\mathrm{JS}}(q || p)$.
+:::
+
+::: {.thm-box .thm-problem}
+### 2. Boundedness
+Show that JS divergence is bounded: $0 \le D_{\mathrm{JS}}(p || q) \le \ln 2$ nats.
+:::
+
+::: {.thm-box .thm-problem}
+### 3. GAN Objectives
+In practical GAN training, explain why JS divergence (the theoretical objective) is often replaced with other losses like Wasserstein distance or the non-saturating heuristic loss. How does disjoint support between real and fake data affect JS divergence?
+
+:::
+

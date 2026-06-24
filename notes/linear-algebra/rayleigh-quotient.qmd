@@ -1,0 +1,5 @@
+---
+title: "Rayleigh Quotient"
+---
+
+Content for Rayleigh Quotient goes here.

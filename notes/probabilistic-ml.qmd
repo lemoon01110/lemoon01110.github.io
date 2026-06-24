@@ -1,0 +1,181 @@
+---
+title: ""
+page-layout: custom
+---
+
+```{=html}
+<style>
+  .navbar::before {
+    background: transparent !important;
+  }
+</style>
+
+<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+
+  <div class="subject-hero">
+    <h1 class="hero-title" style="color: #fff;">Probabilistic Models for Machine Learning</h1>
+    <p class="hero-subtitle">Comprehensive mathematical foundations and techniques.</p>
+  </div>
+
+  <div class="subject-intro">
+    <p>
+      Select a topic from the sections below to explore detailed derivations, proofs, and
+      applications in modern machine learning.
+    </p>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 4rem 0;">
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Latent Variable Models</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>The Inference Problem p(z∣x)</h3>
+      <p>Explore detailed notes on the inference problem p(z∣x).</p>
+      <a href="probabilistic-ml/the-inference-problem-pz∣x.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Variational Inference</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Expectation-Maximization</h3>
+      <p>Explore detailed notes on expectation-maximization.</p>
+      <a href="probabilistic-ml/expectation-maximization.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Variational Inference</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Mean Field Variational Inference</h3>
+      <p>Explore detailed notes on mean field variational inference.</p>
+      <a href="probabilistic-ml/mean-field-variational-inference.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Stochastic Variational Inference</h3>
+      <p>Explore detailed notes on stochastic variational inference.</p>
+      <a href="probabilistic-ml/stochastic-variational-inference.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Amortized Variational Inference</h3>
+      <p>Explore detailed notes on amortized variational inference.</p>
+      <a href="probabilistic-ml/amortized-variational-inference.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Generative Modeling</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Applications of Variational Inference</h3>
+      <p>Explore detailed notes on applications of variational inference.</p>
+      <a href="probabilistic-ml/applications-of-variational-inference.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Other Generative Modeling Approaches</h3>
+      <p>Explore detailed notes on other generative modeling approaches.</p>
+      <a href="probabilistic-ml/other-generative-modeling-approaches.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Variational Inference vs Other Methods</h3>
+      <p>Explore detailed notes on variational inference vs other methods.</p>
+      <a href="probabilistic-ml/variational-inference-vs-other-methods.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Variational Inference in Other Domains</h3>
+      <p>Explore detailed notes on variational inference in other domains.</p>
+      <a href="probabilistic-ml/variational-inference-in-other-domains.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Energy-Based and Score-Based Models</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Motivation: From Density to Geometry</h3>
+      <p>Explore detailed notes on motivation: from density to geometry.</p>
+      <a href="probabilistic-ml/motivation-from-density-to-geometry.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Score Function</h3>
+      <p>Explore detailed notes on score function.</p>
+      <a href="probabilistic-ml/score-function.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Score vs Density</h3>
+      <p>Explore detailed notes on score vs density.</p>
+      <a href="probabilistic-ml/score-vs-density.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Energy-Based Models</h3>
+      <p>Explore detailed notes on energy-based models.</p>
+      <a href="probabilistic-ml/energy-based-models.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Score Matching</h3>
+      <p>Explore detailed notes on score matching.</p>
+      <a href="probabilistic-ml/score-matching.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Denoising Score Matching</h3>
+      <p>Explore detailed notes on denoising score matching.</p>
+      <a href="probabilistic-ml/denoising-score-matching.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Applications of Score-Based Models</h3>
+      <p>Explore detailed notes on applications of score-based models.</p>
+      <a href="probabilistic-ml/applications-of-score-based-models.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>From Score to Sampling</h3>
+      <p>Explore detailed notes on from score to sampling.</p>
+      <a href="probabilistic-ml/from-score-to-sampling.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Conceptual Unification</h3>
+      <p>Explore detailed notes on conceptual unification.</p>
+      <a href="probabilistic-ml/conceptual-unification.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Diffusion as Time-Indexed Scores</h3>
+      <p>Explore detailed notes on diffusion as time-indexed scores.</p>
+      <a href="probabilistic-ml/diffusion-as-time-indexed-scores.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="/assets/card-tilt.js"></script>
+```

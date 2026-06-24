@@ -1,0 +1,189 @@
+---
+title: ""
+page-layout: custom
+---
+
+```{=html}
+<style>
+  .navbar::before {
+    background: transparent !important;
+  }
+</style>
+
+<!-- Three.js Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+<!-- WebGL Background Canvas -->
+<canvas id="bg-canvas" style="position: absolute; top: -10px; left: 0; z-index: -1; width: 100vw; height: calc(100vh + 10px); mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%); pointer-events: none;"></canvas>
+
+<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+
+  <div class="subject-hero">
+    <h1 class="hero-title" style="color: #fff;">Information Theory for Machine Learning</h1>
+    <p class="hero-subtitle">Quantifying uncertainty, information, and the distance between distributions.</p>
+    <p class="hero-disclaimer" style="color: rgba(255,255,255,0.7); font-style: italic; max-width: 600px; margin: 1rem auto 0 auto;">Note: This section focuses exclusively on concepts relevant to Machine Learning and barely scratches the deep canopy of pure information theory.</p>
+  </div>
+
+  <div class="subject-intro">
+    <p>
+      <strong>Information theory</strong> provides the mathematical foundation for measuring,
+      compressing, and transmitting data. At its core, it quantifies uncertainty and the amount of
+      information carried by random events. The key insight is that observing a less probable event
+      yields more information.
+    </p>
+    <p>
+      In practical applications, these concepts are fundamental to modern machine learning and
+      statistics. <em>Entropy</em> establishes the theoretical limits of data compression algorithms 
+      used in everyday file zipping and video streaming. When we build models, 
+      <em>cross-entropy</em> and the <em>Kullback&ndash;Leibler divergence</em> serve as the primary
+      loss functions for classification tasks, enabling neural networks to learn the difference 
+      between predicted probabilities and true labels.
+    </p>
+    <p>
+      Advanced measures like <em>f-divergences</em> and the <em>Wasserstein distance</em> offer 
+      powerful tools for comparing probability distributions, driving the optimization of Generative 
+      Adversarial Networks (GANs). In Bayesian machine learning, the <em>Evidence Lower Bound (ELBO)</em> 
+      makes Variational Inference computationally tractable, allowing us to approximate complex 
+      posterior distributions and train Variational Autoencoders (VAEs). Together, these principles 
+      form the rigorous backbone of modern probabilistic modeling and inference.
+    </p>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 4rem 0;">
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Core Information Measures</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Information Content</h3>
+      <p>Explore detailed notes on information content.</p>
+      <a href="information-theory/information-content.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Entropy</h3>
+      <p>Explore detailed notes on entropy.</p>
+      <a href="information-theory/entropy.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Mutual Information</h3>
+      <p>Explore detailed notes on mutual information.</p>
+      <a href="information-theory/mutual-information.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Cross-Entropy</h3>
+      <p>Explore detailed notes on cross-entropy.</p>
+      <a href="information-theory/cross-entropy.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Perplexity</h3>
+      <p>Explore detailed notes on perplexity.</p>
+      <a href="information-theory/perplexity.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Divergences and Distances</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>KL Divergence</h3>
+      <p>Explore detailed notes on kl divergence.</p>
+      <a href="information-theory/kl-divergence.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Jensen-Shannon Divergence</h3>
+      <p>Explore detailed notes on jensen-shannon divergence.</p>
+      <a href="information-theory/jensen-shannon-divergence.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>f-Divergence</h3>
+      <p>Explore detailed notes on f-divergence.</p>
+      <a href="information-theory/f-divergence.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Wasserstein Distance</h3>
+      <p>Explore detailed notes on wasserstein distance.</p>
+      <a href="information-theory/wasserstein-distance.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Statistical Information</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Fisher Information</h3>
+      <p>Explore detailed notes on fisher information.</p>
+      <a href="information-theory/fisher-information.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Variational Objectives</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Evidence Lower Bound (ELBO)</h3>
+      <p>Explore detailed notes on evidence lower bound (elbo).</p>
+      <a href="information-theory/evidence-lower-bound-elbo.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Markov Information Processes</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Markov Chain</h3>
+      <p>Explore detailed notes on markov chain.</p>
+      <a href="information-theory/markov-chain.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Stochastic Matrices and Markov Chains</h3>
+      <p>Explore detailed notes on stochastic matrices and markov chains.</p>
+      <a href="information-theory/stochastic-matrices-and-markov-chains.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Information-Theoretic Learning</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Information Bottleneck</h3>
+      <p>Explore detailed notes on information bottleneck.</p>
+      <a href="information-theory/information-bottleneck.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Evaluation Metrics for Ranking and Information Retrieval</h3>
+      <p>Explore detailed notes on evaluation metrics for ranking and information retrieval.</p>
+      <a href="information-theory/evaluation-metrics-for-ranking-and-information-retrieval.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+</div>
+<script src="/assets/bg-digital-rain.js"></script>
+<script src="/assets/card-tilt.js"></script>
+```

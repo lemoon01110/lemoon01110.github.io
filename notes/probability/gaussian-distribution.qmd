@@ -1,0 +1,5 @@
+---
+title: "Gaussian Distribution"
+---
+
+Content for Gaussian Distribution goes here.

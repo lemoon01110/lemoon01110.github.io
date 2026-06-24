@@ -1,0 +1,5 @@
+---
+title: "Mean Field Variational Inference"
+---
+
+Content for Mean Field Variational Inference goes here.

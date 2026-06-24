@@ -1,0 +1,60 @@
+---
+title: "Evaluation Metrics for Ranking and IR"
+toc: true
+toc-depth: 3
+---
+
+## Definition
+
+::: {.thm-box .thm-definition}
+### Definition: Precision and Recall at K
+For a ranking or information retrieval (IR) system, evaluating the top $K$ retrieved items is standard:
+
+**Precision@K (P@K)**: The proportion of relevant items among the top $K$ retrieved items:
+$$
+\text{P@K} = \frac{\text{Number of relevant items in top } K}{K}
+$$
+
+**Recall@K (R@K)**: The proportion of all relevant items that appear in the top $K$:
+$$
+\text{R@K} = \frac{\text{Number of relevant items in top } K}{\text{Total number of relevant items}}
+$$
+:::
+
+::: {.thm-box .thm-definition}
+### Definition: Mean Average Precision (MAP)
+**Average Precision (AP)** for a single query is the average of precision values computed at each position $k$ where a relevant item is found:
+$$
+\text{AP} = \frac{1}{|\text{Relevant}|} \sum_{k=1}^{K} \text{Precision@}k \cdot \mathbf{1}\{\text{item at position } k \text{ is relevant}\}
+$$
+
+**Mean Average Precision (MAP)** is the mean of Average Precision scores across $Q$ queries:
+$$
+\text{MAP} = \frac{1}{Q} \sum_{q=1}^{Q} \text{AP}_q
+$$
+:::
+
+## Intuition
+
+While precision and recall are useful, they do not care about **order**. A system that puts the relevant result at position #1 has the same Precision@10 as a system that puts it at position #10. 
+
+**MAP** naturally solves this. By averaging the precision *at every point a relevant item is found*, it heavily rewards systems that rank the relevant items near the very top. MAP balances both precision and recall while simultaneously taking the ranking order into account, making it the gold standard metric for search engines, recommendation systems, and object detection.
+
+## Practice Problems
+
+::: {.thm-box .thm-problem}
+### 1. Calculating Precision/Recall
+A search engine retrieves 8 documents for a query. The relevance labels (1 = relevant, 0 = irrelevant) in order are: $[1, 1, 0, 1, 0, 0, 1, 0]$. Compute Precision@3, Precision@5, Recall@3, and Recall@5.
+:::
+
+::: {.thm-box .thm-problem}
+### 2. Calculating AP
+Using the same sequence $[1, 1, 0, 1, 0, 0, 1, 0]$ and assuming there are exactly 4 relevant documents total in the entire corpus, calculate the Average Precision (AP).
+:::
+
+::: {.thm-box .thm-problem}
+### 3. Metric Comparison
+In information retrieval, explain why MAP is preferred over simple precision or recall for evaluating ranking systems. Give a theoretical example where two systems have the exact same precision and recall but vastly different MAP values.
+
+:::
+

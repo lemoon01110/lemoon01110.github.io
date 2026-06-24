@@ -1,0 +1,5 @@
+---
+title: "From Spectral Methods to Graph Neural Networks"
+---
+
+Content for From Spectral Methods to Graph Neural Networks goes here.

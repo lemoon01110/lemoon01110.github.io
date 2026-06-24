@@ -1,0 +1,258 @@
+---
+title: ""
+page-layout: custom
+---
+
+```{=html}
+<style>
+  .navbar::before {
+    background: transparent !important;
+  }
+</style>
+
+<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+
+  <div class="subject-hero">
+    <h1 class="hero-title" style="color: #fff;">Matrix Decompositions for Machine Learning</h1>
+    <p class="hero-subtitle">Comprehensive mathematical foundations and techniques.</p>
+  </div>
+
+  <div class="subject-intro">
+    <p>
+      Select a topic from the sections below to explore detailed derivations, proofs, and
+      applications in modern machine learning.
+    </p>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 4rem 0;">
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">QR Methods</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Rank: Advanced Properties and Numerical Computation</h3>
+      <p>Explore detailed notes on rank: advanced properties and numerical computation.</p>
+      <a href="matrix-decompositions/rank-advanced-properties-and-numerical-computation.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Numerical Rank Computation</h3>
+      <p>Explore detailed notes on numerical rank computation.</p>
+      <a href="matrix-decompositions/numerical-rank-computation.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Generalized Upper Triangular Matrices</h3>
+      <p>Explore detailed notes on generalized upper triangular matrices.</p>
+      <a href="matrix-decompositions/generalized-upper-triangular-matrices.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>QR Decomposition</h3>
+      <p>Explore detailed notes on qr decomposition.</p>
+      <a href="matrix-decompositions/qr-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Gram-Schmidt Algorithm for QR Decomposition</h3>
+      <p>Explore detailed notes on gram-schmidt algorithm for qr decomposition.</p>
+      <a href="matrix-decompositions/gram-schmidt-algorithm-for-qr-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Householder Matrix and Householder Transformation</h3>
+      <p>Explore detailed notes on householder matrix and householder transformation.</p>
+      <a href="matrix-decompositions/householder-matrix-and-householder-transformation.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Rank-1 Perturbation Theory</h3>
+      <p>Explore detailed notes on rank-1 perturbation theory.</p>
+      <a href="matrix-decompositions/rank-1-perturbation-theory.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">LU Methods</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>Triangular Matrices</h3>
+      <p>Explore detailed notes on triangular matrices.</p>
+      <a href="matrix-decompositions/triangular-matrices.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Trace</h3>
+      <p>Explore detailed notes on trace.</p>
+      <a href="matrix-decompositions/trace.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Determinant</h3>
+      <p>Explore detailed notes on determinant.</p>
+      <a href="matrix-decompositions/determinant.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>LU Decomposition</h3>
+      <p>Explore detailed notes on lu decomposition.</p>
+      <a href="matrix-decompositions/lu-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>PLU Decomposition</h3>
+      <p>Explore detailed notes on plu decomposition.</p>
+      <a href="matrix-decompositions/plu-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>LDU Decomposition</h3>
+      <p>Explore detailed notes on ldu decomposition.</p>
+      <a href="matrix-decompositions/ldu-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Singular Value Decomposition</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>SVD Formulae</h3>
+      <p>Explore detailed notes on svd formulae.</p>
+      <a href="matrix-decompositions/svd-formulae.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Thin, Compact and Truncated Forms</h3>
+      <p>Explore detailed notes on thin, compact and truncated forms.</p>
+      <a href="matrix-decompositions/thin-compact-and-truncated-forms.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Polar Decomposition</h3>
+      <p>Explore detailed notes on polar decomposition.</p>
+      <a href="matrix-decompositions/polar-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Four Subspaces via SVD</h3>
+      <p>Explore detailed notes on four subspaces via svd.</p>
+      <a href="matrix-decompositions/four-subspaces-via-svd.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Linear Equations</h3>
+      <p>Explore detailed notes on linear equations.</p>
+      <a href="matrix-decompositions/linear-equations.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Moore-Penrose Pseudoinverse</h3>
+      <p>Explore detailed notes on moore-penrose pseudoinverse.</p>
+      <a href="matrix-decompositions/moore-penrose-pseudoinverse.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Energy from Singular Values</h3>
+      <p>Explore detailed notes on energy from singular values.</p>
+      <a href="matrix-decompositions/energy-from-singular-values.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Truncated SVD</h3>
+      <p>Explore detailed notes on truncated svd.</p>
+      <a href="matrix-decompositions/truncated-svd.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Randomized SVD</h3>
+      <p>Explore detailed notes on randomized svd.</p>
+      <a href="matrix-decompositions/randomized-svd.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Latent Representation and Embedding</h3>
+      <p>Explore detailed notes on latent representation and embedding.</p>
+      <a href="matrix-decompositions/latent-representation-and-embedding.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Transformation Perspective</h3>
+      <p>Explore detailed notes on transformation perspective.</p>
+      <a href="matrix-decompositions/transformation-perspective.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Advanced Matrix Factorizations</h2>
+  </div>
+
+  <div class="glass-grid">
+
+    <div class="glass-card">
+      <h3>LDL Decomposition</h3>
+      <p>Explore detailed notes on ldl decomposition.</p>
+      <a href="matrix-decompositions/ldl-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Rank-Revealing QR</h3>
+      <p>Explore detailed notes on rank-revealing qr.</p>
+      <a href="matrix-decompositions/rank-revealing-qr.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Interpolative Decomposition</h3>
+      <p>Explore detailed notes on interpolative decomposition.</p>
+      <a href="matrix-decompositions/interpolative-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Skeleton Decomposition (CUR)</h3>
+      <p>Explore detailed notes on skeleton decomposition (cur).</p>
+      <a href="matrix-decompositions/skeleton-decomposition-cur.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Non-Negative Matrix Factorization</h3>
+      <p>Explore detailed notes on non-negative matrix factorization.</p>
+      <a href="matrix-decompositions/non-negative-matrix-factorization.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>LQ Decomposition</h3>
+      <p>Explore detailed notes on lq decomposition.</p>
+      <a href="matrix-decompositions/lq-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Schur Decomposition</h3>
+      <p>Explore detailed notes on schur decomposition.</p>
+      <a href="matrix-decompositions/schur-decomposition.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Low-Rank Matrix Factorization</h3>
+      <p>Explore detailed notes on low-rank matrix factorization.</p>
+      <a href="matrix-decompositions/low-rank-matrix-factorization.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Tensor Decompositions</h3>
+      <p>Explore detailed notes on tensor decompositions.</p>
+      <a href="matrix-decompositions/tensor-decompositions.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="/assets/card-tilt.js"></script>
+```
