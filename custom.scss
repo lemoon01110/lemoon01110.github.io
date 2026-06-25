@@ -707,8 +707,27 @@ details.solution-toggle {
 }
 
 /* Mermaid Dark Mode Visibility Overrides */
-.mermaid {
+.mermaid, .mermaid-js {
   svg {
     background: transparent !important;
+  }
+  
+  /* Reset Quarto's typography bleeding into Mermaid */
+  p {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Fix the "two sizes highlight" on edge labels */
+  .edgeLabel {
+    background-color: transparent !important;
+    
+    span.edgeLabel, p {
+      background-color: #1f242c !important;
+      color: #c9d1d9 !important;
+      border-radius: 4px;
+      padding: 1px 4px !important;
+      display: inline-block;
+    }
   }
 }
