@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8dbc1d288d413837968aca54e6fa7ab1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-93f351f2e2ef7d8a701b315d49e054c2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -53,6 +53,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="dark">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -165,13 +169,28 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-concept-of-cross-entropy" id="toc-the-concept-of-cross-entropy" class="nav-link active" data-scroll-target="#the-concept-of-cross-entropy">The Concept of Cross-Entropy</a></li>
-  <li><a href="#mathematical-definition" id="toc-mathematical-definition" class="nav-link" data-scroll-target="#mathematical-definition">Mathematical Definition</a></li>
-  <li><a href="#relationship-to-kl-divergence" id="toc-relationship-to-kl-divergence" class="nav-link" data-scroll-target="#relationship-to-kl-divergence">Relationship to KL Divergence</a></li>
-  <li><a href="#machine-learning-context-cross-entropy-loss" id="toc-machine-learning-context-cross-entropy-loss" class="nav-link" data-scroll-target="#machine-learning-context-cross-entropy-loss">Machine Learning Context: Cross-Entropy Loss</a></li>
-  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">Practice Problems</a>
+  <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link active" data-scroll-target="#sec-definitions">1. Definitions</a>
   <ul class="collapse">
-  <li><a href="#problem-1-binary-cross-entropy" id="toc-problem-1-binary-cross-entropy" class="nav-link" data-scroll-target="#problem-1-binary-cross-entropy">Problem 1: Binary Cross-Entropy</a></li>
+  <li><a href="#definition-cross-entropy" id="toc-definition-cross-entropy" class="nav-link" data-scroll-target="#definition-cross-entropy">Definition: Cross-Entropy</a></li>
+  </ul></li>
+  <li><a href="#sec-intuitions" id="toc-sec-intuitions" class="nav-link" data-scroll-target="#sec-intuitions">2. Intuitions &amp; Remarks</a>
+  <ul class="collapse">
+  <li><a href="#the-cost-of-being-wrong" id="toc-the-cost-of-being-wrong" class="nav-link" data-scroll-target="#the-cost-of-being-wrong">The Cost of Being Wrong</a></li>
+  </ul></li>
+  <li><a href="#sec-properties" id="toc-sec-properties" class="nav-link" data-scroll-target="#sec-properties">3. Formulas &amp; Key Properties</a>
+  <ul class="collapse">
+  <li><a href="#key-properties-of-cross-entropy" id="toc-key-properties-of-cross-entropy" class="nav-link" data-scroll-target="#key-properties-of-cross-entropy">Key Properties of Cross-Entropy</a></li>
+  </ul></li>
+  <li><a href="#sec-visualizations" id="toc-sec-visualizations" class="nav-link" data-scroll-target="#sec-visualizations">4. Graphs &amp; Visualizations</a></li>
+  <li><a href="#sec-relations" id="toc-sec-relations" class="nav-link" data-scroll-target="#sec-relations">5. Relations to Other Fields</a>
+  <ul class="collapse">
+  <li><a href="#machine-learning-context-cross-entropy-loss" id="toc-machine-learning-context-cross-entropy-loss" class="nav-link" data-scroll-target="#machine-learning-context-cross-entropy-loss">Machine Learning Context: Cross-Entropy Loss</a></li>
+  </ul></li>
+  <li><a href="#sec-simulation" id="toc-sec-simulation" class="nav-link" data-scroll-target="#sec-simulation">6. Interactive Simulation</a></li>
+  <li><a href="#sec-problems" id="toc-sec-problems" class="nav-link" data-scroll-target="#sec-problems">7. Practice Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link" data-scroll-target="#problem-1">Problem 1: Decomposition of Cross-Entropy</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2: Binary Cross-Entropy Penalty Explosion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -182,6 +201,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Cross-Entropy</h1>
+<p class="subtitle lead">Quantifying the inefficiency of using a wrong assumption to predict a true distribution.</p>
 </div>
 
 
@@ -198,64 +218,295 @@ window.Quarto = {
 </header>
 
 
-<section id="the-concept-of-cross-entropy" class="level3 thm-box thm-remark">
-<h3 class="anchored" data-anchor-id="the-concept-of-cross-entropy">The Concept of Cross-Entropy</h3>
+<section id="sec-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-definitions">1. Definitions</h2>
+<section id="definition-cross-entropy" class="level3 thm-box thm-definition">
+<h3 class="anchored" data-anchor-id="definition-cross-entropy">Definition: Cross-Entropy</h3>
+<p>For discrete distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> defined over the same sample space <span class="math inline">\(\mathcal{X}\)</span>, the cross-entropy <span class="math inline">\(H(P, Q)\)</span> is defined as the expected surprisal of the estimated distribution <span class="math inline">\(Q\)</span>, evaluated under the true distribution <span class="math inline">\(P\)</span>:</p>
+<p><span class="math display">\[
+H(P, Q) = \mathbb{E}_{x \sim P} [ -\log_2 Q(x) ] = -\sum_{x \in \mathcal{X}} P(x) \log_2 Q(x)
+\]</span></p>
+<p>For continuous distributions with probability density functions <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>, the sum is replaced by an integral: <span class="math display">\[
+H(P, Q) = -\int_{\mathcal{X}} p(x) \ln q(x) \, dx
+\]</span></p>
+</section>
+<hr>
+</section>
+<section id="sec-intuitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-intuitions">2. Intuitions &amp; Remarks</h2>
+<section id="the-cost-of-being-wrong" class="level3 thm-box thm-remark">
+<h3 class="anchored" data-anchor-id="the-cost-of-being-wrong">The Cost of Being Wrong</h3>
 <p>In information theory, <strong>Cross-Entropy</strong> measures the average number of bits needed to identify an event drawn from a true probability distribution <span class="math inline">\(P\)</span>, if a coding scheme is used that is optimized for an estimated (or unnatural) probability distribution <span class="math inline">\(Q\)</span>, rather than the true distribution <span class="math inline">\(P\)</span>.</p>
-<p>Intuitively, if you believe the weather follows distribution <span class="math inline">\(Q\)</span> (e.g., mostly sunny), you will design a communication protocol that assigns short codes to “sunny”. If the <em>actual</em> weather follows distribution <span class="math inline">\(P\)</span> (e.g., mostly rainy), your protocol will be highly inefficient. Cross-entropy quantifies this exact inefficiency.</p>
+<p>Intuitively, if you believe the weather follows distribution <span class="math inline">\(Q\)</span> (e.g., mostly sunny), you will design a communication protocol that assigns very short codes to the message “sunny”. If the <em>actual</em> weather follows distribution <span class="math inline">\(P\)</span> (e.g., mostly rainy), your protocol will be highly inefficient because you will frequently have to transmit the long, complex codes for “rainy”.</p>
+<p>Cross-entropy quantifies this exact inefficiency. It asks: “How many bits on average do I have to transmit if I optimize for <span class="math inline">\(Q\)</span>, but reality actually follows <span class="math inline">\(P\)</span>?”</p>
 </section>
-<section id="mathematical-definition" class="level3 thm-box thm-definition">
-<h3 class="anchored" data-anchor-id="mathematical-definition">Mathematical Definition</h3>
-<p>For discrete distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> defined over the same sample space <span class="math inline">\(\mathcal{X}\)</span>, the cross-entropy <span class="math inline">\(H(P, Q)\)</span> is defined as the expected surprisal of <span class="math inline">\(Q\)</span> relative to the true distribution <span class="math inline">\(P\)</span>:</p>
-<p><span class="math display">\[
-H(P, Q) = \mathbb{E}_{x \sim P} [ -\log Q(x) ] = -\sum_{x \in \mathcal{X}} P(x) \log Q(x)
+<hr>
+</section>
+<section id="sec-properties" class="level2">
+<h2 class="anchored" data-anchor-id="sec-properties">3. Formulas &amp; Key Properties</h2>
+<section id="key-properties-of-cross-entropy" class="level3 thm-box thm-theorem">
+<h3 class="anchored" data-anchor-id="key-properties-of-cross-entropy">Key Properties of Cross-Entropy</h3>
+<section id="non-symmetric" class="level4">
+<h4 class="anchored" data-anchor-id="non-symmetric">1. Non-Symmetric</h4>
+<p>Cross-entropy is asymmetric. The cost of assuming <span class="math inline">\(Q\)</span> when reality is <span class="math inline">\(P\)</span> is completely different from assuming <span class="math inline">\(P\)</span> when reality is <span class="math inline">\(Q\)</span>. <span class="math display">\[
+H(P, Q) \neq H(Q, P)
 \]</span></p>
-<p>For continuous distributions with probability density functions <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>: <span class="math display">\[
-H(P, Q) = -\int_{\mathcal{X}} p(x) \log q(x) \, dx
-\]</span></p>
-<section id="important-properties" class="level4">
-<h4 class="anchored" data-anchor-id="important-properties">Important Properties</h4>
-<ol type="1">
-<li><strong>Non-Symmetric</strong>: <span class="math inline">\(H(P, Q) \neq H(Q, P)\)</span>.</li>
-<li><strong>Lower Bound</strong>: Cross-entropy is bounded below by the true entropy of <span class="math inline">\(P\)</span>. <span class="math display">\[ H(P, Q) \ge H(P) \]</span> Equality holds if and only if <span class="math inline">\(P = Q\)</span>.</li>
-</ol>
 </section>
+<section id="lower-bound-gibbs-inequality" class="level4">
+<h4 class="anchored" data-anchor-id="lower-bound-gibbs-inequality">2. Lower Bound (Gibbs’ Inequality)</h4>
+<p>Cross-entropy is strictly bounded below by the true entropy of the ground truth distribution <span class="math inline">\(P\)</span>. <span class="math display">\[
+H(P, Q) \ge H(P)
+\]</span> Equality holds if and only if your estimation perfectly matches reality (<span class="math inline">\(P = Q\)</span>).</p>
 </section>
-<section id="relationship-to-kl-divergence" class="level3 thm-box thm-theorem">
-<h3 class="anchored" data-anchor-id="relationship-to-kl-divergence">Relationship to KL Divergence</h3>
-<p>Cross-entropy is deeply connected to Shannon Entropy and the Kullback-Leibler (KL) Divergence. We can decompose cross-entropy as:</p>
-<p><span class="math display">\[
+<section id="relationship-to-kl-divergence" class="level4">
+<h4 class="anchored" data-anchor-id="relationship-to-kl-divergence">3. Relationship to KL Divergence</h4>
+<p>Cross-entropy is deeply connected to Shannon Entropy and the Kullback-Leibler (KL) Divergence via a profound decomposition: <span class="math display">\[
 H(P, Q) = H(P) + D_{KL}(P \| Q)
-\]</span></p>
-<p>This equation is deeply profound. It states that the cost of using the wrong distribution <span class="math inline">\(Q\)</span> (Cross-Entropy) is exactly equal to the optimal theoretical cost if you knew the true distribution <span class="math inline">\(P\)</span> (Shannon Entropy), plus the “penalty” or “distance” for your estimation error (KL Divergence).</p>
+\]</span> This equation states that the total cost of using the wrong distribution <span class="math inline">\(Q\)</span> is exactly equal to the irreducible, theoretical minimum cost if you knew the true distribution <span class="math inline">\(P\)</span> (which is <span class="math inline">\(H(P)\)</span>), plus a “penalty gap” for your estimation error (which is the KL Divergence).</p>
 </section>
+</section>
+<hr>
+</section>
+<section id="sec-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-visualizations">4. Graphs &amp; Visualizations</h2>
+<p>The relationship expressed by <span class="math inline">\(H(P, Q) = H(P) + D_{KL}(P \| Q)\)</span> can be visualized through a simple decomposition of the penalty.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {'theme': 'dark'}}%%
+graph TD
+    P[True Distribution P\n(Reality)] --&gt;|Irreducible Uncertainty| H_P(Entropy H)
+    Q[Estimated Distribution Q\n(Assumption)] -.-&gt;|Estimation Error| KL(KL Divergence Penalty)
+    P -.-&gt;|Compared against| KL
+    
+    H_P --&gt; CE{Cross-Entropy H P,Q}
+    KL --&gt; CE
+    
+    style P fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff
+    style Q fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff
+    style H_P fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style KL fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style CE fill:#161b22,stroke:#f59e0b,stroke-width:2px,color:#fff
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-relations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-relations">5. Relations to Other Fields</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Interpretation / Mapping</th>
+<th style="text-align: left;">Application Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Deep Learning</strong></td>
+<td style="text-align: left;">The most universally used loss function for classification tasks.</td>
+<td style="text-align: left;">Training neural networks</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Information Theory</strong></td>
+<td style="text-align: left;">The length of messages encoded with a suboptimal codebook.</td>
+<td style="text-align: left;">Kraft-McMillan inequality</td>
+</tr>
+</tbody>
+</table>
 <section id="machine-learning-context-cross-entropy-loss" class="level3 thm-box thm-example">
 <h3 class="anchored" data-anchor-id="machine-learning-context-cross-entropy-loss">Machine Learning Context: Cross-Entropy Loss</h3>
-<p>Cross-Entropy is arguably the most famous and widely used loss function in all of Deep Learning, particularly for classification tasks.</p>
-<section id="why-do-we-use-it" class="level4">
-<h4 class="anchored" data-anchor-id="why-do-we-use-it">Why do we use it?</h4>
 <p>When training a neural network classifier, we are trying to predict the true label distribution <span class="math inline">\(P\)</span> using the model’s predicted distribution <span class="math inline">\(Q\)</span>. - The true distribution <span class="math inline">\(P\)</span> for a single sample is typically a <strong>one-hot encoded vector</strong> (e.g., <span class="math inline">\([0, 1, 0, 0]\)</span> where the target class has probability 1). - The predicted distribution <span class="math inline">\(Q\)</span> is the output of the <strong>Softmax function</strong> (e.g., <span class="math inline">\([0.1, 0.7, 0.15, 0.05]\)</span>).</p>
-<p>If we minimize the Cross-Entropy <span class="math inline">\(H(P, Q)\)</span>, we are pushing <span class="math inline">\(Q\)</span> to be as close to <span class="math inline">\(P\)</span> as possible.</p>
-</section>
+<p>If we minimize the Cross-Entropy <span class="math inline">\(H(P, Q)\)</span>, we push <span class="math inline">\(Q\)</span> to be as close to <span class="math inline">\(P\)</span> as possible.</p>
 <section id="why-is-hp-ignored-in-practice" class="level4">
 <h4 class="anchored" data-anchor-id="why-is-hp-ignored-in-practice">Why is <span class="math inline">\(H(P)\)</span> ignored in practice?</h4>
-<p>Recall the decomposition <span class="math inline">\(H(P, Q) = H(P) + D_{KL}(P \| Q)\)</span>. In a classification task, the true labels <span class="math inline">\(P\)</span> are deterministic (one-hot), meaning the true entropy <span class="math inline">\(H(P)\)</span> is exactly <span class="math inline">\(0\)</span>. Therefore, minimizing Cross-Entropy is mathematically identical to minimizing the KL Divergence between the predictions and the ground truth.</p>
+<p>Recall the decomposition <span class="math inline">\(H(P, Q) = H(P) + D_{KL}(P \| Q)\)</span>. In a classification task, the true labels <span class="math inline">\(P\)</span> are deterministic (one-hot), meaning the true entropy <span class="math inline">\(H(P)\)</span> is exactly <span class="math inline">\(0\)</span>. Therefore, minimizing Cross-Entropy is mathematically identical to minimizing the KL Divergence between the predictions and the ground truth!</p>
 </section>
-<section id="binary-cross-entropy-bce" class="level4">
-<h4 class="anchored" data-anchor-id="binary-cross-entropy-bce">Binary Cross-Entropy (BCE)</h4>
-<p>For binary classification tasks where <span class="math inline">\(y \in \{0, 1\}\)</span> and the network predicts <span class="math inline">\(p = \hat{y}\)</span>, the formula simplifies entirely:</p>
-<p><span class="math display">\[
-\text{BCE} = - \big( y \log(p) + (1 - y) \log(1 - p) \big)
+</section>
+<hr>
+</section>
+<section id="sec-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-simulation">6. Interactive Simulation</h2>
+<div class="simulation-card" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
+  <h4 style="margin-top: 0; color: #fff; font-family: 'Outfit', sans-serif;" class="anchored">Interactive Simulation: Binary Cross-Entropy Loss</h4>
+  <p style="color: #a0a2b6; font-size: 0.95rem; margin-bottom: 1.5rem;">
+    Assume the true ground-truth label is $y=1$ (deterministic, $H(P)=0$). Drag the slider to change the model's predicted probability $q$. Watch how the Cross-Entropy loss explodes to infinity as the model becomes highly confident but totally wrong (predicting $q \approx 0$).
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
+    <!-- SVG Chart -->
+    <svg id="ce-chart" viewbox="0 0 500 250" style="width: 100%; height: auto; background: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+      <!-- Grid lines -->
+      <line x1="50" y1="200" x2="450" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1"></line>
+      <line x1="50" y1="30" x2="50" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1"></line>
+
+      <!-- Axis Labels -->
+      <text x="250" y="230" fill="#8b949e" font-size="12" text-anchor="middle" font-family="Outfit">Predicted Probability q</text>
+      <text x="20" y="115" fill="#8b949e" font-size="12" text-anchor="middle" transform="rotate(-90 20 115)" font-family="Outfit">Cross-Entropy Loss</text>
+
+      <text x="50" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.0</text>
+      <text x="250" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.5</text>
+      <text x="450" y="215" fill="#6e7681" font-size="10" text-anchor="middle">1.0</text>
+
+      <text x="40" y="203" fill="#6e7681" font-size="10" text-anchor="end">0</text>
+      <text x="40" y="115" fill="#6e7681" font-size="10" text-anchor="end">3</text>
+      <text x="40" y="34" fill="#6e7681" font-size="10" text-anchor="end">6</text>
+
+      <!-- Curve path -->
+      <path id="ce-curve" d="" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.8"></path>
+
+      <!-- Current selection markers -->
+      <line id="ce-h-guide" x1="50" y1="0" x2="0" y2="0" stroke="rgba(245, 158, 11, 0.3)" stroke-dasharray="4,4"></line>
+      <line id="ce-v-guide" x1="0" y1="200" x2="0" y2="0" stroke="rgba(245, 158, 11, 0.3)" stroke-dasharray="4,4"></line>
+      <circle id="ce-point" cx="0" cy="0" r="6" fill="#f59e0b" filter="drop-shadow(0 0 4px #f59e0b)"></circle>
+    </svg>
+
+    <!-- Controls and Readout -->
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; background: rgba(0,0,0,0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label for="ce-slider" style="color: #c9d1d9; font-size: 0.85rem; font-weight: 600; font-family: 'Outfit';">Set Predicted Prob q:</label>
+        <input id="ce-slider" type="range" min="0.01" max="0.99" step="0.01" value="0.5" style="width: 100%; accent-color: #f59e0b; cursor: pointer;">
+      </div>
+      <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.4; color: #fff;">
+        <div>q = <span id="ce-val-q" style="color: #60a5fa; font-weight: 700;">0.500</span></div>
+        <div>Loss = <span id="ce-val-loss" style="color: #f59e0b; font-weight: 700;">1.000</span> nats</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slider = document.getElementById("ce-slider");
+      const valQ = document.getElementById("ce-val-q");
+      const valLoss = document.getElementById("ce-val-loss");
+      const path = document.getElementById("ce-curve");
+      const point = document.getElementById("ce-point");
+      const hGuide = document.getElementById("ce-h-guide");
+      const vGuide = document.getElementById("ce-v-guide");
+
+      const width = 400; // 450 - 50
+      const height = 170; // 200 - 30
+
+      // BCE with true y=1, so Loss = -ln(q)
+      function CE(q) {
+          if (q <= 0) return 10; // Cap for visualization
+          return -Math.log(q); // Use nats for ML contexts
+      }
+
+      // Generate SVG path for the curve
+      let d = "";
+      for (let q = 0.005; q <= 1.0; q += 0.005) {
+        const x = 50 + q * width;
+        const h = CE(q);
+        const y = 200 - (h / 6.0) * height; // Scale up to 6 nats
+        d += (q === 0.005 ? "M" : "L") + `${x} ${y}`;
+      }
+      path.setAttribute("d", d);
+
+      function update() {
+        const q = parseFloat(slider.value);
+        const h = CE(q);
+
+        valQ.textContent = q.toFixed(3);
+        valLoss.textContent = h.toFixed(3);
+
+        const x = 50 + q * width;
+        const y = 200 - (h / 6.0) * height;
+
+        point.setAttribute("cx", x);
+        point.setAttribute("cy", y);
+
+        hGuide.setAttribute("x1", 50);
+        hGuide.setAttribute("y1", y);
+        hGuide.setAttribute("x2", x);
+        hGuide.setAttribute("y2", y);
+
+        vGuide.setAttribute("x1", x);
+        vGuide.setAttribute("y1", 200);
+        vGuide.setAttribute("x2", x);
+        vGuide.setAttribute("y2", y);
+      }
+
+      slider.addEventListener("input", update);
+      update();
+    });
+  </script>
+</div>
+<hr>
+</section>
+<section id="sec-problems" class="level2">
+<h2 class="anchored" data-anchor-id="sec-problems">7. Practice Problems</h2>
+<section id="problem-1" class="level3 thm-box thm-problem">
+<h3 class="thm-box thm-problem anchored" data-anchor-id="problem-1">Problem 1: Decomposition of Cross-Entropy</h3>
+<p>Mathematically derive the decomposition <span class="math inline">\(H(P, Q) = H(P) + D_{KL}(P \| Q)\)</span> from the base definition of Cross-Entropy. <em>(Hint: Use the definition of KL Divergence <span class="math inline">\(D_{KL}(P \| Q) = \sum P(x) \log \frac{P(x)}{Q(x)}\)</span>)</em>.</p>
+<details class="solution-toggle">
+<summary>
+Reveal Solution to Problem 1
+</summary>
+<div class="solution-body">
+<div class="thm-box thm-solution">
+<div class="solution-heading">
+Solution
+</div>
+<p>Starting from the definition of KL Divergence: <span class="math display">\[
+\begin{aligned}
+D_{KL}(P \| Q) &amp;= \sum_{x \in \mathcal{X}} P(x) \log \left( \frac{P(x)}{Q(x)} \right) \\
+&amp;= \sum_{x \in \mathcal{X}} P(x) \big( \log P(x) - \log Q(x) \big) \\
+&amp;= \sum_{x \in \mathcal{X}} P(x) \log P(x) - \sum_{x \in \mathcal{X}} P(x) \log Q(x)
+\end{aligned}
 \]</span></p>
+<p>Notice that the first term is exactly the negative entropy of <span class="math inline">\(P\)</span>, and the second term is the positive Cross-Entropy <span class="math inline">\(H(P, Q)\)</span>: <span class="math display">\[
+D_{KL}(P \| Q) = -H(P) + H(P, Q)
+\]</span></p>
+<p>Rearranging the terms, we get the fundamental relationship: <span class="math display">\[
+H(P, Q) = H(P) + D_{KL}(P \| Q)
+\]</span></p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</div>
+</div>
+</details>
 </section>
-</section>
-<section id="practice-problems" class="level2">
-<h2 class="anchored" data-anchor-id="practice-problems">Practice Problems</h2>
-<section id="problem-1-binary-cross-entropy" class="level3 thm-box thm-problem">
-<h3 class="anchored" data-anchor-id="problem-1-binary-cross-entropy">Problem 1: Binary Cross-Entropy</h3>
-<p>Calculate the Binary Cross-Entropy loss for a single data point where the true label is <span class="math inline">\(y=1\)</span> and the model’s predicted probability is <span class="math inline">\(p=0.01\)</span>. Why does the loss become so massive?</p>
-</section>
+<section id="problem-2" class="level3 thm-box thm-problem">
+<h3 class="thm-box thm-problem anchored" data-anchor-id="problem-2">Problem 2: Binary Cross-Entropy Penalty Explosion</h3>
+<p>For a binary classification task, the Binary Cross-Entropy (BCE) formula simplifies to: <span class="math display">\[
+\text{BCE} = - \big( y \ln(p) + (1 - y) \ln(1 - p) \big)
+\]</span> Calculate the BCE loss for a single data point where the true label is <span class="math inline">\(y=1\)</span> and the model’s predicted probability is <span class="math inline">\(p=0.001\)</span>. Why does the loss become so massive compared to a wrong but less confident prediction (e.g.&nbsp;<span class="math inline">\(p=0.4\)</span>)?</p>
+<details class="solution-toggle">
+<summary>
+Reveal Solution to Problem 2
+</summary>
+<div class="solution-body">
+<div class="thm-box thm-solution">
+<div class="solution-heading">
+Solution
+</div>
+<p>If <span class="math inline">\(y = 1\)</span>, the second term <span class="math inline">\((1 - y)\)</span> becomes zero, completely eliminating the <span class="math inline">\(\ln(1-p)\)</span> term. The formula simplifies to: <span class="math display">\[
+\text{BCE} = -\ln(p)
+\]</span></p>
+<p><strong>For <span class="math inline">\(p = 0.4\)</span> (Wrong, but not confidently wrong):</strong> <span class="math display">\[
+\text{BCE} = -\ln(0.4) \approx 0.916 \text{ nats}
+\]</span></p>
+<p><strong>For <span class="math inline">\(p = 0.001\)</span> (Highly confident, but completely wrong):</strong> <span class="math display">\[
+\text{BCE} = -\ln(0.001) \approx 6.907 \text{ nats}
+\]</span></p>
+<p>The loss is over 7 times higher! The logarithmic nature of the loss function massively penalizes a model that is <em>confidently wrong</em>. As the probability <span class="math inline">\(p\)</span> approaches exactly <span class="math inline">\(0\)</span> for a true class, the loss approaches positive infinity (<span class="math inline">\(\lim_{p \to 0} -\ln(p) = \infty\)</span>). This asymmetric explosion forces the model to heavily adjust its weights to never guarantee an incorrect prediction.</p>
+</div>
+</div>
+</details>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

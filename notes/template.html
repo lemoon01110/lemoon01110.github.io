@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8dbc1d288d413837968aca54e6fa7ab1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-93f351f2e2ef7d8a701b315d49e054c2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -53,6 +53,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="dark">
 <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
@@ -168,25 +169,25 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#definitions" id="toc-definitions" class="nav-link active" data-scroll-target="#definitions">1. Definitions</a>
+  <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link active" data-scroll-target="#sec-definitions">1. Definitions</a>
   <ul class="collapse">
   <li><a href="#definition-concept-name" id="toc-definition-concept-name" class="nav-link" data-scroll-target="#definition-concept-name">Definition: [Concept Name]</a></li>
   </ul></li>
-  <li><a href="#intuitions-remarks" id="toc-intuitions-remarks" class="nav-link" data-scroll-target="#intuitions-remarks">2. Intuitions &amp; Remarks</a>
+  <li><a href="#sec-intuitions" id="toc-sec-intuitions" class="nav-link" data-scroll-target="#sec-intuitions">2. Intuitions &amp; Remarks</a>
   <ul class="collapse">
   <li><a href="#physical-intuition" id="toc-physical-intuition" class="nav-link" data-scroll-target="#physical-intuition">Physical Intuition</a></li>
   </ul></li>
-  <li><a href="#formulas-key-properties" id="toc-formulas-key-properties" class="nav-link" data-scroll-target="#formulas-key-properties">3. Formulas &amp; Key Properties</a>
+  <li><a href="#sec-properties" id="toc-sec-properties" class="nav-link" data-scroll-target="#sec-properties">3. Formulas &amp; Key Properties</a>
   <ul class="collapse">
   <li><a href="#theorem-additivity-and-non-negativity" id="toc-theorem-additivity-and-non-negativity" class="nav-link" data-scroll-target="#theorem-additivity-and-non-negativity">Theorem: Additivity and Non-Negativity</a></li>
   </ul></li>
-  <li><a href="#graphs-visualizations" id="toc-graphs-visualizations" class="nav-link" data-scroll-target="#graphs-visualizations">4. Graphs &amp; Visualizations</a></li>
-  <li><a href="#relations-to-other-fields" id="toc-relations-to-other-fields" class="nav-link" data-scroll-target="#relations-to-other-fields">5. Relations to Other Fields</a></li>
-  <li><a href="#interactive-simulation" id="toc-interactive-simulation" class="nav-link" data-scroll-target="#interactive-simulation">6. Interactive Simulation</a></li>
-  <li><a href="#practice-problems-with-collapsible-solutions" id="toc-practice-problems-with-collapsible-solutions" class="nav-link" data-scroll-target="#practice-problems-with-collapsible-solutions">7. Practice Problems with Collapsible Solutions</a>
+  <li><a href="#sec-visualizations" id="toc-sec-visualizations" class="nav-link" data-scroll-target="#sec-visualizations">4. Graphs &amp; Visualizations</a></li>
+  <li><a href="#sec-relations" id="toc-sec-relations" class="nav-link" data-scroll-target="#sec-relations">5. Relations to Other Fields</a></li>
+  <li><a href="#sec-simulation" id="toc-sec-simulation" class="nav-link" data-scroll-target="#sec-simulation">6. Interactive Simulation</a></li>
+  <li><a href="#sec-problems" id="toc-sec-problems" class="nav-link" data-scroll-target="#sec-problems">7. Practice Problems with Collapsible Solutions</a>
   <ul class="collapse">
-  <li><a href="#problem-1-basic-derivation" id="toc-problem-1-basic-derivation" class="nav-link" data-scroll-target="#problem-1-basic-derivation">Problem 1: Basic Derivation</a></li>
-  <li><a href="#problem-2-applied-metric" id="toc-problem-2-applied-metric" class="nav-link" data-scroll-target="#problem-2-applied-metric">Problem 2: Applied Metric</a></li>
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link" data-scroll-target="#problem-1">Problem 1: Basic Derivation</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2: Applied Metric</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -215,14 +216,11 @@ window.Quarto = {
 
 
 <p>Welcome to the <strong>Note Template &amp; Blueprint</strong>. This document serves as a layout and UI reference for creating new notes. By copying this structure, note creators ensure that definitions, equations, diagrams, interactive components, and problems render in a unified, premium dark theme.</p>
-<ul>
-<li>Jump straight to <a href="#problem-1">Practice Problem 1</a></li>
-<li>Jump straight to <a href="#problem-2">Practice Problem 2</a></li>
-</ul>
 <hr>
-<section id="definitions" class="level2">
-<h2 class="anchored" data-anchor-id="definitions">1. Definitions</h2>
+<section id="sec-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-definitions">1. Definitions</h2>
 <p>Every note should begin with a precise, mathematically rigorous definition of the central concept. Wrap definitions in the <code>.thm-box .thm-definition</code> fenced div container.</p>
+<p>To see how this mathematical formulation is applied in a concrete scenario, scroll down to <a href="#problem-1">Practice Problem 1</a>.</p>
 <section id="definition-concept-name" class="level3 thm-box thm-definition">
 <h3 class="anchored" data-anchor-id="definition-concept-name">Definition: [Concept Name]</h3>
 <p>For a system or variable state, the <strong>[Concept Name]</strong> is defined as…</p>
@@ -232,8 +230,8 @@ f(X) = \mathcal{G}(X) \cdot \lambda
 </section>
 <hr>
 </section>
-<section id="intuitions-remarks" class="level2">
-<h2 class="anchored" data-anchor-id="intuitions-remarks">2. Intuitions &amp; Remarks</h2>
+<section id="sec-intuitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-intuitions">2. Intuitions &amp; Remarks</h2>
 <p>To make the note highly pedagogical, follow the definition with a real-world intuition or remark. Wrap these insights in the <code>.thm-box .thm-remark</code> block.</p>
 <section id="physical-intuition" class="level3 thm-box thm-remark">
 <h3 class="anchored" data-anchor-id="physical-intuition">Physical Intuition</h3>
@@ -241,8 +239,8 @@ f(X) = \mathcal{G}(X) \cdot \lambda
 </section>
 <hr>
 </section>
-<section id="formulas-key-properties" class="level2">
-<h2 class="anchored" data-anchor-id="formulas-key-properties">3. Formulas &amp; Key Properties</h2>
+<section id="sec-properties" class="level2">
+<h2 class="anchored" data-anchor-id="sec-properties">3. Formulas &amp; Key Properties</h2>
 <p>Present the main derivations, properties, and proofs in this section. Group related formulas and characteristics inside <code>.thm-box .thm-theorem</code> blocks to make them pop visually.</p>
 <section id="theorem-additivity-and-non-negativity" class="level3 thm-box thm-theorem">
 <h3 class="anchored" data-anchor-id="theorem-additivity-and-non-negativity">Theorem: Additivity and Non-Negativity</h3>
@@ -262,15 +260,16 @@ f(x, y) = f(x) + f(y)
 </section>
 <hr>
 </section>
-<section id="graphs-visualizations" class="level2">
-<h2 class="anchored" data-anchor-id="graphs-visualizations">4. Graphs &amp; Visualizations</h2>
+<section id="sec-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-visualizations">4. Graphs &amp; Visualizations</h2>
 <p>Complex dependencies and flowcharts should be visualized using <strong>Mermaid.js</strong> diagrams, which compile natively inside Quarto.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
-<pre class="mermaid mermaid-js">graph TD
+<pre class="mermaid mermaid-js">%%{init: {'theme': 'dark'}}%%
+graph TD
     A[Prior Probability] --&gt;|Observation| B(Surprisal)
     B --&gt;|Expectation| C{Entropy}
     C --&gt;|Conditioning| D[Conditional Entropy]
@@ -289,8 +288,8 @@ f(x, y) = f(x) + f(y)
 </div>
 <hr>
 </section>
-<section id="relations-to-other-fields" class="level2">
-<h2 class="anchored" data-anchor-id="relations-to-other-fields">5. Relations to Other Fields</h2>
+<section id="sec-relations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-relations">5. Relations to Other Fields</h2>
 <p>Incorporate a table or descriptive section showing how this concept bridges other domains (e.g., Deep Learning, Classical Physics, or Control Theory).</p>
 <table class="caption-top table">
 <colgroup>
@@ -323,11 +322,11 @@ f(x, y) = f(x) + f(y)
 </tr>
 </tbody>
 </table>
-<p>For example, we directly apply this relation when evaluating cross-entropy loss in <a href="#problem-2">Practice Problem 2</a>.</p>
+<p>For a direct application of this relation, scroll down to <a href="#problem-2">Practice Problem 2</a>.</p>
 <hr>
 </section>
-<section id="interactive-simulation" class="level2">
-<h2 class="anchored" data-anchor-id="interactive-simulation">6. Interactive Simulation</h2>
+<section id="sec-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-simulation">6. Interactive Simulation</h2>
 <p>Interactive widgets let readers experiment with the mathematics. You can embed a lightweight, self-contained SVG + JavaScript simulation inside a styled card.</p>
 <div class="simulation-card" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
   <h4 style="margin-top: 0; color: #fff; font-family: 'Outfit', sans-serif;" class="anchored">Interactive Simulation: Surprisal vs. Probability</h4>
@@ -435,68 +434,60 @@ f(x, y) = f(x) + f(y)
 </div>
 <hr>
 </section>
-<section id="practice-problems-with-collapsible-solutions" class="level2">
-<h2 class="anchored" data-anchor-id="practice-problems-with-collapsible-solutions">7. Practice Problems with Collapsible Solutions</h2>
+<section id="sec-problems" class="level2">
+<h2 class="anchored" data-anchor-id="sec-problems">7. Practice Problems with Collapsible Solutions</h2>
 <p>Conclude each note with 1–3 concrete practice problems. Readers can click anchor links to jump directly here. Wrap solutions inside <code>&lt;details class="solution-toggle"&gt;</code> elements so they remain collapsed by default.</p>
-<div id="problem-1" class="thm-box thm-problem">
-<section id="problem-1-basic-derivation" class="level3">
-<h3 class="anchored" data-anchor-id="problem-1-basic-derivation">Problem 1: Basic Derivation</h3>
+<section id="problem-1" class="level3 thm-box thm-problem">
+<h3 class="thm-box thm-problem anchored" data-anchor-id="problem-1">Problem 1: Basic Derivation</h3>
 <p>Show that if two events are independent, their joint surprisal adds up.</p>
-</section>
-</div>
+<p><em>(This problem directly tests your understanding of the concepts defined in the <a href="#sec-definitions">Definitions section</a>.)</em></p>
 <details class="solution-toggle">
 <summary>
 Reveal Solution to Problem 1
 </summary>
 <div class="solution-body">
-<pre><code>::: {.thm-box .thm-solution}
-### Solution
-
-Let $X$ and $Y$ be independent random variables. By definition:
-$$
+<div class="thm-box thm-solution">
+<div class="solution-heading">
+Solution
+</div>
+<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent random variables. By definition: <span class="math display">\[
 P(X, Y) = P(X)P(Y)
-$$
-Taking the negative log base 2 of both sides:
-$$
+\]</span> Taking the negative log base 2 of both sides: <span class="math display">\[
 \begin{aligned}
 h(X, Y) &amp;= -\log_2 P(X, Y) \\
 &amp;= -\log_2 \big(P(X)P(Y)\big) \\
 &amp;= -\log_2 P(X) - \log_2 P(Y) \\
 &amp;= h(X) + h(Y)
 \end{aligned}
-$$
-Hence, joint surprisal is additive. $\blacksquare$
-:::</code></pre>
+\]</span> Hence, joint surprisal is additive. <span class="math inline">\(\blacksquare\)</span></p>
+</div>
 </div>
 </details>
-<div id="problem-2" class="thm-box thm-problem">
-<section id="problem-2-applied-metric" class="level3">
-<h3 class="anchored" data-anchor-id="problem-2-applied-metric">Problem 2: Applied Metric</h3>
-<p>Explain why Cross-Entropy is always greater than or equal to Entropy: <span class="math inline">\(H(P, Q) \ge H(P)\)</span>.</p>
 </section>
-</div>
+<section id="problem-2" class="level3 thm-box thm-problem">
+<h3 class="thm-box thm-problem anchored" data-anchor-id="problem-2">Problem 2: Applied Metric</h3>
+<p>Explain why Cross-Entropy is always greater than or equal to Entropy: <span class="math inline">\(H(P, Q) \ge H(P)\)</span>.</p>
+<p><em>(This problem requires applying the mathematical equivalence detailed in the <a href="#sec-relations">Relations to Other Fields section</a>.)</em></p>
 <details class="solution-toggle">
 <summary>
 Reveal Solution to Problem 2
 </summary>
 <div class="solution-body">
-<pre><code>::: {.thm-box .thm-solution}
-### Solution
-
-Recall that the Kullback-Leibler (KL) Divergence represents:
-$$
+<div class="thm-box thm-solution">
+<div class="solution-heading">
+Solution
+</div>
+<p>Recall that the Kullback-Leibler (KL) Divergence represents: <span class="math display">\[
 D_{\text{KL}}(P \parallel Q) = H(P, Q) - H(P)
-$$
-By Gibbs' Inequality, we know that $D_{\text{KL}}(P \parallel Q) \ge 0$ for all probability distributions $P$ and $Q$. Consequently:
-$$
+\]</span> By Gibbs’ Inequality, we know that <span class="math inline">\(D_{\text{KL}}(P \parallel Q) \ge 0\)</span> for all probability distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>. Consequently: <span class="math display">\[
 H(P, Q) - H(P) \ge 0 \implies H(P, Q) \ge H(P)
-$$
-The inequality holds with equality if and only if $P = Q$. $\blacksquare$
-:::</code></pre>
+\]</span> The inequality holds with equality if and only if <span class="math inline">\(P = Q\)</span>. <span class="math inline">\(\blacksquare\)</span></p>
+</div>
 </div>
 </details>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

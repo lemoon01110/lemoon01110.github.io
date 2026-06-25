@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/entropy.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T03:33:52.565Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/stochastic-matrices-and-markov-chains.html</loc>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/wasserstein-distance.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T03:37:32.536Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/perplexity.html</loc>
@@ -30,11 +30,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/information-content.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lemoon01110.github.io/notes/information-theory/js-divergence.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T03:32:55.851Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/fisher-information.html</loc>
@@ -42,7 +38,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/jensen-shannon-divergence.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T03:36:38.894Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/chapter14.html</loc>
@@ -234,7 +230,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/template.html</loc>
-    <lastmod>2026-06-24T06:17:55.796Z</lastmod>
+    <lastmod>2026-06-25T01:57:49.687Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/reinforcement-learning/trust-region-and-natural-policy-gradient.html</loc>
@@ -929,10 +925,6 @@
     <lastmod>2026-06-24T05:59:54.777Z</lastmod>
   </url>
   <url>
-    <loc>https://lemoon01110.github.io/notes/information-theory/js-div-boundedness-proof.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
-  </url>
-  <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/information-bottleneck.html</loc>
     <lastmod>2026-06-24T05:59:54.777Z</lastmod>
   </url>
@@ -946,7 +938,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/cross-entropy.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T03:34:37.545Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/f-divergence.html</loc>
@@ -962,6 +954,6 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/kl-divergence.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T03:35:31.329Z</lastmod>
   </url>
 </urlset>

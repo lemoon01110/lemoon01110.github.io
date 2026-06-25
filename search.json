@@ -18,14 +18,56 @@
     "href": "notes/information-theory/entropy.html",
     "title": "Entropy",
     "section": "",
-    "text": "While Information Content (Surprisal) measures the information gained from a single specific event, Entropy measures the average amount of information produced by a stochastic source of data.\nIn other words, Entropy is the Expected Information Content. It quantifies the intrinsic uncertainty, unpredictability, or “chaos” inherent in a probability distribution."
+    "text": "While Information Content (Surprisal) measures the information gained from a single specific event, Entropy measures the average amount of information produced by a stochastic source of data.\n\n\nFor a discrete random variable \\(X\\) with possible states \\(x_1, \\dots, x_n\\) and probability mass function \\(P(x)\\), the Shannon Entropy \\(H(X)\\) is defined as the mathematical expectation of the surprisal \\(h(X)\\):\n\\[\nH(X) = \\mathbb{E}_{X \\sim P}[h(X)] = -\\sum_{x \\in X} P(x) \\log_2 P(x)\n\\]\n(Note: In the case where \\(P(x) = 0\\), we adopt the convention that \\(0 \\log_2 0 = 0\\), which is consistent with the limit \\(\\lim_{p \\to 0} p \\log_2 p = 0\\).)"
   },
   {
-    "objectID": "notes/information-theory/entropy.html#practice-problems",
-    "href": "notes/information-theory/entropy.html#practice-problems",
+    "objectID": "notes/information-theory/entropy.html#sec-definitions",
+    "href": "notes/information-theory/entropy.html#sec-definitions",
     "title": "Entropy",
-    "section": "Practice Problems",
-    "text": "Practice Problems\n\nProblem 1: Biased Coin Entropy\nProve that the entropy of a fair coin flip is exactly 1 bit. What happens to the theoretical entropy \\(H(X)\\) if the coin is heavily biased such that \\(P(Heads) = 0.99\\)?"
+    "section": "",
+    "text": "While Information Content (Surprisal) measures the information gained from a single specific event, Entropy measures the average amount of information produced by a stochastic source of data.\n\n\nFor a discrete random variable \\(X\\) with possible states \\(x_1, \\dots, x_n\\) and probability mass function \\(P(x)\\), the Shannon Entropy \\(H(X)\\) is defined as the mathematical expectation of the surprisal \\(h(X)\\):\n\\[\nH(X) = \\mathbb{E}_{X \\sim P}[h(X)] = -\\sum_{x \\in X} P(x) \\log_2 P(x)\n\\]\n(Note: In the case where \\(P(x) = 0\\), we adopt the convention that \\(0 \\log_2 0 = 0\\), which is consistent with the limit \\(\\lim_{p \\to 0} p \\log_2 p = 0\\).)"
+  },
+  {
+    "objectID": "notes/information-theory/entropy.html#sec-intuitions",
+    "href": "notes/information-theory/entropy.html#sec-intuitions",
+    "title": "Entropy",
+    "section": "2. Intuitions & Remarks",
+    "text": "2. Intuitions & Remarks\n\nExpected Surprisal\nBecause Entropy is the Expected Information Content, it gives us a single scalar value describing the “flatness” or “chaos” of a distribution.\n\nLow Entropy: The distribution is highly skewed or deterministic. The outcomes are predictable. Because you almost always know what is going to happen, observing an outcome yields very little new information on average.\nHigh Entropy: The distribution is flat and uniform. The outcomes are highly unpredictable. Because you never know what is going to happen, each observation provides a lot of new information.\n\nImagine a heavily biased coin that lands on Heads 99% of the time. The entropy is extremely low because you are rarely surprised. But a fair coin (50/50) has maximum entropy; the outcome is a complete mystery every time."
+  },
+  {
+    "objectID": "notes/information-theory/entropy.html#sec-properties",
+    "href": "notes/information-theory/entropy.html#sec-properties",
+    "title": "Entropy",
+    "section": "3. Formulas & Key Properties",
+    "text": "3. Formulas & Key Properties\n\nKey Properties of Entropy\n\n1. Bounds\nFor a discrete variable with \\(k\\) possible states, the entropy is strictly bounded: \\[\n0 \\le H(X) \\le \\log_2 k\n\\] * \\(H(X) = 0\\) if and only if the outcome is completely certain (i.e., \\(P(x_i) = 1\\) for some \\(i\\) and \\(0\\) for all others). * \\(H(X) = \\log_2 k\\) if and only if \\(X\\) follows a Uniform Distribution (\\(P(x_i) = \\frac{1}{k}\\) for all \\(i\\)). The uniform distribution represents the state of maximum uncertainty.\n\n\n2. Concavity\nEntropy \\(H(P)\\) is a strictly concave function of the probability distribution \\(P\\). This mathematically formalizes the idea that mixing two different probability distributions together increases the overall uncertainty.\n\n\n3. Continuous Extension (Differential Entropy)\nFor a continuous random variable \\(X\\) with a probability density function \\(p(x)\\), the sum is replaced by an integral: \\[\nh(X) = -\\int_{\\mathcal{X}} p(x) \\ln p(x) \\, dx\n\\] Warning: Unlike discrete entropy, differential entropy can be negative, and it is not invariant to reparameterization."
+  },
+  {
+    "objectID": "notes/information-theory/entropy.html#sec-visualizations",
+    "href": "notes/information-theory/entropy.html#sec-visualizations",
+    "title": "Entropy",
+    "section": "4. Graphs & Visualizations",
+    "text": "4. Graphs & Visualizations\nThe relationship between Entropy, Surprisal, and distributions can be understood through their roles in the Information Theory ecosystem.\n\n\n\n\n\n%%{init: {'theme': 'dark'}}%%\ngraph LR\n    A[Distribution P] --&gt;|Certainty| B((Low Entropy\\n H ≈ 0))\n    A --&gt;|Uniformity| C((High Entropy\\n H = log k))\n    \n    B --&gt; D[Highly Predictable]\n    C --&gt; E[Highly Unpredictable]\n    \n    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style B fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff\n    style C fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff\n    style D fill:#161b22,stroke:#f87171,stroke-width:1px,color:#a0a2b6\n    style E fill:#161b22,stroke:#00ff88,stroke-width:1px,color:#a0a2b6"
+  },
+  {
+    "objectID": "notes/information-theory/entropy.html#sec-relations",
+    "href": "notes/information-theory/entropy.html#sec-relations",
+    "title": "Entropy",
+    "section": "5. Relations to Other Fields",
+    "text": "5. Relations to Other Fields\n\n\n\n\n\n\n\n\nField\nInterpretation / Mapping\nApplication Example\n\n\n\n\nMachine Learning\nInformation Gain is the reduction in Entropy after a dataset is split.\nDecision Trees (ID3, C4.5)\n\n\nReinforcement Learning\nEntropy acts as a regularization bonus to encourage exploration and prevent deterministic collapse.\nSoft Actor-Critic (SAC)\n\n\nData Compression\n\\(H(X)\\) is the absolute theoretical lower bound on the average number of bits required to compress data sampled from \\(X\\) without loss.\nShannon’s Source Coding Theorem"
+  },
+  {
+    "objectID": "notes/information-theory/entropy.html#sec-simulation",
+    "href": "notes/information-theory/entropy.html#sec-simulation",
+    "title": "Entropy",
+    "section": "6. Interactive Simulation",
+    "text": "6. Interactive Simulation\n\n  Interactive Simulation: Binary Entropy Function\n  \n    Explore the entropy of a Bernoulli trial (a biased coin flip). Drag the slider to change the probability $p$ of flipping \"Heads\". Notice that uncertainty (Entropy) peaks precisely when the coin is fair ($p = 0.5$).\n  \n\n  \n    \n    \n      \n      \n      \n\n      \n      Probability of Heads (p)\n      Entropy H(p) (bits)\n\n      0.0\n      0.5\n      1.0\n\n      0\n      0.5\n      1.0\n\n      \n      \n\n      \n      \n      \n      \n    \n\n    \n    \n      \n        Set Probability p:\n        \n      \n      \n        p = 0.500\n        H(p) = 1.000 bits"
+  },
+  {
+    "objectID": "notes/information-theory/entropy.html#sec-problems",
+    "href": "notes/information-theory/entropy.html#sec-problems",
+    "title": "Entropy",
+    "section": "7. Practice Problems",
+    "text": "7. Practice Problems\n\nProblem 1: Biased Coin Entropy\nProve that the entropy of a fair coin flip is exactly 1 bit. What happens to the theoretical entropy \\(H(X)\\) if the coin is heavily biased such that \\(P(\\text{Heads}) = 0.99\\)?\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nFair Coin: For a fair coin, \\(P(\\text{Heads}) = 0.5\\) and \\(P(\\text{Tails}) = 0.5\\). Using the Shannon Entropy formula: \\[\n\\begin{aligned}\nH(X) &= - \\sum_{x} P(x) \\log_2 P(x) \\\\\n&= - [0.5 \\log_2(0.5) + 0.5 \\log_2(0.5)] \\\\\n&= - [0.5(-1) + 0.5(-1)] \\\\\n&= 1 \\text{ bit}\n\\end{aligned}\n\\]\nBiased Coin: For a biased coin with \\(P(\\text{Heads}) = 0.99\\) and \\(P(\\text{Tails}) = 0.01\\): \\[\n\\begin{aligned}\nH(X) &= - [0.99 \\log_2(0.99) + 0.01 \\log_2(0.01)] \\\\\n&\\approx - [0.99(-0.0145) + 0.01(-6.6438)] \\\\\n&\\approx 0.0143 + 0.0664 \\\\\n&\\approx 0.0807 \\text{ bits}\n\\end{aligned}\n\\]\nThe entropy drops from 1 bit to roughly 0.08 bits. Because the outcome is almost certain, you gain very little information on average from observing the coin flips.\n\n\n\n\n\nProblem 2: Maximum Entropy of a Uniform Distribution\nUse the method of Lagrange multipliers to prove that for a discrete random variable \\(X\\) with \\(k\\) possible states, the entropy \\(H(X)\\) is maximized when the distribution is uniform, i.e., \\(P(x_i) = \\frac{1}{k}\\) for all \\(i\\).\n\n\nReveal Solution to Problem 2\n\n\n\n\nSolution\n\nWe want to maximize the entropy function: \\[\nH(P) = -\\sum_{i=1}^k p_i \\ln p_i\n\\] (Note: We use the natural logarithm \\(\\ln\\) to simplify differentiation, which only scales the result by a constant and does not change the argmax).\nThis maximization is subject to the probability constraint that the sum of all probabilities must equal 1: \\[\n\\sum_{i=1}^k p_i = 1 \\implies \\sum_{i=1}^k p_i - 1 = 0\n\\]\nWe define the Lagrangian \\(\\mathcal{L}\\) with a multiplier \\(\\lambda\\): \\[\n\\mathcal{L}(p_1, \\dots, p_k, \\lambda) = -\\sum_{i=1}^k p_i \\ln p_i + \\lambda \\left(\\sum_{i=1}^k p_i - 1\\right)\n\\]\nTake the partial derivative with respect to a specific \\(p_i\\) and set it to 0: \\[\n\\begin{aligned}\n\\frac{\\partial \\mathcal{L}}{\\partial p_i} &= -(\\ln p_i + p_i \\cdot \\frac{1}{p_i}) + \\lambda = 0 \\\\\n&= -\\ln p_i - 1 + \\lambda = 0\n\\end{aligned}\n\\]\nSolving for \\(p_i\\): \\[\n\\ln p_i = \\lambda - 1 \\implies p_i = e^{\\lambda - 1}\n\\]\nNotice that the solution for \\(p_i\\) depends only on \\(\\lambda\\), which is a constant. This means every \\(p_i\\) must be exactly the same! Since there are \\(k\\) states and they must sum to 1: \\[\np_1 = p_2 = \\dots = p_k = \\frac{1}{k}\n\\]\nThus, the Uniform Distribution maximizes entropy. \\(\\blacksquare\\)"
   },
   {
     "objectID": "notes/information-theory/stochastic-matrices-and-markov-chains.html",
@@ -46,14 +88,56 @@
     "href": "notes/information-theory/wasserstein-distance.html",
     "title": "Wasserstein Distance",
     "section": "",
-    "text": "Both the Kullback-Leibler (KL) and Jensen-Shannon (JSD) divergences are fundamentally based on the ratio of probabilities \\(P(x) / Q(x)\\).\nThis mathematical foundation creates a severe problem: if the two distributions have disjoint supports (meaning they don’t overlap in space), these divergences either become infinite or saturate at a constant value (\\(\\log 2\\) for JSD). When divergences saturate, their gradients become exactly zero. In Machine Learning, if your loss function has zero gradient, your neural network cannot learn."
+    "text": "For two probability distributions \\(P\\) and \\(Q\\), the \\(1^{st}\\) Wasserstein Distance \\(W_1\\) is defined as the infimum (minimum) expected cost of transporting mass from \\(P\\) to \\(Q\\):\n\\[\nW_1(P, Q) = \\inf_{\\gamma \\in \\Pi(P, Q)} \\mathbb{E}_{(x, y) \\sim \\gamma} \\big[ \\|x - y\\| \\big]\n\\]\n\n\n\n\\(\\Pi(P, Q)\\): The set of all possible “transport plans”. A joint distribution plan \\(\\gamma(x, y)\\) dictates exactly how much mass to move from location \\(x\\) to location \\(y\\). To be a valid plan, its marginals must equal \\(P\\) and \\(Q\\).\n\\(\\|x - y\\|\\): The physical distance between location \\(x\\) and \\(y\\) in the underlying metric space.\n\\(\\mathbb{E}\\): The expected cost (work) of executing the transport plan.\n\\(\\inf\\): The infimum. We are searching for the single optimal transport plan that requires the absolute least amount of work."
   },
   {
-    "objectID": "notes/information-theory/wasserstein-distance.html#practice-problems",
-    "href": "notes/information-theory/wasserstein-distance.html#practice-problems",
+    "objectID": "notes/information-theory/wasserstein-distance.html#sec-definitions",
+    "href": "notes/information-theory/wasserstein-distance.html#sec-definitions",
     "title": "Wasserstein Distance",
-    "section": "Practice Problems",
-    "text": "Practice Problems\n\nProblem 1: Earth Mover’s Gradients\nExplain intuitively why the Earth Mover’s distance between two completely non-overlapping distributions still provides a meaningful, continuous gradient, whereas JS Divergence saturates and provides a gradient of exactly zero."
+    "section": "",
+    "text": "For two probability distributions \\(P\\) and \\(Q\\), the \\(1^{st}\\) Wasserstein Distance \\(W_1\\) is defined as the infimum (minimum) expected cost of transporting mass from \\(P\\) to \\(Q\\):\n\\[\nW_1(P, Q) = \\inf_{\\gamma \\in \\Pi(P, Q)} \\mathbb{E}_{(x, y) \\sim \\gamma} \\big[ \\|x - y\\| \\big]\n\\]\n\n\n\n\\(\\Pi(P, Q)\\): The set of all possible “transport plans”. A joint distribution plan \\(\\gamma(x, y)\\) dictates exactly how much mass to move from location \\(x\\) to location \\(y\\). To be a valid plan, its marginals must equal \\(P\\) and \\(Q\\).\n\\(\\|x - y\\|\\): The physical distance between location \\(x\\) and \\(y\\) in the underlying metric space.\n\\(\\mathbb{E}\\): The expected cost (work) of executing the transport plan.\n\\(\\inf\\): The infimum. We are searching for the single optimal transport plan that requires the absolute least amount of work."
+  },
+  {
+    "objectID": "notes/information-theory/wasserstein-distance.html#sec-intuitions",
+    "href": "notes/information-theory/wasserstein-distance.html#sec-intuitions",
+    "title": "Wasserstein Distance",
+    "section": "2. Intuitions & Remarks",
+    "text": "2. Intuitions & Remarks\n\nThe Earth Mover’s Distance (EMD)\nThe Wasserstein Distance is intuitively known as the Earth Mover’s Distance.\nImagine probability distributions as physical piles of dirt (Earth). The Wasserstein distance asks: What is the absolute minimum amount of “work” required to physically shovel the dirt from distribution \\(P\\) until it perfectly matches the shape of distribution \\(Q\\)?\nWork in physics is defined as: Amount of dirt moved \\(\\times\\) Distance moved.\nBecause it explicitly measures the physical distance the mass must travel, the Wasserstein distance provides a smooth, meaningful value (and crucially, a non-zero gradient) even when the distributions are miles apart and do not overlap at all."
+  },
+  {
+    "objectID": "notes/information-theory/wasserstein-distance.html#sec-properties",
+    "href": "notes/information-theory/wasserstein-distance.html#sec-properties",
+    "title": "Wasserstein Distance",
+    "section": "3. Formulas & Key Properties",
+    "text": "3. Formulas & Key Properties\n\nOvercoming the Limits of Divergences\nBoth the Kullback-Leibler (KL) and Jensen-Shannon (JSD) divergences are fundamentally based on the ratio of probabilities \\(P(x) / Q(x)\\) at exactly the same spatial location \\(x\\).\nThis mathematical foundation creates a severe problem: if the two distributions have disjoint supports (meaning they don’t overlap in space), these divergences either become infinite or saturate at a constant value.\nWhen divergences saturate, their gradients become exactly zero. In Machine Learning, if your loss function has zero gradient, your neural network receives no signal and cannot learn.\nWasserstein distance measures the horizontal cost of moving the mass, rather than just the vertical ratio at a fixed location, completely bypassing this issue."
+  },
+  {
+    "objectID": "notes/information-theory/wasserstein-distance.html#sec-visualizations",
+    "href": "notes/information-theory/wasserstein-distance.html#sec-visualizations",
+    "title": "Wasserstein Distance",
+    "section": "4. Graphs & Visualizations",
+    "text": "4. Graphs & Visualizations\n\n\n\n\n\n%%{init: {'theme': 'dark'}}%%\ngraph TD\n    subgraph The Gradient Problem\n        A[Distribution P] ---|No Overlap| B[Distribution Q]\n        AB(KL Divergence: Infinity\\nJS Divergence: log 2\\nGradient: ZERO)\n    end\n    \n    subgraph The Optimal Transport Solution\n        C[Pile of Dirt P] --&gt;|Move Mass * Distance| D[Hole Q]\n        CD(Wasserstein Distance: D x M\\nGradient: Constant Vector towards Q)\n    end\n    \n    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style B fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff\n    style AB fill:#161b22,stroke:#f59e0b,stroke-width:2px,color:#fff\n    \n    style C fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style D fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff\n    style CD fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff"
+  },
+  {
+    "objectID": "notes/information-theory/wasserstein-distance.html#sec-relations",
+    "href": "notes/information-theory/wasserstein-distance.html#sec-relations",
+    "title": "Wasserstein Distance",
+    "section": "5. Relations to Other Fields",
+    "text": "5. Relations to Other Fields\n\n\n\n\n\n\n\n\nField\nInterpretation / Mapping\nApplication Example\n\n\n\n\nGenerative AI\nEvaluating the distance between generated distributions and real data when they don’t overlap.\nWasserstein GANs (WGAN)\n\n\nOperations Research\nOptimal assignment of resources from supply nodes to demand nodes.\nTransport/Logistics optimization\n\n\nComputer Vision\nComparing color histograms or image signatures in a way that respects the distance between colors.\nImage Retrieval (Rubner et al.)\n\n\n\n\nMachine Learning Context: WGANs and Duality\nThe mathematical definition of \\(W_1(P, Q)\\) is beautiful, but computationally intractable to calculate directly because searching over all possible joint distributions \\(\\Pi(P, Q)\\) is impossible for high-dimensional data like images.\nIn 2017, the landmark paper Wasserstein GAN solved this by applying the Kantorovich-Rubinstein Duality. The duality theorem states that instead of searching for the optimal transport plan, you can calculate the Wasserstein distance by finding a 1-Lipschitz continuous function \\(f\\) that maximizes the difference in expectations:\n\\[\nW_1(P, Q) = \\sup_{\\|f\\|_L \\le 1} \\left( \\mathbb{E}_{x \\sim P}[f(x)] - \\mathbb{E}_{y \\sim Q}[f(y)] \\right)\n\\]\nIn a WGAN, the Discriminator (now called a “Critic”) is simply a neural network parameterized to represent \\(f(x)\\). To enforce the \\(1\\)-Lipschitz constraint (\\(\\|f\\|_L \\le 1\\)), modern implementations use Gradient Penalty (WGAN-GP), ensuring the gradients of the critic respect a norm of \\(1\\). WGANs completely eliminate the vanishing gradient problem, resulting in vastly more stable training."
+  },
+  {
+    "objectID": "notes/information-theory/wasserstein-distance.html#sec-simulation",
+    "href": "notes/information-theory/wasserstein-distance.html#sec-simulation",
+    "title": "Wasserstein Distance",
+    "section": "6. Interactive Simulation",
+    "text": "6. Interactive Simulation\n\n  Interactive Simulation: The Earth Mover\n  \n    Distribution P (blue) is a pile of dirt. Distribution Q (orange) is a hole of exactly the same volume. Drag the slider to move the hole Q away from the dirt P. Watch how the Earth Mover's Distance increases linearly with the physical separation, providing a constant, non-zero gradient even when they completely stop overlapping.\n  \n\n  \n    \n    \n      \n      \n\n      \n      \n      Distance = 100m\n\n      \n        \n          \n        \n        \n          \n        \n      \n\n      \n      \n      \n      P (Dirt)\n\n      \n      \n      Q (Hole)\n    \n\n    \n    \n      \n        Move Target Hole Q:\n        \n      \n      \n        Mass (Volume) = 1.0\n        Separation = 100m\n        W₁ Cost = 100.0 work"
+  },
+  {
+    "objectID": "notes/information-theory/wasserstein-distance.html#sec-problems",
+    "href": "notes/information-theory/wasserstein-distance.html#sec-problems",
+    "title": "Wasserstein Distance",
+    "section": "7. Practice Problems",
+    "text": "7. Practice Problems\n\nProblem 1: Disjoint Supports and Gradients\nExplain mathematically why the Kullback-Leibler (KL) divergence provides a zero gradient when two distributions are completely disjoint, but the Wasserstein distance provides a highly useful constant gradient.\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nLet \\(P\\) be the true data distribution (a spike at \\(x=0\\)) and \\(Q_\\theta\\) be our parameterized model distribution (a spike at \\(x=\\theta\\)). Suppose they are currently disjoint (\\(\\theta &gt; 0\\)).\nFor KL Divergence: The divergence is defined by the point-wise ratio at exactly the same spatial location \\(x\\): \\[\nD_{KL}(P \\| Q_\\theta) = \\sum P(x) \\log \\left( \\frac{P(x)}{Q_\\theta(x)} \\right)\n\\] Since \\(P\\) is only non-zero at \\(x=0\\), we only evaluate the ratio at \\(x=0\\). However, \\(Q_\\theta(0) = 0\\) because \\(Q_\\theta\\) is a spike at \\(\\theta\\). Thus, \\(D_{KL} = 1 \\cdot \\log\\left(\\frac{1}{0}\\right) = \\infty\\).\nBecause it is \\(\\infty\\) for all \\(\\theta &gt; 0\\), the derivative with respect to \\(\\theta\\) is exactly \\(0\\). The loss landscape is a flat, infinite plateau, meaning the network has absolutely no idea which direction to move \\(\\theta\\) to find the true data.\nFor Wasserstein Distance: The Earth Mover’s distance measures the physical work to transport the spike of mass from \\(x=\\theta\\) to \\(x=0\\). Since the total mass is \\(1\\), the work is simply: \\[\nW_1(P, Q_\\theta) = 1 \\cdot \\|\\theta - 0\\| = |\\theta|\n\\] The gradient with respect to \\(\\theta\\) (for \\(\\theta &gt; 0\\)) is exactly \\(1\\).\nThe loss landscape is a perfect V-shape \\(f(\\theta) = |\\theta|\\). This gives a beautiful, constant, non-zero gradient pointing directly toward the true data, allowing the neural network to effortlessly slide \\(\\theta\\) down to \\(0\\) via gradient descent. \\(\\blacksquare\\)"
   },
   {
     "objectID": "notes/information-theory/perplexity.html",
@@ -102,42 +186,56 @@
     "href": "notes/information-theory/information-content.html",
     "title": "Information Content (Surprisal)",
     "section": "",
-    "text": "In Information Theory, Information Content, often referred to as Surprisal, quantifies the amount of “surprise” or “information” gained when observing a specific outcome of a random variable.\nThe core intuition relies on a simple premise: &gt; Observing a highly probable event provides very little information, whereas observing a rare or highly improbable event provides a massive amount of information.\nIf someone tells you, “The sun rose this morning,” you have gained almost zero information because the probability of that event is near \\(1\\). Conversely, if someone tells you, “It is currently snowing in the Sahara Desert,” you have gained a tremendous amount of information because the prior probability of that event is near \\(0\\)."
+    "text": "Every concept in Information Theory stems from quantifying how much information we gain when an event occurs.\n\n\nFor a discrete random variable \\(X\\) with a probability mass function \\(P(X)\\), the information content (or surprisal) of a specific event \\(x\\) is defined as the negative logarithm of its probability:\n\\[\nh(x) = -\\log_b P(x) = \\log_b \\left( \\frac{1}{P(x)} \\right)\n\\]\nwhere:\n\n\\(P(x)\\) is the prior probability of the event occurring.\n\\(b\\) is the base of the logarithm, which determines the unit of information:\n\nBase 2 (\\(b=2\\)): Measured in bits (or shannons). This is the standard in computer science. One bit represents the information gained from a single fair coin flip.\nBase \\(e\\) (\\(b=e\\)): Measured in nats. Commonly used in machine learning because the natural logarithm is easier to differentiate.\nBase 10 (\\(b=10\\)): Measured in bans (or hartleys), though this is rarely used in modern contexts."
   },
   {
-    "objectID": "notes/information-theory/information-content.html#practice-problems",
-    "href": "notes/information-theory/information-content.html#practice-problems",
+    "objectID": "notes/information-theory/information-content.html#sec-definitions",
+    "href": "notes/information-theory/information-content.html#sec-definitions",
     "title": "Information Content (Surprisal)",
-    "section": "Practice Problems",
-    "text": "Practice Problems\n\nProblem 1: Calculating Surprisal\nCalculate the surprisal of rolling a 6 on a fair 6-sided die, in both bits and nats. How does this compare to flipping two heads in a row on a fair coin?"
-  },
-  {
-    "objectID": "notes/information-theory/js-divergence.html",
-    "href": "notes/information-theory/js-divergence.html",
-    "title": "Jensen-Shannon (JS) Divergence",
     "section": "",
-    "text": "For two probability distributions \\(p(x)\\) and \\(q(x)\\), the Jensen-Shannon (JS) divergence is defined as the average of the KL divergences from each distribution to their mixture:\n\\[\nD_{\\mathrm{JS}}(p || q) = \\frac{1}{2} D_{\\mathrm{KL}}\\left(p || \\frac{p+q}{2}\\right) + \\frac{1}{2} D_{\\mathrm{KL}}\\left(q || \\frac{p+q}{2}\\right)\n\\] where \\(\\frac{p+q}{2}\\) is the mixture distribution with equal weights."
+    "text": "Every concept in Information Theory stems from quantifying how much information we gain when an event occurs.\n\n\nFor a discrete random variable \\(X\\) with a probability mass function \\(P(X)\\), the information content (or surprisal) of a specific event \\(x\\) is defined as the negative logarithm of its probability:\n\\[\nh(x) = -\\log_b P(x) = \\log_b \\left( \\frac{1}{P(x)} \\right)\n\\]\nwhere:\n\n\\(P(x)\\) is the prior probability of the event occurring.\n\\(b\\) is the base of the logarithm, which determines the unit of information:\n\nBase 2 (\\(b=2\\)): Measured in bits (or shannons). This is the standard in computer science. One bit represents the information gained from a single fair coin flip.\nBase \\(e\\) (\\(b=e\\)): Measured in nats. Commonly used in machine learning because the natural logarithm is easier to differentiate.\nBase 10 (\\(b=10\\)): Measured in bans (or hartleys), though this is rarely used in modern contexts."
   },
   {
-    "objectID": "notes/information-theory/js-divergence.html#definition",
-    "href": "notes/information-theory/js-divergence.html#definition",
-    "title": "Jensen-Shannon (JS) Divergence",
-    "section": "",
-    "text": "For two probability distributions \\(p(x)\\) and \\(q(x)\\), the Jensen-Shannon (JS) divergence is defined as the average of the KL divergences from each distribution to their mixture:\n\\[\nD_{\\mathrm{JS}}(p || q) = \\frac{1}{2} D_{\\mathrm{KL}}\\left(p || \\frac{p+q}{2}\\right) + \\frac{1}{2} D_{\\mathrm{KL}}\\left(q || \\frac{p+q}{2}\\right)\n\\] where \\(\\frac{p+q}{2}\\) is the mixture distribution with equal weights."
+    "objectID": "notes/information-theory/information-content.html#sec-intuitions",
+    "href": "notes/information-theory/information-content.html#sec-intuitions",
+    "title": "Information Content (Surprisal)",
+    "section": "2. Intuitions & Remarks",
+    "text": "2. Intuitions & Remarks\n\nThe Intuition of Surprise\nThe core intuition relies on a simple premise: &gt; Observing a highly probable event provides very little information, whereas observing a rare or highly improbable event provides a massive amount of information.\nIf someone tells you, “The sun rose this morning,” you have gained almost zero information because the probability of that event is near \\(1\\). Conversely, if someone tells you, “It is currently snowing in the Sahara Desert,” you have gained a tremendous amount of information because the prior probability of that event is near \\(0\\)."
   },
   {
-    "objectID": "notes/information-theory/js-divergence.html#intuition",
-    "href": "notes/information-theory/js-divergence.html#intuition",
-    "title": "Jensen-Shannon (JS) Divergence",
-    "section": "Intuition",
-    "text": "Intuition\nJensen-Shannon divergence addresses some of the mathematical inconveniences of KL divergence. - Symmetry: Unlike KL divergence, JS divergence is perfectly symmetric (\\(D_{\\mathrm{JS}}(p || q) = D_{\\mathrm{JS}}(q || p)\\)). - Boundedness: It is bounded between \\(0\\) and \\(\\ln 2\\) nats (or \\(1\\) bit). It reaches its maximum when \\(p\\) and \\(q\\) have completely disjoint supports. - Metric Property: The square root of JS divergence, \\(\\sqrt{D_{\\mathrm{JS}}(p || q)}\\), satisfies the triangle inequality and is a true distance metric.\nIn machine learning, JS divergence historically played a foundational role in the original formulation of Generative Adversarial Networks (GANs), where the discriminator’s objective implicitly minimizes the JS divergence between the real data distribution and the generated distribution."
+    "objectID": "notes/information-theory/information-content.html#sec-properties",
+    "href": "notes/information-theory/information-content.html#sec-properties",
+    "title": "Information Content (Surprisal)",
+    "section": "3. Formulas & Key Properties",
+    "text": "3. Formulas & Key Properties\nThe definition \\(h(x) = -\\log P(x)\\) was specifically chosen by Claude Shannon because it perfectly satisfies three necessary axioms of information:\n\nAxioms of Information\n\n1. Non-negativity\nInformation cannot be negative. You cannot “lose” information by observing an event. \\[\nP(x) \\in [0, 1] \\implies h(x) \\ge 0\n\\]\n\n\n2. Zero Surprise for Certainty\nIf an event is guaranteed to happen (\\(P(x) = 1\\)), observing it yields no new information. \\[\nh(x) = -\\log(1) = 0\n\\]\n\n\n3. Joint Additivity\nIf two events \\(x\\) and \\(y\\) are statistically independent, the joint probability is the product of their individual probabilities. Consequently, the total information gained from observing both events is the sum of the information gained from observing them individually.\nTo see the exact mathematical derivation of this property, scroll down to Practice Problem 1."
   },
   {
-    "objectID": "notes/information-theory/js-divergence.html#practice-problems",
-    "href": "notes/information-theory/js-divergence.html#practice-problems",
-    "title": "Jensen-Shannon (JS) Divergence",
-    "section": "Practice Problems",
-    "text": "Practice Problems\n\n1. Symmetry\nProve from the definition that JS divergence is symmetric: \\(D_{\\mathrm{JS}}(p || q) = D_{\\mathrm{JS}}(q || p)\\).\n\n\n2. Boundedness\nShow that JS divergence is bounded: \\(0 \\le D_{\\mathrm{JS}}(p || q) \\le \\ln 2\\) nats.\n\n\n3. GAN Objectives\nIn practical GAN training, explain why JS divergence (the theoretical objective) is often replaced with other losses like Wasserstein distance or the non-saturating heuristic loss. How does disjoint support between real and fake data affect JS divergence?"
+    "objectID": "notes/information-theory/information-content.html#sec-visualizations",
+    "href": "notes/information-theory/information-content.html#sec-visualizations",
+    "title": "Information Content (Surprisal)",
+    "section": "4. Graphs & Visualizations",
+    "text": "4. Graphs & Visualizations\nThe process of information gain can be visualized as a flowchart transforming a prior probability into a quantified measure of surprise. This single value \\(h(x)\\) acts as the fundamental seed for all other Information Theory metrics.\n\n\n\n\n\n%%{init: {'theme': 'dark'}}%%\ngraph TD\n    A[Prior Probability] --&gt;|Observation| B(Surprisal)\n    B --&gt;|Expectation| C{Entropy}\n    C --&gt;|Conditioning| D[Conditional Entropy]\n    C --&gt;|Divergence| E[KL Divergence]\n    \n    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style B fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style C fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff\n    style D fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff\n    style E fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff"
+  },
+  {
+    "objectID": "notes/information-theory/information-content.html#sec-relations",
+    "href": "notes/information-theory/information-content.html#sec-relations",
+    "title": "Information Content (Surprisal)",
+    "section": "5. Relations to Other Fields",
+    "text": "5. Relations to Other Fields\n\n\n\n\n\n\n\n\nField\nInterpretation / Mapping\nApplication Example\n\n\n\n\nDeep Learning\nMinimizing surprisal is equivalent to minimizing the Negative Log-Likelihood (NLL). By minimizing this loss, a neural network learns to be “less surprised” by the actual ground-truth data.\nClassification training objectives\n\n\nComputer Science\nThe minimum number of bits required to encode an unexpected message perfectly.\nData Compression (Huffman Coding)"
+  },
+  {
+    "objectID": "notes/information-theory/information-content.html#sec-simulation",
+    "href": "notes/information-theory/information-content.html#sec-simulation",
+    "title": "Information Content (Surprisal)",
+    "section": "6. Interactive Simulation",
+    "text": "6. Interactive Simulation\n\n  Interactive Simulation: Surprisal vs. Probability\n  \n    Drag the slider below to change the probability $P(x)$ of an event and see how its information content (surprisal) $h(x) = -\\log_2 P(x)$ changes. Note how rare events ($P(x) \\approx 0$) yield high surprise, while guaranteed events ($P(x) = 1$) yield zero surprise.\n  \n\n  \n    \n    \n      \n      \n      \n\n      \n      Probability P(x)\n      Surprisal h(x) (bits)\n\n      0.0\n      0.25\n      0.5\n      0.75\n      1.0\n\n      0\n      2\n      4\n      6+\n\n      \n      \n\n      \n      \n      \n      \n    \n\n    \n    \n      \n        Set Probability P(x):\n        \n      \n      \n        P(x) = 0.250\n        h(x) = 2.000 bits"
+  },
+  {
+    "objectID": "notes/information-theory/information-content.html#sec-problems",
+    "href": "notes/information-theory/information-content.html#sec-problems",
+    "title": "Information Content (Surprisal)",
+    "section": "7. Practice Problems",
+    "text": "7. Practice Problems\n\nProblem 1: Additivity of Independent Events\nShow mathematically that if two events are statistically independent, their joint surprisal adds up (\\(h(X, Y) = h(X) + h(Y)\\)).\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nLet \\(X\\) and \\(Y\\) be independent random variables. By the definition of independence, their joint probability is the product of their marginals: \\[\nP(X, Y) = P(X)P(Y)\n\\] Taking the negative log base 2 of both sides: \\[\n\\begin{aligned}\nh(X, Y) &= -\\log_2 P(X, Y) \\\\\n&= -\\log_2 \\big(P(X)P(Y)\\big) \\\\\n&= -\\log_2 P(X) - \\log_2 P(Y) \\\\\n&= h(X) + h(Y)\n\\end{aligned}\n\\] Hence, joint surprisal is additive. \\(\\blacksquare\\)\n\n\n\n\n\nProblem 2: Calculating Surprisal\nCalculate the surprisal of rolling a 6 on a fair 6-sided die, in both bits and nats. How does this compare to the surprisal of flipping two heads in a row on a fair coin?\n\n\nReveal Solution to Problem 2\n\n\n\n\nSolution\n\nDie Roll: The probability of rolling a 6 is \\(P(x) = \\frac{1}{6}\\). In bits (base 2): \\[\nh(x) = -\\log_2\\left(\\frac{1}{6}\\right) = \\log_2(6) \\approx 2.585 \\text{ bits}\n\\] In nats (base \\(e\\)): \\[\nh(x) = -\\ln\\left(\\frac{1}{6}\\right) = \\ln(6) \\approx 1.792 \\text{ nats}\n\\]\nCoin Flips: The probability of flipping two heads in a row is \\(P(y) = \\frac{1}{4}\\). In bits: \\[\nh(y) = -\\log_2\\left(\\frac{1}{4}\\right) = \\log_2(4) = 2 \\text{ bits}\n\\]\nRolling a 6 provides more surprise (2.585 bits) than flipping two heads in a row (2 bits) because \\(\\frac{1}{6}\\) is less probable than \\(\\frac{1}{4}\\)."
   },
   {
     "objectID": "notes/information-theory/fisher-information.html",
@@ -158,14 +256,56 @@
     "href": "notes/information-theory/jensen-shannon-divergence.html",
     "title": "Jensen-Shannon Divergence",
     "section": "",
-    "text": "While the Kullback-Leibler (KL) Divergence is foundational, it suffers from two major mathematical flaws that limit its utility as a true distance metric: 1. It is asymmetric (\\(D_{KL}(P \\| Q) \\neq D_{KL}(Q \\| P)\\)). 2. It can explode to infinity if the distributions do not share the exact same support (i.e., if \\(Q(x) = 0\\) where \\(P(x) &gt; 0\\)).\nThe Jensen-Shannon Divergence (JSD) solves both of these problems by creating a smoothed, symmetric version of the KL divergence. It does this by measuring the KL divergence of both \\(P\\) and \\(Q\\) relative to their “average” distribution \\(M\\)."
+    "text": "Given two probability distributions \\(P\\) and \\(Q\\), we first define the mixture distribution \\(M\\) as their exact point-wise average:\n\\[\nM = \\frac{1}{2}(P + Q)\n\\]\nThe Jensen-Shannon Divergence (JSD) is then defined as the average of the KL divergences from \\(P\\) to \\(M\\), and from \\(Q\\) to \\(M\\):\n\\[\nJSD(P \\| Q) = \\frac{1}{2} D_{KL}(P \\| M) + \\frac{1}{2} D_{KL}(Q \\| M)\n\\]"
   },
   {
-    "objectID": "notes/information-theory/jensen-shannon-divergence.html#practice-problems",
-    "href": "notes/information-theory/jensen-shannon-divergence.html#practice-problems",
+    "objectID": "notes/information-theory/jensen-shannon-divergence.html#sec-definitions",
+    "href": "notes/information-theory/jensen-shannon-divergence.html#sec-definitions",
     "title": "Jensen-Shannon Divergence",
-    "section": "Practice Problems",
-    "text": "Practice Problems\n\nProblem 1: GAN Stabilization\nExplain why the strict boundedness (\\(0 \\le JSD \\le \\log 2\\)) makes Jensen-Shannon Divergence vastly superior to KL divergence for training early-stage Generative Adversarial Networks (GANs), especially when the generator and real distributions have disjoint supports."
+    "section": "",
+    "text": "Given two probability distributions \\(P\\) and \\(Q\\), we first define the mixture distribution \\(M\\) as their exact point-wise average:\n\\[\nM = \\frac{1}{2}(P + Q)\n\\]\nThe Jensen-Shannon Divergence (JSD) is then defined as the average of the KL divergences from \\(P\\) to \\(M\\), and from \\(Q\\) to \\(M\\):\n\\[\nJSD(P \\| Q) = \\frac{1}{2} D_{KL}(P \\| M) + \\frac{1}{2} D_{KL}(Q \\| M)\n\\]"
+  },
+  {
+    "objectID": "notes/information-theory/jensen-shannon-divergence.html#sec-intuitions",
+    "href": "notes/information-theory/jensen-shannon-divergence.html#sec-intuitions",
+    "title": "Jensen-Shannon Divergence",
+    "section": "2. Intuitions & Remarks",
+    "text": "2. Intuitions & Remarks\n\nA Symmetric Fix to KL Divergence\nWhile the Kullback-Leibler (KL) Divergence is foundational, it suffers from two major mathematical flaws that limit its utility as a true distance metric: 1. It is asymmetric (\\(D_{KL}(P \\| Q) \\neq D_{KL}(Q \\| P)\\)). 2. It can explode to infinity if the distributions do not share the exact same support (i.e., if \\(Q(x) = 0\\) where \\(P(x) &gt; 0\\)).\nThe Jensen-Shannon Divergence solves both of these problems by creating a smoothed, symmetric version. Instead of measuring how far \\(Q\\) is from \\(P\\) directly, it measures how far both distributions are from their perfectly balanced “middle ground” mixture \\(M\\).\nBecause \\(M\\) contains the probability mass of both \\(P\\) and \\(Q\\), it is impossible for \\(M(x)\\) to be zero when \\(P(x)\\) or \\(Q(x)\\) is greater than zero. This guarantees that the KL divergences to \\(M\\) never explode to infinity, providing immense mathematical stability."
+  },
+  {
+    "objectID": "notes/information-theory/jensen-shannon-divergence.html#sec-properties",
+    "href": "notes/information-theory/jensen-shannon-divergence.html#sec-properties",
+    "title": "Jensen-Shannon Divergence",
+    "section": "3. Formulas & Key Properties",
+    "text": "3. Formulas & Key Properties\n\nKey Properties of JSD\n\n1. Perfect Symmetry\nUnlike KL divergence, JSD is perfectly symmetric. It doesn’t matter which distribution is the “reference” and which is the “approximation.” \\[\nJSD(P \\| Q) = JSD(Q \\| P)\n\\]\n\n\n2. Strict Bounds\nUnlike KL divergence which stretches from \\(0\\) to \\(\\infty\\), JSD is strictly bounded between \\(0\\) and \\(\\log(2)\\) (or \\(1\\) if using base-2 logarithms). \\[\n0 \\le JSD(P \\| Q) \\le \\log(2)\n\\] This absolute boundedness provides immense numerical stability during machine learning training, preventing exploding gradients.\n\n\n3. A True Mathematical Metric\nWhile JSD itself does not satisfy the triangle inequality, its square root actually does! The quantity \\(\\sqrt{JSD(P \\| Q)}\\) satisfies non-negativity, symmetry, identity of indiscernibles, and the triangle inequality, making it a true mathematical distance metric."
+  },
+  {
+    "objectID": "notes/information-theory/jensen-shannon-divergence.html#sec-visualizations",
+    "href": "notes/information-theory/jensen-shannon-divergence.html#sec-visualizations",
+    "title": "Jensen-Shannon Divergence",
+    "section": "4. Graphs & Visualizations",
+    "text": "4. Graphs & Visualizations\nThe construction of the JSD relies entirely on the bridging mixture distribution \\(M\\).\n\n\n\n\n\n%%{init: {'theme': 'dark'}}%%\ngraph TD\n    P[Distribution P] --&gt;|Average| M((Mixture M\\n= 0.5P + 0.5Q))\n    Q[Distribution Q] --&gt;|Average| M\n    \n    P -.-&gt;|KL Divergence| M\n    Q -.-&gt;|KL Divergence| M\n    \n    M --&gt; JSD{Jensen-Shannon\\nDivergence}\n    \n    style P fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style Q fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff\n    style M fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff\n    style JSD fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff"
+  },
+  {
+    "objectID": "notes/information-theory/jensen-shannon-divergence.html#sec-relations",
+    "href": "notes/information-theory/jensen-shannon-divergence.html#sec-relations",
+    "title": "Jensen-Shannon Divergence",
+    "section": "5. Relations to Other Fields",
+    "text": "5. Relations to Other Fields\n\n\n\n\n\n\n\n\nField\nInterpretation / Mapping\nApplication Example\n\n\n\n\nGenerative AI\nThe optimal discriminator forces the generator to minimize the JSD to the real data distribution.\nGenerative Adversarial Networks (GANs)\n\n\nBioinformatics\nComparing probability distributions of amino acids to find evolutionary similarities.\nSequence Alignment\n\n\n\n\nMachine Learning Context: The Birth of GANs\nThe Jensen-Shannon Divergence is permanently etched into machine learning history due to its central role in the original Generative Adversarial Network (GAN) paper by Ian Goodfellow (2014).\nIn a standard GAN, a Generator network \\(G\\) tries to produce fake data to fool a Discriminator network \\(D\\), while \\(D\\) tries to distinguish between true data (\\(P_{data}\\)) and fake data (\\(P_{generator}\\)).\nGoodfellow mathematically proved that if the discriminator \\(D\\) is trained to absolute optimality at any given step, the loss function of the generator precisely collapses into minimizing the Jensen-Shannon Divergence between the true data distribution and the generated distribution:\n\\[\n\\mathcal{L}_G = 2 \\cdot JSD(P_{data} \\| P_{generator}) - \\log(4)\n\\]\nBy engaging in this minimax game, the generator implicitly forces its probability distribution to perfectly match the training data, guided by the smoothed, stable gradients of the JSD."
+  },
+  {
+    "objectID": "notes/information-theory/jensen-shannon-divergence.html#sec-simulation",
+    "href": "notes/information-theory/jensen-shannon-divergence.html#sec-simulation",
+    "title": "Jensen-Shannon Divergence",
+    "section": "6. Interactive Simulation",
+    "text": "6. Interactive Simulation\n\n  Interactive Simulation: JSD Boundedness & Mixture\n  \n    Distribution P (blue) is fixed. Drag the slider to move the mean of Distribution Q (orange). The green dashed line shows their mixture $M$. Notice how the JSD gracefully plateaus at exactly 1 bit (if base 2) as the distributions become completely disjoint! If this were KL Divergence, the value would explode to infinity.\n  \n\n  \n    \n    \n      \n      \n      \n\n      \n      Data Space (x)\n      Density / Divergence\n\n      -10\n      0\n      10\n\n      \n      \n      \n      \n\n      \n      \n      Distribution P\n      \n      \n      Distribution Q\n      \n      \n      Mixture M\n    \n\n    \n    \n      \n        Set Mean of Q:\n        \n      \n      \n        Mean Q = 2.00\n        JSD(P||Q) = 0.000 bits\n      \n    \n    \n    \n    \n      \n      \n        0 bits\n        Max (1 bit)"
+  },
+  {
+    "objectID": "notes/information-theory/jensen-shannon-divergence.html#sec-problems",
+    "href": "notes/information-theory/jensen-shannon-divergence.html#sec-problems",
+    "title": "Jensen-Shannon Divergence",
+    "section": "7. Practice Problems",
+    "text": "7. Practice Problems\n\nProblem 1: Proof of Boundedness\nProve mathematically that the Jensen-Shannon Divergence (base 2) is strictly bounded above by exactly \\(1\\) bit: \\[\nJSD(P \\| Q) \\le 1\n\\]\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nTo prove the upper bound, we express JSD using Shannon Entropy \\(H(\\cdot)\\). Let’s expand the definition:\n\\[\n\\begin{aligned}\nJSD(P \\| Q) &= \\frac{1}{2} \\left[ \\sum P(x) \\log_2 \\frac{P(x)}{M(x)} \\right] + \\frac{1}{2} \\left[ \\sum Q(x) \\log_2 \\frac{Q(x)}{M(x)} \\right] \\\\\n&= \\frac{1}{2} \\left[ \\sum P(x) \\log_2 P(x) - \\sum P(x) \\log_2 M(x) \\right] \\\\\n&\\quad + \\frac{1}{2} \\left[ \\sum Q(x) \\log_2 Q(x) - \\sum Q(x) \\log_2 M(x) \\right]\n\\end{aligned}\n\\]\nSubstitute the definition of Shannon Entropy \\(H(P) = -\\sum P(x) \\log_2 P(x)\\):\n\\[\n\\begin{aligned}\nJSD(P \\| Q) &= \\frac{1}{2} \\left[ -H(P) - \\sum P(x) \\log_2 M(x) \\right] + \\frac{1}{2} \\left[ -H(Q) - \\sum Q(x) \\log_2 M(x) \\right] \\\\\n&= -\\frac{1}{2} H(P) - \\frac{1}{2} H(Q) - \\frac{1}{2} \\sum \\Big( P(x) + Q(x) \\Big) \\log_2 M(x)\n\\end{aligned}\n\\]\nRecall that \\(M(x) = \\frac{P(x) + Q(x)}{2}\\), meaning \\(P(x) + Q(x) = 2M(x)\\). Substitute this:\n\\[\n\\begin{aligned}\nJSD(P \\| Q) &= -\\frac{1}{2} H(P) - \\frac{1}{2} H(Q) - \\frac{1}{2} \\sum \\Big( 2M(x) \\Big) \\log_2 M(x) \\\\\n&= -\\frac{1}{2} H(P) - \\frac{1}{2} H(Q) - \\sum M(x) \\log_2 M(x)\n\\end{aligned}\n\\]\nNotice that \\(-\\sum M(x) \\log_2 M(x)\\) is exactly the entropy of the mixture distribution \\(H(M)\\). Therefore:\n\\[\nJSD(P \\| Q) = H(M) - \\frac{H(P) + H(Q)}{2}\n\\]\nBecause entropy \\(H\\) is a strictly concave function, the entropy of a mixture \\(M\\) is bounded above by applying Jensen’s Inequality: \\[\nH(M) = H\\left(\\frac{P+Q}{2}\\right) \\le \\frac{1}{2} H(P) + \\frac{1}{2} H(Q) + 1\n\\] (Note: the \\(+1\\) comes from the bound of a binary mixture in base 2).\nRearranging this inequality gives: \\[\nH(M) - \\left( \\frac{H(P) + H(Q)}{2} \\right) \\le 1\n\\]\nSince the left side is precisely the \\(JSD(P \\| Q)\\), we arrive at our absolute upper bound: \\[\nJSD(P \\| Q) \\le 1 \\text{ bit}\n\\]\nThe equality holds if and only if \\(P\\) and \\(Q\\) have completely disjoint supports. \\(\\blacksquare\\)\n\n\n\n\n\nProblem 2: GAN Stabilization\nExplain intuitively why this strict boundedness (\\(0 \\le JSD \\le 1\\)) makes Jensen-Shannon Divergence vastly superior to KL divergence for training early-stage Generative Adversarial Networks (GANs).\n\n\nReveal Solution to Problem 2\n\n\n\n\nSolution\n\nIn the early stages of training a GAN, the Generator network is terrible. It produces random noise that looks absolutely nothing like the real data. Mathematically, this means the generated distribution \\(P_{generator}\\) and the real data distribution \\(P_{data}\\) have completely non-overlapping (disjoint) supports in the high-dimensional image space.\nIf you tried to minimize the Forward KL Divergence \\(D_{KL}(P_{data} \\| P_{generator})\\), the ratio \\(\\frac{P_{data}(x)}{P_{generator}(x)}\\) would divide by zero wherever the generator failed to place probability mass. The loss would literally explode to infinity, completely destroying the neural network’s gradients.\nHowever, the JSD explicitly handles disjoint supports gracefully. If the distributions don’t overlap, the JSD simply saturates to its maximum bound of exactly \\(\\log(2)\\) nats (or \\(1\\) bit). The loss remains a finite, well-behaved number, and the gradient flow is preserved so the Generator can continue learning to bridge the gap."
   },
   {
     "objectID": "notes/information-theory/chapter14.html",
@@ -658,53 +798,53 @@
     "text": "Welcome to the Note Template & Blueprint. This document serves as a layout and UI reference for creating new notes. By copying this structure, note creators ensure that definitions, equations, diagrams, interactive components, and problems render in a unified, premium dark theme."
   },
   {
-    "objectID": "notes/template.html#definitions",
-    "href": "notes/template.html#definitions",
+    "objectID": "notes/template.html#sec-definitions",
+    "href": "notes/template.html#sec-definitions",
     "title": "Note Template & Blueprint",
     "section": "1. Definitions",
-    "text": "1. Definitions\nEvery note should begin with a precise, mathematically rigorous definition of the central concept. Wrap definitions in the .thm-box .thm-definition fenced div container.\n\nDefinition: [Concept Name]\nFor a system or variable state, the [Concept Name] is defined as…\nLet \\(X\\) be a random variable, then the mathematical formulation is: \\[\nf(X) = \\mathcal{G}(X) \\cdot \\lambda\n\\] where: * \\(\\mathcal{G}(X)\\) represents the system gain operator. * \\(\\lambda\\) is the normalization constant."
+    "text": "1. Definitions\nEvery note should begin with a precise, mathematically rigorous definition of the central concept. Wrap definitions in the .thm-box .thm-definition fenced div container.\nTo see how this mathematical formulation is applied in a concrete scenario, scroll down to Practice Problem 1.\n\nDefinition: [Concept Name]\nFor a system or variable state, the [Concept Name] is defined as…\nLet \\(X\\) be a random variable, then the mathematical formulation is: \\[\nf(X) = \\mathcal{G}(X) \\cdot \\lambda\n\\] where: * \\(\\mathcal{G}(X)\\) represents the system gain operator. * \\(\\lambda\\) is the normalization constant."
   },
   {
-    "objectID": "notes/template.html#intuitions-remarks",
-    "href": "notes/template.html#intuitions-remarks",
+    "objectID": "notes/template.html#sec-intuitions",
+    "href": "notes/template.html#sec-intuitions",
     "title": "Note Template & Blueprint",
     "section": "2. Intuitions & Remarks",
     "text": "2. Intuitions & Remarks\nTo make the note highly pedagogical, follow the definition with a real-world intuition or remark. Wrap these insights in the .thm-box .thm-remark block.\n\nPhysical Intuition\nThink of this concept like… [Insert a clear analogy here]. For example, if you are looking at a search space: &gt; “High system gain means searching broadly, whereas a low system gain means narrowing down the search parameters.”"
   },
   {
-    "objectID": "notes/template.html#formulas-key-properties",
-    "href": "notes/template.html#formulas-key-properties",
+    "objectID": "notes/template.html#sec-properties",
+    "href": "notes/template.html#sec-properties",
     "title": "Note Template & Blueprint",
     "section": "3. Formulas & Key Properties",
     "text": "3. Formulas & Key Properties\nPresent the main derivations, properties, and proofs in this section. Group related formulas and characteristics inside .thm-box .thm-theorem blocks to make them pop visually.\n\nTheorem: Additivity and Non-Negativity\nLet \\(X\\) and \\(Y\\) be independent entities. The system satisfies the following foundational axioms:\n\n1. Non-negativity\nFor any valid state \\(x\\): \\[\nf(x) \\ge 0\n\\]\n\n\n2. Joint Additivity\nFor joint independent states: \\[\nf(x, y) = f(x) + f(y)\n\\]"
   },
   {
-    "objectID": "notes/template.html#graphs-visualizations",
-    "href": "notes/template.html#graphs-visualizations",
+    "objectID": "notes/template.html#sec-visualizations",
+    "href": "notes/template.html#sec-visualizations",
     "title": "Note Template & Blueprint",
     "section": "4. Graphs & Visualizations",
-    "text": "4. Graphs & Visualizations\nComplex dependencies and flowcharts should be visualized using Mermaid.js diagrams, which compile natively inside Quarto.\n\n\n\n\n\ngraph TD\n    A[Prior Probability] --&gt;|Observation| B(Surprisal)\n    B --&gt;|Expectation| C{Entropy}\n    C --&gt;|Conditioning| D[Conditional Entropy]\n    C --&gt;|Divergence| E[KL Divergence]\n    \n    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style B fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style C fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff\n    style D fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff\n    style E fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff"
+    "text": "4. Graphs & Visualizations\nComplex dependencies and flowcharts should be visualized using Mermaid.js diagrams, which compile natively inside Quarto.\n\n\n\n\n\n%%{init: {'theme': 'dark'}}%%\ngraph TD\n    A[Prior Probability] --&gt;|Observation| B(Surprisal)\n    B --&gt;|Expectation| C{Entropy}\n    C --&gt;|Conditioning| D[Conditional Entropy]\n    C --&gt;|Divergence| E[KL Divergence]\n    \n    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style B fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style C fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff\n    style D fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff\n    style E fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff"
   },
   {
-    "objectID": "notes/template.html#relations-to-other-fields",
-    "href": "notes/template.html#relations-to-other-fields",
+    "objectID": "notes/template.html#sec-relations",
+    "href": "notes/template.html#sec-relations",
     "title": "Note Template & Blueprint",
     "section": "5. Relations to Other Fields",
-    "text": "5. Relations to Other Fields\nIncorporate a table or descriptive section showing how this concept bridges other domains (e.g., Deep Learning, Classical Physics, or Control Theory).\n\n\n\n\n\n\n\n\nField\nInterpretation / Mapping\nApplication Example\n\n\n\n\nDeep Learning\nMinimizing surprisal is equivalent to Cross-Entropy Loss minimization\nClassification training objectives\n\n\nStatistical Physics\nMatches thermodynamic entropy metrics at boundary limits\nFree-energy minimization\n\n\nInformation Theory\nMeasures the average number of bits required to encode outcomes\nHuffman Coding systems\n\n\n\nFor example, we directly apply this relation when evaluating cross-entropy loss in Practice Problem 2."
+    "text": "5. Relations to Other Fields\nIncorporate a table or descriptive section showing how this concept bridges other domains (e.g., Deep Learning, Classical Physics, or Control Theory).\n\n\n\n\n\n\n\n\nField\nInterpretation / Mapping\nApplication Example\n\n\n\n\nDeep Learning\nMinimizing surprisal is equivalent to Cross-Entropy Loss minimization\nClassification training objectives\n\n\nStatistical Physics\nMatches thermodynamic entropy metrics at boundary limits\nFree-energy minimization\n\n\nInformation Theory\nMeasures the average number of bits required to encode outcomes\nHuffman Coding systems\n\n\n\nFor a direct application of this relation, scroll down to Practice Problem 2."
   },
   {
-    "objectID": "notes/template.html#interactive-simulation",
-    "href": "notes/template.html#interactive-simulation",
+    "objectID": "notes/template.html#sec-simulation",
+    "href": "notes/template.html#sec-simulation",
     "title": "Note Template & Blueprint",
     "section": "6. Interactive Simulation",
     "text": "6. Interactive Simulation\nInteractive widgets let readers experiment with the mathematics. You can embed a lightweight, self-contained SVG + JavaScript simulation inside a styled card.\n\n  Interactive Simulation: Surprisal vs. Probability\n  \n    Drag the slider below to change the probability $P(x)$ of an event and see how its information content (surprisal) $h(x) = -\\log_2 P(x)$ changes. Note how rare events ($P(x) \\approx 0$) yield high surprise, while guaranteed events ($P(x) = 1$) yield zero surprise.\n  \n  \n  \n    \n    \n      \n      \n      \n      \n      \n      Probability P(x)\n      Surprisal h(x) (bits)\n      \n      0.0\n      0.25\n      0.5\n      0.75\n      1.0\n      \n      0\n      2\n      4\n      6+\n      \n      \n      \n      \n      \n      \n      \n      \n    \n    \n    \n    \n      \n        Set Probability P(x):\n        \n      \n      \n        P(x) = 0.250\n        h(x) = 2.000 bits"
   },
   {
-    "objectID": "notes/template.html#practice-problems-with-collapsible-solutions",
-    "href": "notes/template.html#practice-problems-with-collapsible-solutions",
+    "objectID": "notes/template.html#sec-problems",
+    "href": "notes/template.html#sec-problems",
     "title": "Note Template & Blueprint",
     "section": "7. Practice Problems with Collapsible Solutions",
-    "text": "7. Practice Problems with Collapsible Solutions\nConclude each note with 1–3 concrete practice problems. Readers can click anchor links to jump directly here. Wrap solutions inside &lt;details class=\"solution-toggle\"&gt; elements so they remain collapsed by default.\n\n\nProblem 1: Basic Derivation\nShow that if two events are independent, their joint surprisal adds up.\n\n\n\n\nReveal Solution to Problem 1\n\n\n::: {.thm-box .thm-solution}\n### Solution\n\nLet $X$ and $Y$ be independent random variables. By definition:\n$$\nP(X, Y) = P(X)P(Y)\n$$\nTaking the negative log base 2 of both sides:\n$$\n\\begin{aligned}\nh(X, Y) &= -\\log_2 P(X, Y) \\\\\n&= -\\log_2 \\big(P(X)P(Y)\\big) \\\\\n&= -\\log_2 P(X) - \\log_2 P(Y) \\\\\n&= h(X) + h(Y)\n\\end{aligned}\n$$\nHence, joint surprisal is additive. $\\blacksquare$\n:::\n\n\n\n\nProblem 2: Applied Metric\nExplain why Cross-Entropy is always greater than or equal to Entropy: \\(H(P, Q) \\ge H(P)\\).\n\n\n\n\nReveal Solution to Problem 2\n\n\n::: {.thm-box .thm-solution}\n### Solution\n\nRecall that the Kullback-Leibler (KL) Divergence represents:\n$$\nD_{\\text{KL}}(P \\parallel Q) = H(P, Q) - H(P)\n$$\nBy Gibbs' Inequality, we know that $D_{\\text{KL}}(P \\parallel Q) \\ge 0$ for all probability distributions $P$ and $Q$. Consequently:\n$$\nH(P, Q) - H(P) \\ge 0 \\implies H(P, Q) \\ge H(P)\n$$\nThe inequality holds with equality if and only if $P = Q$. $\\blacksquare$\n:::"
+    "text": "7. Practice Problems with Collapsible Solutions\nConclude each note with 1–3 concrete practice problems. Readers can click anchor links to jump directly here. Wrap solutions inside &lt;details class=\"solution-toggle\"&gt; elements so they remain collapsed by default.\n\nProblem 1: Basic Derivation\nShow that if two events are independent, their joint surprisal adds up.\n(This problem directly tests your understanding of the concepts defined in the Definitions section.)\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nLet \\(X\\) and \\(Y\\) be independent random variables. By definition: \\[\nP(X, Y) = P(X)P(Y)\n\\] Taking the negative log base 2 of both sides: \\[\n\\begin{aligned}\nh(X, Y) &= -\\log_2 P(X, Y) \\\\\n&= -\\log_2 \\big(P(X)P(Y)\\big) \\\\\n&= -\\log_2 P(X) - \\log_2 P(Y) \\\\\n&= h(X) + h(Y)\n\\end{aligned}\n\\] Hence, joint surprisal is additive. \\(\\blacksquare\\)\n\n\n\n\n\nProblem 2: Applied Metric\nExplain why Cross-Entropy is always greater than or equal to Entropy: \\(H(P, Q) \\ge H(P)\\).\n(This problem requires applying the mathematical equivalence detailed in the Relations to Other Fields section.)\n\n\nReveal Solution to Problem 2\n\n\n\n\nSolution\n\nRecall that the Kullback-Leibler (KL) Divergence represents: \\[\nD_{\\text{KL}}(P \\parallel Q) = H(P, Q) - H(P)\n\\] By Gibbs’ Inequality, we know that \\(D_{\\text{KL}}(P \\parallel Q) \\ge 0\\) for all probability distributions \\(P\\) and \\(Q\\). Consequently: \\[\nH(P, Q) - H(P) \\ge 0 \\implies H(P, Q) \\ge H(P)\n\\] The inequality holds with equality if and only if \\(P = Q\\). \\(\\blacksquare\\)"
   },
   {
     "objectID": "notes/reinforcement-learning/trust-region-and-natural-policy-gradient.html",
@@ -2464,13 +2604,6 @@
     "text": "Practice Problems\n\nProblem 1: Mean Reciprocal Rank\nCalculate the MRR (Mean Reciprocal Rank) for a search engine that processes three distinct user queries, where the single correct result is found at rank \\(1\\), rank \\(3\\), and rank \\(2\\) respectively."
   },
   {
-    "objectID": "notes/information-theory/js-div-boundedness-proof.html",
-    "href": "notes/information-theory/js-div-boundedness-proof.html",
-    "title": "JS Div Boundedness Proof",
-    "section": "",
-    "text": "Theorem\nFor any two probability distributions \\(P\\) and \\(Q\\), the Jensen-Shannon Divergence (JSD) calculated using the natural logarithm (base \\(e\\)) is strictly bounded between \\(0\\) and \\(\\log(2)\\).\n\\[\n0 \\le JSD(P \\| Q) \\le \\log(2)\n\\]\nIf base-2 logarithms are used, the bound is simply \\(1\\) bit.\n\n\nProof of the Lower Bound\nThe lower bound follows trivially from the non-negativity of the Kullback-Leibler (KL) Divergence (Gibbs’ Inequality).\nRecall the definition of JSD: \\[\nJSD(P \\| Q) = \\frac{1}{2} D_{KL}(P \\| M) + \\frac{1}{2} D_{KL}(Q \\| M)\n\\] where \\(M = \\frac{P + Q}{2}\\).\nSince \\(D_{KL}(A \\| B) \\ge 0\\) for any distributions \\(A, B\\), the sum of two positive KL divergences must also be \\(\\ge 0\\). Equality holds if and only if \\(P = M\\) and \\(Q = M\\), which requires \\(P = Q\\).\n\n\nProof of the Upper Bound\nTo prove the upper bound, we will express JSD using Shannon Entropy \\(H(\\cdot)\\). Let’s expand the definition:\n\\[\n\\begin{aligned}\nJSD(P \\| Q) &= \\frac{1}{2} \\left[ \\sum P(x) \\log \\frac{P(x)}{M(x)} \\right] + \\frac{1}{2} \\left[ \\sum Q(x) \\log \\frac{Q(x)}{M(x)} \\right] \\\\\n&= \\frac{1}{2} \\left[ \\sum P(x) \\log P(x) - \\sum P(x) \\log M(x) \\right] \\\\\n&\\quad + \\frac{1}{2} \\left[ \\sum Q(x) \\log Q(x) - \\sum Q(x) \\log M(x) \\right]\n\\end{aligned}\n\\]\nSubstitute the definition of Shannon Entropy \\(H(P) = -\\sum P(x) \\log P(x)\\):\n\\[\n\\begin{aligned}\nJSD(P \\| Q) &= \\frac{1}{2} \\left[ -H(P) - \\sum P(x) \\log M(x) \\right] + \\frac{1}{2} \\left[ -H(Q) - \\sum Q(x) \\log M(x) \\right] \\\\\n&= -\\frac{1}{2} H(P) - \\frac{1}{2} H(Q) - \\frac{1}{2} \\sum \\Big( P(x) + Q(x) \\Big) \\log M(x)\n\\end{aligned}\n\\]\nRecall that \\(M(x) = \\frac{P(x) + Q(x)}{2}\\), meaning \\(P(x) + Q(x) = 2M(x)\\). Let’s substitute this into the summation:\n\\[\n\\begin{aligned}\nJSD(P \\| Q) &= -\\frac{1}{2} H(P) - \\frac{1}{2} H(Q) - \\frac{1}{2} \\sum \\Big( 2M(x) \\Big) \\log M(x) \\\\\n&= -\\frac{1}{2} H(P) - \\frac{1}{2} H(Q) - \\sum M(x) \\log M(x)\n\\end{aligned}\n\\]\nNotice that \\(-\\sum M(x) \\log M(x)\\) is exactly the entropy of the mixture distribution \\(H(M)\\). Therefore:\n\\[\nJSD(P \\| Q) = H(M) - \\frac{H(P) + H(Q)}{2}\n\\]\nBecause entropy \\(H\\) is a strictly concave function, the entropy of the mixture \\(M\\) is bounded by the maximum possible entropy added to the mixture ratio. By applying Jensen’s Inequality to the concave function \\(H\\): \\[\nH(M) = H\\left(\\frac{P+Q}{2}\\right) \\le \\frac{1}{2} H(P) + \\frac{1}{2} H(Q) + \\log(2)\n\\]\nRearranging this inequality gives: \\[\nH(M) - \\left( \\frac{H(P) + H(Q)}{2} \\right) \\le \\log(2)\n\\]\nSince the left side is precisely the \\(JSD(P \\| Q)\\), we arrive at our absolute upper bound: \\[\nJSD(P \\| Q) \\le \\log(2)\n\\]\nThe equality holds if and only if \\(P\\) and \\(Q\\) have completely disjoint supports (i.e., they share zero probability mass). In this scenario of maximum disagreement, the divergence peaks at \\(\\log(2)\\)."
-  },
-  {
     "objectID": "notes/information-theory/information-bottleneck.html",
     "href": "notes/information-theory/information-bottleneck.html",
     "title": "Information Bottleneck",
@@ -2524,14 +2657,56 @@
     "href": "notes/information-theory/cross-entropy.html",
     "title": "Cross-Entropy",
     "section": "",
-    "text": "In information theory, Cross-Entropy measures the average number of bits needed to identify an event drawn from a true probability distribution \\(P\\), if a coding scheme is used that is optimized for an estimated (or unnatural) probability distribution \\(Q\\), rather than the true distribution \\(P\\).\nIntuitively, if you believe the weather follows distribution \\(Q\\) (e.g., mostly sunny), you will design a communication protocol that assigns short codes to “sunny”. If the actual weather follows distribution \\(P\\) (e.g., mostly rainy), your protocol will be highly inefficient. Cross-entropy quantifies this exact inefficiency."
+    "text": "For discrete distributions \\(P\\) and \\(Q\\) defined over the same sample space \\(\\mathcal{X}\\), the cross-entropy \\(H(P, Q)\\) is defined as the expected surprisal of the estimated distribution \\(Q\\), evaluated under the true distribution \\(P\\):\n\\[\nH(P, Q) = \\mathbb{E}_{x \\sim P} [ -\\log_2 Q(x) ] = -\\sum_{x \\in \\mathcal{X}} P(x) \\log_2 Q(x)\n\\]\nFor continuous distributions with probability density functions \\(p\\) and \\(q\\), the sum is replaced by an integral: \\[\nH(P, Q) = -\\int_{\\mathcal{X}} p(x) \\ln q(x) \\, dx\n\\]"
   },
   {
-    "objectID": "notes/information-theory/cross-entropy.html#practice-problems",
-    "href": "notes/information-theory/cross-entropy.html#practice-problems",
+    "objectID": "notes/information-theory/cross-entropy.html#sec-definitions",
+    "href": "notes/information-theory/cross-entropy.html#sec-definitions",
     "title": "Cross-Entropy",
-    "section": "Practice Problems",
-    "text": "Practice Problems\n\nProblem 1: Binary Cross-Entropy\nCalculate the Binary Cross-Entropy loss for a single data point where the true label is \\(y=1\\) and the model’s predicted probability is \\(p=0.01\\). Why does the loss become so massive?"
+    "section": "",
+    "text": "For discrete distributions \\(P\\) and \\(Q\\) defined over the same sample space \\(\\mathcal{X}\\), the cross-entropy \\(H(P, Q)\\) is defined as the expected surprisal of the estimated distribution \\(Q\\), evaluated under the true distribution \\(P\\):\n\\[\nH(P, Q) = \\mathbb{E}_{x \\sim P} [ -\\log_2 Q(x) ] = -\\sum_{x \\in \\mathcal{X}} P(x) \\log_2 Q(x)\n\\]\nFor continuous distributions with probability density functions \\(p\\) and \\(q\\), the sum is replaced by an integral: \\[\nH(P, Q) = -\\int_{\\mathcal{X}} p(x) \\ln q(x) \\, dx\n\\]"
+  },
+  {
+    "objectID": "notes/information-theory/cross-entropy.html#sec-intuitions",
+    "href": "notes/information-theory/cross-entropy.html#sec-intuitions",
+    "title": "Cross-Entropy",
+    "section": "2. Intuitions & Remarks",
+    "text": "2. Intuitions & Remarks\n\nThe Cost of Being Wrong\nIn information theory, Cross-Entropy measures the average number of bits needed to identify an event drawn from a true probability distribution \\(P\\), if a coding scheme is used that is optimized for an estimated (or unnatural) probability distribution \\(Q\\), rather than the true distribution \\(P\\).\nIntuitively, if you believe the weather follows distribution \\(Q\\) (e.g., mostly sunny), you will design a communication protocol that assigns very short codes to the message “sunny”. If the actual weather follows distribution \\(P\\) (e.g., mostly rainy), your protocol will be highly inefficient because you will frequently have to transmit the long, complex codes for “rainy”.\nCross-entropy quantifies this exact inefficiency. It asks: “How many bits on average do I have to transmit if I optimize for \\(Q\\), but reality actually follows \\(P\\)?”"
+  },
+  {
+    "objectID": "notes/information-theory/cross-entropy.html#sec-properties",
+    "href": "notes/information-theory/cross-entropy.html#sec-properties",
+    "title": "Cross-Entropy",
+    "section": "3. Formulas & Key Properties",
+    "text": "3. Formulas & Key Properties\n\nKey Properties of Cross-Entropy\n\n1. Non-Symmetric\nCross-entropy is asymmetric. The cost of assuming \\(Q\\) when reality is \\(P\\) is completely different from assuming \\(P\\) when reality is \\(Q\\). \\[\nH(P, Q) \\neq H(Q, P)\n\\]\n\n\n2. Lower Bound (Gibbs’ Inequality)\nCross-entropy is strictly bounded below by the true entropy of the ground truth distribution \\(P\\). \\[\nH(P, Q) \\ge H(P)\n\\] Equality holds if and only if your estimation perfectly matches reality (\\(P = Q\\)).\n\n\n3. Relationship to KL Divergence\nCross-entropy is deeply connected to Shannon Entropy and the Kullback-Leibler (KL) Divergence via a profound decomposition: \\[\nH(P, Q) = H(P) + D_{KL}(P \\| Q)\n\\] This equation states that the total cost of using the wrong distribution \\(Q\\) is exactly equal to the irreducible, theoretical minimum cost if you knew the true distribution \\(P\\) (which is \\(H(P)\\)), plus a “penalty gap” for your estimation error (which is the KL Divergence)."
+  },
+  {
+    "objectID": "notes/information-theory/cross-entropy.html#sec-visualizations",
+    "href": "notes/information-theory/cross-entropy.html#sec-visualizations",
+    "title": "Cross-Entropy",
+    "section": "4. Graphs & Visualizations",
+    "text": "4. Graphs & Visualizations\nThe relationship expressed by \\(H(P, Q) = H(P) + D_{KL}(P \\| Q)\\) can be visualized through a simple decomposition of the penalty.\n\n\n\n\n\n%%{init: {'theme': 'dark'}}%%\ngraph TD\n    P[True Distribution P\\n(Reality)] --&gt;|Irreducible Uncertainty| H_P(Entropy H)\n    Q[Estimated Distribution Q\\n(Assumption)] -.-&gt;|Estimation Error| KL(KL Divergence Penalty)\n    P -.-&gt;|Compared against| KL\n    \n    H_P --&gt; CE{Cross-Entropy H P,Q}\n    KL --&gt; CE\n    \n    style P fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff\n    style Q fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff\n    style H_P fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style KL fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff\n    style CE fill:#161b22,stroke:#f59e0b,stroke-width:2px,color:#fff"
+  },
+  {
+    "objectID": "notes/information-theory/cross-entropy.html#sec-relations",
+    "href": "notes/information-theory/cross-entropy.html#sec-relations",
+    "title": "Cross-Entropy",
+    "section": "5. Relations to Other Fields",
+    "text": "5. Relations to Other Fields\n\n\n\n\n\n\n\n\nField\nInterpretation / Mapping\nApplication Example\n\n\n\n\nDeep Learning\nThe most universally used loss function for classification tasks.\nTraining neural networks\n\n\nInformation Theory\nThe length of messages encoded with a suboptimal codebook.\nKraft-McMillan inequality\n\n\n\n\nMachine Learning Context: Cross-Entropy Loss\nWhen training a neural network classifier, we are trying to predict the true label distribution \\(P\\) using the model’s predicted distribution \\(Q\\). - The true distribution \\(P\\) for a single sample is typically a one-hot encoded vector (e.g., \\([0, 1, 0, 0]\\) where the target class has probability 1). - The predicted distribution \\(Q\\) is the output of the Softmax function (e.g., \\([0.1, 0.7, 0.15, 0.05]\\)).\nIf we minimize the Cross-Entropy \\(H(P, Q)\\), we push \\(Q\\) to be as close to \\(P\\) as possible.\n\nWhy is \\(H(P)\\) ignored in practice?\nRecall the decomposition \\(H(P, Q) = H(P) + D_{KL}(P \\| Q)\\). In a classification task, the true labels \\(P\\) are deterministic (one-hot), meaning the true entropy \\(H(P)\\) is exactly \\(0\\). Therefore, minimizing Cross-Entropy is mathematically identical to minimizing the KL Divergence between the predictions and the ground truth!"
+  },
+  {
+    "objectID": "notes/information-theory/cross-entropy.html#sec-simulation",
+    "href": "notes/information-theory/cross-entropy.html#sec-simulation",
+    "title": "Cross-Entropy",
+    "section": "6. Interactive Simulation",
+    "text": "6. Interactive Simulation\n\n  Interactive Simulation: Binary Cross-Entropy Loss\n  \n    Assume the true ground-truth label is $y=1$ (deterministic, $H(P)=0$). Drag the slider to change the model's predicted probability $q$. Watch how the Cross-Entropy loss explodes to infinity as the model becomes highly confident but totally wrong (predicting $q \\approx 0$).\n  \n\n  \n    \n    \n      \n      \n      \n\n      \n      Predicted Probability q\n      Cross-Entropy Loss\n\n      0.0\n      0.5\n      1.0\n\n      0\n      3\n      6\n\n      \n      \n\n      \n      \n      \n      \n    \n\n    \n    \n      \n        Set Predicted Prob q:\n        \n      \n      \n        q = 0.500\n        Loss = 1.000 nats"
+  },
+  {
+    "objectID": "notes/information-theory/cross-entropy.html#sec-problems",
+    "href": "notes/information-theory/cross-entropy.html#sec-problems",
+    "title": "Cross-Entropy",
+    "section": "7. Practice Problems",
+    "text": "7. Practice Problems\n\nProblem 1: Decomposition of Cross-Entropy\nMathematically derive the decomposition \\(H(P, Q) = H(P) + D_{KL}(P \\| Q)\\) from the base definition of Cross-Entropy. (Hint: Use the definition of KL Divergence \\(D_{KL}(P \\| Q) = \\sum P(x) \\log \\frac{P(x)}{Q(x)}\\)).\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nStarting from the definition of KL Divergence: \\[\n\\begin{aligned}\nD_{KL}(P \\| Q) &= \\sum_{x \\in \\mathcal{X}} P(x) \\log \\left( \\frac{P(x)}{Q(x)} \\right) \\\\\n&= \\sum_{x \\in \\mathcal{X}} P(x) \\big( \\log P(x) - \\log Q(x) \\big) \\\\\n&= \\sum_{x \\in \\mathcal{X}} P(x) \\log P(x) - \\sum_{x \\in \\mathcal{X}} P(x) \\log Q(x)\n\\end{aligned}\n\\]\nNotice that the first term is exactly the negative entropy of \\(P\\), and the second term is the positive Cross-Entropy \\(H(P, Q)\\): \\[\nD_{KL}(P \\| Q) = -H(P) + H(P, Q)\n\\]\nRearranging the terms, we get the fundamental relationship: \\[\nH(P, Q) = H(P) + D_{KL}(P \\| Q)\n\\]\n\\(\\blacksquare\\)\n\n\n\n\n\nProblem 2: Binary Cross-Entropy Penalty Explosion\nFor a binary classification task, the Binary Cross-Entropy (BCE) formula simplifies to: \\[\n\\text{BCE} = - \\big( y \\ln(p) + (1 - y) \\ln(1 - p) \\big)\n\\] Calculate the BCE loss for a single data point where the true label is \\(y=1\\) and the model’s predicted probability is \\(p=0.001\\). Why does the loss become so massive compared to a wrong but less confident prediction (e.g. \\(p=0.4\\))?\n\n\nReveal Solution to Problem 2\n\n\n\n\nSolution\n\nIf \\(y = 1\\), the second term \\((1 - y)\\) becomes zero, completely eliminating the \\(\\ln(1-p)\\) term. The formula simplifies to: \\[\n\\text{BCE} = -\\ln(p)\n\\]\nFor \\(p = 0.4\\) (Wrong, but not confidently wrong): \\[\n\\text{BCE} = -\\ln(0.4) \\approx 0.916 \\text{ nats}\n\\]\nFor \\(p = 0.001\\) (Highly confident, but completely wrong): \\[\n\\text{BCE} = -\\ln(0.001) \\approx 6.907 \\text{ nats}\n\\]\nThe loss is over 7 times higher! The logarithmic nature of the loss function massively penalizes a model that is confidently wrong. As the probability \\(p\\) approaches exactly \\(0\\) for a true class, the loss approaches positive infinity (\\(\\lim_{p \\to 0} -\\ln(p) = \\infty\\)). This asymmetric explosion forces the model to heavily adjust its weights to never guarantee an incorrect prediction."
   },
   {
     "objectID": "notes/information-theory/f-divergence.html",
@@ -2580,13 +2755,55 @@
     "href": "notes/information-theory/kl-divergence.html",
     "title": "Kullback-Leibler Divergence",
     "section": "",
-    "text": "The Kullback-Leibler (KL) Divergence, often called Relative Entropy, is a fundamental measure of how one probability distribution \\(Q\\) diverges from a reference probability distribution \\(P\\).\nIf \\(P\\) represents the “true” distribution of data and \\(Q\\) represents our model’s approximation of that distribution, \\(D_{KL}(P \\| Q)\\) quantifies the exact amount of information lost when \\(Q\\) is used to approximate \\(P\\)."
+    "text": "For discrete probability distributions \\(P\\) and \\(Q\\) defined on the same probability space \\(\\mathcal{X}\\), the Kullback-Leibler (KL) Divergence from \\(Q\\) to \\(P\\) is defined as:\n\\[\nD_{KL}(P \\| Q) = \\sum_{x \\in \\mathcal{X}} P(x) \\log_2 \\left( \\frac{P(x)}{Q(x)} \\right)\n\\]\nFor continuous distributions with probability density functions \\(p\\) and \\(q\\), the sum becomes an integral: \\[\nD_{KL}(P \\| Q) = \\int_{\\mathcal{X}} p(x) \\ln \\left( \\frac{p(x)}{q(x)} \\right) dx\n\\]\n(Note: The double vertical bars \\(\\|\\) emphasize that this is a divergence between two distributions, not a conditional probability. It is read as “The KL divergence of P with respect to Q” or “The KL divergence from Q to P”.)"
   },
   {
-    "objectID": "notes/information-theory/kl-divergence.html#practice-problems",
-    "href": "notes/information-theory/kl-divergence.html#practice-problems",
+    "objectID": "notes/information-theory/kl-divergence.html#sec-definitions",
+    "href": "notes/information-theory/kl-divergence.html#sec-definitions",
     "title": "Kullback-Leibler Divergence",
-    "section": "Practice Problems",
-    "text": "Practice Problems\n\nProblem 1: The Asymmetry of KL\nProvide a concrete, numerical example showing that \\(D_{KL}(P \\| Q) \\neq D_{KL}(Q \\| P)\\) using two simple discrete probability distributions (e.g., \\(P=[0.5, 0.5]\\) and \\(Q=[0.9, 0.1]\\))."
+    "section": "",
+    "text": "For discrete probability distributions \\(P\\) and \\(Q\\) defined on the same probability space \\(\\mathcal{X}\\), the Kullback-Leibler (KL) Divergence from \\(Q\\) to \\(P\\) is defined as:\n\\[\nD_{KL}(P \\| Q) = \\sum_{x \\in \\mathcal{X}} P(x) \\log_2 \\left( \\frac{P(x)}{Q(x)} \\right)\n\\]\nFor continuous distributions with probability density functions \\(p\\) and \\(q\\), the sum becomes an integral: \\[\nD_{KL}(P \\| Q) = \\int_{\\mathcal{X}} p(x) \\ln \\left( \\frac{p(x)}{q(x)} \\right) dx\n\\]\n(Note: The double vertical bars \\(\\|\\) emphasize that this is a divergence between two distributions, not a conditional probability. It is read as “The KL divergence of P with respect to Q” or “The KL divergence from Q to P”.)"
+  },
+  {
+    "objectID": "notes/information-theory/kl-divergence.html#sec-intuitions",
+    "href": "notes/information-theory/kl-divergence.html#sec-intuitions",
+    "title": "Kullback-Leibler Divergence",
+    "section": "2. Intuitions & Remarks",
+    "text": "2. Intuitions & Remarks\n\nThe Intuition of Information Loss\nIf \\(P\\) represents the “true” underlying distribution of data in nature, and \\(Q\\) represents our mathematical model’s approximation of that distribution, then \\(D_{KL}(P \\| Q)\\) quantifies the exact amount of information lost when we use \\(Q\\) instead of \\(P\\).\nImagine you are trying to compress data using a codebook. If you know the true distribution \\(P\\), you can build an optimal codebook. If you are forced to use a codebook optimized for \\(Q\\) instead, your compressed files will be slightly larger. The KL divergence is exactly the number of extra bits required due to using the wrong codebook."
+  },
+  {
+    "objectID": "notes/information-theory/kl-divergence.html#sec-properties",
+    "href": "notes/information-theory/kl-divergence.html#sec-properties",
+    "title": "Kullback-Leibler Divergence",
+    "section": "3. Formulas & Key Properties",
+    "text": "3. Formulas & Key Properties\n\nKey Properties of KL Divergence\n\n1. Gibbs’ Inequality (Non-negativity)\nKL Divergence is strictly non-negative. You cannot have “negative” information loss. \\[\nD_{KL}(P \\| Q) \\ge 0\n\\] Equality \\(D_{KL}(P \\| Q) = 0\\) holds if and only if \\(P\\) and \\(Q\\) are identical almost everywhere.\n\n\n2. Lack of Symmetry\nKL Divergence is not a true mathematical distance metric because it is highly asymmetric: \\[\nD_{KL}(P \\| Q) \\neq D_{KL}(Q \\| P)\n\\] This asymmetry has profound implications in machine learning, dictating whether models exhibit “mode-seeking” or “mean-seeking” behavior.\n\n\n3. Lack of Triangle Inequality\nIt does not satisfy the triangle inequality. You cannot compute the divergence \\(D_{KL}(P \\| R)\\) simply by bridging through an intermediate distribution \\(Q\\). Thus, we call it a “divergence” rather than a “distance”."
+  },
+  {
+    "objectID": "notes/information-theory/kl-divergence.html#sec-visualizations",
+    "href": "notes/information-theory/kl-divergence.html#sec-visualizations",
+    "title": "Kullback-Leibler Divergence",
+    "section": "4. Graphs & Visualizations",
+    "text": "4. Graphs & Visualizations\nBecause of the asymmetry, the order of \\(P\\) and \\(Q\\) drastically alters the geometric behavior of the approximation when we use KL Divergence as an optimization objective.\n\n\n\n\n\n%%{init: {'theme': 'dark'}}%%\ngraph TD\n    subgraph Forward KL / Mean-Seeking\n        A[True Bimodal P] --&gt;|Penalty: Q must cover P| B(Broad Unimodal Q)\n        B -.-&gt;|Covers both peaks, but underestimates heights| C(Mean-Seeking)\n    end\n    \n    subgraph Reverse KL / Mode-Seeking\n        D[True Bimodal P] --&gt;|Penalty: Q avoids P=0| E(Narrow Unimodal Q)\n        E -.-&gt;|Collapses into one valid peak| F(Mode-Seeking)\n    end\n    \n    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style B fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff\n    style C fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff\n    \n    style D fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff\n    style E fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff\n    style F fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff\n\n\n\n\n\n\n\nForward KL: \\(D_{KL}(P \\| Q)\\)\n\nPenalty: If \\(P(x) &gt; 0\\) but \\(Q(x) \\to 0\\), the ratio \\(\\frac{P(x)}{Q(x)}\\) explodes to infinity. Therefore, \\(Q\\) is forced to place probability mass everywhere \\(P\\) places mass.\nResult: \\(Q\\) stretches out to “cover” all the modes (peaks) of \\(P\\), resulting in a broad, mean-seeking approximation.\n\n\n\nReverse KL: \\(D_{KL}(Q \\| P)\\)\n\nPenalty: If \\(Q(x) &gt; 0\\) but \\(P(x) \\to 0\\), the ratio \\(\\frac{Q(x)}{P(x)}\\) explodes. Therefore, \\(Q\\) must absolutely avoid placing mass where \\(P\\) has no mass.\nResult: \\(Q\\) tends to “collapse” into a single valid peak (mode) of \\(P\\) to safely avoid areas where \\(P=0\\). This results in a highly focused, mode-seeking approximation."
+  },
+  {
+    "objectID": "notes/information-theory/kl-divergence.html#sec-relations",
+    "href": "notes/information-theory/kl-divergence.html#sec-relations",
+    "title": "Kullback-Leibler Divergence",
+    "section": "5. Relations to Other Fields",
+    "text": "5. Relations to Other Fields\n\n\n\n\n\n\n\n\nField\nInterpretation / Mapping\nApplication Example\n\n\n\n\nVariational Inference\nWe approximate complex posteriors with simple networks by explicitly minimizing the Reverse KL Divergence.\nVariational Autoencoders (VAEs)\n\n\nReinforcement Learning\nWe add a KL penalty to ensure newly updated policies do not diverge too wildly from old policies.\nProximal Policy Optimization (PPO)\n\n\nInformation Bottleneck\nNetworks try to maximize mutual information with targets while minimizing KL divergence with inputs.\nDeep Learning Theory"
+  },
+  {
+    "objectID": "notes/information-theory/kl-divergence.html#sec-simulation",
+    "href": "notes/information-theory/kl-divergence.html#sec-simulation",
+    "title": "Kullback-Leibler Divergence",
+    "section": "6. Interactive Simulation",
+    "text": "6. Interactive Simulation\n\n  Interactive Simulation: The Asymmetry of KL Divergence\n  \n    Let $P$ be a fixed coin with $P(\\text{Heads}) = 0.2$. You control the approximation $Q(\\text{Heads}) = q$. Drag the slider to adjust $q$ and see how the Forward KL Divergence $D_{KL}(P\\|Q)$ and Reverse KL Divergence $D_{KL}(Q\\|P)$ respond differently as you approach the boundaries.\n  \n\n  \n    \n    \n      \n      \n      \n\n      \n      Approximation q\n      Divergence (bits)\n\n      0.0\n      p=0.2\n      0.5\n      1.0\n\n      0\n      2\n      4\n\n      \n      \n\n      \n      \n      \n\n      \n      \n      Forward D(P||Q)\n      \n      Reverse D(Q||P)\n\n      \n      \n      \n      \n    \n\n    \n    \n      \n        Set Approx q:\n        \n      \n      \n        q = 0.500\n        D(P||Q) = 0.000\n        D(Q||P) = 0.000"
+  },
+  {
+    "objectID": "notes/information-theory/kl-divergence.html#sec-problems",
+    "href": "notes/information-theory/kl-divergence.html#sec-problems",
+    "title": "Kullback-Leibler Divergence",
+    "section": "7. Practice Problems",
+    "text": "7. Practice Problems\n\nProblem 1: Proof of Asymmetry\nProvide a concrete, numerical proof that \\(D_{KL}(P \\| Q) \\neq D_{KL}(Q \\| P)\\) using two simple discrete probability distributions: \\(P=[0.5, 0.5]\\) and \\(Q=[0.9, 0.1]\\).\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nLet \\(P = [0.5, 0.5]\\) and \\(Q = [0.9, 0.1]\\).\nForward KL Divergence: \\[\n\\begin{aligned}\nD_{KL}(P \\| Q) &= \\sum P(x) \\log_2 \\left( \\frac{P(x)}{Q(x)} \\right) \\\\\n&= 0.5 \\log_2\\left(\\frac{0.5}{0.9}\\right) + 0.5 \\log_2\\left(\\frac{0.5}{0.1}\\right) \\\\\n&= 0.5 \\log_2(0.555) + 0.5 \\log_2(5) \\\\\n&\\approx 0.5(-0.849) + 0.5(2.321) \\\\\n&\\approx -0.424 + 1.161 \\\\\n&= 0.737 \\text{ bits}\n\\end{aligned}\n\\]\nReverse KL Divergence: \\[\n\\begin{aligned}\nD_{KL}(Q \\| P) &= \\sum Q(x) \\log_2 \\left( \\frac{Q(x)}{P(x)} \\right) \\\\\n&= 0.9 \\log_2\\left(\\frac{0.9}{0.5}\\right) + 0.1 \\log_2\\left(\\frac{0.1}{0.5}\\right) \\\\\n&= 0.9 \\log_2(1.8) + 0.1 \\log_2(0.2) \\\\\n&\\approx 0.9(0.848) + 0.1(-2.321) \\\\\n&\\approx 0.763 - 0.232 \\\\\n&= 0.531 \\text{ bits}\n\\end{aligned}\n\\]\nSince \\(0.737 \\neq 0.531\\), we have proven that the KL divergence is fundamentally asymmetric. \\(\\blacksquare\\)\n\n\n\n\n\nProblem 2: Gibbs’ Inequality\nUse Jensen’s Inequality to mathematically prove Gibbs’ Inequality: \\(D_{KL}(P \\| Q) \\ge 0\\). (Hint: Remember that Jensen’s Inequality states that for any strictly concave function like \\(\\ln(x)\\), the expected value of the function is less than or equal to the function of the expected value: \\(\\mathbb{E}[\\ln(X)] \\le \\ln(\\mathbb{E}[X])\\)).\n\n\nReveal Solution to Problem 2\n\n\n\n\nSolution\n\nLet’s begin with the definition of KL Divergence using the natural logarithm: \\[\nD_{KL}(P \\| Q) = \\sum_{x} P(x) \\ln \\left( \\frac{P(x)}{Q(x)} \\right)\n\\]\nWe can rewrite the ratio inside the logarithm by negating it: \\[\nD_{KL}(P \\| Q) = -\\sum_{x} P(x) \\ln \\left( \\frac{Q(x)}{P(x)} \\right)\n\\]\nNotice that \\(\\sum_{x} P(x) [\\dots]\\) is exactly the definition of the mathematical expectation \\(\\mathbb{E}_{X \\sim P}[\\dots]\\). Thus: \\[\nD_{KL}(P \\| Q) = -\\mathbb{E}_{X \\sim P} \\left[ \\ln \\left( \\frac{Q(X)}{P(X)} \\right) \\right]\n\\]\nSince the natural logarithm function \\(\\ln(z)\\) is strictly concave, we can apply Jensen’s Inequality, which states that \\(-\\mathbb{E}[\\ln(Z)] \\ge -\\ln(\\mathbb{E}[Z])\\): \\[\n-\\mathbb{E}_{X \\sim P} \\left[ \\ln \\left( \\frac{Q(X)}{P(X)} \\right) \\right] \\ge -\\ln \\left( \\mathbb{E}_{X \\sim P} \\left[ \\frac{Q(X)}{P(X)} \\right] \\right)\n\\]\nNow, let’s evaluate the inner expectation: \\[\n\\mathbb{E}_{X \\sim P} \\left[ \\frac{Q(X)}{P(X)} \\right] = \\sum_{x} P(x) \\frac{Q(x)}{P(x)} = \\sum_{x} Q(x) = 1\n\\] Because \\(Q\\) is a valid probability distribution, its probabilities must sum to 1.\nSubstituting this back into the inequality: \\[\nD_{KL}(P \\| Q) \\ge -\\ln(1) = 0\n\\]\nTherefore, \\(D_{KL}(P \\| Q) \\ge 0\\). \\(\\blacksquare\\)"
   }
 ]
