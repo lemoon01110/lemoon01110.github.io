@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8b9e37ec2c9a7c707fee8d541de7c010.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-93f351f2e2ef7d8a701b315d49e054c2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -53,6 +53,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="dark">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -165,14 +169,25 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#understanding-entropy" id="toc-understanding-entropy" class="nav-link active" data-scroll-target="#understanding-entropy">Understanding Entropy</a></li>
-  <li><a href="#mathematical-definition-shannon-entropy" id="toc-mathematical-definition-shannon-entropy" class="nav-link" data-scroll-target="#mathematical-definition-shannon-entropy">Mathematical Definition (Shannon Entropy)</a></li>
-  <li><a href="#properties-of-entropy" id="toc-properties-of-entropy" class="nav-link" data-scroll-target="#properties-of-entropy">Properties of Entropy</a></li>
-  <li><a href="#continuous-extension-differential-entropy" id="toc-continuous-extension-differential-entropy" class="nav-link" data-scroll-target="#continuous-extension-differential-entropy">Continuous Extension: Differential Entropy</a></li>
-  <li><a href="#machine-learning-context" id="toc-machine-learning-context" class="nav-link" data-scroll-target="#machine-learning-context">Machine Learning Context</a></li>
-  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">Practice Problems</a>
+  <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link active" data-scroll-target="#sec-definitions">1. Definitions</a>
   <ul class="collapse">
-  <li><a href="#problem-1-biased-coin-entropy" id="toc-problem-1-biased-coin-entropy" class="nav-link" data-scroll-target="#problem-1-biased-coin-entropy">Problem 1: Biased Coin Entropy</a></li>
+  <li><a href="#definition-shannon-entropy" id="toc-definition-shannon-entropy" class="nav-link" data-scroll-target="#definition-shannon-entropy">Definition: Shannon Entropy</a></li>
+  </ul></li>
+  <li><a href="#sec-intuitions" id="toc-sec-intuitions" class="nav-link" data-scroll-target="#sec-intuitions">2. Intuitions &amp; Remarks</a>
+  <ul class="collapse">
+  <li><a href="#expected-surprisal" id="toc-expected-surprisal" class="nav-link" data-scroll-target="#expected-surprisal">Expected Surprisal</a></li>
+  </ul></li>
+  <li><a href="#sec-properties" id="toc-sec-properties" class="nav-link" data-scroll-target="#sec-properties">3. Formulas &amp; Key Properties</a>
+  <ul class="collapse">
+  <li><a href="#key-properties-of-entropy" id="toc-key-properties-of-entropy" class="nav-link" data-scroll-target="#key-properties-of-entropy">Key Properties of Entropy</a></li>
+  </ul></li>
+  <li><a href="#sec-visualizations" id="toc-sec-visualizations" class="nav-link" data-scroll-target="#sec-visualizations">4. Graphs &amp; Visualizations</a></li>
+  <li><a href="#sec-relations" id="toc-sec-relations" class="nav-link" data-scroll-target="#sec-relations">5. Relations to Other Fields</a></li>
+  <li><a href="#sec-simulation" id="toc-sec-simulation" class="nav-link" data-scroll-target="#sec-simulation">6. Interactive Simulation</a></li>
+  <li><a href="#sec-problems" id="toc-sec-problems" class="nav-link" data-scroll-target="#sec-problems">7. Practice Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link" data-scroll-target="#problem-1">Problem 1: Biased Coin Entropy</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2: Maximum Entropy of a Uniform Distribution</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -183,6 +198,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Entropy</h1>
+<p class="subtitle lead">Quantifying the intrinsic uncertainty, unpredictability, or “chaos” inherent in a probability distribution.</p>
 </div>
 
 
@@ -199,68 +215,302 @@ window.Quarto = {
 </header>
 
 
-<section id="understanding-entropy" class="level3 thm-box thm-remark">
-<h3 class="anchored" data-anchor-id="understanding-entropy">Understanding Entropy</h3>
+<section id="sec-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-definitions">1. Definitions</h2>
 <p>While Information Content (Surprisal) measures the information gained from a <em>single specific event</em>, <strong>Entropy</strong> measures the <em>average</em> amount of information produced by a stochastic source of data.</p>
-<p>In other words, Entropy is the <strong>Expected Information Content</strong>. It quantifies the intrinsic uncertainty, unpredictability, or “chaos” inherent in a probability distribution.</p>
-</section>
-<section id="mathematical-definition-shannon-entropy" class="level3 thm-box thm-definition">
-<h3 class="anchored" data-anchor-id="mathematical-definition-shannon-entropy">Mathematical Definition (Shannon Entropy)</h3>
-<p>For a discrete random variable <span class="math inline">\(X\)</span> with possible states <span class="math inline">\(x_1, \dots, x_n\)</span> and probability mass function <span class="math inline">\(P(x)\)</span>, the Shannon Entropy <span class="math inline">\(H(X)\)</span> is the expectation of the surprisal <span class="math inline">\(h(X)\)</span>:</p>
+<section id="definition-shannon-entropy" class="level3 thm-box thm-definition">
+<h3 class="anchored" data-anchor-id="definition-shannon-entropy">Definition: Shannon Entropy</h3>
+<p>For a discrete random variable <span class="math inline">\(X\)</span> with possible states <span class="math inline">\(x_1, \dots, x_n\)</span> and probability mass function <span class="math inline">\(P(x)\)</span>, the Shannon Entropy <span class="math inline">\(H(X)\)</span> is defined as the mathematical expectation of the surprisal <span class="math inline">\(h(X)\)</span>:</p>
 <p><span class="math display">\[
-H(X) = \mathbb{E}_{X \sim P}[h(X)] = -\sum_{x \in X} P(x) \log P(x)
+H(X) = \mathbb{E}_{X \sim P}[h(X)] = -\sum_{x \in X} P(x) \log_2 P(x)
 \]</span></p>
-<p><em>(Note: In the case where <span class="math inline">\(P(x) = 0\)</span>, we adopt the convention that <span class="math inline">\(0 \log 0 = 0\)</span>, which is consistent with the limit <span class="math inline">\(\lim_{p \to 0} p \log p = 0\)</span>.)</em></p>
-<section id="interpretation" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation">Interpretation</h4>
+<p><em>(Note: In the case where <span class="math inline">\(P(x) = 0\)</span>, we adopt the convention that <span class="math inline">\(0 \log_2 0 = 0\)</span>, which is consistent with the limit <span class="math inline">\(\lim_{p \to 0} p \log_2 p = 0\)</span>.)</em></p>
+</section>
+<hr>
+</section>
+<section id="sec-intuitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-intuitions">2. Intuitions &amp; Remarks</h2>
+<section id="expected-surprisal" class="level3 thm-box thm-remark">
+<h3 class="anchored" data-anchor-id="expected-surprisal">Expected Surprisal</h3>
+<p>Because Entropy is the <strong>Expected Information Content</strong>, it gives us a single scalar value describing the “flatness” or “chaos” of a distribution.</p>
 <ul>
-<li><strong>Low Entropy</strong>: The distribution is highly skewed or deterministic. The outcomes are predictable, so on average, observing an outcome yields very little new information.</li>
-<li><strong>High Entropy</strong>: The distribution is flat and uniform. The outcomes are highly unpredictable, meaning each observation provides a lot of information.</li>
+<li><strong>Low Entropy</strong>: The distribution is highly skewed or deterministic. The outcomes are predictable. Because you almost always know what is going to happen, observing an outcome yields very little new information on average.</li>
+<li><strong>High Entropy</strong>: The distribution is flat and uniform. The outcomes are highly unpredictable. Because you never know what is going to happen, each observation provides a lot of new information.</li>
 </ul>
+<p>Imagine a heavily biased coin that lands on Heads 99% of the time. The entropy is extremely low because you are rarely surprised. But a fair coin (50/50) has maximum entropy; the outcome is a complete mystery every time.</p>
 </section>
+<hr>
 </section>
-<section id="properties-of-entropy" class="level3 thm-box thm-theorem">
-<h3 class="anchored" data-anchor-id="properties-of-entropy">Properties of Entropy</h3>
+<section id="sec-properties" class="level2">
+<h2 class="anchored" data-anchor-id="sec-properties">3. Formulas &amp; Key Properties</h2>
+<section id="key-properties-of-entropy" class="level3 thm-box thm-theorem">
+<h3 class="anchored" data-anchor-id="key-properties-of-entropy">Key Properties of Entropy</h3>
 <section id="bounds" class="level4">
 <h4 class="anchored" data-anchor-id="bounds">1. Bounds</h4>
 <p>For a discrete variable with <span class="math inline">\(k\)</span> possible states, the entropy is strictly bounded: <span class="math display">\[
-0 \le H(X) \le \log k
-\]</span> - <span class="math inline">\(H(X) = 0\)</span> if and only if the outcome is completely certain (i.e., <span class="math inline">\(P(x_i) = 1\)</span> for some <span class="math inline">\(i\)</span> and <span class="math inline">\(0\)</span> for all others). - <span class="math inline">\(H(X) = \log k\)</span> if and only if <span class="math inline">\(X\)</span> follows a <strong>Uniform Distribution</strong> (<span class="math inline">\(P(x_i) = \frac{1}{k}\)</span> for all <span class="math inline">\(i\)</span>). The uniform distribution represents the state of maximum uncertainty.</p>
+0 \le H(X) \le \log_2 k
+\]</span> * <span class="math inline">\(H(X) = 0\)</span> if and only if the outcome is completely certain (i.e., <span class="math inline">\(P(x_i) = 1\)</span> for some <span class="math inline">\(i\)</span> and <span class="math inline">\(0\)</span> for all others). * <span class="math inline">\(H(X) = \log_2 k\)</span> if and only if <span class="math inline">\(X\)</span> follows a <strong>Uniform Distribution</strong> (<span class="math inline">\(P(x_i) = \frac{1}{k}\)</span> for all <span class="math inline">\(i\)</span>). The uniform distribution represents the state of maximum uncertainty.</p>
 </section>
 <section id="concavity" class="level4">
 <h4 class="anchored" data-anchor-id="concavity">2. Concavity</h4>
-<p>Entropy <span class="math inline">\(H(P)\)</span> is a strictly concave function of the probability distribution <span class="math inline">\(P\)</span>. This means that mixing two probability distributions together increases the overall uncertainty.</p>
+<p>Entropy <span class="math inline">\(H(P)\)</span> is a strictly concave function of the probability distribution <span class="math inline">\(P\)</span>. This mathematically formalizes the idea that mixing two different probability distributions together increases the overall uncertainty.</p>
+</section>
+<section id="continuous-extension-differential-entropy" class="level4">
+<h4 class="anchored" data-anchor-id="continuous-extension-differential-entropy">3. Continuous Extension (Differential Entropy)</h4>
+<p>For a continuous random variable <span class="math inline">\(X\)</span> with a probability density function <span class="math inline">\(p(x)\)</span>, the sum is replaced by an integral: <span class="math display">\[
+h(X) = -\int_{\mathcal{X}} p(x) \ln p(x) \, dx
+\]</span> <em>Warning</em>: Unlike discrete entropy, differential entropy can be negative, and it is not invariant to reparameterization.</p>
 </section>
 </section>
-<section id="continuous-extension-differential-entropy" class="level3 thm-box thm-remark">
-<h3 class="anchored" data-anchor-id="continuous-extension-differential-entropy">Continuous Extension: Differential Entropy</h3>
-<p>For a continuous random variable <span class="math inline">\(X\)</span> with a probability density function <span class="math inline">\(p(x)\)</span>, the sum is replaced by an integral, resulting in <strong>Differential Entropy</strong>:</p>
-<p><span class="math display">\[
-h(X) = -\int_{\mathcal{X}} p(x) \log p(x) \, dx
+<hr>
+</section>
+<section id="sec-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-visualizations">4. Graphs &amp; Visualizations</h2>
+<p>The relationship between Entropy, Surprisal, and distributions can be understood through their roles in the Information Theory ecosystem.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {'theme': 'dark'}}%%
+graph LR
+    A[Distribution P] --&gt;|Certainty| B((Low Entropy\n H ≈ 0))
+    A --&gt;|Uniformity| C((High Entropy\n H = log k))
+    
+    B --&gt; D[Highly Predictable]
+    C --&gt; E[Highly Unpredictable]
+    
+    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style B fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff
+    style C fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff
+    style D fill:#161b22,stroke:#f87171,stroke-width:1px,color:#a0a2b6
+    style E fill:#161b22,stroke:#00ff88,stroke-width:1px,color:#a0a2b6
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-relations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-relations">5. Relations to Other Fields</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Interpretation / Mapping</th>
+<th style="text-align: left;">Application Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Machine Learning</strong></td>
+<td style="text-align: left;"><em>Information Gain</em> is the reduction in Entropy after a dataset is split.</td>
+<td style="text-align: left;">Decision Trees (ID3, C4.5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Reinforcement Learning</strong></td>
+<td style="text-align: left;">Entropy acts as a regularization bonus to encourage exploration and prevent deterministic collapse.</td>
+<td style="text-align: left;">Soft Actor-Critic (SAC)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Data Compression</strong></td>
+<td style="text-align: left;"><span class="math inline">\(H(X)\)</span> is the absolute theoretical lower bound on the average number of bits required to compress data sampled from <span class="math inline">\(X\)</span> without loss.</td>
+<td style="text-align: left;">Shannon’s Source Coding Theorem</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="sec-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-simulation">6. Interactive Simulation</h2>
+<div class="simulation-card" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
+  <h4 style="margin-top: 0; color: #fff; font-family: 'Outfit', sans-serif;" class="anchored">Interactive Simulation: Binary Entropy Function</h4>
+  <p style="color: #a0a2b6; font-size: 0.95rem; margin-bottom: 1.5rem;">
+    Explore the entropy of a Bernoulli trial (a biased coin flip). Drag the slider to change the probability $p$ of flipping "Heads". Notice that uncertainty (Entropy) peaks precisely when the coin is fair ($p = 0.5$).
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
+    <!-- SVG Chart -->
+    <svg id="entropy-chart" viewbox="0 0 500 250" style="width: 100%; height: auto; background: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+      <!-- Grid lines -->
+      <line x1="50" y1="200" x2="450" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1"></line>
+      <line x1="50" y1="30" x2="50" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1"></line>
+
+      <!-- Axis Labels -->
+      <text x="250" y="230" fill="#8b949e" font-size="12" text-anchor="middle" font-family="Outfit">Probability of Heads (p)</text>
+      <text x="20" y="115" fill="#8b949e" font-size="12" text-anchor="middle" transform="rotate(-90 20 115)" font-family="Outfit">Entropy H(p) (bits)</text>
+
+      <text x="50" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.0</text>
+      <text x="250" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.5</text>
+      <text x="450" y="215" fill="#6e7681" font-size="10" text-anchor="middle">1.0</text>
+
+      <text x="40" y="203" fill="#6e7681" font-size="10" text-anchor="end">0</text>
+      <text x="40" y="115" fill="#6e7681" font-size="10" text-anchor="end">0.5</text>
+      <text x="40" y="34" fill="#6e7681" font-size="10" text-anchor="end">1.0</text>
+
+      <!-- Curve path -->
+      <path id="entropy-curve" d="" fill="none" stroke="#00ff88" stroke-width="3" opacity="0.8"></path>
+
+      <!-- Current selection markers -->
+      <line id="eh-guide" x1="50" y1="0" x2="0" y2="0" stroke="rgba(0, 255, 136, 0.3)" stroke-dasharray="4,4"></line>
+      <line id="ev-guide" x1="0" y1="200" x2="0" y2="0" stroke="rgba(0, 255, 136, 0.3)" stroke-dasharray="4,4"></line>
+      <circle id="epoint" cx="0" cy="0" r="6" fill="#00ff88" filter="drop-shadow(0 0 4px #00ff88)"></circle>
+    </svg>
+
+    <!-- Controls and Readout -->
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; background: rgba(0,0,0,0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label for="eprob-slider" style="color: #c9d1d9; font-size: 0.85rem; font-weight: 600; font-family: 'Outfit';">Set Probability p:</label>
+        <input id="eprob-slider" type="range" min="0.001" max="0.999" step="0.001" value="0.5" style="width: 100%; accent-color: #00ff88; cursor: pointer;">
+      </div>
+      <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.4; color: #fff;">
+        <div>p = <span id="eval-prob" style="color: #60a5fa; font-weight: 700;">0.500</span></div>
+        <div>H(p) = <span id="eval-surp" style="color: #00ff88; font-weight: 700;">1.000</span> bits</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slider = document.getElementById("eprob-slider");
+      const valProb = document.getElementById("eval-prob");
+      const valSurp = document.getElementById("eval-surp");
+      const path = document.getElementById("entropy-curve");
+      const point = document.getElementById("epoint");
+      const hGuide = document.getElementById("eh-guide");
+      const vGuide = document.getElementById("ev-guide");
+
+      const width = 400; // 450 - 50
+      const height = 170; // 200 - 30
+
+      function H(p) {
+          if (p === 0 || p === 1) return 0;
+          return -p * Math.log2(p) - (1 - p) * Math.log2(1 - p);
+      }
+
+      // Generate SVG path for the curve
+      let d = "";
+      for (let p = 0.0; p <= 1.0; p += 0.01) {
+        const x = 50 + p * width;
+        const h = H(p);
+        const y = 200 - h * height; 
+        d += (p === 0.0 ? "M" : "L") + `${x} ${y}`;
+      }
+      path.setAttribute("d", d);
+
+      function update() {
+        const p = parseFloat(slider.value);
+        const h = H(p);
+
+        valProb.textContent = p.toFixed(3);
+        valSurp.textContent = h.toFixed(3);
+
+        const x = 50 + p * width;
+        const y = 200 - h * height;
+
+        point.setAttribute("cx", x);
+        point.setAttribute("cy", y);
+
+        hGuide.setAttribute("x1", 50);
+        hGuide.setAttribute("y1", y);
+        hGuide.setAttribute("x2", x);
+        hGuide.setAttribute("y2", y);
+
+        vGuide.setAttribute("x1", x);
+        vGuide.setAttribute("y1", 200);
+        vGuide.setAttribute("x2", x);
+        vGuide.setAttribute("y2", y);
+      }
+
+      slider.addEventListener("input", update);
+      update();
+    });
+  </script>
+</div>
+<hr>
+</section>
+<section id="sec-problems" class="level2">
+<h2 class="anchored" data-anchor-id="sec-problems">7. Practice Problems</h2>
+<section id="problem-1" class="level3 thm-box thm-problem">
+<h3 class="thm-box thm-problem anchored" data-anchor-id="problem-1">Problem 1: Biased Coin Entropy</h3>
+<p>Prove that the entropy of a fair coin flip is exactly 1 bit. What happens to the theoretical entropy <span class="math inline">\(H(X)\)</span> if the coin is heavily biased such that <span class="math inline">\(P(\text{Heads}) = 0.99\)</span>?</p>
+<details class="solution-toggle">
+<summary>
+Reveal Solution to Problem 1
+</summary>
+<div class="solution-body">
+<div class="thm-box thm-solution">
+<div class="solution-heading">
+Solution
+</div>
+<p><strong>Fair Coin:</strong> For a fair coin, <span class="math inline">\(P(\text{Heads}) = 0.5\)</span> and <span class="math inline">\(P(\text{Tails}) = 0.5\)</span>. Using the Shannon Entropy formula: <span class="math display">\[
+\begin{aligned}
+H(X) &amp;= - \sum_{x} P(x) \log_2 P(x) \\
+&amp;= - [0.5 \log_2(0.5) + 0.5 \log_2(0.5)] \\
+&amp;= - [0.5(-1) + 0.5(-1)] \\
+&amp;= 1 \text{ bit}
+\end{aligned}
 \]</span></p>
-<p><em>Warning</em>: Unlike discrete entropy, differential entropy is <strong>not</strong> invariant to changes in coordinates (reparameterization), and it can actually take on <strong>negative values</strong>. For example, the differential entropy of a uniform distribution over the interval <span class="math inline">\([0, a]\)</span> is <span class="math inline">\(\log(a)\)</span>. If <span class="math inline">\(a &lt; 1\)</span>, the entropy is negative.</p>
-<section id="maximum-entropy-distributions" class="level4">
-<h4 class="anchored" data-anchor-id="maximum-entropy-distributions">Maximum Entropy Distributions</h4>
-<p>When subjected to specific constraints, certain continuous distributions maximize differential entropy: - <strong>Constraint: Defined on an interval <span class="math inline">\([a,b]\)</span></strong> <span class="math inline">\(\to\)</span> Uniform Distribution is Max-Ent. - <strong>Constraint: Fixed Mean <span class="math inline">\(\mu\)</span> and Variance <span class="math inline">\(\sigma^2\)</span></strong> <span class="math inline">\(\to\)</span> Gaussian (Normal) Distribution is Max-Ent. - <strong>Constraint: Defined on <span class="math inline">\([0, \infty)\)</span> with fixed Mean <span class="math inline">\(\mu\)</span></strong> <span class="math inline">\(\to\)</span> Exponential Distribution is Max-Ent.</p>
+<p><strong>Biased Coin:</strong> For a biased coin with <span class="math inline">\(P(\text{Heads}) = 0.99\)</span> and <span class="math inline">\(P(\text{Tails}) = 0.01\)</span>: <span class="math display">\[
+\begin{aligned}
+H(X) &amp;= - [0.99 \log_2(0.99) + 0.01 \log_2(0.01)] \\
+&amp;\approx - [0.99(-0.0145) + 0.01(-6.6438)] \\
+&amp;\approx 0.0143 + 0.0664 \\
+&amp;\approx 0.0807 \text{ bits}
+\end{aligned}
+\]</span></p>
+<p>The entropy drops from 1 bit to roughly 0.08 bits. Because the outcome is almost certain, you gain very little information on average from observing the coin flips.</p>
+</div>
+</div>
+</details>
 </section>
-</section>
-<section id="machine-learning-context" class="level3 thm-box thm-example">
-<h3 class="anchored" data-anchor-id="machine-learning-context">Machine Learning Context</h3>
-<p>Entropy appears everywhere in Machine Learning:</p>
-<ol type="1">
-<li><strong>Decision Trees</strong>: Algorithms like ID3 and C4.5 use <em>Information Gain</em> (which is the reduction in Entropy) to choose the best features to split nodes. A good split minimizes the entropy of the resulting child nodes.</li>
-<li><strong>Regularization</strong>: Maximum Entropy Reinforcement Learning (e.g., Soft Actor-Critic) adds an entropy bonus to the reward function to encourage the agent to explore different actions, preventing premature convergence to suboptimal deterministic policies.</li>
-<li><strong>Data Compression</strong>: Shannon’s Source Coding Theorem proves that <span class="math inline">\(H(X)\)</span> is the absolute theoretical lower bound on the average number of bits required to compress data sampled from <span class="math inline">\(X\)</span> without loss.</li>
-</ol>
-</section>
-<section id="practice-problems" class="level2">
-<h2 class="anchored" data-anchor-id="practice-problems">Practice Problems</h2>
-<section id="problem-1-biased-coin-entropy" class="level3 thm-box thm-problem">
-<h3 class="anchored" data-anchor-id="problem-1-biased-coin-entropy">Problem 1: Biased Coin Entropy</h3>
-<p>Prove that the entropy of a fair coin flip is exactly 1 bit. What happens to the theoretical entropy <span class="math inline">\(H(X)\)</span> if the coin is heavily biased such that <span class="math inline">\(P(Heads) = 0.99\)</span>?</p>
-</section>
+<section id="problem-2" class="level3 thm-box thm-problem">
+<h3 class="thm-box thm-problem anchored" data-anchor-id="problem-2">Problem 2: Maximum Entropy of a Uniform Distribution</h3>
+<p>Use the method of Lagrange multipliers to prove that for a discrete random variable <span class="math inline">\(X\)</span> with <span class="math inline">\(k\)</span> possible states, the entropy <span class="math inline">\(H(X)\)</span> is maximized when the distribution is uniform, i.e., <span class="math inline">\(P(x_i) = \frac{1}{k}\)</span> for all <span class="math inline">\(i\)</span>.</p>
+<details class="solution-toggle">
+<summary>
+Reveal Solution to Problem 2
+</summary>
+<div class="solution-body">
+<div class="thm-box thm-solution">
+<div class="solution-heading">
+Solution
+</div>
+<p>We want to maximize the entropy function: <span class="math display">\[
+H(P) = -\sum_{i=1}^k p_i \ln p_i
+\]</span> <em>(Note: We use the natural logarithm <span class="math inline">\(\ln\)</span> to simplify differentiation, which only scales the result by a constant and does not change the argmax).</em></p>
+<p>This maximization is subject to the probability constraint that the sum of all probabilities must equal 1: <span class="math display">\[
+\sum_{i=1}^k p_i = 1 \implies \sum_{i=1}^k p_i - 1 = 0
+\]</span></p>
+<p>We define the Lagrangian <span class="math inline">\(\mathcal{L}\)</span> with a multiplier <span class="math inline">\(\lambda\)</span>: <span class="math display">\[
+\mathcal{L}(p_1, \dots, p_k, \lambda) = -\sum_{i=1}^k p_i \ln p_i + \lambda \left(\sum_{i=1}^k p_i - 1\right)
+\]</span></p>
+<p>Take the partial derivative with respect to a specific <span class="math inline">\(p_i\)</span> and set it to 0: <span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathcal{L}}{\partial p_i} &amp;= -(\ln p_i + p_i \cdot \frac{1}{p_i}) + \lambda = 0 \\
+&amp;= -\ln p_i - 1 + \lambda = 0
+\end{aligned}
+\]</span></p>
+<p>Solving for <span class="math inline">\(p_i\)</span>: <span class="math display">\[
+\ln p_i = \lambda - 1 \implies p_i = e^{\lambda - 1}
+\]</span></p>
+<p>Notice that the solution for <span class="math inline">\(p_i\)</span> depends <em>only</em> on <span class="math inline">\(\lambda\)</span>, which is a constant. This means every <span class="math inline">\(p_i\)</span> must be exactly the same! Since there are <span class="math inline">\(k\)</span> states and they must sum to 1: <span class="math display">\[
+p_1 = p_2 = \dots = p_k = \frac{1}{k}
+\]</span></p>
+<p>Thus, the Uniform Distribution maximizes entropy. <span class="math inline">\(\blacksquare\)</span></p>
+</div>
+</div>
+</details>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -337,7 +587,7 @@ h(X) = -\int_{\mathcal{X}} p(x) \log p(x) \, dx
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/lemoon01110\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

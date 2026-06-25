@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8b9e37ec2c9a7c707fee8d541de7c010.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-93f351f2e2ef7d8a701b315d49e054c2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -53,6 +53,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="dark">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -165,13 +169,27 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-problem-with-kl-and-js-divergence" id="toc-the-problem-with-kl-and-js-divergence" class="nav-link active" data-scroll-target="#the-problem-with-kl-and-js-divergence">The Problem with KL and JS Divergence</a></li>
-  <li><a href="#earth-movers-distance-emd" id="toc-earth-movers-distance-emd" class="nav-link" data-scroll-target="#earth-movers-distance-emd">Earth Mover’s Distance (EMD)</a></li>
-  <li><a href="#mathematical-definition" id="toc-mathematical-definition" class="nav-link" data-scroll-target="#mathematical-definition">Mathematical Definition</a></li>
-  <li><a href="#machine-learning-context-wasserstein-gan-wgan" id="toc-machine-learning-context-wasserstein-gan-wgan" class="nav-link" data-scroll-target="#machine-learning-context-wasserstein-gan-wgan">Machine Learning Context: Wasserstein GAN (WGAN)</a></li>
-  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">Practice Problems</a>
+  <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link active" data-scroll-target="#sec-definitions">1. Definitions</a>
   <ul class="collapse">
-  <li><a href="#problem-1-earth-movers-gradients" id="toc-problem-1-earth-movers-gradients" class="nav-link" data-scroll-target="#problem-1-earth-movers-gradients">Problem 1: Earth Mover’s Gradients</a></li>
+  <li><a href="#definition-wasserstein-distance" id="toc-definition-wasserstein-distance" class="nav-link" data-scroll-target="#definition-wasserstein-distance">Definition: Wasserstein Distance</a></li>
+  </ul></li>
+  <li><a href="#sec-intuitions" id="toc-sec-intuitions" class="nav-link" data-scroll-target="#sec-intuitions">2. Intuitions &amp; Remarks</a>
+  <ul class="collapse">
+  <li><a href="#the-earth-movers-distance-emd" id="toc-the-earth-movers-distance-emd" class="nav-link" data-scroll-target="#the-earth-movers-distance-emd">The Earth Mover’s Distance (EMD)</a></li>
+  </ul></li>
+  <li><a href="#sec-properties" id="toc-sec-properties" class="nav-link" data-scroll-target="#sec-properties">3. Formulas &amp; Key Properties</a>
+  <ul class="collapse">
+  <li><a href="#overcoming-the-limits-of-divergences" id="toc-overcoming-the-limits-of-divergences" class="nav-link" data-scroll-target="#overcoming-the-limits-of-divergences">Overcoming the Limits of Divergences</a></li>
+  </ul></li>
+  <li><a href="#sec-visualizations" id="toc-sec-visualizations" class="nav-link" data-scroll-target="#sec-visualizations">4. Graphs &amp; Visualizations</a></li>
+  <li><a href="#sec-relations" id="toc-sec-relations" class="nav-link" data-scroll-target="#sec-relations">5. Relations to Other Fields</a>
+  <ul class="collapse">
+  <li><a href="#machine-learning-context-wgans-and-duality" id="toc-machine-learning-context-wgans-and-duality" class="nav-link" data-scroll-target="#machine-learning-context-wgans-and-duality">Machine Learning Context: WGANs and Duality</a></li>
+  </ul></li>
+  <li><a href="#sec-simulation" id="toc-sec-simulation" class="nav-link" data-scroll-target="#sec-simulation">6. Interactive Simulation</a></li>
+  <li><a href="#sec-problems" id="toc-sec-problems" class="nav-link" data-scroll-target="#sec-problems">7. Practice Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link" data-scroll-target="#problem-1">Problem 1: Disjoint Supports and Gradients</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -182,6 +200,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Wasserstein Distance</h1>
+<p class="subtitle lead">Optimal Transport: Minimizing the physical work required to reshape one distribution into another.</p>
 </div>
 
 
@@ -198,55 +217,252 @@ window.Quarto = {
 </header>
 
 
-<section id="the-problem-with-kl-and-js-divergence" class="level3 thm-box thm-theorem">
-<h3 class="anchored" data-anchor-id="the-problem-with-kl-and-js-divergence">The Problem with KL and JS Divergence</h3>
-<p>Both the Kullback-Leibler (KL) and Jensen-Shannon (JSD) divergences are fundamentally based on the <em>ratio</em> of probabilities <span class="math inline">\(P(x) / Q(x)\)</span>.</p>
-<p>This mathematical foundation creates a severe problem: if the two distributions have <strong>disjoint supports</strong> (meaning they don’t overlap in space), these divergences either become infinite or saturate at a constant value (<span class="math inline">\(\log 2\)</span> for JSD). When divergences saturate, their gradients become <strong>exactly zero</strong>. In Machine Learning, if your loss function has zero gradient, your neural network cannot learn.</p>
-</section>
-<section id="earth-movers-distance-emd" class="level3 thm-box thm-remark">
-<h3 class="anchored" data-anchor-id="earth-movers-distance-emd">Earth Mover’s Distance (EMD)</h3>
-<p>The <strong>Wasserstein Distance</strong>, intuitively known as the Earth Mover’s Distance, completely bypasses this issue.</p>
-<p>Imagine probability distributions as piles of dirt (Earth). The Wasserstein distance asks: <em>What is the minimum amount of “work” required to physically shovel the dirt from distribution <span class="math inline">\(P\)</span> until it perfectly matches the shape of distribution <span class="math inline">\(Q\)</span>?</em></p>
-<p>Work is defined as: <code>Amount of dirt moved</code> <span class="math inline">\(\times\)</span> <code>Distance moved</code>.</p>
-<p>Because it measures the <em>physical distance</em> the mass must travel, the Wasserstein distance provides a smooth, meaningful value (and a non-zero gradient) even when the distributions are miles apart and do not overlap at all.</p>
-</section>
-<section id="mathematical-definition" class="level3 thm-box thm-definition">
-<h3 class="anchored" data-anchor-id="mathematical-definition">Mathematical Definition</h3>
-<p>For two probability distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, the <span class="math inline">\(1^{st}\)</span> Wasserstein Distance <span class="math inline">\(W_1\)</span> is defined as:</p>
+<section id="sec-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-definitions">1. Definitions</h2>
+<section id="definition-wasserstein-distance" class="level3 thm-box thm-definition">
+<h3 class="anchored" data-anchor-id="definition-wasserstein-distance">Definition: Wasserstein Distance</h3>
+<p>For two probability distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, the <span class="math inline">\(1^{st}\)</span> Wasserstein Distance <span class="math inline">\(W_1\)</span> is defined as the infimum (minimum) expected cost of transporting mass from <span class="math inline">\(P\)</span> to <span class="math inline">\(Q\)</span>:</p>
 <p><span class="math display">\[
 W_1(P, Q) = \inf_{\gamma \in \Pi(P, Q)} \mathbb{E}_{(x, y) \sim \gamma} \big[ \|x - y\| \big]
 \]</span></p>
 <section id="breaking-down-the-math" class="level4">
 <h4 class="anchored" data-anchor-id="breaking-down-the-math">Breaking down the math:</h4>
 <ol type="1">
-<li><span class="math inline">\(\Pi(P, Q)\)</span>: The set of all possible “transport plans”. A plan <span class="math inline">\(\gamma(x, y)\)</span> dictates how much dirt to move from location <span class="math inline">\(x\)</span> to location <span class="math inline">\(y\)</span>. To be a valid plan, the marginals of <span class="math inline">\(\gamma\)</span> must exactly equal <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>.</li>
-<li><span class="math inline">\(\|x - y\|\)</span>: The physical distance between location <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>
-<li><span class="math inline">\(\mathbb{E}\)</span>: The expected cost (work) of the transport plan.</li>
-<li><span class="math inline">\(\inf\)</span>: The infimum (minimum). We are searching for the single <em>optimal</em> transport plan that requires the absolute least amount of work.</li>
+<li><strong><span class="math inline">\(\Pi(P, Q)\)</span></strong>: The set of all possible “transport plans”. A joint distribution plan <span class="math inline">\(\gamma(x, y)\)</span> dictates exactly how much mass to move from location <span class="math inline">\(x\)</span> to location <span class="math inline">\(y\)</span>. To be a valid plan, its marginals must equal <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>.</li>
+<li><strong><span class="math inline">\(\|x - y\|\)</span></strong>: The physical distance between location <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the underlying metric space.</li>
+<li><strong><span class="math inline">\(\mathbb{E}\)</span></strong>: The expected cost (work) of executing the transport plan.</li>
+<li><strong><span class="math inline">\(\inf\)</span></strong>: The infimum. We are searching for the single <em>optimal</em> transport plan that requires the absolute least amount of work.</li>
 </ol>
 </section>
 </section>
-<section id="machine-learning-context-wasserstein-gan-wgan" class="level3 thm-box thm-example">
-<h3 class="anchored" data-anchor-id="machine-learning-context-wasserstein-gan-wgan">Machine Learning Context: Wasserstein GAN (WGAN)</h3>
+<hr>
+</section>
+<section id="sec-intuitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-intuitions">2. Intuitions &amp; Remarks</h2>
+<section id="the-earth-movers-distance-emd" class="level3 thm-box thm-remark">
+<h3 class="anchored" data-anchor-id="the-earth-movers-distance-emd">The Earth Mover’s Distance (EMD)</h3>
+<p>The Wasserstein Distance is intuitively known as the <strong>Earth Mover’s Distance</strong>.</p>
+<p>Imagine probability distributions as physical piles of dirt (Earth). The Wasserstein distance asks: <em>What is the absolute minimum amount of “work” required to physically shovel the dirt from distribution <span class="math inline">\(P\)</span> until it perfectly matches the shape of distribution <span class="math inline">\(Q\)</span>?</em></p>
+<p>Work in physics is defined as: <code>Amount of dirt moved</code> <span class="math inline">\(\times\)</span> <code>Distance moved</code>.</p>
+<p>Because it explicitly measures the <em>physical distance</em> the mass must travel, the Wasserstein distance provides a smooth, meaningful value (and crucially, a non-zero gradient) even when the distributions are miles apart and do not overlap at all.</p>
+</section>
+<hr>
+</section>
+<section id="sec-properties" class="level2">
+<h2 class="anchored" data-anchor-id="sec-properties">3. Formulas &amp; Key Properties</h2>
+<section id="overcoming-the-limits-of-divergences" class="level3 thm-box thm-theorem">
+<h3 class="anchored" data-anchor-id="overcoming-the-limits-of-divergences">Overcoming the Limits of Divergences</h3>
+<p>Both the Kullback-Leibler (KL) and Jensen-Shannon (JSD) divergences are fundamentally based on the <em>ratio</em> of probabilities <span class="math inline">\(P(x) / Q(x)\)</span> at exactly the same spatial location <span class="math inline">\(x\)</span>.</p>
+<p>This mathematical foundation creates a severe problem: if the two distributions have <strong>disjoint supports</strong> (meaning they don’t overlap in space), these divergences either become infinite or saturate at a constant value.</p>
+<p>When divergences saturate, their gradients become <strong>exactly zero</strong>. In Machine Learning, if your loss function has zero gradient, your neural network receives no signal and cannot learn.</p>
+<p>Wasserstein distance measures the <em>horizontal cost</em> of moving the mass, rather than just the <em>vertical ratio</em> at a fixed location, completely bypassing this issue.</p>
+</section>
+<hr>
+</section>
+<section id="sec-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-visualizations">4. Graphs &amp; Visualizations</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {'theme': 'dark'}}%%
+graph TD
+    subgraph The Gradient Problem
+        A[Distribution P] ---|No Overlap| B[Distribution Q]
+        AB(KL Divergence: Infinity\nJS Divergence: log 2\nGradient: ZERO)
+    end
+    
+    subgraph The Optimal Transport Solution
+        C[Pile of Dirt P] --&gt;|Move Mass * Distance| D[Hole Q]
+        CD(Wasserstein Distance: D x M\nGradient: Constant Vector towards Q)
+    end
+    
+    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style B fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff
+    style AB fill:#161b22,stroke:#f59e0b,stroke-width:2px,color:#fff
+    
+    style C fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style D fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff
+    style CD fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-relations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-relations">5. Relations to Other Fields</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Interpretation / Mapping</th>
+<th style="text-align: left;">Application Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Generative AI</strong></td>
+<td style="text-align: left;">Evaluating the distance between generated distributions and real data when they don’t overlap.</td>
+<td style="text-align: left;">Wasserstein GANs (WGAN)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Operations Research</strong></td>
+<td style="text-align: left;">Optimal assignment of resources from supply nodes to demand nodes.</td>
+<td style="text-align: left;">Transport/Logistics optimization</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Computer Vision</strong></td>
+<td style="text-align: left;">Comparing color histograms or image signatures in a way that respects the distance between colors.</td>
+<td style="text-align: left;">Image Retrieval (Rubner et al.)</td>
+</tr>
+</tbody>
+</table>
+<section id="machine-learning-context-wgans-and-duality" class="level3 thm-box thm-example">
+<h3 class="anchored" data-anchor-id="machine-learning-context-wgans-and-duality">Machine Learning Context: WGANs and Duality</h3>
 <p>The mathematical definition of <span class="math inline">\(W_1(P, Q)\)</span> is beautiful, but computationally intractable to calculate directly because searching over all possible joint distributions <span class="math inline">\(\Pi(P, Q)\)</span> is impossible for high-dimensional data like images.</p>
 <p>In 2017, the landmark paper <em>Wasserstein GAN</em> solved this by applying the <strong>Kantorovich-Rubinstein Duality</strong>. The duality theorem states that instead of searching for the optimal transport plan, you can calculate the Wasserstein distance by finding a <strong>1-Lipschitz continuous function</strong> <span class="math inline">\(f\)</span> that maximizes the difference in expectations:</p>
 <p><span class="math display">\[
 W_1(P, Q) = \sup_{\|f\|_L \le 1} \left( \mathbb{E}_{x \sim P}[f(x)] - \mathbb{E}_{y \sim Q}[f(y)] \right)
 \]</span></p>
-<section id="the-wgan-architecture" class="level4">
-<h4 class="anchored" data-anchor-id="the-wgan-architecture">The WGAN Architecture</h4>
-<p>In a WGAN, the Discriminator (now called a “Critic”) is simply a neural network parameterized to represent <span class="math inline">\(f(x)\)</span>. - The network is trained to maximize the output for real images (from <span class="math inline">\(P\)</span>) and minimize the output for fake images (from <span class="math inline">\(Q\)</span>). - To enforce the <span class="math inline">\(1\)</span>-Lipschitz constraint (<span class="math inline">\(\|f\|_L \le 1\)</span>), early versions of WGAN used <em>Weight Clipping</em>, while modern implementations use <em>Gradient Penalty</em> (WGAN-GP), ensuring the gradients of the critic respect a norm of <span class="math inline">\(1\)</span>.</p>
-<p>By training the generator to minimize this approximated Wasserstein distance, WGANs completely eliminate the vanishing gradient problem, resulting in vastly more stable training and preventing mode collapse.</p>
+<p>In a WGAN, the Discriminator (now called a “Critic”) is simply a neural network parameterized to represent <span class="math inline">\(f(x)\)</span>. To enforce the <span class="math inline">\(1\)</span>-Lipschitz constraint (<span class="math inline">\(\|f\|_L \le 1\)</span>), modern implementations use <em>Gradient Penalty</em> (WGAN-GP), ensuring the gradients of the critic respect a norm of <span class="math inline">\(1\)</span>. WGANs completely eliminate the vanishing gradient problem, resulting in vastly more stable training.</p>
 </section>
+<hr>
 </section>
-<section id="practice-problems" class="level2">
-<h2 class="anchored" data-anchor-id="practice-problems">Practice Problems</h2>
-<section id="problem-1-earth-movers-gradients" class="level3 thm-box thm-problem">
-<h3 class="anchored" data-anchor-id="problem-1-earth-movers-gradients">Problem 1: Earth Mover’s Gradients</h3>
-<p>Explain intuitively why the Earth Mover’s distance between two completely non-overlapping distributions still provides a meaningful, continuous gradient, whereas JS Divergence saturates and provides a gradient of exactly zero.</p>
+<section id="sec-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-simulation">6. Interactive Simulation</h2>
+<div class="simulation-card" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
+  <h4 style="margin-top: 0; color: #fff; font-family: 'Outfit', sans-serif;" class="anchored">Interactive Simulation: The Earth Mover</h4>
+  <p style="color: #a0a2b6; font-size: 0.95rem; margin-bottom: 1.5rem;">
+    Distribution P (blue) is a pile of dirt. Distribution Q (orange) is a hole of exactly the same volume. Drag the slider to move the hole Q away from the dirt P. Watch how the Earth Mover's Distance increases linearly with the physical separation, providing a constant, non-zero gradient even when they completely stop overlapping.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
+    <!-- SVG Chart -->
+    <svg id="emd-chart" viewbox="0 0 500 250" style="width: 100%; height: auto; background: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+      <!-- Ground line -->
+      <line x1="50" y1="150" x2="450" y2="150" stroke="#8b949e" stroke-width="2"></line>
+
+      <!-- Distance Arrow -->
+      <line id="emd-arrow" x1="150" y1="60" x2="250" y2="60" stroke="#00ff88" stroke-width="2" marker-end="url(#arrowhead)" marker-start="url(#arrowtail)"></line>
+      <text id="emd-arrow-text" x="200" y="50" fill="#00ff88" font-size="12" text-anchor="middle" font-family="Outfit">Distance = 100m</text>
+
+      <defs>
+        <marker id="arrowhead" markerwidth="10" markerheight="7" refx="9" refy="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#00ff88"></polygon>
+        </marker>
+        <marker id="arrowtail" markerwidth="10" markerheight="7" refx="1" refy="3.5" orient="auto">
+          <polygon points="10 0, 0 3.5, 10 7" fill="#00ff88"></polygon>
+        </marker>
+      </defs>
+
+      <!-- Curve paths -->
+      <!-- P (Dirt Pile) -->
+      <path d="M 110 150 C 130 150, 130 80, 150 80 C 170 80, 170 150, 190 150 Z" fill="rgba(96, 165, 250, 0.6)" stroke="#60a5fa" stroke-width="2"></path>
+      <text x="150" y="110" fill="#fff" font-size="14" text-anchor="middle" font-family="Outfit">P (Dirt)</text>
+
+      <!-- Q (Hole) -->
+      <path id="emd-q-path" d="M 210 150 C 230 150, 230 220, 250 220 C 270 220, 270 150, 290 150 Z" fill="rgba(248, 113, 113, 0.3)" stroke="#f87171" stroke-width="2" stroke-dasharray="4,4"></path>
+      <text id="emd-q-text" x="250" y="190" fill="#f87171" font-size="14" text-anchor="middle" font-family="Outfit">Q (Hole)</text>
+    </svg>
+
+    <!-- Controls and Readout -->
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; background: rgba(0,0,0,0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label for="emd-slider" style="color: #c9d1d9; font-size: 0.85rem; font-weight: 600; font-family: 'Outfit';">Move Target Hole Q:</label>
+        <input id="emd-slider" type="range" min="150" max="400" step="1" value="250" style="width: 100%; accent-color: #00ff88; cursor: pointer;">
+      </div>
+      <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.4; color: #fff;">
+        <div style="color: #8b949e;">Mass (Volume) = 1.0</div>
+        <div>Separation = <span id="emd-val-dist" style="color: #60a5fa; font-weight: 700;">100</span>m</div>
+        <div style="margin-top: 5px; font-size: 1.1rem; color: #00ff88;">W₁ Cost = <span id="emd-val-cost" style="font-weight: 700;">100.0</span> work</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slider = document.getElementById("emd-slider");
+      const valDist = document.getElementById("emd-val-dist");
+      const valCost = document.getElementById("emd-val-cost");
+      
+      const pathQ = document.getElementById("emd-q-path");
+      const textQ = document.getElementById("emd-q-text");
+      
+      const arrow = document.getElementById("emd-arrow");
+      const textArrow = document.getElementById("emd-arrow-text");
+
+      const pCenter = 150;
+
+      function update() {
+        const qCenter = parseFloat(slider.value);
+        const distance = Math.abs(qCenter - pCenter);
+
+        valDist.textContent = distance.toFixed(0);
+        valCost.textContent = distance.toFixed(1);
+
+        // Update Q path
+        const dQ = `M ${qCenter - 40} 150 C ${qCenter - 20} 150, ${qCenter - 20} 220, ${qCenter} 220 C ${qCenter + 20} 220, ${qCenter + 20} 150, ${qCenter + 40} 150 Z`;
+        pathQ.setAttribute("d", dQ);
+        textQ.setAttribute("x", qCenter);
+
+        // Update Arrow
+        if (distance < 5) {
+            arrow.style.opacity = 0;
+            textArrow.style.opacity = 0;
+        } else {
+            arrow.style.opacity = 1;
+            textArrow.style.opacity = 1;
+            arrow.setAttribute("x2", qCenter);
+            textArrow.setAttribute("x", (pCenter + qCenter) / 2);
+            textArrow.textContent = `Distance = ${distance.toFixed(0)}m`;
+        }
+      }
+
+      slider.addEventListener("input", update);
+      update(); // init
+    });
+  </script>
+</div>
+<hr>
 </section>
+<section id="sec-problems" class="level2">
+<h2 class="anchored" data-anchor-id="sec-problems">7. Practice Problems</h2>
+<section id="problem-1" class="level3 thm-box thm-problem">
+<h3 class="thm-box thm-problem anchored" data-anchor-id="problem-1">Problem 1: Disjoint Supports and Gradients</h3>
+<p>Explain mathematically why the Kullback-Leibler (KL) divergence provides a zero gradient when two distributions are completely disjoint, but the Wasserstein distance provides a highly useful constant gradient.</p>
+<details class="solution-toggle">
+<summary>
+Reveal Solution to Problem 1
+</summary>
+<div class="solution-body">
+<div class="thm-box thm-solution">
+<div class="solution-heading">
+Solution
+</div>
+<p>Let <span class="math inline">\(P\)</span> be the true data distribution (a spike at <span class="math inline">\(x=0\)</span>) and <span class="math inline">\(Q_\theta\)</span> be our parameterized model distribution (a spike at <span class="math inline">\(x=\theta\)</span>). Suppose they are currently disjoint (<span class="math inline">\(\theta &gt; 0\)</span>).</p>
+<p><strong>For KL Divergence:</strong> The divergence is defined by the point-wise ratio at exactly the same spatial location <span class="math inline">\(x\)</span>: <span class="math display">\[
+D_{KL}(P \| Q_\theta) = \sum P(x) \log \left( \frac{P(x)}{Q_\theta(x)} \right)
+\]</span> Since <span class="math inline">\(P\)</span> is only non-zero at <span class="math inline">\(x=0\)</span>, we only evaluate the ratio at <span class="math inline">\(x=0\)</span>. However, <span class="math inline">\(Q_\theta(0) = 0\)</span> because <span class="math inline">\(Q_\theta\)</span> is a spike at <span class="math inline">\(\theta\)</span>. Thus, <span class="math inline">\(D_{KL} = 1 \cdot \log\left(\frac{1}{0}\right) = \infty\)</span>.</p>
+<p>Because it is <span class="math inline">\(\infty\)</span> for all <span class="math inline">\(\theta &gt; 0\)</span>, the derivative with respect to <span class="math inline">\(\theta\)</span> is exactly <span class="math inline">\(0\)</span>. The loss landscape is a flat, infinite plateau, meaning the network has absolutely no idea which direction to move <span class="math inline">\(\theta\)</span> to find the true data.</p>
+<p><strong>For Wasserstein Distance:</strong> The Earth Mover’s distance measures the physical work to transport the spike of mass from <span class="math inline">\(x=\theta\)</span> to <span class="math inline">\(x=0\)</span>. Since the total mass is <span class="math inline">\(1\)</span>, the work is simply: <span class="math display">\[
+W_1(P, Q_\theta) = 1 \cdot \|\theta - 0\| = |\theta|
+\]</span> The gradient with respect to <span class="math inline">\(\theta\)</span> (for <span class="math inline">\(\theta &gt; 0\)</span>) is exactly <span class="math inline">\(1\)</span>.</p>
+<p>The loss landscape is a perfect V-shape <span class="math inline">\(f(\theta) = |\theta|\)</span>. This gives a beautiful, constant, non-zero gradient pointing directly toward the true data, allowing the neural network to effortlessly slide <span class="math inline">\(\theta\)</span> down to <span class="math inline">\(0\)</span> via gradient descent. <span class="math inline">\(\blacksquare\)</span></p>
+</div>
+</div>
+</details>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -323,7 +539,7 @@ W_1(P, Q) = \sup_{\|f\|_L \le 1} \left( \mathbb{E}_{x \sim P}[f(x)] - \mathbb{E}
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/lemoon01110\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

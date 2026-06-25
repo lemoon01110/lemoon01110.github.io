@@ -1,84 +1,302 @@
 ---
 title: "Entropy"
+subtitle: "Quantifying the intrinsic uncertainty, unpredictability, or \"chaos\" inherent in a probability distribution."
 toc: true
 toc-depth: 3
 ---
 
-::: {.thm-box .thm-remark}
-### Understanding Entropy
+## 1. Definitions {#sec-definitions}
 
-While Information Content (Surprisal) measures the information gained from a *single specific event*, **Entropy** measures the *average* amount of information produced by a stochastic source of data. 
-
-In other words, Entropy is the **Expected Information Content**. It quantifies the intrinsic uncertainty, unpredictability, or "chaos" inherent in a probability distribution.
-
-:::
+While Information Content (Surprisal) measures the information gained from a *single specific event*, **Entropy** measures the *average* amount of information produced by a stochastic source of data.
 
 ::: {.thm-box .thm-definition}
-### Mathematical Definition (Shannon Entropy)
+### Definition: Shannon Entropy
 
-For a discrete random variable $X$ with possible states $x_1, \dots, x_n$ and probability mass function $P(x)$, the Shannon Entropy $H(X)$ is the expectation of the surprisal $h(X)$:
+For a discrete random variable $X$ with possible states $x_1, \dots, x_n$ and probability mass function $P(x)$, the Shannon Entropy $H(X)$ is defined as the mathematical expectation of the surprisal $h(X)$:
 
 $$
-H(X) = \mathbb{E}_{X \sim P}[h(X)] = -\sum_{x \in X} P(x) \log P(x)
+H(X) = \mathbb{E}_{X \sim P}[h(X)] = -\sum_{x \in X} P(x) \log_2 P(x)
 $$
 
-*(Note: In the case where $P(x) = 0$, we adopt the convention that $0 \log 0 = 0$, which is consistent with the limit $\lim_{p \to 0} p \log p = 0$.)*
-
-#### Interpretation
-- **Low Entropy**: The distribution is highly skewed or deterministic. The outcomes are predictable, so on average, observing an outcome yields very little new information.
-- **High Entropy**: The distribution is flat and uniform. The outcomes are highly unpredictable, meaning each observation provides a lot of information.
-
+*(Note: In the case where $P(x) = 0$, we adopt the convention that $0 \log_2 0 = 0$, which is consistent with the limit $\lim_{p \to 0} p \log_2 p = 0$.)*
 :::
 
+---
+
+## 2. Intuitions & Remarks {#sec-intuitions}
+
+::: {.thm-box .thm-remark}
+### Expected Surprisal
+
+Because Entropy is the **Expected Information Content**, it gives us a single scalar value describing the "flatness" or "chaos" of a distribution.
+
+* **Low Entropy**: The distribution is highly skewed or deterministic. The outcomes are predictable. Because you almost always know what is going to happen, observing an outcome yields very little new information on average.
+* **High Entropy**: The distribution is flat and uniform. The outcomes are highly unpredictable. Because you never know what is going to happen, each observation provides a lot of new information.
+
+Imagine a heavily biased coin that lands on Heads 99% of the time. The entropy is extremely low because you are rarely surprised. But a fair coin (50/50) has maximum entropy; the outcome is a complete mystery every time.
+:::
+
+---
+
+## 3. Formulas & Key Properties {#sec-properties}
+
 ::: {.thm-box .thm-theorem}
-### Properties of Entropy
+### Key Properties of Entropy
 
 #### 1. Bounds
 For a discrete variable with $k$ possible states, the entropy is strictly bounded:
 $$
-0 \le H(X) \le \log k
+0 \le H(X) \le \log_2 k
 $$
-- $H(X) = 0$ if and only if the outcome is completely certain (i.e., $P(x_i) = 1$ for some $i$ and $0$ for all others).
-- $H(X) = \log k$ if and only if $X$ follows a **Uniform Distribution** ($P(x_i) = \frac{1}{k}$ for all $i$). The uniform distribution represents the state of maximum uncertainty.
+* $H(X) = 0$ if and only if the outcome is completely certain (i.e., $P(x_i) = 1$ for some $i$ and $0$ for all others).
+* $H(X) = \log_2 k$ if and only if $X$ follows a **Uniform Distribution** ($P(x_i) = \frac{1}{k}$ for all $i$). The uniform distribution represents the state of maximum uncertainty.
 
 #### 2. Concavity
-Entropy $H(P)$ is a strictly concave function of the probability distribution $P$. This means that mixing two probability distributions together increases the overall uncertainty.
+Entropy $H(P)$ is a strictly concave function of the probability distribution $P$. This mathematically formalizes the idea that mixing two different probability distributions together increases the overall uncertainty.
 
-:::
-
-::: {.thm-box .thm-remark}
-### Continuous Extension: Differential Entropy
-
-For a continuous random variable $X$ with a probability density function $p(x)$, the sum is replaced by an integral, resulting in **Differential Entropy**:
-
+#### 3. Continuous Extension (Differential Entropy)
+For a continuous random variable $X$ with a probability density function $p(x)$, the sum is replaced by an integral:
 $$
-h(X) = -\int_{\mathcal{X}} p(x) \log p(x) \, dx
+h(X) = -\int_{\mathcal{X}} p(x) \ln p(x) \, dx
+$$
+*Warning*: Unlike discrete entropy, differential entropy can be negative, and it is not invariant to reparameterization.
+:::
+
+---
+
+## 4. Graphs & Visualizations {#sec-visualizations}
+
+The relationship between Entropy, Surprisal, and distributions can be understood through their roles in the Information Theory ecosystem.
+
+```{mermaid}
+%%{init: {'theme': 'dark'}}%%
+graph LR
+    A[Distribution P] -->|Certainty| B((Low Entropy\n H ≈ 0))
+    A -->|Uniformity| C((High Entropy\n H = log k))
+    
+    B --> D[Highly Predictable]
+    C --> E[Highly Unpredictable]
+    
+    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style B fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff
+    style C fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff
+    style D fill:#161b22,stroke:#f87171,stroke-width:1px,color:#a0a2b6
+    style E fill:#161b22,stroke:#00ff88,stroke-width:1px,color:#a0a2b6
+```
+
+---
+
+## 5. Relations to Other Fields {#sec-relations}
+
+| Field | Interpretation / Mapping | Application Example |
+| :--- | :--- | :--- |
+| **Machine Learning** | *Information Gain* is the reduction in Entropy after a dataset is split. | Decision Trees (ID3, C4.5) |
+| **Reinforcement Learning** | Entropy acts as a regularization bonus to encourage exploration and prevent deterministic collapse. | Soft Actor-Critic (SAC) |
+| **Data Compression** | $H(X)$ is the absolute theoretical lower bound on the average number of bits required to compress data sampled from $X$ without loss. | Shannon's Source Coding Theorem |
+
+---
+
+## 6. Interactive Simulation {#sec-simulation}
+
+```{=html}
+<div class="simulation-card" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
+  <h4 style="margin-top: 0; color: #fff; font-family: 'Outfit', sans-serif;">Interactive Simulation: Binary Entropy Function</h4>
+  <p style="color: #a0a2b6; font-size: 0.95rem; margin-bottom: 1.5rem;">
+    Explore the entropy of a Bernoulli trial (a biased coin flip). Drag the slider to change the probability $p$ of flipping "Heads". Notice that uncertainty (Entropy) peaks precisely when the coin is fair ($p = 0.5$).
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
+    <!-- SVG Chart -->
+    <svg id="entropy-chart" viewBox="0 0 500 250" style="width: 100%; height: auto; background: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+      <!-- Grid lines -->
+      <line x1="50" y1="200" x2="450" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+      <line x1="50" y1="30" x2="50" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+
+      <!-- Axis Labels -->
+      <text x="250" y="230" fill="#8b949e" font-size="12" text-anchor="middle" font-family="Outfit">Probability of Heads (p)</text>
+      <text x="20" y="115" fill="#8b949e" font-size="12" text-anchor="middle" transform="rotate(-90 20 115)" font-family="Outfit">Entropy H(p) (bits)</text>
+
+      <text x="50" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.0</text>
+      <text x="250" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.5</text>
+      <text x="450" y="215" fill="#6e7681" font-size="10" text-anchor="middle">1.0</text>
+
+      <text x="40" y="203" fill="#6e7681" font-size="10" text-anchor="end">0</text>
+      <text x="40" y="115" fill="#6e7681" font-size="10" text-anchor="end">0.5</text>
+      <text x="40" y="34" fill="#6e7681" font-size="10" text-anchor="end">1.0</text>
+
+      <!-- Curve path -->
+      <path id="entropy-curve" d="" fill="none" stroke="#00ff88" stroke-width="3" opacity="0.8" />
+
+      <!-- Current selection markers -->
+      <line id="eh-guide" x1="50" y1="0" x2="0" y2="0" stroke="rgba(0, 255, 136, 0.3)" stroke-dasharray="4,4" />
+      <line id="ev-guide" x1="0" y1="200" x2="0" y2="0" stroke="rgba(0, 255, 136, 0.3)" stroke-dasharray="4,4" />
+      <circle id="epoint" cx="0" cy="0" r="6" fill="#00ff88" filter="drop-shadow(0 0 4px #00ff88)" />
+    </svg>
+
+    <!-- Controls and Readout -->
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; background: rgba(0,0,0,0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label for="eprob-slider" style="color: #c9d1d9; font-size: 0.85rem; font-weight: 600; font-family: 'Outfit';">Set Probability p:</label>
+        <input id="eprob-slider" type="range" min="0.001" max="0.999" step="0.001" value="0.5" style="width: 100%; accent-color: #00ff88; cursor: pointer;" />
+      </div>
+      <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.4; color: #fff;">
+        <div>p = <span id="eval-prob" style="color: #60a5fa; font-weight: 700;">0.500</span></div>
+        <div>H(p) = <span id="eval-surp" style="color: #00ff88; font-weight: 700;">1.000</span> bits</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slider = document.getElementById("eprob-slider");
+      const valProb = document.getElementById("eval-prob");
+      const valSurp = document.getElementById("eval-surp");
+      const path = document.getElementById("entropy-curve");
+      const point = document.getElementById("epoint");
+      const hGuide = document.getElementById("eh-guide");
+      const vGuide = document.getElementById("ev-guide");
+
+      const width = 400; // 450 - 50
+      const height = 170; // 200 - 30
+
+      function H(p) {
+          if (p === 0 || p === 1) return 0;
+          return -p * Math.log2(p) - (1 - p) * Math.log2(1 - p);
+      }
+
+      // Generate SVG path for the curve
+      let d = "";
+      for (let p = 0.0; p <= 1.0; p += 0.01) {
+        const x = 50 + p * width;
+        const h = H(p);
+        const y = 200 - h * height; 
+        d += (p === 0.0 ? "M" : "L") + `${x} ${y}`;
+      }
+      path.setAttribute("d", d);
+
+      function update() {
+        const p = parseFloat(slider.value);
+        const h = H(p);
+
+        valProb.textContent = p.toFixed(3);
+        valSurp.textContent = h.toFixed(3);
+
+        const x = 50 + p * width;
+        const y = 200 - h * height;
+
+        point.setAttribute("cx", x);
+        point.setAttribute("cy", y);
+
+        hGuide.setAttribute("x1", 50);
+        hGuide.setAttribute("y1", y);
+        hGuide.setAttribute("x2", x);
+        hGuide.setAttribute("y2", y);
+
+        vGuide.setAttribute("x1", x);
+        vGuide.setAttribute("y1", 200);
+        vGuide.setAttribute("x2", x);
+        vGuide.setAttribute("y2", y);
+      }
+
+      slider.addEventListener("input", update);
+      update();
+    });
+  </script>
+</div>
+```
+
+---
+
+## 7. Practice Problems {#sec-problems}
+
+### Problem 1: Biased Coin Entropy {#problem-1 .thm-box .thm-problem}
+
+Prove that the entropy of a fair coin flip is exactly 1 bit. What happens to the theoretical entropy $H(X)$ if the coin is heavily biased such that $P(\text{Heads}) = 0.99$?
+
+<details class="solution-toggle">
+<summary>Reveal Solution to Problem 1</summary>
+<div class="solution-body">
+
+::: {.thm-box .thm-solution}
+<div class="solution-heading">Solution</div>
+
+**Fair Coin:**
+For a fair coin, $P(\text{Heads}) = 0.5$ and $P(\text{Tails}) = 0.5$.
+Using the Shannon Entropy formula:
+$$
+\begin{aligned}
+H(X) &= - \sum_{x} P(x) \log_2 P(x) \\
+&= - [0.5 \log_2(0.5) + 0.5 \log_2(0.5)] \\
+&= - [0.5(-1) + 0.5(-1)] \\
+&= 1 \text{ bit}
+\end{aligned}
 $$
 
-*Warning*: Unlike discrete entropy, differential entropy is **not** invariant to changes in coordinates (reparameterization), and it can actually take on **negative values**. For example, the differential entropy of a uniform distribution over the interval $[0, a]$ is $\log(a)$. If $a < 1$, the entropy is negative.
+**Biased Coin:**
+For a biased coin with $P(\text{Heads}) = 0.99$ and $P(\text{Tails}) = 0.01$:
+$$
+\begin{aligned}
+H(X) &= - [0.99 \log_2(0.99) + 0.01 \log_2(0.01)] \\
+&\approx - [0.99(-0.0145) + 0.01(-6.6438)] \\
+&\approx 0.0143 + 0.0664 \\
+&\approx 0.0807 \text{ bits}
+\end{aligned}
+$$
 
-#### Maximum Entropy Distributions
-When subjected to specific constraints, certain continuous distributions maximize differential entropy:
-- **Constraint: Defined on an interval $[a,b]$** $\to$ Uniform Distribution is Max-Ent.
-- **Constraint: Fixed Mean $\mu$ and Variance $\sigma^2$** $\to$ Gaussian (Normal) Distribution is Max-Ent.
-- **Constraint: Defined on $[0, \infty)$ with fixed Mean $\mu$** $\to$ Exponential Distribution is Max-Ent.
-
+The entropy drops from 1 bit to roughly 0.08 bits. Because the outcome is almost certain, you gain very little information on average from observing the coin flips.
 :::
 
-::: {.thm-box .thm-example}
-### Machine Learning Context
+</div>
+</details>
 
-Entropy appears everywhere in Machine Learning:
+### Problem 2: Maximum Entropy of a Uniform Distribution {#problem-2 .thm-box .thm-problem}
 
-1. **Decision Trees**: Algorithms like ID3 and C4.5 use *Information Gain* (which is the reduction in Entropy) to choose the best features to split nodes. A good split minimizes the entropy of the resulting child nodes.
-2. **Regularization**: Maximum Entropy Reinforcement Learning (e.g., Soft Actor-Critic) adds an entropy bonus to the reward function to encourage the agent to explore different actions, preventing premature convergence to suboptimal deterministic policies.
-3. **Data Compression**: Shannon's Source Coding Theorem proves that $H(X)$ is the absolute theoretical lower bound on the average number of bits required to compress data sampled from $X$ without loss.
+Use the method of Lagrange multipliers to prove that for a discrete random variable $X$ with $k$ possible states, the entropy $H(X)$ is maximized when the distribution is uniform, i.e., $P(x_i) = \frac{1}{k}$ for all $i$.
 
+<details class="solution-toggle">
+<summary>Reveal Solution to Problem 2</summary>
+<div class="solution-body">
+
+::: {.thm-box .thm-solution}
+<div class="solution-heading">Solution</div>
+
+We want to maximize the entropy function:
+$$
+H(P) = -\sum_{i=1}^k p_i \ln p_i
+$$
+*(Note: We use the natural logarithm $\ln$ to simplify differentiation, which only scales the result by a constant and does not change the argmax).*
+
+This maximization is subject to the probability constraint that the sum of all probabilities must equal 1:
+$$
+\sum_{i=1}^k p_i = 1 \implies \sum_{i=1}^k p_i - 1 = 0
+$$
+
+We define the Lagrangian $\mathcal{L}$ with a multiplier $\lambda$:
+$$
+\mathcal{L}(p_1, \dots, p_k, \lambda) = -\sum_{i=1}^k p_i \ln p_i + \lambda \left(\sum_{i=1}^k p_i - 1\right)
+$$
+
+Take the partial derivative with respect to a specific $p_i$ and set it to 0:
+$$
+\begin{aligned}
+\frac{\partial \mathcal{L}}{\partial p_i} &= -(\ln p_i + p_i \cdot \frac{1}{p_i}) + \lambda = 0 \\
+&= -\ln p_i - 1 + \lambda = 0
+\end{aligned}
+$$
+
+Solving for $p_i$:
+$$
+\ln p_i = \lambda - 1 \implies p_i = e^{\lambda - 1}
+$$
+
+Notice that the solution for $p_i$ depends *only* on $\lambda$, which is a constant. This means every $p_i$ must be exactly the same! 
+Since there are $k$ states and they must sum to 1:
+$$
+p_1 = p_2 = \dots = p_k = \frac{1}{k}
+$$
+
+Thus, the Uniform Distribution maximizes entropy. $\blacksquare$
 :::
 
-## Practice Problems
-
-::: {.thm-box .thm-problem}
-### Problem 1: Biased Coin Entropy
-Prove that the entropy of a fair coin flip is exactly 1 bit. What happens to the theoretical entropy $H(X)$ if the coin is heavily biased such that $P(Heads) = 0.99$?
-:::
+</div>
+</details>

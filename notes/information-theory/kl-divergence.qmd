@@ -1,87 +1,340 @@
 ---
 title: "Kullback-Leibler Divergence"
+subtitle: "Quantifying the exact amount of information lost when an approximation is used instead of the truth."
 toc: true
 toc-depth: 3
 ---
 
-::: {.thm-box .thm-remark}
-### Defining Relative Entropy
-
-The **Kullback-Leibler (KL) Divergence**, often called Relative Entropy, is a fundamental measure of how one probability distribution $Q$ diverges from a reference probability distribution $P$.
-
-If $P$ represents the "true" distribution of data and $Q$ represents our model's approximation of that distribution, $D_{KL}(P \| Q)$ quantifies the exact amount of information lost when $Q$ is used to approximate $P$.
-
-:::
+## 1. Definitions {#sec-definitions}
 
 ::: {.thm-box .thm-definition}
-### Mathematical Definition
+### Definition: KL Divergence (Relative Entropy)
 
-For discrete probability distributions $P$ and $Q$ defined on the same probability space $\mathcal{X}$, the KL Divergence from $Q$ to $P$ is defined as:
+For discrete probability distributions $P$ and $Q$ defined on the same probability space $\mathcal{X}$, the Kullback-Leibler (KL) Divergence from $Q$ to $P$ is defined as:
 
 $$
-D_{KL}(P \| Q) = \sum_{x \in \mathcal{X}} P(x) \log \left( \frac{P(x)}{Q(x)} \right)
+D_{KL}(P \| Q) = \sum_{x \in \mathcal{X}} P(x) \log_2 \left( \frac{P(x)}{Q(x)} \right)
 $$
 
-For continuous distributions with density functions $p$ and $q$:
+For continuous distributions with probability density functions $p$ and $q$, the sum becomes an integral:
 $$
-D_{KL}(P \| Q) = \int_{\mathcal{X}} p(x) \log \left( \frac{p(x)}{q(x)} \right) dx
+D_{KL}(P \| Q) = \int_{\mathcal{X}} p(x) \ln \left( \frac{p(x)}{q(x)} \right) dx
 $$
 
-*(Note: The double vertical bars $\|$ emphasize that this is a divergence, not a conditional probability. It is read as "The KL divergence of P with respect to Q".)*
-
+*(Note: The double vertical bars $\|$ emphasize that this is a divergence between two distributions, not a conditional probability. It is read as "The KL divergence of P with respect to Q" or "The KL divergence from Q to P".)*
 :::
 
+---
+
+## 2. Intuitions & Remarks {#sec-intuitions}
+
+::: {.thm-box .thm-remark}
+### The Intuition of Information Loss
+
+If $P$ represents the "true" underlying distribution of data in nature, and $Q$ represents our mathematical model's approximation of that distribution, then $D_{KL}(P \| Q)$ quantifies the exact amount of information lost when we use $Q$ instead of $P$.
+
+Imagine you are trying to compress data using a codebook. If you know the true distribution $P$, you can build an optimal codebook. If you are forced to use a codebook optimized for $Q$ instead, your compressed files will be slightly larger. The KL divergence is exactly the number of *extra bits* required due to using the wrong codebook.
+:::
+
+---
+
+## 3. Formulas & Key Properties {#sec-properties}
+
 ::: {.thm-box .thm-theorem}
-### Key Properties
+### Key Properties of KL Divergence
 
 #### 1. Gibbs' Inequality (Non-negativity)
-KL Divergence is strictly non-negative.
+KL Divergence is strictly non-negative. You cannot have "negative" information loss.
 $$
 D_{KL}(P \| Q) \ge 0
 $$
 Equality $D_{KL}(P \| Q) = 0$ holds **if and only if** $P$ and $Q$ are identical almost everywhere.
 
 #### 2. Lack of Symmetry
-KL Divergence is **not** a true mathematical distance metric because it is asymmetric:
+KL Divergence is **not** a true mathematical distance metric because it is highly asymmetric:
 $$
 D_{KL}(P \| Q) \neq D_{KL}(Q \| P)
 $$
 This asymmetry has profound implications in machine learning, dictating whether models exhibit "mode-seeking" or "mean-seeking" behavior.
 
 #### 3. Lack of Triangle Inequality
-It does not satisfy the triangle inequality. You cannot compute $D_{KL}(P \| R)$ simply by bridging through a distribution $Q$.
-
+It does not satisfy the triangle inequality. You cannot compute the divergence $D_{KL}(P \| R)$ simply by bridging through an intermediate distribution $Q$. Thus, we call it a "divergence" rather than a "distance".
 :::
 
-::: {.thm-box .thm-theorem}
-### Forward vs. Reverse KL Divergence
+---
 
-Because of the asymmetry, the order of $P$ and $Q$ drastically alters the geometric behavior of the approximation.
+## 4. Graphs & Visualizations {#sec-visualizations}
 
-#### Forward KL: $D_{KL}(P \| Q)$ (Mean-Seeking)
-- **Penalty**: If $P(x) > 0$ but $Q(x) \to 0$, the log ratio explodes to infinity. Therefore, $Q$ is forced to place probability mass *everywhere* $P$ places mass.
-- **Result**: $Q$ tends to stretch out and "cover" all the modes (peaks) of $P$, resulting in a broad, **mean-seeking** approximation. This is the behavior driven by standard Cross-Entropy Loss / Maximum Likelihood Estimation.
+Because of the asymmetry, the order of $P$ and $Q$ drastically alters the geometric behavior of the approximation when we use KL Divergence as an optimization objective.
 
-#### Reverse KL: $D_{KL}(Q \| P)$ (Mode-Seeking)
-- **Penalty**: If $Q(x) > 0$ but $P(x) \to 0$, the log ratio explodes. Therefore, $Q$ must absolutely avoid placing mass where $P$ has no mass.
+```{mermaid}
+%%{init: {'theme': 'dark'}}%%
+graph TD
+    subgraph Forward KL / Mean-Seeking
+        A[True Bimodal P] -->|Penalty: Q must cover P| B(Broad Unimodal Q)
+        B -.->|Covers both peaks, but underestimates heights| C(Mean-Seeking)
+    end
+    
+    subgraph Reverse KL / Mode-Seeking
+        D[True Bimodal P] -->|Penalty: Q avoids P=0| E(Narrow Unimodal Q)
+        E -.->|Collapses into one valid peak| F(Mode-Seeking)
+    end
+    
+    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style B fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff
+    style C fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff
+    
+    style D fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style E fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff
+    style F fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff
+```
+
+#### Forward KL: $D_{KL}(P \| Q)$
+- **Penalty**: If $P(x) > 0$ but $Q(x) \to 0$, the ratio $\frac{P(x)}{Q(x)}$ explodes to infinity. Therefore, $Q$ is forced to place probability mass *everywhere* $P$ places mass.
+- **Result**: $Q$ stretches out to "cover" all the modes (peaks) of $P$, resulting in a broad, **mean-seeking** approximation.
+
+#### Reverse KL: $D_{KL}(Q \| P)$
+- **Penalty**: If $Q(x) > 0$ but $P(x) \to 0$, the ratio $\frac{Q(x)}{P(x)}$ explodes. Therefore, $Q$ must absolutely avoid placing mass where $P$ has no mass.
 - **Result**: $Q$ tends to "collapse" into a single valid peak (mode) of $P$ to safely avoid areas where $P=0$. This results in a highly focused, **mode-seeking** approximation.
 
+---
+
+## 5. Relations to Other Fields {#sec-relations}
+
+| Field | Interpretation / Mapping | Application Example |
+| :--- | :--- | :--- |
+| **Variational Inference** | We approximate complex posteriors with simple networks by explicitly minimizing the Reverse KL Divergence. | Variational Autoencoders (VAEs) |
+| **Reinforcement Learning** | We add a KL penalty to ensure newly updated policies do not diverge too wildly from old policies. | Proximal Policy Optimization (PPO) |
+| **Information Bottleneck** | Networks try to maximize mutual information with targets while minimizing KL divergence with inputs. | Deep Learning Theory |
+
+---
+
+## 6. Interactive Simulation {#sec-simulation}
+
+```{=html}
+<div class="simulation-card" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
+  <h4 style="margin-top: 0; color: #fff; font-family: 'Outfit', sans-serif;">Interactive Simulation: The Asymmetry of KL Divergence</h4>
+  <p style="color: #a0a2b6; font-size: 0.95rem; margin-bottom: 1.5rem;">
+    Let $P$ be a fixed coin with $P(\text{Heads}) = 0.2$. You control the approximation $Q(\text{Heads}) = q$. Drag the slider to adjust $q$ and see how the Forward KL Divergence $D_{KL}(P\|Q)$ and Reverse KL Divergence $D_{KL}(Q\|P)$ respond differently as you approach the boundaries.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
+    <!-- SVG Chart -->
+    <svg id="kl-chart" viewBox="0 0 500 250" style="width: 100%; height: auto; background: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+      <!-- Grid lines -->
+      <line x1="50" y1="200" x2="450" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+      <line x1="50" y1="30" x2="50" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+
+      <!-- Axis Labels -->
+      <text x="250" y="230" fill="#8b949e" font-size="12" text-anchor="middle" font-family="Outfit">Approximation q</text>
+      <text x="20" y="115" fill="#8b949e" font-size="12" text-anchor="middle" transform="rotate(-90 20 115)" font-family="Outfit">Divergence (bits)</text>
+
+      <text x="50" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.0</text>
+      <text x="130" y="215" fill="#60a5fa" font-size="10" text-anchor="middle">p=0.2</text>
+      <text x="250" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.5</text>
+      <text x="450" y="215" fill="#6e7681" font-size="10" text-anchor="middle">1.0</text>
+
+      <text x="40" y="203" fill="#6e7681" font-size="10" text-anchor="end">0</text>
+      <text x="40" y="115" fill="#6e7681" font-size="10" text-anchor="end">2</text>
+      <text x="40" y="34" fill="#6e7681" font-size="10" text-anchor="end">4</text>
+
+      <!-- P vertical line -->
+      <line x1="130" y1="30" x2="130" y2="200" stroke="rgba(96, 165, 250, 0.4)" stroke-dasharray="2,2" />
+
+      <!-- Curve paths -->
+      <path id="kl-fwd-curve" d="" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.8" />
+      <path id="kl-rev-curve" d="" fill="none" stroke="#8b5cf6" stroke-width="3" opacity="0.8" />
+
+      <!-- Legend -->
+      <rect x="330" y="40" width="10" height="10" fill="#f59e0b" />
+      <text x="345" y="49" fill="#c9d1d9" font-size="10">Forward D(P||Q)</text>
+      <rect x="330" y="55" width="10" height="10" fill="#8b5cf6" />
+      <text x="345" y="64" fill="#c9d1d9" font-size="10">Reverse D(Q||P)</text>
+
+      <!-- Current selection markers -->
+      <line id="kl-v-guide" x1="0" y1="200" x2="0" y2="0" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="4,4" />
+      <circle id="kl-fwd-point" cx="0" cy="0" r="5" fill="#f59e0b" />
+      <circle id="kl-rev-point" cx="0" cy="0" r="5" fill="#8b5cf6" />
+    </svg>
+
+    <!-- Controls and Readout -->
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; background: rgba(0,0,0,0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label for="kl-slider" style="color: #c9d1d9; font-size: 0.85rem; font-weight: 600; font-family: 'Outfit';">Set Approx q:</label>
+        <input id="kl-slider" type="range" min="0.01" max="0.99" step="0.01" value="0.5" style="width: 100%; accent-color: #f59e0b; cursor: pointer;" />
+      </div>
+      <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.4; color: #fff;">
+        <div>q = <span id="kl-val-q" style="color: #fff; font-weight: 700;">0.500</span></div>
+        <div style="color: #f59e0b;">D(P||Q) = <span id="kl-val-fwd" style="font-weight: 700;">0.000</span></div>
+        <div style="color: #8b5cf6;">D(Q||P) = <span id="kl-val-rev" style="font-weight: 700;">0.000</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slider = document.getElementById("kl-slider");
+      const valQ = document.getElementById("kl-val-q");
+      const valFwd = document.getElementById("kl-val-fwd");
+      const valRev = document.getElementById("kl-val-rev");
+      
+      const pathFwd = document.getElementById("kl-fwd-curve");
+      const pathRev = document.getElementById("kl-rev-curve");
+      const pointFwd = document.getElementById("kl-fwd-point");
+      const pointRev = document.getElementById("kl-rev-point");
+      const vGuide = document.getElementById("kl-v-guide");
+
+      const width = 400; // 450 - 50
+      const height = 170; // 200 - 30
+      const P = 0.2; // Fixed target probability
+
+      function DKL(true_p, approx_q) {
+          if (approx_q <= 0 || approx_q >= 1) return 10;
+          let d1 = true_p * Math.log2(true_p / approx_q);
+          let d2 = (1 - true_p) * Math.log2((1 - true_p) / (1 - approx_q));
+          return d1 + d2;
+      }
+
+      // Generate SVG path for the curves
+      let dFwd = "";
+      let dRev = "";
+      for (let q = 0.01; q <= 0.99; q += 0.01) {
+        const x = 50 + q * width;
+        const fwd = DKL(P, q);
+        const rev = DKL(q, P);
+        const yFwd = 200 - Math.min((fwd / 4.0), 1) * height; // Scale up to 4 bits max
+        const yRev = 200 - Math.min((rev / 4.0), 1) * height; 
+        
+        dFwd += (q === 0.01 ? "M" : "L") + `${x} ${yFwd}`;
+        dRev += (q === 0.01 ? "M" : "L") + `${x} ${yRev}`;
+      }
+      pathFwd.setAttribute("d", dFwd);
+      pathRev.setAttribute("d", dRev);
+
+      function update() {
+        const q = parseFloat(slider.value);
+        const fwd = DKL(P, q);
+        const rev = DKL(q, P);
+
+        valQ.textContent = q.toFixed(3);
+        valFwd.textContent = fwd.toFixed(3);
+        valRev.textContent = rev.toFixed(3);
+
+        const x = 50 + q * width;
+        const yFwd = 200 - Math.min((fwd / 4.0), 1) * height;
+        const yRev = 200 - Math.min((rev / 4.0), 1) * height;
+
+        pointFwd.setAttribute("cx", x);
+        pointFwd.setAttribute("cy", yFwd);
+        
+        pointRev.setAttribute("cx", x);
+        pointRev.setAttribute("cy", yRev);
+
+        vGuide.setAttribute("x1", x);
+        vGuide.setAttribute("y1", 200);
+        vGuide.setAttribute("x2", x);
+        vGuide.setAttribute("y2", Math.min(yFwd, yRev));
+      }
+
+      slider.addEventListener("input", update);
+      update();
+    });
+  </script>
+</div>
+```
+
+---
+
+## 7. Practice Problems {#sec-problems}
+
+### Problem 1: Proof of Asymmetry {#problem-1 .thm-box .thm-problem}
+
+Provide a concrete, numerical proof that $D_{KL}(P \| Q) \neq D_{KL}(Q \| P)$ using two simple discrete probability distributions: $P=[0.5, 0.5]$ and $Q=[0.9, 0.1]$.
+
+<details class="solution-toggle">
+<summary>Reveal Solution to Problem 1</summary>
+<div class="solution-body">
+
+::: {.thm-box .thm-solution}
+<div class="solution-heading">Solution</div>
+
+Let $P = [0.5, 0.5]$ and $Q = [0.9, 0.1]$.
+
+**Forward KL Divergence:**
+$$
+\begin{aligned}
+D_{KL}(P \| Q) &= \sum P(x) \log_2 \left( \frac{P(x)}{Q(x)} \right) \\
+&= 0.5 \log_2\left(\frac{0.5}{0.9}\right) + 0.5 \log_2\left(\frac{0.5}{0.1}\right) \\
+&= 0.5 \log_2(0.555) + 0.5 \log_2(5) \\
+&\approx 0.5(-0.849) + 0.5(2.321) \\
+&\approx -0.424 + 1.161 \\
+&= 0.737 \text{ bits}
+\end{aligned}
+$$
+
+**Reverse KL Divergence:**
+$$
+\begin{aligned}
+D_{KL}(Q \| P) &= \sum Q(x) \log_2 \left( \frac{Q(x)}{P(x)} \right) \\
+&= 0.9 \log_2\left(\frac{0.9}{0.5}\right) + 0.1 \log_2\left(\frac{0.1}{0.5}\right) \\
+&= 0.9 \log_2(1.8) + 0.1 \log_2(0.2) \\
+&\approx 0.9(0.848) + 0.1(-2.321) \\
+&\approx 0.763 - 0.232 \\
+&= 0.531 \text{ bits}
+\end{aligned}
+$$
+
+Since $0.737 \neq 0.531$, we have proven that the KL divergence is fundamentally asymmetric. $\blacksquare$
 :::
 
-::: {.thm-box .thm-example}
-### Machine Learning Context
+</div>
+</details>
 
-KL Divergence is arguably the backbone of modern probabilistic modeling.
+### Problem 2: Gibbs' Inequality {#problem-2 .thm-box .thm-problem}
 
-1. **Variational Autoencoders (VAEs)**: In Variational Inference, we try to approximate complex intractable posterior distributions with a simple Gaussian network. The loss function explicitly minimizes the Reverse KL Divergence between the approximate posterior $q_\phi(z|x)$ and the true prior $p(z)$.
-2. **Reinforcement Learning**: In algorithms like Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO), a KL penalty is added to the objective function to ensure that the newly updated policy distribution does not diverge too far from the old policy distribution, preventing catastrophic forgetting.
-3. **Information Bottleneck**: Deep neural networks can be analyzed as trying to maximize the mutual information with the target label while simultaneously minimizing the KL divergence with the input feature space to compress out irrelevant noise.
+Use Jensen's Inequality to mathematically prove Gibbs' Inequality: $D_{KL}(P \| Q) \ge 0$.
+*(Hint: Remember that Jensen's Inequality states that for any strictly concave function like $\ln(x)$, the expected value of the function is less than or equal to the function of the expected value: $\mathbb{E}[\ln(X)] \le \ln(\mathbb{E}[X])$).*
 
+<details class="solution-toggle">
+<summary>Reveal Solution to Problem 2</summary>
+<div class="solution-body">
+
+::: {.thm-box .thm-solution}
+<div class="solution-heading">Solution</div>
+
+Let's begin with the definition of KL Divergence using the natural logarithm:
+$$
+D_{KL}(P \| Q) = \sum_{x} P(x) \ln \left( \frac{P(x)}{Q(x)} \right)
+$$
+
+We can rewrite the ratio inside the logarithm by negating it:
+$$
+D_{KL}(P \| Q) = -\sum_{x} P(x) \ln \left( \frac{Q(x)}{P(x)} \right)
+$$
+
+Notice that $\sum_{x} P(x) [\dots]$ is exactly the definition of the mathematical expectation $\mathbb{E}_{X \sim P}[\dots]$. Thus:
+$$
+D_{KL}(P \| Q) = -\mathbb{E}_{X \sim P} \left[ \ln \left( \frac{Q(X)}{P(X)} \right) \right]
+$$
+
+Since the natural logarithm function $\ln(z)$ is strictly concave, we can apply Jensen's Inequality, which states that $-\mathbb{E}[\ln(Z)] \ge -\ln(\mathbb{E}[Z])$:
+$$
+-\mathbb{E}_{X \sim P} \left[ \ln \left( \frac{Q(X)}{P(X)} \right) \right] \ge -\ln \left( \mathbb{E}_{X \sim P} \left[ \frac{Q(X)}{P(X)} \right] \right)
+$$
+
+Now, let's evaluate the inner expectation:
+$$
+\mathbb{E}_{X \sim P} \left[ \frac{Q(X)}{P(X)} \right] = \sum_{x} P(x) \frac{Q(x)}{P(x)} = \sum_{x} Q(x) = 1
+$$
+Because $Q$ is a valid probability distribution, its probabilities must sum to 1.
+
+Substituting this back into the inequality:
+$$
+D_{KL}(P \| Q) \ge -\ln(1) = 0
+$$
+
+Therefore, $D_{KL}(P \| Q) \ge 0$. $\blacksquare$
 :::
 
-## Practice Problems
-
-::: {.thm-box .thm-problem}
-### Problem 1: The Asymmetry of KL
-Provide a concrete, numerical example showing that $D_{KL}(P \| Q) \neq D_{KL}(Q \| P)$ using two simple discrete probability distributions (e.g., $P=[0.5, 0.5]$ and $Q=[0.9, 0.1]$).
-:::
+</div>
+</details>
