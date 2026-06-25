@@ -40,3 +40,5 @@ format:
       - custom.scss
     code-fold: true
     code-highlight: dracula
+    mermaid:
+      theme: dark

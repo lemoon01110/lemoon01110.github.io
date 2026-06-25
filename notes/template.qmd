@@ -1,0 +1,282 @@
+---
+title: "Note Template & Blueprint"
+subtitle: "A standardized outline for note creators to build interactive, beautiful, and mathematically rigorous content"
+toc: true
+toc-depth: 3
+---
+
+Welcome to the **Note Template & Blueprint**. This document serves as a layout and UI reference for creating new notes. By copying this structure, note creators ensure that definitions, equations, diagrams, interactive components, and problems render in a unified, premium dark theme.
+
+---
+
+## 1. Definitions {#sec-definitions}
+
+Every note should begin with a precise, mathematically rigorous definition of the central concept. Wrap definitions in the `.thm-box .thm-definition` fenced div container.
+
+To see how this mathematical formulation is applied in a concrete scenario, scroll down to [Practice Problem 1](#problem-1).
+
+::: {.thm-box .thm-definition}
+### Definition: [Concept Name]
+
+For a system or variable state, the **[Concept Name]** is defined as...
+
+Let $X$ be a random variable, then the mathematical formulation is:
+$$
+f(X) = \mathcal{G}(X) \cdot \lambda
+$$
+where:
+*   $\mathcal{G}(X)$ represents the system gain operator.
+*   $\lambda$ is the normalization constant.
+:::
+
+---
+
+## 2. Intuitions & Remarks {#sec-intuitions}
+
+To make the note highly pedagogical, follow the definition with a real-world intuition or remark. Wrap these insights in the `.thm-box .thm-remark` block.
+
+::: {.thm-box .thm-remark}
+### Physical Intuition
+
+Think of this concept like... [Insert a clear analogy here]. For example, if you are looking at a search space:
+> "High system gain means searching broadly, whereas a low system gain means narrowing down the search parameters."
+:::
+
+---
+
+## 3. Formulas & Key Properties {#sec-properties}
+
+Present the main derivations, properties, and proofs in this section. Group related formulas and characteristics inside `.thm-box .thm-theorem` blocks to make them pop visually.
+
+::: {.thm-box .thm-theorem}
+### Theorem: Additivity and Non-Negativity
+
+Let $X$ and $Y$ be independent entities. The system satisfies the following foundational axioms:
+
+#### 1. Non-negativity
+For any valid state $x$:
+$$
+f(x) \ge 0
+$$
+
+#### 2. Joint Additivity
+For joint independent states:
+$$
+f(x, y) = f(x) + f(y)
+$$
+:::
+
+---
+
+## 4. Graphs & Visualizations {#sec-visualizations}
+
+Complex dependencies and flowcharts should be visualized using **Mermaid.js** diagrams, which compile natively inside Quarto.
+
+```{mermaid}
+%%{init: {'theme': 'dark'}}%%
+graph TD
+    A[Prior Probability] -->|Observation| B(Surprisal)
+    B -->|Expectation| C{Entropy}
+    C -->|Conditioning| D[Conditional Entropy]
+    C -->|Divergence| E[KL Divergence]
+    
+    style A fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style B fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style C fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff
+    style D fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style E fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff
+```
+
+---
+
+## 5. Relations to Other Fields {#sec-relations}
+
+Incorporate a table or descriptive section showing how this concept bridges other domains (e.g., Deep Learning, Classical Physics, or Control Theory).
+
+| Field | Interpretation / Mapping | Application Example |
+| :--- | :--- | :--- |
+| **Deep Learning** | Minimizing surprisal is equivalent to Cross-Entropy Loss minimization | Classification training objectives |
+| **Statistical Physics** | Matches thermodynamic entropy metrics at boundary limits | Free-energy minimization |
+| **Information Theory** | Measures the average number of bits required to encode outcomes | Huffman Coding systems |
+
+For a direct application of this relation, scroll down to [Practice Problem 2](#problem-2).
+
+---
+
+## 6. Interactive Simulation {#sec-simulation}
+
+Interactive widgets let readers experiment with the mathematics. You can embed a lightweight, self-contained SVG + JavaScript simulation inside a styled card.
+
+```{=html}
+<div class="simulation-card" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
+  <h4 style="margin-top: 0; color: #fff; font-family: 'Outfit', sans-serif;">Interactive Simulation: Surprisal vs. Probability</h4>
+  <p style="color: #a0a2b6; font-size: 0.95rem; margin-bottom: 1.5rem;">
+    Drag the slider below to change the probability $P(x)$ of an event and see how its information content (surprisal) $h(x) = -\log_2 P(x)$ changes. Note how rare events ($P(x) \approx 0$) yield high surprise, while guaranteed events ($P(x) = 1$) yield zero surprise.
+  </p>
+  
+  <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
+    <!-- SVG Chart -->
+    <svg id="sim-chart" viewBox="0 0 500 250" style="width: 100%; height: auto; background: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+      <!-- Grid lines -->
+      <line x1="50" y1="200" x2="450" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+      <line x1="50" y1="30" x2="50" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+      
+      <!-- Axis Labels -->
+      <text x="250" y="230" fill="#8b949e" font-size="12" text-anchor="middle" font-family="Outfit">Probability P(x)</text>
+      <text x="20" y="115" fill="#8b949e" font-size="12" text-anchor="middle" transform="rotate(-90 20 115)" font-family="Outfit">Surprisal h(x) (bits)</text>
+      
+      <text x="50" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.0</text>
+      <text x="150" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.25</text>
+      <text x="250" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.5</text>
+      <text x="350" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.75</text>
+      <text x="450" y="215" fill="#6e7681" font-size="10" text-anchor="middle">1.0</text>
+      
+      <text x="40" y="203" fill="#6e7681" font-size="10" text-anchor="end">0</text>
+      <text x="40" y="145" fill="#6e7681" font-size="10" text-anchor="end">2</text>
+      <text x="40" y="87" fill="#6e7681" font-size="10" text-anchor="end">4</text>
+      <text x="40" y="30" fill="#6e7681" font-size="10" text-anchor="end">6+</text>
+      
+      <!-- Curve path -->
+      <path id="curve" d="" fill="none" stroke="#60a5fa" stroke-width="3" opacity="0.8" />
+      
+      <!-- Current selection markers -->
+      <line id="h-guide" x1="50" y1="0" x2="0" y2="0" stroke="rgba(96, 165, 250, 0.3)" stroke-dasharray="4,4" />
+      <line id="v-guide" x1="0" y1="200" x2="0" y2="0" stroke="rgba(96, 165, 250, 0.3)" stroke-dasharray="4,4" />
+      <circle id="point" cx="0" cy="0" r="6" fill="#00ff88" filter="drop-shadow(0 0 4px #00ff88)" />
+    </svg>
+    
+    <!-- Controls and Readout -->
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; background: rgba(0,0,0,0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label for="prob-slider" style="color: #c9d1d9; font-size: 0.85rem; font-weight: 600; font-family: 'Outfit';">Set Probability P(x):</label>
+        <input id="prob-slider" type="range" min="0.01" max="1.0" step="0.01" value="0.25" style="width: 100%; accent-color: #60a5fa; cursor: pointer;" />
+      </div>
+      <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.4; color: #fff;">
+        <div>P(x) = <span id="val-prob" style="color: #60a5fa; font-weight: 700;">0.250</span></div>
+        <div>h(x) = <span id="val-surp" style="color: #00ff88; font-weight: 700;">2.000</span> bits</div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slider = document.getElementById("prob-slider");
+      const valProb = document.getElementById("val-prob");
+      const valSurp = document.getElementById("val-surp");
+      const path = document.getElementById("curve");
+      const point = document.getElementById("point");
+      const hGuide = document.getElementById("h-guide");
+      const vGuide = document.getElementById("v-guide");
+      
+      const width = 400; // 450 - 50
+      const height = 170; // 200 - 30
+      
+      // Generate SVG path for the curve h(p) = -log2(p)
+      let d = "";
+      for (let p = 0.015; p <= 1.0; p += 0.005) {
+        const x = 50 + p * width;
+        const h = -Math.log2(p);
+        const y = 200 - (h / 6.5) * height; // Scale up to 6.5 bits
+        d += (p === 0.015 ? "M" : "L") + `${x} ${y}`;
+      }
+      path.setAttribute("d", d);
+      
+      function update() {
+        const p = parseFloat(slider.value);
+        const h = -Math.log2(p);
+        
+        // Update readouts
+        valProb.textContent = p.toFixed(3);
+        valSurp.textContent = h.toFixed(3);
+        
+        // Update marker coordinates
+        const x = 50 + p * width;
+        const y = 200 - (h / 6.5) * height;
+        
+        point.setAttribute("cx", x);
+        point.setAttribute("cy", y);
+        
+        hGuide.setAttribute("x1", 50);
+        hGuide.setAttribute("y1", y);
+        hGuide.setAttribute("x2", x);
+        hGuide.setAttribute("y2", y);
+        
+        vGuide.setAttribute("x1", x);
+        vGuide.setAttribute("y1", 200);
+        vGuide.setAttribute("x2", x);
+        vGuide.setAttribute("y2", y);
+      }
+      
+      slider.addEventListener("input", update);
+      update();
+    });
+  </script>
+</div>
+```
+
+---
+
+## 7. Practice Problems with Collapsible Solutions {#sec-problems}
+
+Conclude each note with 1–3 concrete practice problems. Readers can click anchor links to jump directly here. Wrap solutions inside `<details class="solution-toggle">` elements so they remain collapsed by default.
+
+### Problem 1: Basic Derivation {#problem-1 .thm-box .thm-problem}
+
+Show that if two events are independent, their joint surprisal adds up.
+
+*(This problem directly tests your understanding of the concepts defined in the [Definitions section](#sec-definitions).)*
+
+<details class="solution-toggle">
+<summary>Reveal Solution to Problem 1</summary>
+<div class="solution-body">
+
+::: {.thm-box .thm-solution}
+<div class="solution-heading">Solution</div>
+
+Let $X$ and $Y$ be independent random variables. By definition:
+$$
+P(X, Y) = P(X)P(Y)
+$$
+Taking the negative log base 2 of both sides:
+$$
+\begin{aligned}
+h(X, Y) &= -\log_2 P(X, Y) \\
+&= -\log_2 \big(P(X)P(Y)\big) \\
+&= -\log_2 P(X) - \log_2 P(Y) \\
+&= h(X) + h(Y)
+\end{aligned}
+$$
+Hence, joint surprisal is additive. $\blacksquare$
+:::
+
+</div>
+</details>
+
+### Problem 2: Applied Metric {#problem-2 .thm-box .thm-problem}
+
+Explain why Cross-Entropy is always greater than or equal to Entropy: $H(P, Q) \ge H(P)$.
+
+*(This problem requires applying the mathematical equivalence detailed in the [Relations to Other Fields section](#sec-relations).)*
+
+<details class="solution-toggle">
+<summary>Reveal Solution to Problem 2</summary>
+<div class="solution-body">
+
+::: {.thm-box .thm-solution}
+<div class="solution-heading">Solution</div>
+
+Recall that the Kullback-Leibler (KL) Divergence represents:
+$$
+D_{\text{KL}}(P \parallel Q) = H(P, Q) - H(P)
+$$
+By Gibbs' Inequality, we know that $D_{\text{KL}}(P \parallel Q) \ge 0$ for all probability distributions $P$ and $Q$. Consequently:
+$$
+H(P, Q) - H(P) \ge 0 \implies H(P, Q) \ge H(P)
+$$
+The inequality holds with equality if and only if $P = Q$. $\blacksquare$
+:::
+
+</div>
+</details>
+
+
