@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lemoon01110.github.io/notes/stochastic-dynamics.html</loc>
-    <lastmod>2026-06-24T05:59:54.783Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.470Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/markov-chain.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.472Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/entropy.html</loc>
-    <lastmod>2026-06-25T03:33:52.565Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.472Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/stochastic-matrices-and-markov-chains.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.472Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/wasserstein-distance.html</loc>
-    <lastmod>2026-06-25T03:37:32.536Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.472Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/perplexity.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.471Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/elbo.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.471Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/information-content.html</loc>
-    <lastmod>2026-06-25T03:32:55.851Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.471Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/fisher-information.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.470Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/jensen-shannon-divergence.html</loc>
-    <lastmod>2026-06-25T03:36:38.894Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.470Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/chapter14.html</loc>
-    <lastmod>2026-06-24T05:59:54.776Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.470Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/matrix-calculus/single-variable-derivative.html</loc>
@@ -66,11 +66,11 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/reinforcement-learning.html</loc>
-    <lastmod>2026-06-24T05:59:54.782Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.470Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/linear-algebra.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.469Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/linear-algebra/quadratic-forms-and-definiteness.html</loc>
@@ -226,11 +226,11 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/matrix-decompositions.html</loc>
-    <lastmod>2026-06-24T05:59:54.779Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.469Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/template.html</loc>
-    <lastmod>2026-06-25T01:57:49.687Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.469Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/reinforcement-learning/trust-region-and-natural-policy-gradient.html</loc>
@@ -338,7 +338,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/optimization.html</loc>
-    <lastmod>2026-06-24T05:59:54.780Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.469Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/probability/marginal-probabilities.html</loc>
@@ -482,7 +482,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/matrix-calculus.html</loc>
-    <lastmod>2026-06-24T05:59:54.778Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.469Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/stochastic-dynamics/discretization-of-linear-odes.html</loc>
@@ -618,7 +618,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory.html</loc>
-    <lastmod>2026-06-24T05:59:54.776Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.469Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/matrix-decompositions/truncated-svd.html</loc>
@@ -730,7 +730,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/probabilistic-ml.html</loc>
-    <lastmod>2026-06-24T05:59:54.781Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.469Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/probabilistic-ml/stochastic-variational-inference.html</loc>
@@ -890,7 +890,7 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/probability.html</loc>
-    <lastmod>2026-06-24T05:59:54.781Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.470Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/matrix-calculus/jacobian-matrix.html</loc>
@@ -918,42 +918,42 @@
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/stochastic-matrices.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.470Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/evaluation-metrics-for-ranking-and-information-retrieval.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.470Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/information-bottleneck.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.471Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/ranking-ir-metrics.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.471Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/differential-entropy-problems.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.471Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/cross-entropy.html</loc>
-    <lastmod>2026-06-25T03:34:37.545Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.471Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/f-divergence.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.472Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/evidence-lower-bound-elbo.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.472Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/mutual-information.html</loc>
-    <lastmod>2026-06-24T05:59:54.777Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.472Z</lastmod>
   </url>
   <url>
     <loc>https://lemoon01110.github.io/notes/information-theory/kl-divergence.html</loc>
-    <lastmod>2026-06-25T03:35:31.329Z</lastmod>
+    <lastmod>2026-06-25T21:28:25.473Z</lastmod>
   </url>
 </urlset>
