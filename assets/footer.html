@@ -11,7 +11,7 @@
       <!-- Brand Column -->
       <div class="footer-brand-col">
         <div class="footer-brand-header">
-          <img src="assets/lemon-emoji.svg" alt="Lemon Logo" width="32" height="32" />
+          <img src="/assets/lemon-emoji.svg" alt="Lemon Logo" width="32" height="32" />
           <span class="footer-brand-name">Lemon</span>
         </div>
         <p class="footer-brand-tagline">A digital notebook exploring mathematics and its applications.</p>
@@ -35,7 +35,7 @@
       <!-- Notes Links -->
       <div class="footer-links-col">
         <h4>Notes</h4>
-        <a href="#">All Notes</a>
+        <a href="#" onclick="var el=document.getElementById('nav-menu-notes'); if(el){el.click();} return false;">All Notes</a>
       </div>
 
       <!-- Interactives Links -->
@@ -52,3 +52,15 @@
     </div>
   </div>
 </footer>
+<script src="/assets/notes-nav.js"></script>
+<script src="/assets/navbar-intellisense.js"></script>
+<script src="/assets/dropdown-anim.js"></script>
+<script>
+  (function() {
+    var footer = document.querySelector('.takara-footer');
+    var content = document.querySelector('#quarto-content');
+    if (footer && content && footer.parentElement === content) {
+      content.parentNode.insertBefore(footer, content.nextSibling);
+    }
+  })();
+</script>
