@@ -292,7 +292,7 @@ P(X_1, X_2, \dots, X_T) = P(X_1) \prod_{t=1}^{T-1} P(X_{t+1} | X_t)
       <!-- Notes Links -->
       <div class="footer-links-col">
         <h4>Notes</h4>
-        <a href="#" onclick="var el=document.getElementById('nav-menu-notes'); if(el){el.click();} return false;">All Notes</a>
+        <a href="#" onclick="event.preventDefault(); event.stopPropagation(); var el=document.getElementById('nav-menu-notes'); if(el){el.click();}">All Notes</a>
       </div>
 
       <!-- Interactives Links -->
