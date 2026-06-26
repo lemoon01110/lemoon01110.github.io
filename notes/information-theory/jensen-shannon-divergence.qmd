@@ -257,7 +257,6 @@ Prove mathematically that the Jensen-Shannon Divergence (base 2) is strictly bou
 $$
 JSD(P \| Q) \le 1
 $$
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 1</summary>
 <div class="solution-body">
@@ -324,7 +323,6 @@ The equality holds if and only if $P$ and $Q$ have completely disjoint supports.
 ### Problem 2: GAN Stabilization {#problem-2 .thm-box .thm-problem}
 
 Explain intuitively why this strict boundedness ($0 \le JSD \le 1$) makes Jensen-Shannon Divergence vastly superior to KL divergence for training early-stage Generative Adversarial Networks (GANs).
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 2</summary>
 <div class="solution-body">

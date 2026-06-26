@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Information Theory"
 page-layout: custom
 ---
 

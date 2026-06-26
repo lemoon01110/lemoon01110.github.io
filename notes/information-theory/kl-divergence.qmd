@@ -250,7 +250,6 @@ graph TD
 ### Problem 1: Proof of Asymmetry {#problem-1 .thm-box .thm-problem}
 
 Provide a concrete, numerical proof that $D_{KL}(P \| Q) \neq D_{KL}(Q \| P)$ using two simple discrete probability distributions: $P=[0.5, 0.5]$ and $Q=[0.9, 0.1]$.
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 1</summary>
 <div class="solution-body">
@@ -294,7 +293,6 @@ Since $0.737 \neq 0.531$, we have proven that the KL divergence is fundamentally
 
 Use Jensen's Inequality to mathematically prove Gibbs' Inequality: $D_{KL}(P \| Q) \ge 0$.
 *(Hint: Remember that Jensen's Inequality states that for any strictly concave function like $\ln(x)$, the expected value of the function is less than or equal to the function of the expected value: $\mathbb{E}[\ln(X)] \le \ln(\mathbb{E}[X])$).*
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 2</summary>
 <div class="solution-body">

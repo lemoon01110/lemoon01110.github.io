@@ -1,0 +1,75 @@
+---
+title: "Notes"
+page-layout: custom
+---
+
+```{=html}
+<!-- WebGL Background Canvas for Notes Page (optional if they want it everywhere, but let's keep it consistent) -->
+<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; z-index: -1; width: 100vw; height: 100vh;"></canvas>
+
+<div class="container" style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+  <div class="section-title" style="margin-bottom: 3rem; text-align: center;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #fff;">Digital Notebook</h1>
+    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.2rem;">A collection of my notes on mathematics and machine learning.</p>
+  </div>
+
+  <div class="glass-grid">
+    <div class="glass-card">
+      <h3>Linear Algebra and Matrix Mechanics for Machine Learning</h3>
+      <p>Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
+      <a href="notes/linear-algebra.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix Decompositions for Machine Learning</h3>
+      <p>Core algorithms and theorems for factorizing matrices into fundamental components.</p>
+      <a href="notes/matrix-decompositions.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix Calculus for Machine Learning</h3>
+      <p>Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
+      <a href="notes/matrix-calculus.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Optimization for Machine Learning</h3>
+      <p>Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
+      <a href="notes/optimization.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Probability for Machine Learning</h3>
+      <p>The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
+      <a href="notes/probability.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Information Theory for Machine Learning</h3>
+      <p>Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
+      <a href="notes/information-theory.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Reinforcement Learning</h3>
+      <p>Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
+      <a href="notes/reinforcement-learning.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Probabilistic Models for Machine Learning</h3>
+      <p>Modeling data distributions, variational inference, and modern generative architectures.</p>
+      <a href="notes/probabilistic-ml.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Stochastic Dynamics</h3>
+      <p>Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
+      <a href="notes/stochastic-dynamics.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/bg-contour.js"></script>
+<script src="/assets/card-tilt.js"></script>
+```

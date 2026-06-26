@@ -212,7 +212,6 @@ graph LR
 ### Problem 1: Biased Coin Entropy {#problem-1 .thm-box .thm-problem}
 
 Prove that the entropy of a fair coin flip is exactly 1 bit. What happens to the theoretical entropy $H(X)$ if the coin is heavily biased such that $P(\text{Heads}) = 0.99$?
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 1</summary>
 <div class="solution-body">
@@ -252,7 +251,6 @@ The entropy drops from 1 bit to roughly 0.08 bits. Because the outcome is almost
 ### Problem 2: Maximum Entropy of a Uniform Distribution {#problem-2 .thm-box .thm-problem}
 
 Use the method of Lagrange multipliers to prove that for a discrete random variable $X$ with $k$ possible states, the entropy $H(X)$ is maximized when the distribution is uniform, i.e., $P(x_i) = \frac{1}{k}$ for all $i$.
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 2</summary>
 <div class="solution-body">

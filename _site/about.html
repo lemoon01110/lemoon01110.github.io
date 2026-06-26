@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>JS Div Boundedness Proof – Lemon’s Website</title>
+<title>About Me – Lemon’s Website</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,18 +26,19 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8b9e37ec2c9a7c707fee8d541de7c010.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<link href="./assets/lemon-emoji.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-3319393281b1e72cfec8493667cb1a1b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -54,46 +55,21 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./assets/lemon-emoji.svg" alt="" class="navbar-logo light-content">
+    <img src="./assets/lemon-emoji.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Lemon’s Website</span>
     </a>
   </div>
@@ -103,52 +79,17 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-notes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Notes</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-notes">    
-        <li>
-    <a class="dropdown-item" href="../../notes/linear-algebra.html">
- <span class="dropdown-text">Linear Algebra for Machine Learning</span></a>
+  <li class="nav-item">
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../../notes/matrix-decompositions.html">
- <span class="dropdown-text">Matrix Decompositions for Machine Learning</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./notes.html"> 
+<span class="menu-text">Notes</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../../notes/matrix-calculus.html">
- <span class="dropdown-text">Matrix Calculus for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../notes/optimization.html">
- <span class="dropdown-text">Optimization for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../notes/probability.html">
- <span class="dropdown-text">Probability for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../notes/information-theory.html">
- <span class="dropdown-text">Information Theory for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../notes/reinforcement-learning.html">
- <span class="dropdown-text">Reinforcement Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../notes/probabilistic-ml.html">
- <span class="dropdown-text">Probabilistic Models for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../notes/stochastic-dynamics.html">
- <span class="dropdown-text">Stochastic Dynamics</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -157,26 +98,14 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#theorem" id="toc-theorem" class="nav-link active" data-scroll-target="#theorem">Theorem</a></li>
-  <li><a href="#proof-of-the-lower-bound" id="toc-proof-of-the-lower-bound" class="nav-link" data-scroll-target="#proof-of-the-lower-bound">Proof of the Lower Bound</a></li>
-  <li><a href="#proof-of-the-upper-bound" id="toc-proof-of-the-upper-bound" class="nav-link" data-scroll-target="#proof-of-the-upper-bound">Proof of the Upper Bound</a></li>
-  </ul>
-</nav>
-    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">JS Div Boundedness Proof</h1>
+<h1 class="title">About Me</h1>
 </div>
 
 
@@ -193,65 +122,105 @@ window.Quarto = {
 </header>
 
 
-<section id="theorem" class="level3 thm-box thm-theorem">
-<h3 class="anchored" data-anchor-id="theorem">Theorem</h3>
-<p>For any two probability distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, the Jensen-Shannon Divergence (JSD) calculated using the natural logarithm (base <span class="math inline">\(e\)</span>) is strictly bounded between <span class="math inline">\(0\)</span> and <span class="math inline">\(\log(2)\)</span>.</p>
-<p><span class="math display">\[
-0 \le JSD(P \| Q) \le \log(2)
-\]</span></p>
-<p>If base-2 logarithms are used, the bound is simply <span class="math inline">\(1\)</span> bit.</p>
-</section>
-<section id="proof-of-the-lower-bound" class="level3 thm-box thm-theorem">
-<h3 class="anchored" data-anchor-id="proof-of-the-lower-bound">Proof of the Lower Bound</h3>
-<p>The lower bound follows trivially from the non-negativity of the Kullback-Leibler (KL) Divergence (Gibbs’ Inequality).</p>
-<p>Recall the definition of JSD: <span class="math display">\[
-JSD(P \| Q) = \frac{1}{2} D_{KL}(P \| M) + \frac{1}{2} D_{KL}(Q \| M)
-\]</span> where <span class="math inline">\(M = \frac{P + Q}{2}\)</span>.</p>
-<p>Since <span class="math inline">\(D_{KL}(A \| B) \ge 0\)</span> for any distributions <span class="math inline">\(A, B\)</span>, the sum of two positive KL divergences must also be <span class="math inline">\(\ge 0\)</span>. Equality holds if and only if <span class="math inline">\(P = M\)</span> and <span class="math inline">\(Q = M\)</span>, which requires <span class="math inline">\(P = Q\)</span>.</p>
-</section>
-<section id="proof-of-the-upper-bound" class="level3 thm-box thm-theorem">
-<h3 class="anchored" data-anchor-id="proof-of-the-upper-bound">Proof of the Upper Bound</h3>
-<p>To prove the upper bound, we will express JSD using Shannon Entropy <span class="math inline">\(H(\cdot)\)</span>. Let’s expand the definition:</p>
-<p><span class="math display">\[
-\begin{aligned}
-JSD(P \| Q) &amp;= \frac{1}{2} \left[ \sum P(x) \log \frac{P(x)}{M(x)} \right] + \frac{1}{2} \left[ \sum Q(x) \log \frac{Q(x)}{M(x)} \right] \\
-&amp;= \frac{1}{2} \left[ \sum P(x) \log P(x) - \sum P(x) \log M(x) \right] \\
-&amp;\quad + \frac{1}{2} \left[ \sum Q(x) \log Q(x) - \sum Q(x) \log M(x) \right]
-\end{aligned}
-\]</span></p>
-<p>Substitute the definition of Shannon Entropy <span class="math inline">\(H(P) = -\sum P(x) \log P(x)\)</span>:</p>
-<p><span class="math display">\[
-\begin{aligned}
-JSD(P \| Q) &amp;= \frac{1}{2} \left[ -H(P) - \sum P(x) \log M(x) \right] + \frac{1}{2} \left[ -H(Q) - \sum Q(x) \log M(x) \right] \\
-&amp;= -\frac{1}{2} H(P) - \frac{1}{2} H(Q) - \frac{1}{2} \sum \Big( P(x) + Q(x) \Big) \log M(x)
-\end{aligned}
-\]</span></p>
-<p>Recall that <span class="math inline">\(M(x) = \frac{P(x) + Q(x)}{2}\)</span>, meaning <span class="math inline">\(P(x) + Q(x) = 2M(x)\)</span>. Let’s substitute this into the summation:</p>
-<p><span class="math display">\[
-\begin{aligned}
-JSD(P \| Q) &amp;= -\frac{1}{2} H(P) - \frac{1}{2} H(Q) - \frac{1}{2} \sum \Big( 2M(x) \Big) \log M(x) \\
-&amp;= -\frac{1}{2} H(P) - \frac{1}{2} H(Q) - \sum M(x) \log M(x)
-\end{aligned}
-\]</span></p>
-<p>Notice that <span class="math inline">\(-\sum M(x) \log M(x)\)</span> is exactly the entropy of the mixture distribution <span class="math inline">\(H(M)\)</span>. Therefore:</p>
-<p><span class="math display">\[
-JSD(P \| Q) = H(M) - \frac{H(P) + H(Q)}{2}
-\]</span></p>
-<p>Because entropy <span class="math inline">\(H\)</span> is a strictly concave function, the entropy of the mixture <span class="math inline">\(M\)</span> is bounded by the maximum possible entropy added to the mixture ratio. By applying Jensen’s Inequality to the concave function <span class="math inline">\(H\)</span>: <span class="math display">\[
-H(M) = H\left(\frac{P+Q}{2}\right) \le \frac{1}{2} H(P) + \frac{1}{2} H(Q) + \log(2)
-\]</span></p>
-<p>Rearranging this inequality gives: <span class="math display">\[
-H(M) - \left( \frac{H(P) + H(Q)}{2} \right) \le \log(2)
-\]</span></p>
-<p>Since the left side is precisely the <span class="math inline">\(JSD(P \| Q)\)</span>, we arrive at our absolute upper bound: <span class="math display">\[
-JSD(P \| Q) \le \log(2)
-\]</span></p>
-<p>The equality holds if and only if <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> have completely disjoint supports (i.e., they share zero probability mass). In this scenario of maximum disagreement, the divergence peaks at <span class="math inline">\(\log(2)\)</span>.</p>
-</section>
+<!-- WebGL Background Canvas -->
+<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; z-index: -1; width: 100vw; height: 100vh;"></canvas>
+
+<div class="container" style="padding: 4rem 2rem; max-width: 900px; margin: 0 auto; color: #fff;">
+  <div class="section-title" style="margin-bottom: 3rem; text-align: center;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem;">About <span style="color: rgba(255, 255, 255, 0.7);">Lemon</span></h1>
+  </div>
+
+  <div class="glass-card" style="padding: 3rem; text-align: left; line-height: 1.8; font-size: 1.1rem; border-radius: 15px; margin-bottom: 2rem;">
+    <p>Hi, I'm Lemon! I'm currently a 9th grader at <strong>Lynbrook High School</strong>.</p>
+    
+    <p>I have a deep passion for mathematics and its applications in machine learning. What started as a curiosity has turned into this digital notebook, where I explore complex topics like matrix calculus, information theory, and probabilistic models.</p>
+
+    <p>As I progress through high school, I aim to continually expand my knowledge and document my learning journey. By writing these notes, I hope to not only solidify my own understanding but also help others who might be on a similar path.</p>
+    
+    <p>When I'm not studying math or coding, you can usually find me [insert hobbies or other interests here...].</p>
+  </div>
+
+  <div class="glass-card" style="padding: 3rem; text-align: left; border-radius: 15px;">
+    <h3 style="margin-top: 0;">Currently Focusing On</h3>
+    <ul style="margin-bottom: 0;">
+      <li>Advanced Mathematics (Linear Algebra, Probability, Calculus)</li>
+      <li>Machine Learning Fundamentals</li>
+      <li>Building out this digital notebook and sharing what I learn</li>
+    </ul>
+  </div>
+</div>
+
+<script src="./assets/bg-contour.js"></script>
 
 
 
-</main> <!-- /main -->
+
+<footer class="takara-footer">
+  <!-- Top Sawtooth Edge -->
+
+
+  <!-- Ambient Light Rays -->
+  <div class="footer-light-rays"></div>
+
+  <!-- Content -->
+  <div class="footer-content">
+    <div class="footer-columns">
+      <!-- Brand Column -->
+      <div class="footer-brand-col">
+        <div class="footer-brand-header">
+          <img src="./assets/lemon-emoji.svg" alt="Lemon Logo" width="32" height="32">
+          <span class="footer-brand-name">Lemon</span>
+        </div>
+        <p class="footer-brand-tagline">A digital notebook exploring mathematics and its applications.</p>
+        
+        <div class="footer-social-links">
+          <a href="https://www.linkedin.com/in/jack-wu-b9b50b361/" aria-label="LinkedIn" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+            </svg>
+          </a>
+          <a href="https://github.com/lemoon01110" aria-label="GitHub" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+            </svg>
+          </a>
+        </div>
+        
+        <p class="footer-copyright">© 2026 Lemon. All rights reserved.</p>
+      </div>
+      
+      <!-- Notes Links -->
+      <div class="footer-links-col">
+        <h4>Notes</h4>
+        <a href="#" onclick="event.preventDefault(); event.stopPropagation(); var el=document.getElementById('nav-menu-notes'); if(el){el.click();}">All Notes</a>
+      </div>
+
+      <!-- Interactives Links -->
+      <div class="footer-links-col">
+        <h4>Interactives</h4>
+        <span class="coming-soon-text">Coming Soon</span>
+      </div>
+
+      <!-- Projects Links -->
+      <div class="footer-links-col">
+        <h4>Projects</h4>
+        <a href="https://github.com/lemoon01110/lemoon01110.github.io">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="./assets/notes-nav.js"></script>
+<script src="./assets/navbar-intellisense.js"></script>
+<script src="./assets/dropdown-anim.js"></script>
+<script>
+  (function() {
+    var footer = document.querySelector('.takara-footer');
+    var content = document.querySelector('#quarto-content');
+    if (footer && content && footer.parentElement === content) {
+      content.parentNode.insertBefore(footer, content.nextSibling);
+    }
+  })();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

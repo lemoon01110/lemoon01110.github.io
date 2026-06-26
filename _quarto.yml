@@ -5,39 +5,26 @@ project:
 
 website:
   title: "Lemon's Website"
+  favicon: assets/lemon-emoji.svg
   search: false
   navbar:
+    logo: assets/lemon-emoji.svg
     background: transparent
     pinned: true
     left:
       - text: "Home"
         href: index.qmd
+      - text: "About"
+        href: about.qmd
       - text: "Notes"
-        menu:
-          - text: "Linear Algebra for Machine Learning"
-            href: notes/linear-algebra.qmd
-          - text: "Matrix Decompositions for Machine Learning"
-            href: notes/matrix-decompositions.qmd
-          - text: "Matrix Calculus for Machine Learning"
-            href: notes/matrix-calculus.qmd
-          - text: "Optimization for Machine Learning"
-            href: notes/optimization.qmd
-          - text: "Probability for Machine Learning"
-            href: notes/probability.qmd
-          - text: "Information Theory for Machine Learning"
-            href: notes/information-theory.qmd
-          - text: "Reinforcement Learning"
-            href: notes/reinforcement-learning.qmd
-          - text: "Probabilistic Models for Machine Learning"
-            href: notes/probabilistic-ml.qmd
-          - text: "Stochastic Dynamics"
-            href: notes/stochastic-dynamics.qmd
+        href: notes.qmd
 
 format:
   html:
     theme: 
       - darkly
       - custom.scss
+    include-after-body: assets/footer.html
     code-fold: true
     code-highlight: dracula
     mermaid:

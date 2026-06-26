@@ -212,7 +212,6 @@ In a WGAN, the Discriminator (now called a "Critic") is simply a neural network 
 ### Problem 1: Disjoint Supports and Gradients {#problem-1 .thm-box .thm-problem}
 
 Explain mathematically why the Kullback-Leibler (KL) divergence provides a zero gradient when two distributions are completely disjoint, but the Wasserstein distance provides a highly useful constant gradient.
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 1</summary>
 <div class="solution-body">

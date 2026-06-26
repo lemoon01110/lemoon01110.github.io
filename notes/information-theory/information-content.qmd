@@ -215,7 +215,6 @@ graph TD
 ### Problem 1: Additivity of Independent Events {#problem-1 .thm-box .thm-problem}
 
 Show mathematically that if two events are statistically independent, their joint surprisal adds up ($h(X, Y) = h(X) + h(Y)$).
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 1</summary>
 <div class="solution-body">
@@ -245,7 +244,6 @@ Hence, joint surprisal is additive. $\blacksquare$
 ### Problem 2: Calculating Surprisal {#problem-2 .thm-box .thm-problem}
 
 Calculate the surprisal of rolling a 6 on a fair 6-sided die, in both bits and nats. How does this compare to the surprisal of flipping two heads in a row on a fair coin?
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 2</summary>
 <div class="solution-body">

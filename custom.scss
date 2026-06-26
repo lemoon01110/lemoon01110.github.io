@@ -6,6 +6,28 @@
 $font-family-sans-serif: "Outfit", "Google Sans Flex", "Inter", sans-serif !default;
 $font-family-monospace: 'JetBrains Mono', monospace !default;
 
+.nav-link, 
+.navbar-brand, 
+.dropdown-item, 
+.notes-nav-btn, 
+#quarto-margin-sidebar,
+.footnotes,
+aside,
+.margin-caption,
+.quarto-appendix,
+.hero-title,
+.hero-subtitle,
+.hero-disclaimer,
+.subject-intro p,
+.section-title h2,
+.glass-card h3,
+.glass-card p,
+.card-btn,
+.takara-footer,
+.takara-footer * {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
 /*-- scss:rules --*/
 
 // Force background to a deep dark color on body, but leave containers transparent so the 3D background is visible
@@ -15,6 +37,10 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  /* Push footer to the bottom on short pages */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 html {
@@ -27,7 +53,10 @@ html {
   position: relative;
   z-index: 1;
   padding: 4rem;
+  padding-bottom: 0;
   border-radius: 40px;
+  /* Grow to push the footer to the bottom */
+  flex: 1;
 }
 
 // Custom Navbar Styles
@@ -165,14 +194,19 @@ h1, h2, h3, h4, h5, h6 {
 
 // Glassmorphism Card System
 .glass-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
   gap: 2rem;
   padding: 2rem 0;
   perspective: 1000px;
 }
 
 .glass-card {
+  flex: 1 1 300px;
+  max-width: 450px;
+  min-width: 300px;
   background: rgba(255, 255, 255, 0.03); // Lighter background for better glass visibility
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -238,13 +272,32 @@ html, .quarto-container, main, .page-layout-custom {
   background-color: transparent !important;
 }
 
+/* Eliminate the bottom padding on all Quarto content containers so the footer sits flush */
+.quarto-container {
+  padding-bottom: 0 !important;
+}
+
+/* On custom-layout pages (index, subject landing pages), break the footer out of the 4rem container padding */
+.page-layout-custom .takara-footer {
+  width: calc(100% + 8rem) !important;
+  margin-left: -4rem !important;
+  grid-column: unset !important;
+}
+
 // Quarto Native Navbar Styling
 .navbar {
   padding: 0.8rem 2rem !important;
-  background: transparent !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  
+  .navbar-logo {
+    height: 32px !important;
+    width: auto !important;
+    margin-right: 12px;
+  }
+  
   box-shadow: 0 20px 50px rgba(8, 8, 10, 0.9) !important;
   position: relative !important;
+  transition: box-shadow 0.35s ease !important;
 }
 
 .navbar::before {
@@ -258,6 +311,56 @@ html, .quarto-container, main, .page-layout-custom {
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
   z-index: -1 !important;
+}
+
+@keyframes dropdownFadeIn {
+  0% { opacity: 0; translate: 0 -100vh; }
+  100% { opacity: 1; translate: 0 0; }
+}
+
+@keyframes dropdownFadeOut {
+  0% { opacity: 1; translate: 0 0; }
+  100% { opacity: 0; translate: 0 100vh; }
+}
+
+.dropdown-menu.show {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1rem !important;
+  animation: dropdownFadeIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+}
+
+.dropdown-menu.is-closing {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1rem !important;
+  animation: dropdownFadeOut 0.4s cubic-bezier(0.5, 0, 1, 1) forwards !important;
+}
+
+.navbar::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 80px !important;
+  background: linear-gradient(to bottom, #0d1117, transparent) !important;
+  pointer-events: none !important;
+  z-index: -2 !important;
+  transition: opacity 0.35s ease;
+}
+
+#quarto-header {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  &.navbar-hidden {
+    transform: translateY(-100%);
+    .navbar {
+      box-shadow: 0 20px 50px rgba(8, 8, 10, 0) !important;
+    }
+    .navbar::after {
+      opacity: 0 !important;
+    }
+  }
 }
 
 .navbar-brand {
@@ -303,13 +406,6 @@ html, .quarto-container, main, .page-layout-custom {
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 16px !important;
   box-shadow: 0 30px 60px rgba(0,0,0,0.6) !important;
-}
-
-.dropdown-menu.show {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 1rem !important;
-  animation: slideTray 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
 }
 
 .dropdown-item {
@@ -443,6 +539,23 @@ html, .quarto-container, main, .page-layout-custom {
   padding: 0 !important;
   border-right: none !important;
   border-left: none !important;
+}
+
+/* Prevent the sticky TOC sidebar from overlapping the footer */
+#quarto-margin-sidebar {
+  /* Let the container shrink to the actual TOC height so it bottom-aligns perfectly */
+  max-height: none !important;
+  align-self: start !important;
+  /* keep it sticky and scrolling if necessary */
+  overflow-y: auto !important;
+  /* Ensure it doesn't span all the way to the footer; end where the main content ends */
+  grid-row: content-top / content-bottom !important;
+}
+
+/* Ensure the main content doesn't have extra bottom padding so the alignment is perfect */
+.page-layout-article main {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Left Navigation Sidebar */
@@ -601,6 +714,13 @@ html, .quarto-container, main, .page-layout-custom {
   }
 }
 
+/* Specific fix for title badges inside theorem boxes */
+h3.thm-box {
+  padding: 1rem 1.5rem !important; /* Equal top and bottom padding for centering */
+  margin: 0 0 1.5rem 0 !important; /* Remove top margin, keep bottom margin */
+  border-radius: 12px !important;
+}
+
 /* Proofs and Solutions styles */
 .thm-proof, .thm-solution {
   margin: 1.5rem 0 !important;
@@ -733,3 +853,287 @@ details.solution-toggle {
     }
   }
 }
+
+/* Takara-Style Footer */
+.takara-footer {
+  position: relative;
+  background-color: #040508;
+  color: #f1f5f9;
+  margin-top: 6rem;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  /* Mask out the top 16px in an upward-pointing zigzag so the gradient perfectly matches the teeth */
+  -webkit-mask-image: 
+    linear-gradient(to bottom, transparent 16px, black 16px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' viewBox='0 0 32 16'%3E%3Cpath d='M0 16L16 0L32 16Z' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-position: left top, left top;
+  -webkit-mask-repeat: no-repeat, repeat-x;
+  -webkit-mask-size: 100% 100%, 32px 16px;
+  
+  mask-image: 
+    linear-gradient(to bottom, transparent 16px, black 16px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' viewBox='0 0 32 16'%3E%3Cpath d='M0 16L16 0L32 16Z' fill='black'/%3E%3C/svg%3E");
+  mask-position: left top, left top;
+  mask-repeat: no-repeat, repeat-x;
+  mask-size: 100% 100%, 32px 16px;
+}
+
+.footer-light-rays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 0%, rgba(100, 60, 255, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(80, 120, 255, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(20, 10, 40, 0.8) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 6rem 2rem 6rem 2rem;
+}
+
+.footer-columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.footer-brand-col {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-brand-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-brand-name {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.footer-brand-tagline {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icon {
+  color: #64748b;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.footer-copyright {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.75rem;
+  color: #475569;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-links-col h4 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.footer-links-col a {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links-col a:hover {
+  color: #ffffff;
+}
+
+.coming-soon-text {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: #475569;
+  font-style: italic;
+}
+
+/* ─── Prev / Next Navigation Card ─────────────────────────────────────────── */
+.notes-nav-card {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2rem 0 0 0;
+  padding: 0;
+
+  /* On mobile, stack them */
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
+}
+
+.notes-nav-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  text-decoration: none !important;
+  color: inherit;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(96, 165, 250, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(96, 165, 250, 0.15);
+    color: #fff !important;
+    text-decoration: none !important;
+
+    &::before { opacity: 1; }
+
+    .notes-nav-arrow {
+      color: #60a5fa;
+    }
+    .notes-nav-title {
+      color: #ffffff;
+    }
+  }
+
+  &.is-prev {
+    /* Left-aligned text */
+    text-align: left;
+    flex-direction: row;
+  }
+
+  &.is-next {
+    /* Right-aligned text */
+    text-align: right;
+    flex-direction: row-reverse;
+  }
+
+  /* If only one direction exists, allow it to grow but cap at half width */
+  &:only-child {
+    max-width: calc(50% - 0.75rem);
+    align-self: flex-start;
+
+    @media (max-width: 640px) {
+      max-width: 100%;
+    }
+  }
+}
+
+.notes-nav-arrow {
+  font-size: 1.6rem;
+  line-height: 1;
+  color: rgba(148, 163, 184, 0.6);
+  flex-shrink: 0;
+  transition: color 0.25s ease, transform 0.25s ease;
+  font-weight: 300;
+}
+
+.notes-nav-btn.is-prev:hover .notes-nav-arrow {
+  transform: translateX(-3px);
+}
+.notes-nav-btn.is-next:hover .notes-nav-arrow {
+  transform: translateX(3px);
+}
+
+.notes-nav-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0; /* prevent text overflow from breaking layout */
+}
+
+.notes-nav-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.notes-nav-section {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #60a5fa;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notes-nav-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+

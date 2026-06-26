@@ -229,7 +229,6 @@ In a classification task, the true labels $P$ are deterministic (one-hot), meani
 ### Problem 1: Decomposition of Cross-Entropy {#problem-1 .thm-box .thm-problem}
 
 Mathematically derive the decomposition $H(P, Q) = H(P) + D_{KL}(P \| Q)$ from the base definition of Cross-Entropy. *(Hint: Use the definition of KL Divergence $D_{KL}(P \| Q) = \sum P(x) \log \frac{P(x)}{Q(x)}$)*.
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 1</summary>
 <div class="solution-body">
@@ -269,7 +268,6 @@ $$
 \text{BCE} = - \big( y \ln(p) + (1 - y) \ln(1 - p) \big)
 $$
 Calculate the BCE loss for a single data point where the true label is $y=1$ and the model's predicted probability is $p=0.001$. Why does the loss become so massive compared to a wrong but less confident prediction (e.g. $p=0.4$)?
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 2</summary>
 <div class="solution-body">

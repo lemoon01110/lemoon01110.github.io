@@ -1,0 +1,36 @@
+---
+title: "About Me"
+page-layout: custom
+---
+
+```{=html}
+<!-- WebGL Background Canvas -->
+<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; z-index: -1; width: 100vw; height: 100vh;"></canvas>
+
+<div class="container" style="padding: 4rem 2rem; max-width: 900px; margin: 0 auto; color: #fff;">
+  <div class="section-title" style="margin-bottom: 3rem; text-align: center;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem;">About <span style="color: rgba(255, 255, 255, 0.7);">Lemon</span></h1>
+  </div>
+
+  <div class="glass-card" style="padding: 3rem; text-align: left; line-height: 1.8; font-size: 1.1rem; border-radius: 15px; margin-bottom: 2rem;">
+    <p>Hi, I'm Lemon! I'm currently a 9th grader at <strong>Lynbrook High School</strong>.</p>
+    
+    <p>I have a deep passion for mathematics and its applications in machine learning. What started as a curiosity has turned into this digital notebook, where I explore complex topics like matrix calculus, information theory, and probabilistic models.</p>
+
+    <p>As I progress through high school, I aim to continually expand my knowledge and document my learning journey. By writing these notes, I hope to not only solidify my own understanding but also help others who might be on a similar path.</p>
+    
+    <p>When I'm not studying math or coding, you can usually find me [insert hobbies or other interests here...].</p>
+  </div>
+
+  <div class="glass-card" style="padding: 3rem; text-align: left; border-radius: 15px;">
+    <h3 style="margin-top: 0;">Currently Focusing On</h3>
+    <ul style="margin-bottom: 0;">
+      <li>Advanced Mathematics (Linear Algebra, Probability, Calculus)</li>
+      <li>Machine Learning Fundamentals</li>
+      <li>Building out this digital notebook and sharing what I learn</li>
+    </ul>
+  </div>
+</div>
+
+<script src="/assets/bg-contour.js"></script>
+```

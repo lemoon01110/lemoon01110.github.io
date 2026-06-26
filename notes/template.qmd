@@ -225,7 +225,6 @@ Conclude each note with 1–3 concrete practice problems. Readers can click anch
 Show that if two events are independent, their joint surprisal adds up.
 
 *(This problem directly tests your understanding of the concepts defined in the [Definitions section](#sec-definitions).)*
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 1</summary>
 <div class="solution-body">
@@ -257,7 +256,6 @@ Hence, joint surprisal is additive. $\blacksquare$
 Explain why Cross-Entropy is always greater than or equal to Entropy: $H(P, Q) \ge H(P)$.
 
 *(This problem requires applying the mathematical equivalence detailed in the [Relations to Other Fields section](#sec-relations).)*
-
 <details class="solution-toggle">
 <summary>Reveal Solution to Problem 2</summary>
 <div class="solution-body">
