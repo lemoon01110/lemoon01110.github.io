@@ -1137,3 +1137,73 @@ details.solution-toggle {
   transition: color 0.25s ease;
 }
 
+
+/* --- Milestone 1: Multi-Style Homepage Redesign --- */
+
+.theme-section {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+#section-space {
+  background: transparent;
+}
+
+.transition-1 {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  height: 250px;
+  background: linear-gradient(to bottom, rgba(250, 250, 250, 0) 0%, #fafafa 100%);
+  position: relative;
+  z-index: 2;
+  margin-top: -100px;
+}
+
+#section-academic {
+  background: #fafafa;
+  color: #111;
+  font-family: 'New Computer Modern', serif;
+  
+  .section-title h2 {
+    color: #111 !important;
+    font-family: 'New Computer Modern', serif !important;
+    font-weight: 700;
+  }
+  
+  p {
+    color: #333 !important;
+    font-family: 'New Computer Modern', serif !important;
+  }
+  
+  .academic-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #111;
+    color: #111;
+    text-decoration: none;
+    font-family: 'New Computer Modern', serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: #111;
+      color: #fafafa;
+    }
+  }
+}
+
+.transition-2 {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  height: 250px;
+  background: linear-gradient(to bottom, #fafafa 0%, rgba(13, 17, 23, 0.4) 100%);
+  position: relative;
+  z-index: 2;
+}
+
+#section-glass {
+  background: rgba(13, 17, 23, 0.4);
+}

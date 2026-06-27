@@ -1,10 +1,12 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "notes/**/*.qmd"
   resources:
-    - assets/
-
+  - assets/
 website:
-  title: "Lemon's Website"
+  title: Lemon's Website
   favicon: assets/lemon-emoji.svg
   search: false
   navbar:
@@ -12,18 +14,17 @@ website:
     background: transparent
     pinned: true
     left:
-      - text: "Home"
-        href: index.qmd
-      - text: "About"
-        href: about.qmd
-      - text: "Notes"
-        href: notes.qmd
-
+    - text: Home
+      href: index.qmd
+    - text: About
+      href: about.qmd
+    - text: Notes
+      href: notes.qmd
 format:
   html:
-    theme: 
-      - darkly
-      - custom.scss
+    theme:
+    - darkly
+    - custom.scss
     include-after-body: assets/footer.html
     code-fold: true
     code-highlight: dracula

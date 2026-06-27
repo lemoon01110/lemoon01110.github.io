@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Cross-Entropy – Lemon’s Website</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<link href="../../assets/lemon-emoji.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c83a30c03a178baece6e67fadc429a3b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="mermaid-theme" content="dark">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/lemon-emoji.svg" alt="" class="navbar-logo light-content">
+    <img src="../../assets/lemon-emoji.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Lemon’s Website</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link active" data-scroll-target="#sec-definitions">1. Definitions</a>
+  <ul class="collapse">
+  <li><a href="#definition-cross-entropy" id="toc-definition-cross-entropy" class="nav-link" data-scroll-target="#definition-cross-entropy">Definition: Cross-Entropy</a></li>
+  </ul></li>
+  <li><a href="#sec-intuitions" id="toc-sec-intuitions" class="nav-link" data-scroll-target="#sec-intuitions">2. Intuitions &amp; Remarks</a>
+  <ul class="collapse">
+  <li><a href="#the-cost-of-being-wrong" id="toc-the-cost-of-being-wrong" class="nav-link" data-scroll-target="#the-cost-of-being-wrong">The Cost of Being Wrong</a></li>
+  </ul></li>
+  <li><a href="#sec-properties" id="toc-sec-properties" class="nav-link" data-scroll-target="#sec-properties">3. Formulas &amp; Key Properties</a>
+  <ul class="collapse">
+  <li><a href="#key-properties-of-cross-entropy" id="toc-key-properties-of-cross-entropy" class="nav-link" data-scroll-target="#key-properties-of-cross-entropy">Key Properties of Cross-Entropy</a></li>
+  </ul></li>
+  <li><a href="#sec-visualizations" id="toc-sec-visualizations" class="nav-link" data-scroll-target="#sec-visualizations">4. Graphs &amp; Visualizations</a></li>
+  <li><a href="#sec-relations" id="toc-sec-relations" class="nav-link" data-scroll-target="#sec-relations">5. Relations to Other Fields</a>
+  <ul class="collapse">
+  <li><a href="#machine-learning-context-cross-entropy-loss" id="toc-machine-learning-context-cross-entropy-loss" class="nav-link" data-scroll-target="#machine-learning-context-cross-entropy-loss">Machine Learning Context: Cross-Entropy Loss</a></li>
+  </ul></li>
+  <li><a href="#sec-simulation" id="toc-sec-simulation" class="nav-link" data-scroll-target="#sec-simulation">6. Interactive Simulation</a></li>
+  <li><a href="#sec-problems" id="toc-sec-problems" class="nav-link" data-scroll-target="#sec-problems">7. Practice Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link" data-scroll-target="#problem-1">Problem 1: Decomposition of Cross-Entropy</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2: Binary Cross-Entropy Penalty Explosion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cross-Entropy</h1>
+<p class="subtitle lead">Quantifying the inefficiency of using a wrong assumption to predict a true distribution.</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-definitions">1. Definitions</h2>
+<section id="definition-cross-entropy" class="level3 thm-box thm-definition">
+<h3 class="anchored" data-anchor-id="definition-cross-entropy">Definition: Cross-Entropy</h3>
+<p>For discrete distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> defined over the same sample space <span class="math inline">\(\mathcal{X}\)</span>, the cross-entropy <span class="math inline">\(H(P, Q)\)</span> is defined as the expected surprisal of the estimated distribution <span class="math inline">\(Q\)</span>, evaluated under the true distribution <span class="math inline">\(P\)</span>:</p>
+<p><span class="math display">\[
+H(P, Q) = \mathbb{E}_{x \sim P} [ -\log_2 Q(x) ] = -\sum_{x \in \mathcal{X}} P(x) \log_2 Q(x)
+\]</span></p>
+<p>For continuous distributions with probability density functions <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>, the sum is replaced by an integral: <span class="math display">\[
+H(P, Q) = -\int_{\mathcal{X}} p(x) \ln q(x) \, dx
+\]</span></p>
+</section>
+<hr>
+</section>
+<section id="sec-intuitions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-intuitions">2. Intuitions &amp; Remarks</h2>
+<section id="the-cost-of-being-wrong" class="level3 thm-box thm-remark">
+<h3 class="anchored" data-anchor-id="the-cost-of-being-wrong">The Cost of Being Wrong</h3>
+<p>In information theory, <strong>Cross-Entropy</strong> measures the average number of bits needed to identify an event drawn from a true probability distribution <span class="math inline">\(P\)</span>, if a coding scheme is used that is optimized for an estimated (or unnatural) probability distribution <span class="math inline">\(Q\)</span>, rather than the true distribution <span class="math inline">\(P\)</span>.</p>
+<p>Intuitively, if you believe the weather follows distribution <span class="math inline">\(Q\)</span> (e.g., mostly sunny), you will design a communication protocol that assigns very short codes to the message “sunny”. If the <em>actual</em> weather follows distribution <span class="math inline">\(P\)</span> (e.g., mostly rainy), your protocol will be highly inefficient because you will frequently have to transmit the long, complex codes for “rainy”.</p>
+<p>Cross-entropy quantifies this exact inefficiency. It asks: “How many bits on average do I have to transmit if I optimize for <span class="math inline">\(Q\)</span>, but reality actually follows <span class="math inline">\(P\)</span>?”</p>
+</section>
+<hr>
+</section>
+<section id="sec-properties" class="level2">
+<h2 class="anchored" data-anchor-id="sec-properties">3. Formulas &amp; Key Properties</h2>
+<section id="key-properties-of-cross-entropy" class="level3 thm-box thm-theorem">
+<h3 class="anchored" data-anchor-id="key-properties-of-cross-entropy">Key Properties of Cross-Entropy</h3>
+<section id="non-symmetric" class="level4">
+<h4 class="anchored" data-anchor-id="non-symmetric">1. Non-Symmetric</h4>
+<p>Cross-entropy is asymmetric. The cost of assuming <span class="math inline">\(Q\)</span> when reality is <span class="math inline">\(P\)</span> is completely different from assuming <span class="math inline">\(P\)</span> when reality is <span class="math inline">\(Q\)</span>. <span class="math display">\[
+H(P, Q) \neq H(Q, P)
+\]</span></p>
+</section>
+<section id="lower-bound-gibbs-inequality" class="level4">
+<h4 class="anchored" data-anchor-id="lower-bound-gibbs-inequality">2. Lower Bound (Gibbs’ Inequality)</h4>
+<p>Cross-entropy is strictly bounded below by the true entropy of the ground truth distribution <span class="math inline">\(P\)</span>. <span class="math display">\[
+H(P, Q) \ge H(P)
+\]</span> Equality holds if and only if your estimation perfectly matches reality (<span class="math inline">\(P = Q\)</span>).</p>
+</section>
+<section id="relationship-to-kl-divergence" class="level4">
+<h4 class="anchored" data-anchor-id="relationship-to-kl-divergence">3. Relationship to KL Divergence</h4>
+<p>Cross-entropy is deeply connected to Shannon Entropy and the Kullback-Leibler (KL) Divergence via a profound decomposition: <span class="math display">\[
+H(P, Q) = H(P) + D_{KL}(P \| Q)
+\]</span> This equation states that the total cost of using the wrong distribution <span class="math inline">\(Q\)</span> is exactly equal to the irreducible, theoretical minimum cost if you knew the true distribution <span class="math inline">\(P\)</span> (which is <span class="math inline">\(H(P)\)</span>), plus a “penalty gap” for your estimation error (which is the KL Divergence).</p>
+</section>
+</section>
+<hr>
+</section>
+<section id="sec-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-visualizations">4. Graphs &amp; Visualizations</h2>
+<p>The relationship expressed by <span class="math inline">\(H(P, Q) = H(P) + D_{KL}(P \| Q)\)</span> can be visualized through a simple decomposition of the penalty.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {'theme': 'dark'}}%%
+graph TD
+    P[True Distribution P\n(Reality)] --&gt;|Irreducible Uncertainty| H_P(Entropy H)
+    Q[Estimated Distribution Q\n(Assumption)] -.-&gt;|Estimation Error| KL(KL Divergence Penalty)
+    P -.-&gt;|Compared against| KL
+    
+    H_P --&gt; CE{Cross-Entropy H P,Q}
+    KL --&gt; CE
+    
+    style P fill:#161b22,stroke:#00ff88,stroke-width:2px,color:#fff
+    style Q fill:#161b22,stroke:#f87171,stroke-width:2px,color:#fff
+    style H_P fill:#161b22,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style KL fill:#161b22,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style CE fill:#161b22,stroke:#f59e0b,stroke-width:2px,color:#fff
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-relations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-relations">5. Relations to Other Fields</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Interpretation / Mapping</th>
+<th style="text-align: left;">Application Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Deep Learning</strong></td>
+<td style="text-align: left;">The most universally used loss function for classification tasks.</td>
+<td style="text-align: left;">Training neural networks</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Information Theory</strong></td>
+<td style="text-align: left;">The length of messages encoded with a suboptimal codebook.</td>
+<td style="text-align: left;">Kraft-McMillan inequality</td>
+</tr>
+</tbody>
+</table>
+<section id="machine-learning-context-cross-entropy-loss" class="level3 thm-box thm-example">
+<h3 class="anchored" data-anchor-id="machine-learning-context-cross-entropy-loss">Machine Learning Context: Cross-Entropy Loss</h3>
+<p>When training a neural network classifier, we are trying to predict the true label distribution <span class="math inline">\(P\)</span> using the model’s predicted distribution <span class="math inline">\(Q\)</span>. - The true distribution <span class="math inline">\(P\)</span> for a single sample is typically a <strong>one-hot encoded vector</strong> (e.g., <span class="math inline">\([0, 1, 0, 0]\)</span> where the target class has probability 1). - The predicted distribution <span class="math inline">\(Q\)</span> is the output of the <strong>Softmax function</strong> (e.g., <span class="math inline">\([0.1, 0.7, 0.15, 0.05]\)</span>).</p>
+<p>If we minimize the Cross-Entropy <span class="math inline">\(H(P, Q)\)</span>, we push <span class="math inline">\(Q\)</span> to be as close to <span class="math inline">\(P\)</span> as possible.</p>
+<section id="why-is-hp-ignored-in-practice" class="level4">
+<h4 class="anchored" data-anchor-id="why-is-hp-ignored-in-practice">Why is <span class="math inline">\(H(P)\)</span> ignored in practice?</h4>
+<p>Recall the decomposition <span class="math inline">\(H(P, Q) = H(P) + D_{KL}(P \| Q)\)</span>. In a classification task, the true labels <span class="math inline">\(P\)</span> are deterministic (one-hot), meaning the true entropy <span class="math inline">\(H(P)\)</span> is exactly <span class="math inline">\(0\)</span>. Therefore, minimizing Cross-Entropy is mathematically identical to minimizing the KL Divergence between the predictions and the ground truth!</p>
+</section>
+</section>
+<hr>
+</section>
+<section id="sec-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-simulation">6. Interactive Simulation</h2>
+<div class="simulation-card" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
+  <h4 style="margin-top: 0; color: #fff; font-family: 'Outfit', sans-serif;" class="anchored">Interactive Simulation: Binary Cross-Entropy Loss</h4>
+  <p style="color: #a0a2b6; font-size: 0.95rem; margin-bottom: 1.5rem;">
+    Assume the true ground-truth label is $y=1$ (deterministic, $H(P)=0$). Drag the slider to change the model's predicted probability $q$. Watch how the Cross-Entropy loss explodes to infinity as the model becomes highly confident but totally wrong (predicting $q \approx 0$).
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
+    <!-- SVG Chart -->
+    <svg id="ce-chart" viewbox="0 0 500 250" style="width: 100%; height: auto; background: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+      <!-- Grid lines -->
+      <line x1="50" y1="200" x2="450" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1"></line>
+      <line x1="50" y1="30" x2="50" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1"></line>
+
+      <!-- Axis Labels -->
+      <text x="250" y="230" fill="#8b949e" font-size="12" text-anchor="middle" font-family="Outfit">Predicted Probability q</text>
+      <text x="20" y="115" fill="#8b949e" font-size="12" text-anchor="middle" transform="rotate(-90 20 115)" font-family="Outfit">Cross-Entropy Loss</text>
+
+      <text x="50" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.0</text>
+      <text x="250" y="215" fill="#6e7681" font-size="10" text-anchor="middle">0.5</text>
+      <text x="450" y="215" fill="#6e7681" font-size="10" text-anchor="middle">1.0</text>
+
+      <text x="40" y="203" fill="#6e7681" font-size="10" text-anchor="end">0</text>
+      <text x="40" y="115" fill="#6e7681" font-size="10" text-anchor="end">3</text>
+      <text x="40" y="34" fill="#6e7681" font-size="10" text-anchor="end">6</text>
+
+      <!-- Curve path -->
+      <path id="ce-curve" d="" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.8"></path>
+
+      <!-- Current selection markers -->
+      <line id="ce-h-guide" x1="50" y1="0" x2="0" y2="0" stroke="rgba(245, 158, 11, 0.3)" stroke-dasharray="4,4"></line>
+      <line id="ce-v-guide" x1="0" y1="200" x2="0" y2="0" stroke="rgba(245, 158, 11, 0.3)" stroke-dasharray="4,4"></line>
+      <circle id="ce-point" cx="0" cy="0" r="6" fill="#f59e0b" filter="drop-shadow(0 0 4px #f59e0b)"></circle>
+    </svg>
+
+    <!-- Controls and Readout -->
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; background: rgba(0,0,0,0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label for="ce-slider" style="color: #c9d1d9; font-size: 0.85rem; font-weight: 600; font-family: 'Outfit';">Set Predicted Prob q:</label>
+        <input id="ce-slider" type="range" min="0.01" max="0.99" step="0.01" value="0.5" style="width: 100%; accent-color: #f59e0b; cursor: pointer;">
+      </div>
+      <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.4; color: #fff;">
+        <div>q = <span id="ce-val-q" style="color: #60a5fa; font-weight: 700;">0.500</span></div>
+        <div>Loss = <span id="ce-val-loss" style="color: #f59e0b; font-weight: 700;">1.000</span> nats</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slider = document.getElementById("ce-slider");
+      const valQ = document.getElementById("ce-val-q");
+      const valLoss = document.getElementById("ce-val-loss");
+      const path = document.getElementById("ce-curve");
+      const point = document.getElementById("ce-point");
+      const hGuide = document.getElementById("ce-h-guide");
+      const vGuide = document.getElementById("ce-v-guide");
+
+      const width = 400; // 450 - 50
+      const height = 170; // 200 - 30
+
+      // BCE with true y=1, so Loss = -ln(q)
+      function CE(q) {
+          if (q <= 0) return 10; // Cap for visualization
+          return -Math.log(q); // Use nats for ML contexts
+      }
+
+      // Generate SVG path for the curve
+      let d = "";
+      for (let q = 0.005; q <= 1.0; q += 0.005) {
+        const x = 50 + q * width;
+        const h = CE(q);
+        const y = 200 - (h / 6.0) * height; // Scale up to 6 nats
+        d += (q === 0.005 ? "M" : "L") + `${x} ${y}`;
+      }
+      path.setAttribute("d", d);
+
+      function update() {
+        const q = parseFloat(slider.value);
+        const h = CE(q);
+
+        valQ.textContent = q.toFixed(3);
+        valLoss.textContent = h.toFixed(3);
+
+        const x = 50 + q * width;
+        const y = 200 - (h / 6.0) * height;
+
+        point.setAttribute("cx", x);
+        point.setAttribute("cy", y);
+
+        hGuide.setAttribute("x1", 50);
+        hGuide.setAttribute("y1", y);
+        hGuide.setAttribute("x2", x);
+        hGuide.setAttribute("y2", y);
+
+        vGuide.setAttribute("x1", x);
+        vGuide.setAttribute("y1", 200);
+        vGuide.setAttribute("x2", x);
+        vGuide.setAttribute("y2", y);
+      }
+
+      slider.addEventListener("input", update);
+      update();
+    });
+  </script>
+</div>
+<hr>
+</section>
+<section id="sec-problems" class="level2">
+<h2 class="anchored" data-anchor-id="sec-problems">7. Practice Problems</h2>
+<section id="problem-1" class="level3 thm-box thm-problem">
+<h3 class="thm-box thm-problem anchored" data-anchor-id="problem-1">Problem 1: Decomposition of Cross-Entropy</h3>
+Mathematically derive the decomposition <span class="math inline">\(H(P, Q) = H(P) + D_{KL}(P \| Q)\)</span> from the base definition of Cross-Entropy. <em>(Hint: Use the definition of KL Divergence <span class="math inline">\(D_{KL}(P \| Q) = \sum P(x) \log \frac{P(x)}{Q(x)}\)</span>)</em>.
+<details class="solution-toggle">
+<summary>
+Reveal Solution to Problem 1
+</summary>
+<div class="solution-body">
+<div class="thm-box thm-solution">
+<div class="solution-heading">
+Solution
+</div>
+<p>Starting from the definition of KL Divergence: <span class="math display">\[
+\begin{aligned}
+D_{KL}(P \| Q) &amp;= \sum_{x \in \mathcal{X}} P(x) \log \left( \frac{P(x)}{Q(x)} \right) \\
+&amp;= \sum_{x \in \mathcal{X}} P(x) \big( \log P(x) - \log Q(x) \big) \\
+&amp;= \sum_{x \in \mathcal{X}} P(x) \log P(x) - \sum_{x \in \mathcal{X}} P(x) \log Q(x)
+\end{aligned}
+\]</span></p>
+<p>Notice that the first term is exactly the negative entropy of <span class="math inline">\(P\)</span>, and the second term is the positive Cross-Entropy <span class="math inline">\(H(P, Q)\)</span>: <span class="math display">\[
+D_{KL}(P \| Q) = -H(P) + H(P, Q)
+\]</span></p>
+<p>Rearranging the terms, we get the fundamental relationship: <span class="math display">\[
+H(P, Q) = H(P) + D_{KL}(P \| Q)
+\]</span></p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</div>
+</div>
+</details>
+</section>
+<section id="problem-2" class="level3 thm-box thm-problem">
+<h3 class="thm-box thm-problem anchored" data-anchor-id="problem-2">Problem 2: Binary Cross-Entropy Penalty Explosion</h3>
+For a binary classification task, the Binary Cross-Entropy (BCE) formula simplifies to: <span class="math display">\[
+\text{BCE} = - \big( y \ln(p) + (1 - y) \ln(1 - p) \big)
+\]</span> Calculate the BCE loss for a single data point where the true label is <span class="math inline">\(y=1\)</span> and the model’s predicted probability is <span class="math inline">\(p=0.001\)</span>. Why does the loss become so massive compared to a wrong but less confident prediction (e.g.&nbsp;<span class="math inline">\(p=0.4\)</span>)?
+<details class="solution-toggle">
+<summary>
+Reveal Solution to Problem 2
+</summary>
+<div class="solution-body">
+<div class="thm-box thm-solution">
+<div class="solution-heading">
+Solution
+</div>
+<p>If <span class="math inline">\(y = 1\)</span>, the second term <span class="math inline">\((1 - y)\)</span> becomes zero, completely eliminating the <span class="math inline">\(\ln(1-p)\)</span> term. The formula simplifies to: <span class="math display">\[
+\text{BCE} = -\ln(p)
+\]</span></p>
+<p><strong>For <span class="math inline">\(p = 0.4\)</span> (Wrong, but not confidently wrong):</strong> <span class="math display">\[
+\text{BCE} = -\ln(0.4) \approx 0.916 \text{ nats}
+\]</span></p>
+<p><strong>For <span class="math inline">\(p = 0.001\)</span> (Highly confident, but completely wrong):</strong> <span class="math display">\[
+\text{BCE} = -\ln(0.001) \approx 6.907 \text{ nats}
+\]</span></p>
+<p>The loss is over 7 times higher! The logarithmic nature of the loss function massively penalizes a model that is <em>confidently wrong</em>. As the probability <span class="math inline">\(p\)</span> approaches exactly <span class="math inline">\(0\)</span> for a true class, the loss approaches positive infinity (<span class="math inline">\(\lim_{p \to 0} -\ln(p) = \infty\)</span>). This asymmetric explosion forces the model to heavily adjust its weights to never guarantee an incorrect prediction.</p>
+</div>
+</div>
+</details>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<footer class="takara-footer">
+  <!-- Top Sawtooth Edge -->
+
+
+  <!-- Ambient Light Rays -->
+  <div class="footer-light-rays"></div>
+
+  <!-- Content -->
+  <div class="footer-content">
+    <div class="footer-columns">
+      <!-- Brand Column -->
+      <div class="footer-brand-col">
+        <div class="footer-brand-header">
+          <img src="../../assets/lemon-emoji.svg" alt="Lemon Logo" width="32" height="32">
+          <span class="footer-brand-name">Lemon</span>
+        </div>
+        <p class="footer-brand-tagline">A digital notebook exploring mathematics and its applications.</p>
+        
+        <div class="footer-social-links">
+          <a href="https://www.linkedin.com/in/jack-wu-b9b50b361/" aria-label="LinkedIn" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+            </svg>
+          </a>
+          <a href="https://github.com/lemoon01110" aria-label="GitHub" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+            </svg>
+          </a>
+        </div>
+        
+        <p class="footer-copyright">© 2026 Lemon. All rights reserved.</p>
+      </div>
+      
+      <!-- Notes Links -->
+      <div class="footer-links-col">
+        <h4>Notes</h4>
+        <a href="#" onclick="event.preventDefault(); event.stopPropagation(); var el=document.getElementById('nav-menu-notes'); if(el){el.click();}">All Notes</a>
+      </div>
+
+      <!-- Interactives Links -->
+      <div class="footer-links-col">
+        <h4>Interactives</h4>
+        <span class="coming-soon-text">Coming Soon</span>
+      </div>
+
+      <!-- Projects Links -->
+      <div class="footer-links-col">
+        <h4>Projects</h4>
+        <a href="https://github.com/lemoon01110/lemoon01110.github.io">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/notes-nav.js"></script>
+<script src="../../assets/navbar-intellisense.js"></script>
+<script src="../../assets/dropdown-anim.js"></script>
+<script>
+  (function() {
+    var footer = document.querySelector('.takara-footer');
+    var content = document.querySelector('#quarto-content');
+    if (footer && content && footer.parentElement === content) {
+      content.parentNode.insertBefore(footer, content.nextSibling);
+    }
+  })();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
