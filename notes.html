@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Stochastic Gradient Langevin Dynamics – Lemon’s Website</title>
+<title>Notes – Lemon’s Website</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,19 +26,19 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<link href="../../assets/lemon-emoji.svg" rel="icon" type="image/svg+xml">
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c83a30c03a178baece6e67fadc429a3b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<link href="./assets/lemon-emoji.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c83a30c03a178baece6e67fadc429a3b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -65,11 +65,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../assets/lemon-emoji.svg" alt="" class="navbar-logo light-content">
-    <img src="../../assets/lemon-emoji.svg" alt="" class="navbar-logo dark-content">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./assets/lemon-emoji.svg" alt="" class="navbar-logo light-content">
+    <img src="./assets/lemon-emoji.svg" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Lemon’s Website</span>
     </a>
   </div>
@@ -79,15 +79,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../notes.html"> 
+    <a class="nav-link active" href="./notes.html" aria-current="page"> 
 <span class="menu-text">Notes</span></a>
   </li>  
 </ul>
@@ -98,16 +98,14 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
 <!-- main -->
-<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Stochastic Gradient Langevin Dynamics</h1>
+<h1 class="title">Notes</h1>
 </div>
 
 
@@ -124,11 +122,78 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Content for Stochastic Gradient Langevin Dynamics goes here.</p>
+<!-- WebGL Background Canvas for Notes Page (optional if they want it everywhere, but let's keep it consistent) -->
+<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; z-index: -1; width: 100vw; height: 100vh;"></canvas>
+
+<div class="container" style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+  <div class="section-title" style="margin-bottom: 3rem; text-align: center;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #fff;">Digital Notebook</h1>
+    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.2rem;">A collection of my notes on mathematics and machine learning.</p>
+  </div>
+
+  <div class="glass-grid">
+    <div class="glass-card">
+      <h3>Linear Algebra and Matrix Mechanics for Machine Learning</h3>
+      <p>Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
+      <a href="notes/linear-algebra.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix Decompositions for Machine Learning</h3>
+      <p>Core algorithms and theorems for factorizing matrices into fundamental components.</p>
+      <a href="notes/matrix-decompositions.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Matrix Calculus for Machine Learning</h3>
+      <p>Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
+      <a href="notes/matrix-calculus.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Optimization for Machine Learning</h3>
+      <p>Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
+      <a href="notes/optimization.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Probability for Machine Learning</h3>
+      <p>The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
+      <a href="notes/probability.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Information Theory for Machine Learning</h3>
+      <p>Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
+      <a href="notes/information-theory.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Reinforcement Learning</h3>
+      <p>Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
+      <a href="notes/reinforcement-learning.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Probabilistic Models for Machine Learning</h3>
+      <p>Modeling data distributions, variational inference, and modern generative architectures.</p>
+      <a href="notes/probabilistic-ml.html" class="card-btn">Explore Notes</a>
+    </div>
+
+    <div class="glass-card">
+      <h3>Stochastic Dynamics</h3>
+      <p>Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
+      <a href="notes/stochastic-dynamics.html" class="card-btn">Explore Notes</a>
+    </div>
+  </div>
+</div>
+
+<script src="./assets/bg-contour.js"></script>
+<script src="./assets/card-tilt.js"></script>
 
 
 
-</main> <!-- /main -->
+
 <footer class="takara-footer">
   <!-- Top Sawtooth Edge -->
 
@@ -142,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
       <!-- Brand Column -->
       <div class="footer-brand-col">
         <div class="footer-brand-header">
-          <img src="../../assets/lemon-emoji.svg" alt="Lemon Logo" width="32" height="32">
+          <img src="./assets/lemon-emoji.svg" alt="Lemon Logo" width="32" height="32">
           <span class="footer-brand-name">Lemon</span>
         </div>
         <p class="footer-brand-tagline">A digital notebook exploring mathematics and its applications.</p>
@@ -183,9 +248,9 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 </footer>
-<script src="../../assets/notes-nav.js"></script>
-<script src="../../assets/navbar-intellisense.js"></script>
-<script src="../../assets/dropdown-anim.js"></script>
+<script src="./assets/notes-nav.js"></script>
+<script src="./assets/navbar-intellisense.js"></script>
+<script src="./assets/dropdown-anim.js"></script>
 <script>
   (function() {
     var footer = document.querySelector('.takara-footer');

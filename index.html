@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3319393281b1e72cfec8493667cb1a1b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-c83a30c03a178baece6e67fadc429a3b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -82,49 +82,14 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-notes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Notes</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-notes">    
-        <li>
-    <a class="dropdown-item" href="./notes/linear-algebra.html">
- <span class="dropdown-text">Linear Algebra for Machine Learning</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./notes/matrix-decompositions.html">
- <span class="dropdown-text">Matrix Decompositions for Machine Learning</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./notes.html"> 
+<span class="menu-text">Notes</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./notes/matrix-calculus.html">
- <span class="dropdown-text">Matrix Calculus for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./notes/optimization.html">
- <span class="dropdown-text">Optimization for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./notes/probability.html">
- <span class="dropdown-text">Probability for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./notes/information-theory.html">
- <span class="dropdown-text">Information Theory for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./notes/reinforcement-learning.html">
- <span class="dropdown-text">Reinforcement Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./notes/probabilistic-ml.html">
- <span class="dropdown-text">Probabilistic Models for Machine Learning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./notes/stochastic-dynamics.html">
- <span class="dropdown-text">Stochastic Dynamics</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -144,80 +109,69 @@ ul.task-list li input[type="checkbox"] {
 <!-- Three.js Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
-<!-- WebGL Background Canvas -->
-<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; z-index: -1; width: 100vw; height: 100vh;"></canvas>
+<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;"></canvas>
 
-<!-- Main Container -->
-<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto;">
-  
+<!-- SECTION 1: Space Theme -->
+<section id="section-space" class="theme-section">
   <div class="hero-section">
     <h1 class="hero-title">Hello, I'm <span class="hero-highlight">Lemon</span></h1>
     <p class="hero-subtitle">A digital notebook exploring mathematics and its applications.</p>
   </div>
+</section>
 
-  <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 4rem 0;">
+<div class="transition-1"></div>
 
-  <div class="section-title" style="margin-bottom: 3rem; text-align: center;">
-    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Notes</h2>
+<!-- SECTION 2: Minimalist Academic -->
+<section id="section-academic" class="theme-section">
+  <div class="academic-container">
+    <div class="section-title">
+      <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: #1a1a1a;">Mathematical Philosophy</h2>
+    </div>
+    <p class="academic-text">
+      Mathematics is not merely a tool for computation, but a rigorous language for expressing the structures of the universe. Here, we explore the intersection of pure mathematics and modern computational algorithms.
+    </p>
+    <div class="academic-grid">
+      <div class="academic-card">
+        <h3>Optimization</h3>
+        <p>Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
+        <a href="notes/optimization.html" class="academic-btn">Explore Notes</a>
+      </div>
+      <div class="academic-card">
+        <h3>Probability</h3>
+        <p>The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
+        <a href="notes/probability.html" class="academic-btn">Explore Notes</a>
+      </div>
+    </div>
   </div>
+</section>
 
+<div class="transition-2"></div>
+
+<!-- SECTION 3: Dark Glassmorphism -->
+<section id="section-glass" class="theme-section">
+  <div class="glass-gradient-blob"></div>
+  <div class="section-title" style="margin-bottom: 3rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Notes &amp; Explorations</h2>
+  </div>
+  
   <div class="glass-grid">
     <div class="glass-card">
-      <h3>Linear Algebra and Matrix Mechanics for Machine Learning</h3>
+      <h3>Linear Algebra</h3>
       <p>Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
       <a href="notes/linear-algebra.html" class="card-btn">Explore Notes</a>
     </div>
-
     <div class="glass-card">
-      <h3>Matrix Decompositions for Machine Learning</h3>
+      <h3>Matrix Decompositions</h3>
       <p>Core algorithms and theorems for factorizing matrices into fundamental components.</p>
       <a href="notes/matrix-decompositions.html" class="card-btn">Explore Notes</a>
     </div>
-
-    <div class="glass-card">
-      <h3>Matrix Calculus for Machine Learning</h3>
-      <p>Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
-      <a href="notes/matrix-calculus.html" class="card-btn">Explore Notes</a>
-    </div>
-
-    <div class="glass-card">
-      <h3>Optimization for Machine Learning</h3>
-      <p>Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
-      <a href="notes/optimization.html" class="card-btn">Explore Notes</a>
-    </div>
-
-    <div class="glass-card">
-      <h3>Probability for Machine Learning</h3>
-      <p>The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
-      <a href="notes/probability.html" class="card-btn">Explore Notes</a>
-    </div>
-
-    <div class="glass-card">
-      <h3>Information Theory for Machine Learning</h3>
-      <p>Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
-      <a href="notes/information-theory.html" class="card-btn">Explore Notes</a>
-    </div>
-
     <div class="glass-card">
       <h3>Reinforcement Learning</h3>
       <p>Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
       <a href="notes/reinforcement-learning.html" class="card-btn">Explore Notes</a>
     </div>
-
-    <div class="glass-card">
-      <h3>Probabilistic Models for Machine Learning</h3>
-      <p>Modeling data distributions, variational inference, and modern generative architectures.</p>
-      <a href="notes/probabilistic-ml.html" class="card-btn">Explore Notes</a>
-    </div>
-
-    <div class="glass-card">
-      <h3>Stochastic Dynamics</h3>
-      <p>Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
-      <a href="notes/stochastic-dynamics.html" class="card-btn">Explore Notes</a>
-    </div>
   </div>
-</div>
-</div>
+</section>
 
 <script src="./assets/bg-contour.js"></script>
 <script src="./assets/card-tilt.js"></script>
@@ -691,7 +645,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
- <!-- /content -->
+</div> <!-- /content -->
 
 
 
