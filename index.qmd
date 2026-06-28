@@ -6,70 +6,18 @@ page-layout: custom
 <!-- Three.js Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
-<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;"></canvas>
+<!-- WebGL Background Canvas -->
+<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; z-index: -1; width: 100vw; height: 100vh;"></canvas>
 
-<!-- SECTION 1: Space Theme -->
-<section id="section-space" class="theme-section">
+<!-- Main Container -->
+<div class="container" style="padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+  
   <div class="hero-section">
     <h1 class="hero-title">Hello, I'm <span class="hero-highlight">Lemon</span></h1>
-    <p class="hero-subtitle">A digital notebook exploring mathematics and its applications.</p>
+    <p class="hero-subtitle">Exploring Information Theory, Machine Learning, and beyond.</p>
   </div>
-</section>
 
-<div class="transition-1"></div>
-
-<!-- SECTION 2: Minimalist Academic -->
-<section id="section-academic" class="theme-section">
-  <div class="academic-container">
-    <div class="section-title">
-      <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: #1a1a1a;">Mathematical Philosophy</h2>
-    </div>
-    <p class="academic-text">
-      Mathematics is not merely a tool for computation, but a rigorous language for expressing the structures of the universe. Here, we explore the intersection of pure mathematics and modern computational algorithms.
-    </p>
-    <div class="academic-grid">
-      <div class="academic-card">
-        <h3>Optimization</h3>
-        <p>Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
-        <a href="notes/optimization.html" class="academic-btn">Explore Notes</a>
-      </div>
-      <div class="academic-card">
-        <h3>Probability</h3>
-        <p>The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
-        <a href="notes/probability.html" class="academic-btn">Explore Notes</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="transition-2"></div>
-
-<!-- SECTION 3: Dark Glassmorphism -->
-<section id="section-glass" class="theme-section">
-  <div class="glass-gradient-blob"></div>
-  <div class="section-title" style="margin-bottom: 3rem; text-align: center;">
-    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Notes & Explorations</h2>
-  </div>
-  
-  <div class="glass-grid">
-    <div class="glass-card">
-      <h3>Linear Algebra</h3>
-      <p>Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
-      <a href="notes/linear-algebra.html" class="card-btn">Explore Notes</a>
-    </div>
-    <div class="glass-card">
-      <h3>Matrix Decompositions</h3>
-      <p>Core algorithms and theorems for factorizing matrices into fundamental components.</p>
-      <a href="notes/matrix-decompositions.html" class="card-btn">Explore Notes</a>
-    </div>
-    <div class="glass-card">
-      <h3>Reinforcement Learning</h3>
-      <p>Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
-      <a href="notes/reinforcement-learning.html" class="card-btn">Explore Notes</a>
-    </div>
-  </div>
-</section>
+</div>
 
 <script src="/assets/bg-contour.js"></script>
-<script src="/assets/card-tilt.js"></script>
 ```
