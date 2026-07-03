@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/new-computer-modern@5.0.3/index.css');
+
+// Apply your preferred fonts
+$font-family-sans-serif: "Outfit", "Google Sans Flex", "Inter", sans-serif !default;
+$font-family-monospace: 'JetBrains Mono', monospace !default;
+
+.nav-link, 
+.navbar-brand, 
+.dropdown-item, 
+.notes-nav-btn, 
+#quarto-margin-sidebar,
+.footnotes,
+aside,
+.margin-caption,
+.quarto-appendix,
+.hero-title,
+.hero-subtitle,
+.hero-disclaimer,
+.subject-intro p,
+.section-title h2,
+.glass-card h3,
+.glass-card p,
+.card-btn,
+.takara-footer,
+.takara-footer * {
+  font-family: 'JetBrains Mono', monospace !important;
+}

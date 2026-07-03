@@ -1,0 +1,292 @@
+/* LAZY LOAD STAGGER ANIMATION */
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-section h2,
+.about-section > div > p,
+.bento-grid > .glass-card {
+  opacity: 0;
+}
+
+.about-section.animate-in h2,
+.about-section.animate-in > div > p,
+.about-section.animate-in .bento-grid > .glass-card {
+  animation: slideUpFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.about-section.animated h2,
+.about-section.animated > div > p,
+.about-section.animated .bento-grid > .glass-card {
+  animation: none !important;
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delays */
+.about-section h2 { animation-delay: 0.1s; }
+.about-section > div > p { animation-delay: 0.2s; }
+.bento-grid > .glass-card:nth-child(1) { animation-delay: 0.3s; }
+.bento-grid > .glass-card:nth-child(2) { animation-delay: 0.4s; }
+.bento-grid > .glass-card:nth-child(3) { animation-delay: 0.5s; }
+.bento-grid > .glass-card:nth-child(4) { animation-delay: 0.6s; }
+.bento-grid > .glass-card:nth-child(5) { animation-delay: 0.7s; }
+.bento-grid > .glass-card:nth-child(6) { animation-delay: 0.8s; }
+
+/* SLOT MACHINE SENIORITY */
+.slot-machine-container {
+  display: inline-flex;
+  flex-direction: row;
+  height: 2em; /* Taller box for better padding */
+  align-items: flex-start; 
+  overflow: hidden;
+  vertical-align: middle;
+  position: relative;
+  
+  /* Fix text size and alignment */
+  font-size: 1.1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  transform: translateY(0px); /* Split the difference for perfect alignment */
+  margin: 0 0.3rem;
+  padding: 0 0.8rem; /* Explicit padding inside the box */
+  
+  /* Pill Shape & Lighter Background */
+  background: rgba(0, 0, 0, 0.25); /* Much lighter background */
+  border: 1px solid rgba(189, 147, 249, 0.4); 
+  border-radius: 9999px; /* Fully rounded pill shape */
+  color: #bd93f9; /* Purple text */
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4), 0 0 12px rgba(189, 147, 249, 0.1); 
+}
+
+.white-pill-slot {
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4), 0 0 12px rgba(255, 255, 255, 0.1) !important;
+  
+  /* Inherit text styling so it scales correctly within its container */
+  font-size: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  
+  /* Remove hardcoded margin that causes strange placement */
+  margin: 0 !important;
+  
+  /* Add explicit em-based padding so the pill border has breathing room around the text */
+  padding: 0.2em 1.2em !important;
+  box-sizing: content-box !important;
+}
+
+.ticker-light {
+  align-self: center; 
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; /* Circle LED */
+  margin-right: 0.6rem;
+  background-color: #ff5555; /* Solid Red Off */
+  box-shadow: 0 0 8px #ff5555, 0 0 12px #ff5555;
+}
+
+.ticker-light.ready {
+  animation: led-blink 1.5s infinite;
+}
+
+@keyframes led-blink {
+  0%, 49% {
+    background-color: #50fa7b; /* Green On */
+    box-shadow: 0 0 8px #50fa7b, 0 0 12px #50fa7b; /* Green Glow */
+  }
+  50%, 100% {
+    background-color: #44475a; /* Grey Off */
+    box-shadow: none;
+  }
+}
+
+.slot-reel {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1.5s cubic-bezier(0.1, 0.9, 0.2, 1), filter 1.5s ease-out;
+  transform: translateY(0);
+}
+
+.slot-spinning {
+  filter: blur(2px);
+}
+
+.slot-item {
+  height: 2em; /* Must perfectly match container height */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Horizontally center */
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+/* Restore baseline alignment for the original pill, while leaving the neutral pills perfectly centered */
+.slot-machine-container:not(.white-pill-slot) .slot-item {
+  padding-bottom: 4px; 
+}
+
+
+/* Balance out the 2px letter-spacing inherited from the timezone parent */
+.timezone-pill .slot-item {
+  padding-left: 2px;
+}
+
+/* TRUE CSS BENTO GRID */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.bento-grid > .glass-card {
+  max-width: none; /* override glass-card constraints */
+  min-width: 0;
+  flex: none;
+}
+
+/* Always span full width regardless of breakpoints */
+.bento-col-span-full {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1024px) {
+  .bento-col-span-2 {
+    grid-column: span 2;
+  }
+  
+  .bento-col-span-3 {
+    grid-column: span 3;
+  }
+  
+  .bento-row-span-2 {
+    grid-row: span 2;
+  }
+}
+
+.tech-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #fff;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(139, 233, 253, 0.1);
+    color: #8be9fd;
+    border-color: rgba(139, 233, 253, 0.5);
+    transform: translateY(-2px);
+  }
+}
+
+/* ANALOG PILL CLOCK */
+.analog-pill-clock {
+  position: relative;
+  width: 220px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: #111;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.digital-time {
+  position: relative;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  z-index: 5;
+  text-shadow: 0 0 5px rgba(0,0,0,1);
+}
+
+.clock-hand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 2;
+}
+
+.clock-hand::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.clock-hand::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.hour-hand::after {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+}
+.hour-hand::before {
+  width: 4px;
+  height: 14px;
+  background-color: #fff;
+}
+
+.minute-hand::after {
+  width: 8px;
+  height: 8px;
+  background-color: #ccc;
+}
+.minute-hand::before {
+  width: 2px;
+  height: 18px;
+  background-color: #ccc;
+}
+
+.second-hand {
+  z-index: 3;
+}
+.second-hand::after {
+  width: 4px;
+  height: 4px;
+  background-color: #ff5555;
+}
+.second-hand::before {
+  width: 1px;
+  height: 22px;
+  background-color: #ff5555;
+}
+
+
+

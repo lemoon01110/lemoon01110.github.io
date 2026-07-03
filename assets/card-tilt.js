@@ -11,8 +11,11 @@
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      const rotateX = ((y - centerY) / centerY) * -5; // Max 5deg rotation
-      const rotateY = ((x - centerX) / centerX) * 5;
+      // Read max tilt from data attribute, default to 5
+      const maxTilt = parseFloat(card.getAttribute('data-tilt-max')) || 5;
+
+      const rotateX = ((y - centerY) / centerY) * -maxTilt; 
+      const rotateY = ((x - centerX) / centerX) * maxTilt;
 
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     });

@@ -1,0 +1,136 @@
+/* Sidebar & TOC Layout exactly like lin-alg-notes-ocw */
+.margin-sidebar {
+  padding: 0 !important;
+  border-right: none !important;
+  border-left: none !important;
+}
+
+/* Prevent the sticky TOC sidebar from overlapping the footer */
+#quarto-margin-sidebar {
+  /* Let the container shrink to the actual TOC height so it bottom-aligns perfectly */
+  max-height: none !important;
+  align-self: start !important;
+  /* keep it sticky and scrolling if necessary */
+  overflow-y: auto !important;
+  /* Ensure it doesn't span all the way to the footer; end where the main content ends */
+  grid-row: content-top / content-bottom !important;
+}
+
+/* Ensure the main content doesn't have extra bottom padding so the alignment is perfect */
+.page-layout-article main {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Left Navigation Sidebar */
+#quarto-sidebar {
+  background: rgba(12, 17, 25, 0.82) !important;
+  border-right: 1px solid rgba(148, 163, 184, 0.18) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  
+  .sidebar-item-text, a, .nav-link {
+    color: #98a2b6 !important;
+    font-weight: 600 !important;
+    transition: color 0.2s ease !important;
+    
+    &:hover {
+      color: #60a5fa !important;
+      text-decoration: none !important;
+    }
+  }
+  
+  .sidebar-item.active, .active > a, .nav-link.active {
+    color: #60a5fa !important;
+    background: rgba(96, 165, 250, 0.12) !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Right TOC sidebar */
+#TOC {
+  padding: 1rem 0 !important;
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  margin-top: 1rem !important;
+  
+  h2#toc-title {
+    font-size: 0.92rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #98a2b6 !important;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+    border: none !important;
+    padding: 0 1rem !important;
+    font-family: "Outfit", sans-serif !important;
+  }
+  
+  ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+    
+    /* Nesting tabs */
+    ul {
+      display: block !important;
+      border-left: 2px solid #30363d !important;
+      padding-left: 0.5rem !important;
+      margin-left: 1.2rem !important;
+      margin-top: 0.25rem !important;
+      margin-bottom: 0.25rem !important;
+      
+      /* Animation for popping in/out */
+      overflow: hidden !important;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.4s ease !important;
+    }
+    
+    li {
+      margin-bottom: 0.25rem !important;
+      
+      a {
+        color: #8b949e !important;
+        font-size: 0.85rem !important;
+        text-decoration: none !important;
+        transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+        display: block !important;
+        padding: 0.4rem 0.75rem !important;
+        border-radius: 8px !important;
+        margin: 0 0.75rem !important;
+        border-left: none !important;
+        
+        &:hover {
+          color: #c9d1d9 !important;
+          background: rgba(255, 255, 255, 0.05) !important;
+        }
+      }
+      
+      /* Active state and parent of active state */
+      &.active > a, a.active, &:has(a.active) > a {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        font-weight: 600 !important;
+        border-left: none !important;
+      }
+
+      /* Trigger nested UL visibility */
+      &.active > ul, &:hover > ul, &:focus-within > ul, &:has(a.active) > ul {
+        max-height: 1000px !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+}
+
+/* Quarto sidebar left just in case */
+#quarto-sidebar {
+  background: rgba(20, 24, 34, 0.6) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+

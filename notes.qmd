@@ -4,8 +4,11 @@ page-layout: custom
 ---
 
 ```{=html}
-<!-- WebGL Background Canvas for Notes Page (optional if they want it everywhere, but let's keep it consistent) -->
-<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; z-index: -1; width: 100vw; height: 100vh;"></canvas>
+<!-- Three.js Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+<!-- WebGL Background Canvas for Notes Page -->
+<canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; z-index: -1; width: 100vw; height: 100vh; pointer-events: none;"></canvas>
 
 <div class="container" style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
   <div class="section-title" style="margin-bottom: 3rem; text-align: center;">
