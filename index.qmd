@@ -199,9 +199,9 @@ page-layout: custom
           <div class="brutalist-content" style="padding: 2rem;">
             <p style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; line-height: 1.8; color: #ccc; font-weight: 300; margin: 0 0 2rem 0;">A warning of what humanity can become, an exploration of our vices.</p>
             
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
               <!-- Read Card -->
-              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="flex: 1 1 300px; padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2);">
+              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%;">
                 <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
                    <span class="tiny-detail">01 // READ</span>
                 </div>
@@ -242,7 +242,7 @@ page-layout: custom
               </div>
 
               <!-- On Radar Card -->
-              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="flex: 1 1 300px; padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2);">
+              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%;">
                 <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
                    <span class="tiny-detail">02 // ON RADAR</span>
                 </div>
