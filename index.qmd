@@ -12,7 +12,7 @@ page-layout: custom
 
 
 <!-- Main Container -->
-<div class="container" style="padding: 0 2rem; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
+<div class="container main-container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
   
   <!-- Hero Section (Full Bleed) -->
   <div class="hero-section" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">

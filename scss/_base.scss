@@ -43,6 +43,19 @@ html {
   border-radius: 40px;
   /* Grow to push the footer to the bottom */
   flex: 1;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    padding-bottom: 0;
+  }
+}
+
+.main-container {
+  padding: 0 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+  }
 }
 
 // Custom Navbar Styles
@@ -199,6 +212,12 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   padding: 2.5rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    min-width: 0;
+  }
+  
   color: white;
   text-align: center;
   // Use a soft, subtle shadow instead of a massive solid black spread that blocks transparency
@@ -314,6 +333,12 @@ html, .quarto-container, main, .page-layout-custom {
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 1rem !important;
   animation: dropdownFadeIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr !important;
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+  }
 }
 
 .dropdown-menu.is-closing {

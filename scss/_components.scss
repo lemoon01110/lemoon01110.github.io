@@ -679,6 +679,11 @@ details.solution-toggle {
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 2rem;
+    
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -697,6 +702,11 @@ details.solution-toggle {
       font-weight: 600;
       letter-spacing: 2px;
       flex-shrink: 0;
+      
+      @media (max-width: 768px) {
+        width: 100% !important; /* Force wrapping on mobile by taking full width, overriding inline 150px */
+        margin-bottom: 0.25rem;
+      }
     }
     
     .item-value {
@@ -706,6 +716,12 @@ details.solution-toggle {
       text-align: right;
       flex: 1;
       min-width: 150px;
+      
+      @media (max-width: 768px) {
+        min-width: 0;
+        text-align: left; /* Better readability when wrapped */
+      }
+
       font-family: 'JetBrains Mono', monospace;
     }
   }
