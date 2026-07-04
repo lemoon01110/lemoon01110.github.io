@@ -1,0 +1,504 @@
+// Glassmorphism Card System
+.glass-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 2rem 0;
+  perspective: 1000px;
+}
+
+.glass-card {
+  flex: 1 1 300px;
+  max-width: 450px;
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.03); // Lighter background for better glass visibility
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2.5rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    min-width: 0;
+  }
+  
+  color: white;
+  text-align: center;
+  // Use a soft, subtle shadow instead of a massive solid black spread that blocks transparency
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out, box-shadow 1.5s ease, border-color 1.5s ease, background 1.5s ease;
+  position: relative;
+  overflow: hidden;
+  
+  // Hardware acceleration fixes to prevent text flickering on rapid scroll/resize
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    margin-top: 0;
+    color: #e0e0e0;
+  }
+  
+  p {
+    color: #a0a0a0;
+  }
+  
+  .card-btn {
+    display: inline-block;
+    margin-top: auto;
+    align-self: center;
+    padding: 0.75rem 1.5rem;
+    background: rgba(138, 43, 226, 0.2);
+    border: 1px solid rgba(138, 43, 226, 0.5);
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    
+    &:hover {
+      background: rgba(0, 255, 136, 0.2);
+      border-color: rgba(0, 255, 136, 0.5);
+      color: white;
+      transform: scale(1.05);
+    }
+  }
+
+  // Hover states for the card
+  &:hover {
+    // Elegant glassy glow on hover, reduced by half again
+    box-shadow: 0 3.75px 10px 0 rgba(0, 255, 136, 0.1), 0 0 10px rgba(138, 43, 226, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    // Background brightens slightly (cut in half from 0.08 to 0.055 to prevent it from lighting up too much)
+    background: rgba(255, 255, 255, 0.055);
+  }
+}
+html, .quarto-container, main, .page-layout-custom {
+  background-color: transparent !important;
+}
+
+/* ─── Prev / Next Navigation Card ─────────────────────────────────────────── */
+.notes-nav-card {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2rem 0 0 0;
+  padding: 0;
+
+  /* On mobile, stack them */
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
+}
+
+.notes-nav-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  text-decoration: none !important;
+  color: inherit;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(96, 165, 250, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(96, 165, 250, 0.15);
+    color: #fff !important;
+    text-decoration: none !important;
+
+    &::before { opacity: 1; }
+
+    .notes-nav-arrow {
+      color: #60a5fa;
+    }
+    .notes-nav-title {
+      color: #ffffff;
+    }
+  }
+
+  &.is-prev {
+    /* Left-aligned text */
+    text-align: left;
+    flex-direction: row;
+  }
+
+  &.is-next {
+    /* Right-aligned text */
+    text-align: right;
+    flex-direction: row-reverse;
+  }
+
+  /* If only one direction exists, allow it to grow but cap at half width */
+  &:only-child {
+    max-width: calc(50% - 0.75rem);
+    align-self: flex-start;
+
+    @media (max-width: 640px) {
+      max-width: 100%;
+    }
+  }
+}
+
+.notes-nav-arrow {
+  font-size: 1.6rem;
+  line-height: 1;
+  color: rgba(148, 163, 184, 0.6);
+  flex-shrink: 0;
+  transition: color 0.25s ease, transform 0.25s ease;
+  font-weight: 300;
+}
+
+.notes-nav-btn.is-prev:hover .notes-nav-arrow {
+  transform: translateX(-3px);
+}
+.notes-nav-btn.is-next:hover .notes-nav-arrow {
+  transform: translateX(3px);
+}
+
+.notes-nav-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0; /* prevent text overflow from breaking layout */
+}
+
+.notes-nav-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.notes-nav-section {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #60a5fa;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notes-nav-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.brutalist-tag {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8f8f2;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.brutalist-tag:hover {
+  background: #ff79c6;
+  color: #282a36;
+  border-color: #ff79c6;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.8; transform: translateX(-50%) translateY(5px); }
+  100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+}
+
+/* BRUTALIST DRAGONFLY CARD STYLES */
+.brutalist-card {
+  padding: 0 !important; // override glass-card padding to allow edge-to-edge rows
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 4px !important; // sharper corners for brutalist feel
+  background: rgba(10, 10, 10, 0.4) !important; // darker background
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  
+  &:hover {
+    box-shadow: none !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(10, 10, 10, 0.4) !important;
+    transform: none;
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+/* Modifier class for cards that should glow on hover (e.g. notes page) */
+.interactive-card:hover {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(0, 255, 136, 0.15), 0 0 12px rgba(138, 43, 226, 0.2) !important;
+  background: rgba(20, 20, 20, 0.6) !important;
+  transform: translateY(-2px);
+  &::before {
+    opacity: 1 !important;
+    display: block !important;
+  }
+}
+
+.brutalist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.huge-text {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.tiny-detail {
+  font-size: 0.65rem;
+  color: #bbb;
+  letter-spacing: 2px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.brutalist-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brutalist-content {
+  padding: 1.5rem 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 1rem;
+    &:last-child { margin-bottom: 0; }
+  }
+}
+.scroll-shadow-wrapper {
+  position: relative;
+  
+  .brutalist-list {
+    /* Default: no scroll up shadow, yes scroll down shadow */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60px, rgba(0,0,0,1) calc(100% - 60px), rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60px, rgba(0,0,0,1) calc(100% - 60px), rgba(0,0,0,0) 100%);
+    transition: -webkit-mask-image 0.3s ease, mask-image 0.3s ease;
+  }
+
+  /* Scrolled down slightly: both top and bottom shadows active */
+  &.can-scroll-up.can-scroll-down .brutalist-list {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 60px, rgba(0,0,0,1) calc(100% - 60px), rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 60px, rgba(0,0,0,1) calc(100% - 60px), rgba(0,0,0,0) 100%);
+  }
+
+  /* Scrolled to bottom: only top shadow active */
+  &.can-scroll-up:not(.can-scroll-down) .brutalist-list {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 60px, rgba(0,0,0,1) calc(100% - 60px), rgba(0,0,0,1) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 60px, rgba(0,0,0,1) calc(100% - 60px), rgba(0,0,0,1) 100%);
+  }
+}
+
+.brutalist-list {
+  padding: 0;
+  justify-content: flex-start;
+  
+  /* Grid modifier for inner lists */
+  &.as-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    
+    .list-item {
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      padding: 1.5rem;
+      align-items: flex-start;
+      background: rgba(255, 255, 255, 0.02);
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateY(-2px);
+      }
+      
+      .item-name {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+        color: var(--accent-color, #fff);
+      }
+      
+      .item-value {
+        width: 100%;
+      }
+    }
+  }
+
+  /* Grid 3-column modifier with perfectly centered trailing items */
+  &.grid-3-col {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    
+    .list-item {
+      grid-column: span 2;
+    }
+    
+    /* If exactly 1 trailing item (e.g. 4th, 7th) */
+    .list-item:last-child:nth-child(3n - 2) {
+      grid-column: 3 / span 2;
+    }
+    
+    /* If exactly 2 trailing items (e.g. 4th and 5th out of 5) */
+    .list-item:nth-last-child(2):nth-child(3n - 2) {
+      grid-column: 2 / span 2;
+    }
+    .list-item:last-child:nth-child(3n - 1) {
+      grid-column: 4 / span 2;
+    }
+    
+    /* Responsive breakpoints */
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+      
+      .list-item {
+        grid-column: span 2;
+      }
+      
+      /* Reset 3-column overrides */
+      .list-item:last-child:nth-child(3n - 2),
+      .list-item:nth-last-child(2):nth-child(3n - 2),
+      .list-item:last-child:nth-child(3n - 1) {
+        grid-column: span 2;
+      }
+      
+      /* Center 1 trailing item in 2-column layout */
+      .list-item:last-child:nth-child(2n - 1) {
+        grid-column: 2 / span 2;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      
+      .list-item {
+        grid-column: 1 / -1;
+      }
+      
+      /* Reset all overrides */
+      .list-item:last-child:nth-child(3n - 2),
+      .list-item:nth-last-child(2):nth-child(3n - 2),
+      .list-item:last-child:nth-child(3n - 1),
+      .list-item:last-child:nth-child(2n - 1) {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2rem;
+    
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    transition: background 0.2s ease, padding-left 0.2s ease, border-left 0.2s ease;
+    border-left: 2px solid transparent;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      padding-left: 2.5rem;
+      border-left: 2px solid #bd93f9;
+    }
+    
+    .item-name {
+      font-size: 0.8rem;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 2px;
+      flex-shrink: 0;
+      
+      @media (max-width: 768px) {
+        width: 100% !important; /* Force wrapping on mobile by taking full width, overriding inline 150px */
+        margin-bottom: 0.25rem;
+      }
+    }
+    
+    .item-value {
+      font-size: 0.8rem;
+      color: #888;
+      font-weight: 400;
+      text-align: right;
+      flex: 1;
+      min-width: 150px;
+      
+      @media (max-width: 768px) {
+        min-width: 0;
+        text-align: left; /* Better readability when wrapped */
+      }
+
+      font-family: 'JetBrains Mono', monospace;
+    }
+  }
+}
+

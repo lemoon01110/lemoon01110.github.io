@@ -16,59 +16,113 @@ page-layout: custom
     <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.2rem;">A collection of my notes on mathematics and machine learning.</p>
   </div>
 
-  <div class="glass-grid">
-    <div class="glass-card">
-      <h3>Linear Algebra and Matrix Mechanics for Machine Learning</h3>
-      <p>Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
-      <a href="notes/linear-algebra.html" class="card-btn">Explore Notes</a>
+  <div class="bento-grid">
+    <!-- Note 1 -->
+    <div class="glass-card brutalist-card interactive-card">
+      <div class="brutalist-header">
+         <span class="tiny-detail">01 // LINEAR ALGEBRA</span>
+      </div>
+      <div class="brutalist-content" style="padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; text-align: left;">
+        <h3>Linear Algebra and Matrix Mechanics for Machine Learning</h3>
+        <p style="margin-bottom: 1.5rem; flex-grow: 1;">Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
+        <a href="notes/linear-algebra.html" class="card-btn">Explore Notes</a>
+      </div>
     </div>
 
-    <div class="glass-card">
-      <h3>Matrix Decompositions for Machine Learning</h3>
-      <p>Core algorithms and theorems for factorizing matrices into fundamental components.</p>
-      <a href="notes/matrix-decompositions.html" class="card-btn">Explore Notes</a>
+    <!-- Note 2 -->
+    <div class="glass-card brutalist-card interactive-card bento-col-span-2">
+      <div class="brutalist-header">
+         <span class="tiny-detail">02 // MATRIX DECOMPOSITIONS</span>
+      </div>
+      <div class="brutalist-content" style="padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; text-align: left;">
+        <h3>Matrix Decompositions for Machine Learning</h3>
+        <p style="margin-bottom: 1.5rem; flex-grow: 1;">Core algorithms and theorems for factorizing matrices into fundamental components.</p>
+        <a href="notes/matrix-decompositions.html" class="card-btn">Explore Notes</a>
+      </div>
     </div>
 
-    <div class="glass-card">
-      <h3>Matrix Calculus for Machine Learning</h3>
-      <p>Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
-      <a href="notes/matrix-calculus.html" class="card-btn">Explore Notes</a>
+    <!-- Note 3 -->
+    <div class="glass-card brutalist-card interactive-card bento-col-span-2 bento-row-span-2">
+      <div class="brutalist-header">
+         <span class="tiny-detail">03 // MATRIX CALCULUS</span>
+      </div>
+      <div class="brutalist-content" style="padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; text-align: left;">
+        <h3 style="font-size: 2rem;">Matrix Calculus for Machine Learning</h3>
+        <p style="font-size: 1.1rem; margin-bottom: 2rem; flex-grow: 1;">Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
+        <a href="notes/matrix-calculus.html" class="card-btn">Explore Notes</a>
+      </div>
     </div>
 
-    <div class="glass-card">
-      <h3>Optimization for Machine Learning</h3>
-      <p>Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
-      <a href="notes/optimization.html" class="card-btn">Explore Notes</a>
+    <!-- Note 4 -->
+    <div class="glass-card brutalist-card interactive-card">
+      <div class="brutalist-header">
+         <span class="tiny-detail">04 // OPTIMIZATION</span>
+      </div>
+      <div class="brutalist-content" style="padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; text-align: left;">
+        <h3>Optimization for Machine Learning</h3>
+        <p style="margin-bottom: 1.5rem; flex-grow: 1;">Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
+        <a href="notes/optimization.html" class="card-btn">Explore Notes</a>
+      </div>
     </div>
 
-    <div class="glass-card">
-      <h3>Probability for Machine Learning</h3>
-      <p>The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
-      <a href="notes/probability.html" class="card-btn">Explore Notes</a>
+    <!-- Note 5 -->
+    <div class="glass-card brutalist-card interactive-card">
+      <div class="brutalist-header">
+         <span class="tiny-detail">05 // PROBABILITY</span>
+      </div>
+      <div class="brutalist-content" style="padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; text-align: left;">
+        <h3>Probability for Machine Learning</h3>
+        <p style="margin-bottom: 1.5rem; flex-grow: 1;">The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
+        <a href="notes/probability.html" class="card-btn">Explore Notes</a>
+      </div>
     </div>
 
-    <div class="glass-card">
-      <h3>Information Theory for Machine Learning</h3>
-      <p>Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
-      <a href="notes/information-theory.html" class="card-btn">Explore Notes</a>
+    <!-- Note 6 -->
+    <div class="glass-card brutalist-card interactive-card bento-row-span-2">
+      <div class="brutalist-header">
+         <span class="tiny-detail">06 // INFORMATION THEORY</span>
+      </div>
+      <div class="brutalist-content" style="padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; text-align: left;">
+        <h3>Information Theory for Machine Learning</h3>
+        <p style="margin-bottom: 1.5rem; flex-grow: 1;">Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
+        <a href="notes/information-theory.html" class="card-btn">Explore Notes</a>
+      </div>
     </div>
 
-    <div class="glass-card">
-      <h3>Reinforcement Learning</h3>
-      <p>Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
-      <a href="notes/reinforcement-learning.html" class="card-btn">Explore Notes</a>
+    <!-- Note 7 -->
+    <div class="glass-card brutalist-card interactive-card bento-col-span-2">
+      <div class="brutalist-header">
+         <span class="tiny-detail">07 // REINFORCEMENT LEARNING</span>
+      </div>
+      <div class="brutalist-content" style="padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; text-align: left;">
+        <h3>Reinforcement Learning</h3>
+        <p style="margin-bottom: 1.5rem; flex-grow: 1;">Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
+        <a href="notes/reinforcement-learning.html" class="card-btn">Explore Notes</a>
+      </div>
     </div>
 
-    <div class="glass-card">
-      <h3>Probabilistic Models for Machine Learning</h3>
-      <p>Modeling data distributions, variational inference, and modern generative architectures.</p>
-      <a href="notes/probabilistic-ml.html" class="card-btn">Explore Notes</a>
+    <!-- Note 8 -->
+    <div class="glass-card brutalist-card interactive-card">
+      <div class="brutalist-header">
+         <span class="tiny-detail">08 // PROBABILISTIC MODELS</span>
+      </div>
+      <div class="brutalist-content" style="padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; text-align: left;">
+        <h3>Probabilistic Models for Machine Learning</h3>
+        <p style="margin-bottom: 1.5rem; flex-grow: 1;">Modeling data distributions, variational inference, and modern generative architectures.</p>
+        <a href="notes/probabilistic-ml.html" class="card-btn">Explore Notes</a>
+      </div>
     </div>
 
-    <div class="glass-card">
-      <h3>Stochastic Dynamics</h3>
-      <p>Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
-      <a href="notes/stochastic-dynamics.html" class="card-btn">Explore Notes</a>
+    <!-- Note 9 -->
+    <div class="glass-card brutalist-card interactive-card">
+      <div class="brutalist-header">
+         <span class="tiny-detail">09 // STOCHASTIC DYNAMICS</span>
+      </div>
+      <div class="brutalist-content" style="padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; text-align: left;">
+        <h3>Stochastic Dynamics</h3>
+        <p style="margin-bottom: 1.5rem; flex-grow: 1;">Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
+        <a href="notes/stochastic-dynamics.html" class="card-btn">Explore Notes</a>
+      </div>
     </div>
   </div>
 </div>
