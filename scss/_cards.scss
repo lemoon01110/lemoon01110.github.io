@@ -270,7 +270,7 @@ html, .quarto-container, main, .page-layout-custom {
 /* Modifier class for cards that should glow on hover (e.g. notes page) */
 .interactive-card:hover {
   border-color: rgba(255, 255, 255, 0.3) !important;
-  box-shadow: 0 8px 24px rgba(0, 255, 136, 0.15), 0 0 12px rgba(138, 43, 226, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.08), 0 0 8px rgba(138, 43, 226, 0.1) !important;
   background: rgba(20, 20, 20, 0.6) !important;
   transform: translateY(-2px);
   &::before {

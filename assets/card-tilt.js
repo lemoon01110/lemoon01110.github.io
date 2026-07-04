@@ -3,6 +3,11 @@
   const cards = document.querySelectorAll('.glass-card');
 
   cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      // Fast transition for responsive tilt
+      card.style.transition = 'transform 0.05s linear';
+    });
+
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -21,6 +26,8 @@
     });
 
     card.addEventListener('mouseleave', () => {
+      // Restore slow transition for smooth reset
+      card.style.transition = 'transform 0.3s ease';
       card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
     });
   });
