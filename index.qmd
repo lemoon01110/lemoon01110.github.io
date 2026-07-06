@@ -125,7 +125,7 @@ page-layout: custom
       
       <div class="bento-grid">
         <!-- Computer Science Row -->
-        <div class="glass-card brutalist-card bento-col-span-3" style="justify-content: flex-start; text-align: left; grid-column: 1 / -1;" data-tilt data-tilt-max="3" data-tilt-speed="600" data-tilt-glare data-tilt-max-glare="0.1">
+        <div class="glass-card brutalist-card bento-col-span-3" style="justify-content: flex-start; text-align: left; grid-column: 1 / -1;" data-tilt data-tilt-max="1" data-tilt-speed="600">
           <div class="brutalist-header">
              <span class="tiny-detail">TOPIC // STUDY MATERIAL</span>
           </div>
@@ -192,7 +192,7 @@ page-layout: custom
         </div>
 
         <!-- Dystopian Row -->
-        <div class="glass-card brutalist-card bento-col-span-full" style="justify-content: center; text-align: center;" data-tilt data-tilt-max="3" data-tilt-speed="600" data-tilt-glare data-tilt-max-glare="0.1">
+        <div class="glass-card brutalist-card bento-col-span-full" style="justify-content: center; text-align: center;" data-tilt data-tilt-max="1" data-tilt-speed="600">
           <div class="brutalist-header">
              <span class="tiny-detail">TOPIC // DYSTOPIAN LITERATURE</span>
           </div>
@@ -301,5 +301,14 @@ page-layout: custom
 </div>
 
 <script src="/assets/ascii-hero.js"></script>
-<script src="/assets/card-tilt.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<script>
+  // Initialize Vanilla Tilt for any remaining glass-cards that don't already have data-tilt
+  VanillaTilt.init(document.querySelectorAll(".glass-card:not([data-tilt])"), {
+    max: 2,
+    speed: 400,
+    glare: false,
+    "max-glare": 0,
+  });
+</script>
 ```

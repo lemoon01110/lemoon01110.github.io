@@ -127,6 +127,14 @@ page-layout: custom
   </div>
 </div>
 
-<script src="/assets/bg-contour.js"></script>
-<script src="/assets/card-tilt.js"></script>
+<script src="/assets/bg-ascii-slime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<script>
+  VanillaTilt.init(document.querySelectorAll(".interactive-card"), {
+    max: 2,
+    speed: 400,
+    glare: false,
+    "max-glare": 0,
+  });
+</script>
 ```

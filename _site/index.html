@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0134c97a467512cdaa9c3ea707400403.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-3358056f29ec04f97fd96047fb07152c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -224,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
       
       <div class="bento-grid">
         <!-- Computer Science Row -->
-        <div class="glass-card brutalist-card bento-col-span-3" style="justify-content: flex-start; text-align: left; grid-column: 1 / -1;" data-tilt="" data-tilt-max="3" data-tilt-speed="600" data-tilt-glare="" data-tilt-max-glare="0.1">
+        <div class="glass-card brutalist-card bento-col-span-3" style="justify-content: flex-start; text-align: left; grid-column: 1 / -1;" data-tilt="" data-tilt-max="1" data-tilt-speed="600">
           <div class="brutalist-header">
              <span class="tiny-detail">TOPIC // STUDY MATERIAL</span>
           </div>
@@ -291,16 +291,16 @@ ul.task-list li input[type="checkbox"] {
         </div>
 
         <!-- Dystopian Row -->
-        <div class="glass-card brutalist-card bento-col-span-full" style="justify-content: center; text-align: center;" data-tilt="" data-tilt-max="3" data-tilt-speed="600" data-tilt-glare="" data-tilt-max-glare="0.1">
+        <div class="glass-card brutalist-card bento-col-span-full" style="justify-content: center; text-align: center;" data-tilt="" data-tilt-max="1" data-tilt-speed="600">
           <div class="brutalist-header">
              <span class="tiny-detail">TOPIC // DYSTOPIAN LITERATURE</span>
           </div>
           <div class="brutalist-content" style="padding: 2rem;">
             <p style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; line-height: 1.8; color: #ccc; font-weight: 300; margin: 0 0 2rem 0;">A warning of what humanity can become, an exploration of our vices.</p>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;">
               <!-- Read Card -->
-              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%;">
+              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="flex: 1 1 300px; max-width: 450px; padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2);">
                 <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
                    <span class="tiny-detail">01 // READ</span>
                 </div>
@@ -341,7 +341,7 @@ ul.task-list li input[type="checkbox"] {
               </div>
 
               <!-- On Radar Card -->
-              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%;">
+              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="flex: 1 1 300px; max-width: 450px; padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2);">
                 <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
                    <span class="tiny-detail">02 // ON RADAR</span>
                 </div>
@@ -400,7 +400,16 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 <script src="./assets/ascii-hero.js"></script>
-<script src="./assets/card-tilt.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<script>
+  // Initialize Vanilla Tilt for any remaining glass-cards that don't already have data-tilt
+  VanillaTilt.init(document.querySelectorAll(".glass-card:not([data-tilt])"), {
+    max: 2,
+    speed: 400,
+    glare: false,
+    "max-glare": 0,
+  });
+</script>
 
 
 

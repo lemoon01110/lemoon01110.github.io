@@ -1,0 +1,421 @@
+body {
+  background-color: #0d1117 !important;
+  color: #c9d1d9;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  /* Push footer to the bottom on short pages */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Beautiful Custom Global Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2); 
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15); 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3); 
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+}
+
+// Ensure the main quarto container has relative positioning
+#quarto-content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem;
+  padding-bottom: 0;
+  border-radius: 40px;
+  /* Grow to push the footer to the bottom */
+  flex: 1;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    padding-bottom: 0;
+  }
+}
+
+.main-container {
+  padding: 0 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+  }
+}
+
+// Custom Navbar Styles
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.8rem 2rem;
+  background: rgba(13, 17, 23, 0.85); // darker mask for navbar
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid #30363d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-sizing: border-box;
+  // Masking shadow to fade contour lines near the top
+  box-shadow: 0 20px 50px rgba(8, 8, 10, 0.9);
+
+  .nav-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+
+    a {
+      color: #a0a0a0;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #00ff88;
+      }
+    }
+  }
+}
+
+/* Takara-Style Footer */
+.takara-footer {
+  position: relative;
+  z-index: 100;
+  background-color: #040508;
+  color: #f1f5f9;
+  margin-top: 6rem;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  /* Mask out the top 16px in an upward-pointing zigzag so the gradient perfectly matches the teeth */
+  -webkit-mask-image: 
+    linear-gradient(to bottom, transparent 16px, black 16px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' viewBox='0 0 32 16'%3E%3Cpath d='M0 16L16 0L32 16Z' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-position: left top, left top;
+  -webkit-mask-repeat: no-repeat, repeat-x;
+  -webkit-mask-size: 100% 100%, 32px 16px;
+  
+  mask-image: 
+    linear-gradient(to bottom, transparent 16px, black 16px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' viewBox='0 0 32 16'%3E%3Cpath d='M0 16L16 0L32 16Z' fill='black'/%3E%3C/svg%3E");
+  mask-position: left top, left top;
+  mask-repeat: no-repeat, repeat-x;
+  mask-size: 100% 100%, 32px 16px;
+}
+
+.footer-light-rays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 0%, rgba(100, 60, 255, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(80, 120, 255, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(20, 10, 40, 0.8) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 6rem 2rem 6rem 2rem;
+}
+
+.footer-columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.footer-brand-col {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-brand-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-brand-name {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.footer-brand-tagline {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icon {
+  color: #64748b;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.footer-copyright {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.75rem;
+  color: #475569;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-links-col h4 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.footer-links-col a {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links-col a:hover {
+  color: #ffffff;
+}
+
+.coming-soon-text {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: #475569;
+  font-style: italic;
+}
+
+/* Eliminate the bottom padding on all Quarto content containers so the footer sits flush */
+.quarto-container {
+  padding-bottom: 0 !important;
+}
+
+/* On custom-layout pages (index, subject landing pages), break the footer out of the 4rem container padding */
+.page-layout-custom .takara-footer {
+  width: calc(100% + 8rem) !important;
+  margin-left: -4rem !important;
+  grid-column: unset !important;
+}
+
+// Quarto Native Navbar Styling
+.navbar {
+  padding: 0.8rem 2rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  
+  .navbar-logo {
+    height: 32px !important;
+    width: auto !important;
+    margin-right: 12px;
+  }
+  
+  box-shadow: 0 20px 50px rgba(8, 8, 10, 0.9) !important;
+  position: relative !important;
+  transition: box-shadow 0.35s ease !important;
+}
+
+.navbar::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(8, 8, 10, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  z-index: -1 !important;
+}
+
+@keyframes dropdownFadeIn {
+  0% { opacity: 0; translate: 0 -100vh; }
+  100% { opacity: 1; translate: 0 0; }
+}
+
+@keyframes dropdownFadeOut {
+  0% { opacity: 1; translate: 0 0; }
+  100% { opacity: 0; translate: 0 100vh; }
+}
+
+.dropdown-menu.show {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1rem !important;
+  animation: dropdownFadeIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr !important;
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+.dropdown-menu.is-closing {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1rem !important;
+  animation: dropdownFadeOut 0.4s cubic-bezier(0.5, 0, 1, 1) forwards !important;
+}
+
+.navbar::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 80px !important;
+  background: linear-gradient(to bottom, #0d1117, transparent) !important;
+  pointer-events: none !important;
+  z-index: -2 !important;
+  transition: opacity 0.35s ease;
+}
+
+#quarto-header {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  &.navbar-hidden {
+    transform: translateY(-100%);
+    .navbar {
+      box-shadow: 0 20px 50px rgba(8, 8, 10, 0) !important;
+    }
+    .navbar::after {
+      opacity: 0 !important;
+    }
+  }
+}
+
+.navbar-brand {
+  font-weight: 800 !important;
+  font-size: 1.5rem !important;
+  color: white !important;
+  letter-spacing: -0.02em !important;
+}
+
+.nav-link {
+  color: #a0a0a0 !important;
+  font-weight: 600 !important;
+  transition: color 0.3s ease !important;
+  &:hover {
+    color: #00ff88 !important;
+  }
+}
+
+@keyframes slideTray {
+  0% {
+    opacity: 0;
+    translate: 0 -100vh;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.dropdown-menu {
+  position: fixed !important;
+  top: 50vh !important; /* Fixed relative to viewport height */
+  left: 50vw !important; /* Fixed relative to viewport width */
+  transform: translate(-50%, -50%) !important;
+  width: 900px !important;
+  max-width: 90vw !important;
+  padding: 1.5rem !important;
+  margin: 0 !important;
+  
+  background: rgba(15, 15, 18, 0.3) !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6) !important;
+}
+
+.dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  white-space: normal !important;
+  height: 100% !important;
+  padding: 1.5rem 1rem !important;
+  
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+  color: #e0e0e0 !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(0, 255, 136, 0.4) !important;
+    color: #fff !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.1) !important;
+  }
+}
+

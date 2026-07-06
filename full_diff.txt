@@ -1,0 +1,481 @@
+diff --git a/_site/index.html b/_site/index.html
+index baa99b2..39c5da2 100644
+--- a/_site/index.html
++++ b/_site/index.html
+@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
+ <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+ <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+ <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+-<link href="site_libs/bootstrap/bootstrap-0134c97a467512cdaa9c3ea707400403.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
++<link href="site_libs/bootstrap/bootstrap-0f3d907b709e225594943d5b32dcbf25.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+ <script id="quarto-search-options" type="application/json">{
+   "language": {
+     "search-no-results-text": "No results",
+@@ -111,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
+ 
+ 
+ <!-- Main Container -->
+-<div class="container main-container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
++<div class="container" style="padding: 0 2rem; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
+   
+   <!-- Hero Section (Full Bleed) -->
+   <div class="hero-section" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+diff --git a/_site/notes.html b/_site/notes.html
+index 6533456..c7ee661 100644
+--- a/_site/notes.html
++++ b/_site/notes.html
+@@ -130,59 +130,131 @@ ul.task-list li input[type="checkbox"] {
+     <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.2rem;">A collection of my notes on mathematics and machine learning.</p>
+   </div>
+ 
+-  <div class="glass-grid">
+-    <div class="glass-card">
+-      <h3>Linear Algebra and Matrix Mechanics for Machine Learning</h3>
+-      <p>Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
+-      <a href="notes/linear-algebra.html" class="card-btn">Explore Notes</a>
++  <div class="bento-grid">
++    <!-- Note 1 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">01 // LINEAR ALGEBRA</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Linear Algebra and Matrix Mechanics for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
++        <a href="notes/linear-algebra.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Matrix Decompositions for Machine Learning</h3>
+-      <p>Core algorithms and theorems for factorizing matrices into fundamental components.</p>
+-      <a href="notes/matrix-decompositions.html" class="card-btn">Explore Notes</a>
++    <!-- Note 2 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">02 // MATRIX DECOMPOSITIONS</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Matrix Decompositions for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Core algorithms and theorems for factorizing matrices into fundamental components.</p>
++        <a href="notes/matrix-decompositions.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Matrix Calculus for Machine Learning</h3>
+-      <p>Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
+-      <a href="notes/matrix-calculus.html" class="card-btn">Explore Notes</a>
++    <!-- Note 3 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">03 // MATRIX CALCULUS</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Matrix Calculus for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
++        <a href="notes/matrix-calculus.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Optimization for Machine Learning</h3>
+-      <p>Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
+-      <a href="notes/optimization.html" class="card-btn">Explore Notes</a>
++    <!-- Note 4 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">04 // OPTIMIZATION</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Optimization for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
++        <a href="notes/optimization.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Probability for Machine Learning</h3>
+-      <p>The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
+-      <a href="notes/probability.html" class="card-btn">Explore Notes</a>
++    <!-- Note 5 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">05 // PROBABILITY</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Probability for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
++        <a href="notes/probability.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Information Theory for Machine Learning</h3>
+-      <p>Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
+-      <a href="notes/information-theory.html" class="card-btn">Explore Notes</a>
++    <!-- Note 6 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">06 // INFORMATION THEORY</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Information Theory for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
++        <a href="notes/information-theory.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Reinforcement Learning</h3>
+-      <p>Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
+-      <a href="notes/reinforcement-learning.html" class="card-btn">Explore Notes</a>
++    <!-- Note 7 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">07 // REINFORCEMENT LEARNING</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Reinforcement Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
++        <a href="notes/reinforcement-learning.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Probabilistic Models for Machine Learning</h3>
+-      <p>Modeling data distributions, variational inference, and modern generative architectures.</p>
+-      <a href="notes/probabilistic-ml.html" class="card-btn">Explore Notes</a>
++    <!-- Note 8 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">08 // PROBABILISTIC MODELS</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Probabilistic Models for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Modeling data distributions, variational inference, and modern generative architectures.</p>
++        <a href="notes/probabilistic-ml.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Stochastic Dynamics</h3>
+-      <p>Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
+-      <a href="notes/stochastic-dynamics.html" class="card-btn">Explore Notes</a>
++    <!-- Note 9 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">09 // STOCHASTIC DYNAMICS</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Stochastic Dynamics</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
++        <a href="notes/stochastic-dynamics.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+   </div>
+ </div>
+@@ -332,7 +404,7 @@ ul.task-list li input[type="checkbox"] {
+     }
+       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+       var mailtoRegex = new RegExp(/^mailto:/);
+-        var filterRegex = new RegExp("https:\/\/lemoon01110\.github\.io\/");
++        var filterRegex = new RegExp('/' + window.location.host + '/');
+       var isInternal = (href) => {
+           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+       }
+diff --git a/index.qmd b/index.qmd
+index a4bbc26..3bc3550 100644
+--- a/index.qmd
++++ b/index.qmd
+@@ -12,7 +12,7 @@ page-layout: custom
+ 
+ 
+ <!-- Main Container -->
+-<div class="container main-container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
++<div class="container" style="padding: 0 2rem; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
+   
+   <!-- Hero Section (Full Bleed) -->
+   <div class="hero-section" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+diff --git a/notes.qmd b/notes.qmd
+index 444c08a..51a4d43 100644
+--- a/notes.qmd
++++ b/notes.qmd
+@@ -16,59 +16,131 @@ page-layout: custom
+     <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.2rem;">A collection of my notes on mathematics and machine learning.</p>
+   </div>
+ 
+-  <div class="glass-grid">
+-    <div class="glass-card">
+-      <h3>Linear Algebra and Matrix Mechanics for Machine Learning</h3>
+-      <p>Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
+-      <a href="notes/linear-algebra.html" class="card-btn">Explore Notes</a>
++  <div class="bento-grid">
++    <!-- Note 1 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">01 // LINEAR ALGEBRA</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Linear Algebra and Matrix Mechanics for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
++        <a href="notes/linear-algebra.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Matrix Decompositions for Machine Learning</h3>
+-      <p>Core algorithms and theorems for factorizing matrices into fundamental components.</p>
+-      <a href="notes/matrix-decompositions.html" class="card-btn">Explore Notes</a>
++    <!-- Note 2 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">02 // MATRIX DECOMPOSITIONS</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Matrix Decompositions for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Core algorithms and theorems for factorizing matrices into fundamental components.</p>
++        <a href="notes/matrix-decompositions.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Matrix Calculus for Machine Learning</h3>
+-      <p>Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
+-      <a href="notes/matrix-calculus.html" class="card-btn">Explore Notes</a>
++    <!-- Note 3 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">03 // MATRIX CALCULUS</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Matrix Calculus for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
++        <a href="notes/matrix-calculus.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Optimization for Machine Learning</h3>
+-      <p>Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
+-      <a href="notes/optimization.html" class="card-btn">Explore Notes</a>
++    <!-- Note 4 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">04 // OPTIMIZATION</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Optimization for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
++        <a href="notes/optimization.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Probability for Machine Learning</h3>
+-      <p>The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
+-      <a href="notes/probability.html" class="card-btn">Explore Notes</a>
++    <!-- Note 5 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">05 // PROBABILITY</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Probability for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
++        <a href="notes/probability.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Information Theory for Machine Learning</h3>
+-      <p>Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
+-      <a href="notes/information-theory.html" class="card-btn">Explore Notes</a>
++    <!-- Note 6 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">06 // INFORMATION THEORY</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Information Theory for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
++        <a href="notes/information-theory.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Reinforcement Learning</h3>
+-      <p>Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
+-      <a href="notes/reinforcement-learning.html" class="card-btn">Explore Notes</a>
++    <!-- Note 7 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">07 // REINFORCEMENT LEARNING</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Reinforcement Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
++        <a href="notes/reinforcement-learning.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Probabilistic Models for Machine Learning</h3>
+-      <p>Modeling data distributions, variational inference, and modern generative architectures.</p>
+-      <a href="notes/probabilistic-ml.html" class="card-btn">Explore Notes</a>
++    <!-- Note 8 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">08 // PROBABILISTIC MODELS</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Probabilistic Models for Machine Learning</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Modeling data distributions, variational inference, and modern generative architectures.</p>
++        <a href="notes/probabilistic-ml.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+ 
+-    <div class="glass-card">
+-      <h3>Stochastic Dynamics</h3>
+-      <p>Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
+-      <a href="notes/stochastic-dynamics.html" class="card-btn">Explore Notes</a>
++    <!-- Note 9 -->
++    <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%; display: flex; flex-direction: column;" data-tilt-max="1">
++      <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
++         <span class="tiny-detail">09 // STOCHASTIC DYNAMICS</span>
++      </div>
++      <div class="brutalist-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
++        <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Stochastic Dynamics</h3>
++        <p style="font-family: inherit; font-size: 0.95rem; color: #aaa; margin-bottom: 1.5rem; flex-grow: 1; text-align: left;">Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
++        <a href="notes/stochastic-dynamics.html" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)';">
++          EXPLORE ↬
++        </a>
++      </div>
+     </div>
+   </div>
+ </div>
+diff --git a/scss/_base.scss b/scss/_base.scss
+index 776bef3..a207f63 100644
+--- a/scss/_base.scss
++++ b/scss/_base.scss
+@@ -43,19 +43,6 @@ html {
+   border-radius: 40px;
+   /* Grow to push the footer to the bottom */
+   flex: 1;
+-
+-  @media (max-width: 768px) {
+-    padding: 1rem;
+-    padding-bottom: 0;
+-  }
+-}
+-
+-.main-container {
+-  padding: 0 2rem;
+-  
+-  @media (max-width: 768px) {
+-    padding: 0 0.5rem;
+-  }
+ }
+ 
+ // Custom Navbar Styles
+@@ -212,12 +199,6 @@ h1, h2, h3, h4, h5, h6 {
+   border: 1px solid rgba(255, 255, 255, 0.15);
+   border-radius: 20px;
+   padding: 2.5rem;
+-
+-  @media (max-width: 768px) {
+-    padding: 1.5rem;
+-    min-width: 0;
+-  }
+-  
+   color: white;
+   text-align: center;
+   // Use a soft, subtle shadow instead of a massive solid black spread that blocks transparency
+@@ -333,12 +314,6 @@ html, .quarto-container, main, .page-layout-custom {
+   grid-template-columns: repeat(3, 1fr) !important;
+   gap: 1rem !important;
+   animation: dropdownFadeIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+-  
+-  @media (max-width: 768px) {
+-    grid-template-columns: 1fr !important;
+-    max-height: 70vh !important;
+-    overflow-y: auto !important;
+-  }
+ }
+ 
+ .dropdown-menu.is-closing {
+diff --git a/scss/_components.scss b/scss/_components.scss
+index 82e76f5..cf34a84 100644
+--- a/scss/_components.scss
++++ b/scss/_components.scss
+@@ -679,11 +679,6 @@ details.solution-toggle {
+     justify-content: space-between;
+     align-items: center;
+     padding: 1.25rem 2rem;
+-    
+-    @media (max-width: 768px) {
+-      padding: 1rem;
+-    }
+-
+     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+     flex-wrap: wrap;
+     gap: 0.5rem;
+@@ -702,11 +697,6 @@ details.solution-toggle {
+       font-weight: 600;
+       letter-spacing: 2px;
+       flex-shrink: 0;
+-      
+-      @media (max-width: 768px) {
+-        width: 100% !important; /* Force wrapping on mobile by taking full width, overriding inline 150px */
+-        margin-bottom: 0.25rem;
+-      }
+     }
+     
+     .item-value {
+@@ -716,12 +706,6 @@ details.solution-toggle {
+       text-align: right;
+       flex: 1;
+       min-width: 150px;
+-      
+-      @media (max-width: 768px) {
+-        min-width: 0;
+-        text-align: left; /* Better readability when wrapped */
+-      }
+-
+       font-family: 'JetBrains Mono', monospace;
+     }
+   }
