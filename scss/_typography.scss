@@ -69,15 +69,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-highlight {
   // Muted, sophisticated colors for a less intense gradient
-  background: linear-gradient(135deg, #10b981, #8b5cf6, #10b981);
+  background: linear-gradient(135deg, #c6a15b, #e8d2a0, #c6a15b);
   // Spreading the background over 300% makes the color transition much softer across the text
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientShift 6s ease infinite; // Slower animation
-  // Dim the glow opacity and slightly dim the text itself
-  filter: drop-shadow(0 0 3px rgba(16, 185, 129, 0.3)) drop-shadow(0 0 6px rgba(139, 92, 246, 0.3));
-  opacity: 0.9;
+  animation: gradientShift 7s ease infinite; // Slower animation
+  filter: drop-shadow(0 0 6px rgba(198, 161, 91, 0.28));
+  opacity: 0.95;
 }
 
 .hero-subtitle {
@@ -194,9 +193,8 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0.1rem 0.5rem;
-  border-radius: 0; /* Sharp corners for brutalism */
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.1rem;
+  border-radius: 6px;
+  font-size: 1.05rem;
   letter-spacing: 0px;
   color: #fff;
   font-weight: 700;
@@ -212,7 +210,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ANIMATED GRADIENT TEXT */
 .animated-gradient-text {
-  background: linear-gradient(to right, #bd93f9, #8be9fd, #ff79c6, #bd93f9);
+  background: linear-gradient(to right, #c6a15b, #5fb8ad, #dcbd7f, #c6a15b);
   background-size: 800px 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

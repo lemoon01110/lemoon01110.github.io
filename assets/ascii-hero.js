@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let particles = [];
     let mouse = { x: -1000, y: -1000 };
     const hoverRadius = 30; // Very localized hover radius
-    const hoverColor = { r: 139, g: 233, b: 253 }; // Dracula Cyan
+    const hoverColor = { r: 95, g: 184, b: 173 }; // Dracula Cyan
 
     // The characters to use (all printable ASCII except space)
     const chars = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Draw "Lemon"
             const startX = width / 2 - m2 / 2;
             const gradient = octx.createLinearGradient(startX, 0, startX + m2, 0);
-            gradient.addColorStop(0, "#bd93f9"); 
-            gradient.addColorStop(1, "#ff79c6"); 
+            gradient.addColorStop(0, "#e8b463"); 
+            gradient.addColorStop(1, "#5fb8ad"); 
             octx.fillStyle = gradient;
             octx.fillText(text2, width / 2, textY2);
         } else {
@@ -94,8 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Draw "Lemon"
             const gradient = octx.createLinearGradient(currentX, 0, currentX + m2, 0);
-            gradient.addColorStop(0, "#bd93f9"); 
-            gradient.addColorStop(1, "#ff79c6"); 
+            gradient.addColorStop(0, "#e8b463"); 
+            gradient.addColorStop(1, "#5fb8ad"); 
             octx.fillStyle = gradient;
             octx.fillText(text2, currentX, textY);
         }

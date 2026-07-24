@@ -2,4 +2,17 @@
 title: "Transformation of Random Variables"
 ---
 
-Content for Transformation of Random Variables goes here.
+## Overview
+If $Y = g(X)$, the distribution of $Y$ can be found from the distribution of $X$. For continuous variables, if $g$ is monotonic, $f_Y(y) = f_X(g^{-1}(y)) \left| \frac{d}{dy} g^{-1}(y) \right|$.
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Linear Transformation of Expectation and Variance
+If $\mathbb{E}[X] = \mu$ and $\text{Var}(X) = \sigma^2$, what are $\mathbb{E}[aX + b]$ and $\text{Var}(aX + b)$ for constants $a$ and $b$?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Continuous Transformation
+Let $X \sim \text{Uniform}(0, 1)$. Find the PDF of $Y = -\ln(X)$.
+:::

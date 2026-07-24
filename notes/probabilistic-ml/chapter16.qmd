@@ -4,52 +4,40 @@ toc: true
 toc-depth: 3
 ---
 
-## Overview
+## 1. Introduction to Latent Variable Models
 
-[Overview text]
+In many machine learning applications, we assume that the observed data $x$ is generated or influenced by some unobserved, hidden variables called **latent variables**, denoted as $z$. Latent variable models allow us to describe complex distributions over $x$ by marginalizing over $z$.
+
+A latent variable model specifies a joint distribution over the observed and latent variables:
+$$p(x, z) = p(x | z) p(z)$$
 
 ---
 
-## Definitions
+## 2. The Inference Problem
+
+The core challenge in probabilistic modeling with latent variables is the **inference problem**: determining the distribution of the latent variables given the data we have observed. 
+
+Mathematically, this means we want to compute the **posterior distribution** $p(z | x)$ using Bayes' Theorem:
+
+$$p(z | x) = \frac{p(x | z) p(z)}{p(x)}$$
 
 ::: {.thm-box .thm-definition}
-### Definition: [Title]
-[Definition content]
+### Definition: The Marginal Likelihood (Evidence)
+The denominator in Bayes' theorem, $p(x)$, is known as the **marginal likelihood** or **evidence**. It is obtained by marginalizing (integrating or summing) the joint distribution over all possible values of the latent variables:
+$$p(x) = \int p(x, z) dz = \int p(x | z) p(z) dz$$
+For discrete latent variables, this integral is replaced by a sum.
 :::
 
----
+### Why is this a "Problem"?
+The difficulty lies entirely in computing the evidence $p(x)$:
 
-## Theorems and Proofs
+1. **High Dimensionality**: If $z$ is continuous and high-dimensional, the integral $\int p(x, z) dz$ rarely has a closed-form analytical solution (unless we restrict ourselves to conjugate priors like Gaussians).
+2. **Combinatorial Explosion**: If $z$ consists of many discrete variables, the sum involves an exponentially large number of terms, making exact computation intractable.
 
-::: {.thm-box .thm-theorem}
-### Theorem: [Title]
-[Theorem content]
-:::
+Because we cannot compute the denominator $p(x)$, we cannot compute the exact posterior $p(z | x)$.
 
-::: {.thm-proof}
-### Proof
-[Proof content]
-:::
+### Approaching the Intractability
+Since exact inference is often impossible, we must resort to **approximate inference** methods. These generally fall into two families:
 
----
-
-## Examples and Solutions
-
-::: {.thm-box .thm-example}
-### Example: [Title]
-[Example content]
-:::
-
-::: {.thm-solution}
-### Solution
-[Solution content]
-:::
-
----
-
-## Remarks
-
-::: {.thm-box .thm-remark}
-### Remark
-[Remark content]
-:::
+1. **Stochastic Approximation (MCMC):** Methods like Markov Chain Monte Carlo that rely on numerical sampling to approximate the posterior. (Often accurate but computationally slow).
+2. **Deterministic Approximation (Variational Inference):** Methods that cast the inference problem as an optimization problem, approximating the true posterior with a simpler, tractable distribution. (Often faster and scales well to large datasets).

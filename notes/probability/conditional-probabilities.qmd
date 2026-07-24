@@ -2,4 +2,17 @@
 title: "Conditional Probabilities"
 ---
 
-Content for Conditional Probabilities goes here.
+## Overview
+Conditional probability is the probability of an event occurring given that another event has already occurred: $P(A|B) = \frac{P(A \cap B)}{P(B)}$.
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Basic Conditional Probability
+Suppose a medical test is positive $90\%$ of the time when a patient has a disease. This represents $P(\text{Test} = + \mid \text{Disease} = \text{True}) = 0.9$. If $P(\text{Test} = + \text{ and } \text{Disease} = \text{True}) = 0.09$, what is the overall prevalence of the disease $P(\text{Disease} = \text{True})$?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Using Joint and Marginal
+Using the joint PMF $P(X,Y)$ where $P(0,0)=0.1, P(0,1)=0.2, P(1,0)=0.3, P(1,1)=0.4$, compute the conditional probability $P(Y=1 \mid X=1)$.
+:::

@@ -2,4 +2,17 @@
 title: "Joint Probabilities of Multiple Variables"
 ---
 
-Content for Joint Probabilities of Multiple Variables goes here.
+## Overview
+Joint probability describes the likelihood of two or more events happening at the same time. For two random variables $X$ and $Y$, their joint distribution is $P(X=x, Y=y)$ or $f(x, y)$.
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Discrete Joint Distribution
+Let $X$ and $Y$ be binary variables (0 or 1). The joint PMF is $P(0,0)=0.1, P(0,1)=0.2, P(1,0)=0.3, P(1,1)=0.4$. Check that this is a valid joint distribution. What is $P(X=1, Y=0)$?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Continuous Joint PDF
+Suppose $f(x, y) = c(x+y)$ for $0 \le x \le 1$ and $0 \le y \le 1$. What must $c$ be for this to be a valid joint PDF?
+:::

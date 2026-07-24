@@ -2,4 +2,22 @@
 title: "Distribution Summary"
 ---
 
-Content for Distribution Summary goes here.
+## Overview
+A wrap-up of the relationships between the various probability distributions (e.g., Bernoulli $\rightarrow$ Binomial, Categorical $\rightarrow$ Multinomial, Beta as conjugate to Binomial).
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Conjugate Priors
+Match the likelihood with its conjugate prior:
+1. Bernoulli/Binomial
+2. Categorical/Multinomial
+3. Gaussian (mean parameter)
+
+Options: Beta, Dirichlet, Gaussian.
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Limiting Cases
+As the number of trials $N \rightarrow \infty$, what continuous distribution does the Binomial distribution approach (by the Central Limit Theorem)?
+:::

@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3358056f29ec04f97fd96047fb07152c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-bed6e5711c157cc4a642454e283a0203.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -112,7 +112,7 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../notes.html"> 
+    <a class="nav-link" href="../../#notes"> 
 <span class="menu-text">Notes</span></a>
   </li>  
 </ul>
@@ -132,7 +132,6 @@ window.Quarto = {
    
   <ul>
   <li><a href="#information-about-parameters" id="toc-information-about-parameters" class="nav-link active" data-scroll-target="#information-about-parameters">Information About Parameters</a></li>
-  <li><a href="#mathematical-definition" id="toc-mathematical-definition" class="nav-link" data-scroll-target="#mathematical-definition">Mathematical Definition</a></li>
   <li><a href="#the-cramér-rao-bound" id="toc-the-cramér-rao-bound" class="nav-link" data-scroll-target="#the-cramér-rao-bound">The Cramér-Rao Bound</a></li>
   <li><a href="#machine-learning-context-natural-gradient-descent" id="toc-machine-learning-context-natural-gradient-descent" class="nav-link" data-scroll-target="#machine-learning-context-natural-gradient-descent">Machine Learning Context: Natural Gradient Descent</a></li>
   <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">Practice Problems</a>
@@ -169,7 +168,8 @@ window.Quarto = {
 <p>In classical Information Theory (Shannon Entropy), we measure the information inherent in the data itself. In statistical inference, however, we often care about <strong>Fisher Information</strong>: a measure of the amount of information that an observable random variable <span class="math inline">\(X\)</span> carries about an unknown, unobservable parameter <span class="math inline">\(\theta\)</span>.</p>
 <p>If the probability distribution <span class="math inline">\(p(x | \theta)\)</span> changes rapidly when <span class="math inline">\(\theta\)</span> changes slightly, then observing <span class="math inline">\(X\)</span> gives us a massive amount of information about the true value of <span class="math inline">\(\theta\)</span>. If <span class="math inline">\(p(x | \theta)\)</span> is flat and barely reacts to changes in <span class="math inline">\(\theta\)</span>, observing <span class="math inline">\(X\)</span> tells us almost nothing.</p>
 </section>
-<section id="mathematical-definition" class="level3 thm-box thm-definition">
+<div class="thm-box thm-definition">
+<section id="mathematical-definition" class="level3">
 <h3 class="anchored" data-anchor-id="mathematical-definition">Mathematical Definition</h3>
 <p>The Fisher Information <span class="math inline">\(\mathcal{I}(\theta)\)</span> is defined as the variance of the <strong>score function</strong>. The score function is simply the gradient of the log-likelihood with respect to the parameter <span class="math inline">\(\theta\)</span>:</p>
 <p><span class="math display">\[
@@ -179,6 +179,13 @@ s(\theta) = \nabla_\theta \log p(x | \theta)
 <p><span class="math display">\[
 \mathcal{I}(\theta) = \mathbb{E}_{x \sim p(x|\theta)} \left[ \left( \nabla_\theta \log p(x | \theta) \right) \left( \nabla_\theta \log p(x | \theta) \right)^T \right]
 \]</span></p>
+</section>
+<section id="insight-element-wise-formulation-the-covariance-matrix" class="level3 thm-box thm-insight">
+<h3 class="anchored" data-anchor-id="insight-element-wise-formulation-the-covariance-matrix">Insight: Element-wise Formulation (The Covariance Matrix)</h3>
+<p>If <span class="math inline">\(\theta\)</span> is a vector of parameters <span class="math inline">\([\theta_1, \theta_2, \dots, \theta_n]\)</span>, the Fisher Information is a matrix (often denoted <span class="math inline">\(F(\theta)\)</span> or <span class="math inline">\(\mathcal{I}(\theta)\)</span>). The specific value at row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span> is calculated as: <span class="math display">\[
+F(\theta)_{ij} = \mathbb{E}_{p_\theta(x)} \left[ \frac{\partial \log p_\theta(x)}{\partial \theta_i} \frac{\partial \log p_\theta(x)}{\partial \theta_j} \right]
+\]</span> This formula calculates the <strong>covariance</strong> between the score of parameter <span class="math inline">\(\theta_i\)</span> and the score of parameter <span class="math inline">\(\theta_j\)</span>. - The diagonal elements <span class="math inline">\(F_{ii}\)</span> tell you how much information the data contains about a single parameter <span class="math inline">\(\theta_i\)</span>. - The off-diagonal elements <span class="math inline">\(F_{ij}\)</span> tell you how coupled the parameters are: if changing <span class="math inline">\(\theta_i\)</span> and changing <span class="math inline">\(\theta_j\)</span> have highly correlated effects on the probability distribution, their covariance will be high.</p>
+</section>
 <section id="the-hessian-equivalence" class="level4">
 <h4 class="anchored" data-anchor-id="the-hessian-equivalence">The Hessian Equivalence</h4>
 <p>Under certain regularity conditions (specifically, that you can swap the order of integration and differentiation), the Fisher Information is also identically equal to the <strong>negative expected Hessian</strong> of the log-likelihood:</p>
@@ -187,7 +194,7 @@ s(\theta) = \nabla_\theta \log p(x | \theta)
 \]</span></p>
 <p>This equivalence provides brilliant intuition: Fisher Information measures the <strong>local curvature</strong> of the log-likelihood function. - High Fisher Information = High curvature (a sharp peak). The parameter <span class="math inline">\(\theta\)</span> is tightly constrained, meaning we can estimate it with high precision. - Low Fisher Information = Low curvature (a flat valley). The parameter <span class="math inline">\(\theta\)</span> is poorly constrained, meaning our estimation will have high variance.</p>
 </section>
-</section>
+</div>
 <section id="the-cramér-rao-bound" class="level3 thm-box thm-theorem">
 <h3 class="anchored" data-anchor-id="the-cramér-rao-bound">The Cramér-Rao Bound</h3>
 <p>Fisher Information establishes the absolute theoretical limit on how accurately we can estimate a parameter. The <strong>Cramér-Rao Bound</strong> states that the variance of any unbiased estimator <span class="math inline">\(\hat{\theta}\)</span> must be greater than or equal to the inverse of the Fisher Information:</p>
@@ -254,19 +261,20 @@ s(\theta) = \nabla_\theta \log p(x | \theta)
       <!-- Notes Links -->
       <div class="footer-links-col">
         <h4>Notes</h4>
-        <a href="#" onclick="event.preventDefault(); window.location.href = document.querySelector('a.nav-link[href$=\'notes.html\']').href;">All Notes</a>
+        <a href="../../#notes">All Notes</a>
       </div>
 
       <!-- Interactives Links -->
       <div class="footer-links-col">
         <h4>Interactives</h4>
-        <span class="coming-soon-text">Coming Soon</span>
+        <a href="../../chroma/">Chroma Lab</a>
       </div>
 
       <!-- Projects Links -->
       <div class="footer-links-col">
         <h4>Projects</h4>
-        <a href="https://github.com/lemoon01110/lemoon01110.github.io">GitHub</a>
+        <a href="https://github.com/lemoon01110/Lunar-Titanium-Magnetism" target="_blank" rel="noopener">Lunar × Magnetism</a>
+        <a href="https://github.com/lemoon01110" target="_blank" rel="noopener">All on GitHub</a>
       </div>
     </div>
   </div>
@@ -274,6 +282,7 @@ s(\theta) = \nabla_\theta \log p(x | \theta)
 <script src="../../assets/notes-nav.js"></script>
 <script src="../../assets/navbar-intellisense.js"></script>
 <script src="../../assets/dropdown-anim.js"></script>
+<script src="../../assets/card-tilt.js"></script>
 <script>
   (function() {
     var footer = document.querySelector('.takara-footer');

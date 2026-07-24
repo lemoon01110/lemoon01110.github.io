@@ -2,4 +2,44 @@
 title: "Sets and Cardinality"
 ---
 
-Content for Sets and Cardinality goes here.
+## Overview
+Before we can define probability, we need a language to describe "collections of things." That language is Set Theory.
+
+*   **Sets:** A well-defined collection of distinct objects (elements). E.g., $\mathcal{S} = \{1, 2, 3\}$.
+*   **Cardinality ($|\mathcal{S}|$):** The number of elements in a set. For $\mathcal{S} = \{1, 2, 3\}$, the cardinality is $3$.
+*   **Set Operations:** The basic ways we combine or compare sets:
+    *   **Union ($\cup$):** Elements in *either* set (or both).
+    *   **Intersection ($\cap$):** Elements in *both* sets.
+    *   **Set Difference ($\setminus$):** Elements in one set but not the other.
+    *   **Complement ($\mathcal{S}^c$):** Everything in the "universe" that is *not* in $\mathcal{S}$.
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Basic Operations
+Let $A = \{1, 2, 3, 4, 5\}$ and $B = \{4, 5, 6, 7\}$. 
+Find the following sets:
+
+1. $A \cup B$ 
+2. $A \cap B$ 
+3. $A \setminus B$ 
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Cardinality and Power Sets
+The power set of $S$ is the set of *all possible subsets* of $S$ (including the empty set $\emptyset$ and the set $S$ itself).
+
+If a set $S$ has cardinality $|S| = 4$, what is the cardinality of its power set? 
+:::
+
+::: {.thm-box .thm-example}
+### Problem 3: Machine Learning Context
+Let our "universe" (sample space $\Omega$) be a dataset of emails. 
+* Let $S$ be the set of all **spam** emails.
+* Let $W$ be the set of all emails containing the word **"lottery"**.
+
+Express the following scenarios using set notation (using $S$, $W$, $\cap$, $\cup$, and $^c$):
+
+1. The set of emails that are **not** spam, but **do** contain the word "lottery".
+2. The set of emails that are **either** spam **or** contain the word "lottery" (or both).
+:::

@@ -2,4 +2,18 @@
 title: "Bayes' Rule"
 ---
 
-Content for Bayes' Rule goes here.
+## Overview
+Bayes' theorem relates conditional probabilities and is fundamental in Machine Learning for updating beliefs:
+$$P(A|B) = \frac{P(B|A)P(A)}{P(B)}$$
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Medical Testing
+A disease has a prevalence of $1\%$ ($P(D)=0.01$). A test has a true positive rate of $95\%$ ($P(+|D)=0.95$) and a false positive rate of $5\%$ ($P(+|D^c)=0.05$). If a patient tests positive, what is the probability they actually have the disease $P(D|+)$?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Spam Filtering
+Suppose $30\%$ of emails are spam. The word "buy" appears in $80\%$ of spam emails and $10\%$ of non-spam emails. If you see an email with the word "buy", what is the probability it is spam?
+:::

@@ -2,4 +2,19 @@
 title: "Probability Distributions of a Single Random Variable"
 ---
 
-Content for Probability Distributions of a Single Random Variable goes here.
+## Overview
+A random variable $X$ maps outcomes to real numbers. Its distribution describes how probabilities are assigned to these numbers.
+*   **Discrete RV:** Uses a Probability Mass Function (PMF) $P(X=x)$.
+*   **Continuous RV:** Uses a Probability Density Function (PDF) $f(x)$.
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Valid PMF
+A discrete random variable $X$ has PMF $P(X=k) = c k$ for $k \in \{1, 2, 3, 4\}$. What must the value of the constant $c$ be?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Valid PDF
+A continuous random variable has PDF $f(x) = a x^2$ for $x \in [0, 1]$, and $0$ otherwise. Find the constant $a$.
+:::

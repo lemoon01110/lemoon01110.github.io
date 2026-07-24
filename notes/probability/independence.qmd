@@ -2,4 +2,17 @@
 title: "Independence"
 ---
 
-Content for Independence goes here.
+## Overview
+Two events A and B are independent if the occurrence of one does not affect the probability of the other: $P(A \cap B) = P(A)P(B)$, or equivalently, $P(A|B) = P(A)$.
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Checking Independence
+A fair coin is flipped twice. Let $A$ be the event "first flip is Heads" and $B$ be "second flip is Heads". Are $A$ and $B$ independent? Show it mathematically.
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Joint Distribution of Independent Variables
+If $X$ and $Y$ are independent random variables with $P(X=1) = 0.6$ and $P(Y=1) = 0.8$, what is $P(X=1, Y=1)$?
+:::

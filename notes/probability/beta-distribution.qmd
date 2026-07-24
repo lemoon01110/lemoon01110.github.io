@@ -2,4 +2,18 @@
 title: "Beta Distribution"
 ---
 
-Content for Beta Distribution goes here.
+## Overview
+A continuous distribution on the interval $[0,1]$, commonly used as a prior for probability parameters (like the bias of a coin).
+$f(x; \alpha, \beta) \propto x^{\alpha-1}(1-x)^{\beta-1}$
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Beta as a Prior
+If you have a Beta$(2, 2)$ prior on the probability of a coin landing Heads, what does the PDF shape look like? (Is it uniform, U-shaped, or bell-shaped around 0.5?)
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Conjugacy (Conceptual)
+Why is the Beta distribution called the "conjugate prior" to the Binomial distribution?
+:::

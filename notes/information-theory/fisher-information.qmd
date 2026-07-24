@@ -28,6 +28,17 @@ $$
 \mathcal{I}(\theta) = \mathbb{E}_{x \sim p(x|\theta)} \left[ \left( \nabla_\theta \log p(x | \theta) \right) \left( \nabla_\theta \log p(x | \theta) \right)^T \right]
 $$
 
+::: {.thm-box .thm-insight}
+### Insight: Element-wise Formulation (The Covariance Matrix)
+If $\theta$ is a vector of parameters $[\theta_1, \theta_2, \dots, \theta_n]$, the Fisher Information is a matrix (often denoted $F(\theta)$ or $\mathcal{I}(\theta)$). The specific value at row $i$ and column $j$ is calculated as:
+$$
+F(\theta)_{ij} = \mathbb{E}_{p_\theta(x)} \left[ \frac{\partial \log p_\theta(x)}{\partial \theta_i} \frac{\partial \log p_\theta(x)}{\partial \theta_j} \right]
+$$
+This formula calculates the **covariance** between the score of parameter $\theta_i$ and the score of parameter $\theta_j$. 
+- The diagonal elements $F_{ii}$ tell you how much information the data contains about a single parameter $\theta_i$. 
+- The off-diagonal elements $F_{ij}$ tell you how coupled the parameters are: if changing $\theta_i$ and changing $\theta_j$ have highly correlated effects on the probability distribution, their covariance will be high.
+:::
+
 #### The Hessian Equivalence
 Under certain regularity conditions (specifically, that you can swap the order of integration and differentiation), the Fisher Information is also identically equal to the **negative expected Hessian** of the log-likelihood:
 

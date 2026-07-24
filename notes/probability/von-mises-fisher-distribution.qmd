@@ -2,4 +2,17 @@
 title: "Von Mises-Fisher Distribution"
 ---
 
-Content for Von Mises-Fisher Distribution goes here.
+## Overview
+A probability distribution on the $(p-1)$-dimensional sphere. It is often used in directional statistics (e.g., modeling word embeddings mapped to a hypersphere).
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Domain
+What is the sample space (domain) of a von Mises-Fisher distribution in 3D space?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Parameters
+The vMF distribution has parameters $\boldsymbol{\mu}$ and $\kappa$. What do these parameters represent?
+:::

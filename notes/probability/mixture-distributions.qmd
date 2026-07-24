@@ -2,4 +2,18 @@
 title: "Mixture Distributions"
 ---
 
-Content for Mixture Distributions goes here.
+## Overview
+Complex distributions can be formed by taking a weighted sum (mixture) of simpler distributions (e.g., Gaussian Mixture Models).
+$P(x) = \sum_{k=1}^K \pi_k P_k(x)$
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Mixture Weights
+In a mixture model $P(x) = \pi_1 P_1(x) + \pi_2 P_2(x)$, what constraints must the mixture weights $\pi_1$ and $\pi_2$ satisfy?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: GMM Mean
+For a Gaussian Mixture Model with two components $\mathcal{N}(\mu_1, \sigma_1^2)$ and $\mathcal{N}(\mu_2, \sigma_2^2)$ and weights $\pi_1, \pi_2$, what is the overall expected value $\mathbb{E}[X]$?
+:::

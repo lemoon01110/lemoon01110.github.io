@@ -2,4 +2,19 @@
 title: "Marginal Probabilities"
 ---
 
-Content for Marginal Probabilities goes here.
+## Overview
+Marginalization allows us to find the distribution of one variable by summing or integrating out the other variables from a joint distribution.
+*   Discrete: $P(X=x) = \sum_y P(X=x, Y=y)$
+*   Continuous: $f_X(x) = \int f(x,y) dy$
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Discrete Marginalization
+Using the joint PMF: $P(0,0)=0.1, P(0,1)=0.2, P(1,0)=0.3, P(1,1)=0.4$. Find the marginal probability $P(X=1)$.
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Continuous Marginalization
+Given $f(x, y) = x+y$ for $x,y \in [0,1]$, find the marginal PDF $f_X(x)$.
+:::

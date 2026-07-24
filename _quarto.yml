@@ -5,6 +5,7 @@ project:
     - "notes/**/*.qmd"
   resources:
   - assets/
+  - chroma/
 website:
   title: Lemon's Website
   favicon: assets/lemon-emoji.svg
@@ -17,7 +18,7 @@ website:
     - text: Home
       href: index.qmd
     - text: Notes
-      href: notes.qmd
+      href: /#notes
 format:
   html:
     theme:

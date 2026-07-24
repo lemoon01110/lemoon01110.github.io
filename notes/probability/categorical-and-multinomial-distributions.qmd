@@ -2,4 +2,18 @@
 title: "Categorical and Multinomial Distributions"
 ---
 
-Content for Categorical and Multinomial Distributions goes here.
+## Overview
+*   **Categorical:** Generalization of Bernoulli to $K$ categories. (Roll of a $K$-sided die).
+*   **Multinomial:** Generalization of Binomial to $K$ categories. (Counts of outcomes in $N$ rolls of a $K$-sided die).
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Categorical Probabilities
+A word in a vocabulary of size 3 can be generated with probabilities $\boldsymbol{p} = [0.2, 0.5, 0.3]$. What is the probability of observing the sequence (word 2, word 1) assuming independence?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Multinomial Support
+If you draw $N=10$ samples from a categorical distribution with 3 classes, what is the sum of the counts $c_1 + c_2 + c_3$?
+:::

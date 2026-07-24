@@ -2,4 +2,20 @@
 title: "Probability Basics"
 ---
 
-Content for Probability Basics goes here.
+## Overview
+Probability is a measure of the likelihood of an event occurring, quantified as a number between 0 and 1. Kolmogorov's axioms state that:
+1. $P(E) \ge 0$ for any event $E$.
+2. $P(\Omega) = 1$ for the sample space $\Omega$.
+3. For mutually exclusive events $E_1, E_2, \dots$, $P(\bigcup_{i=1}^\infty E_i) = \sum_{i=1}^\infty P(E_i)$.
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Basic Axioms
+If $P(A) = 0.4$, $P(B) = 0.5$, and $A$ and $B$ are mutually exclusive, what is $P(A \cup B)$?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Complement Rule
+A machine learning model predicts a class correctly with probability $0.85$. What is the probability that it makes an incorrect prediction?
+:::

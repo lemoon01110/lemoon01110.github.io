@@ -2,4 +2,18 @@
 title: "Gaussian Distribution"
 ---
 
-Content for Gaussian Distribution goes here.
+## Overview
+The Normal (Gaussian) distribution is ubiquitous in ML due to the Central Limit Theorem.
+$f(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left( -\frac{1}{2} \left(\frac{x-\mu}{\sigma}\right)^2 \right)$
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Standard Normal
+For a standard normal variable $Z \sim \mathcal{N}(0, 1)$, what is the value of the PDF at $z=0$?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Linear Combinations
+If $X \sim \mathcal{N}(1, 2)$ and $Y \sim \mathcal{N}(0, 3)$ are independent, what is the distribution of $X+Y$?
+:::

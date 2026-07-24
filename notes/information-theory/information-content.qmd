@@ -274,3 +274,83 @@ Rolling a 6 provides *more* surprise (2.585 bits) than flipping two heads in a r
 
 </div>
 </details>
+
+### Problem 3: The Infinite Monkey's Surprise {#problem-3 .thm-box .thm-problem}
+
+Consider a monkey typing randomly on a keyboard with 50 keys. Each keystroke is chosen uniformly and independently at random. What is the information content (in bits) of the monkey typing the exact sequence "INFORMATION" (11 characters)? 
+
+If the monkey types at a rate of 10 keys per second, roughly how long (in years) would we expect to wait on average for this specific string to appear, and how does this relate to the information content?
+<details class="solution-toggle">
+<summary>Reveal Solution to Problem 3</summary>
+<div class="solution-body">
+
+::: {.thm-box .thm-solution}
+<div class="solution-heading">Solution</div>
+
+**Information Content:**
+Since there are 50 keys, the probability of hitting a specific key is $\frac{1}{50}$. Because each keystroke is independent, the probability of typing a specific 11-character sequence is:
+$$
+P(x) = \left(\frac{1}{50}\right)^{11} = 50^{-11}
+$$
+The information content (surprisal) is:
+$$
+h(x) = -\log_2(50^{-11}) = 11 \log_2(50) \approx 11 \times 5.6438 = 62.08 \text{ bits}
+$$
+
+**Expected Wait Time:**
+The expected number of keystrokes to type this specific sequence is the reciprocal of its probability (mean of a geometric distribution of non-overlapping chunks, though closely approximated for sliding windows):
+$$
+\text{Expected strokes} \approx 50^{11} \approx 4.88 \times 10^{16} \text{ strokes}
+$$
+At 10 strokes per second, the expected time in seconds is $4.88 \times 10^{15}$. 
+In years (assuming $3.15 \times 10^7$ seconds per year):
+$$
+\text{Time} \approx \frac{4.88 \times 10^{15}}{3.15 \times 10^7} \approx 154,000,000 \text{ years} (154 \text{ million years})
+$$
+
+**Insight:**
+The information content (~62 bits) directly exponentiates to the expected waiting time. A seemingly small linear increase in information content (e.g., adding just one more letter adds ~5.6 bits) leads to an exponential explosion in how rare the event is. This highlights why high-information events are cosmically unlikely to happen by pure chance!
+:::
+
+</div>
+</details>
+
+### Problem 4: Surprisal in Zipf's Law {#problem-4 .thm-box .thm-problem}
+
+In natural language processing, word frequencies often follow Zipf's Law, where the probability of encountering the $k$-th most common word in a vocabulary of size $N$ is inversely proportional to its rank $k$:
+$$
+P(k) = \frac{1}{H_N \cdot k}
+$$
+where $H_N = \sum_{i=1}^N \frac{1}{i}$ is the $N$-th harmonic number (acting as the normalizing constant).
+
+For a vocabulary of $N=10,000$ words ($H_{10000} \approx 9.78$), what is the difference in information content (in bits) between observing the most common word ($k=1$) versus the least common word ($k=10,000$)? Does this difference depend on the vocabulary size $N$?
+<details class="solution-toggle">
+<summary>Reveal Solution to Problem 4</summary>
+<div class="solution-body">
+
+::: {.thm-box .thm-solution}
+<div class="solution-heading">Solution</div>
+
+Let's calculate the surprisal for both words:
+
+**Most common word ($k=1$):**
+$$
+h(1) = -\log_2(P(1)) = -\log_2\left(\frac{1}{H_N}\right) = \log_2(H_N)
+$$
+
+**Least common word ($k=10,000$):**
+$$
+h(10000) = -\log_2(P(10000)) = -\log_2\left(\frac{1}{10000 \cdot H_N}\right) = \log_2(10000) + \log_2(H_N)
+$$
+
+**Difference in Information Content:**
+$$
+h(10000) - h(1) = (\log_2(10000) + \log_2(H_N)) - \log_2(H_N) = \log_2(10000) \approx 13.28 \text{ bits}
+$$
+
+**Insight:**
+The difference in surprisal depends *only* on the ratio of their ranks! The $\log_2(H_N)$ terms cancel out entirely. This means the difference in information gained between the 1st and 10,000th word is strictly $\sim 13.28$ bits, *regardless of whether your vocabulary has 10,000 words or 10 billion words*. 
+:::
+
+</div>
+</details>

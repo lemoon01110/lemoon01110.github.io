@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3358056f29ec04f97fd96047fb07152c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-9bc38478214335726b5c0d284ec565b2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./notes.html"> 
+    <a class="nav-link" href="./#notes"> 
 <span class="menu-text">Notes</span></a>
   </li>  
 </ul>
@@ -102,314 +102,361 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<!-- Three.js Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<!-- Static-capture / reduced-motion guard: ?still freezes all animation.
+     Must run BEFORE particles.js so the constellation never starts its rAF loop. -->
+<script>
+  window.__STILL__ = location.search.indexOf('still') >= 0;
+  if (window.__STILL__) {
+    window.requestAnimationFrame = function(){ return 0; };
+    window.setInterval = function(){ return 0; };
+    document.documentElement.classList.add('still');
+  }
+</script>
 
-<!-- Particle Constellation Network Background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="assets/particles.js"></script>
 
+<!-- Scroll-reactive multi-hue scene atmospheres -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var scenes = [
+    ['rgba(167,139,250,.28)','rgba(95,184,173,.18)'],   // 0 hero     — indigo + teal
+    ['rgba(95,184,173,.26)','rgba(198,161,91,.16)'],    // 1 about    — teal + citrus
+    ['rgba(95,184,173,.24)','rgba(224,138,106,.20)'],   // 2 tools    — teal + coral
+    ['rgba(224,138,106,.28)','rgba(167,139,250,.16)'],  // 3 projects — coral + indigo
+    ['rgba(198,161,91,.26)','rgba(124,156,255,.18)'],   // 4 lit      — citrus + indigo
+    ['rgba(124,156,255,.26)','rgba(95,184,173,.16)']    // 5 notes    — indigo + teal
+  ];
+  var bg = document.createElement('div'); bg.id = 'scene-bg';
+  scenes.forEach(function(s, i){
+    var l = document.createElement('div'); l.className = 'scene-layer';
+    l.style.backgroundImage =
+      'radial-gradient(54% 48% at 22% 20%, ' + s[0] + ', transparent 60%),' +
+      'radial-gradient(52% 48% at 82% 34%, ' + s[1] + ', transparent 62%)';
+    if (i === 0) l.style.opacity = '1';
+    bg.appendChild(l);
+  });
+  document.body.prepend(bg);
+  var layers = [].slice.call(bg.children);
+  var sections = [].slice.call(document.querySelectorAll('[data-scene]'));
+  var current = -1;
+  function pick(){
+    var line = window.innerHeight * 0.42;
+    var best = 0;
+    sections.forEach(function(s){
+      var idx = +s.getAttribute('data-scene');
+      if (s.getBoundingClientRect().top <= line && idx > best) best = idx;
+    });
+    if (best !== current){
+      current = best;
+      layers.forEach(function(l, i){ l.style.opacity = (i === best) ? '1' : '0'; });
+    }
+  }
+  window.addEventListener('scroll', pick, { passive: true });
+  window.addEventListener('resize', pick);
+  pick();
+});
+</script>
 
-
-<!-- Main Container -->
 <div class="container main-container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
-  
-  <!-- Hero Section (Full Bleed) -->
-  <div class="hero-section" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <div class="hero-section" data-scene="0" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
     <div id="ascii-hero-container" style="width: 100%; height: 50vh; position: relative; cursor: crosshair; overflow: visible;"></div>
-    
-    <!-- Scroll indicator -->
     <div class="scroll-indicator" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); text-align: center; opacity: 0.5; animation: pulse 2s infinite;">
       <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;">Scroll for more</span><br>
       ↓
     </div>
   </div>
 
-  <!-- About Me Section -->
-  <div class="about-section" style="min-height: 100vh; padding: 4rem 0; font-family: 'JetBrains Mono', monospace;">
-    <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 3rem; color: #fff; text-align: center; text-transform: uppercase; letter-spacing: 4px;">About Me</h2>
-    
-    <div style="max-width: 900px; margin: 0 auto 4rem auto; text-align: center;">
-      <p style="font-size: 1.5rem; line-height: 2.2; color: #fff; font-weight: 300;">
-        Hi, I'm <span class="animated-gradient-text" style="font-size: 1.2em; margin-right: 0.1rem;">Lemon</span>. I'm currently a <span id="dynamic-seniority" class="decorated-inline cyan">student</span> at <span class="decorated-inline">Lynbrook High School</span>.
-      </p>
-    </div>
-    
-    <div class="bento-grid">
-      
-      
-      <!-- Current Status (Small) -->
-      <div class="glass-card brutalist-card" style="justify-content: flex-start; text-align: left;">
-        <div class="brutalist-header">
-           <span class="tiny-detail">01 // STATUS &amp; LOCATION</span>
+  <!-- ── About ──────────────────────────────────────────────── -->
+  <section class="about-section band band-about" data-scene="1">
+    <div class="band-inner">
+      <h2 class="section-title">About Me</h2>
+
+      <div class="about-intro">
+        <p>
+          Hi, I'm <span class="animated-gradient-text" style="font-size: 1.15em; margin-right: 0.1rem;">Lemon</span>.
+          I'm currently a <span id="dynamic-seniority" class="decorated-inline cyan">student</span>
+          at <span class="decorated-inline">Lynbrook High School</span>.
+        </p>
+      </div>
+
+      <aside class="about-widgets">
+        <div class="about-widget">
+          <div class="w-label">Located in</div>
+          <div class="w-place" id="slot-location">SAN JOSE, CA</div>
         </div>
-        <div class="brutalist-content brutalist-list" style="padding: 0; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
-          <div class="list-item" style="border-bottom: none; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;">
-            <div style="font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; color: #bbb; letter-spacing: 2px;">LOCATED IN</div>
-            <div style="font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1;" id="slot-location">SAN JOSE, CA</div>
+        <div class="about-widget">
+          <div class="w-time">Local time · <span id="slot-timezone">PST</span></div>
+          <div class="analog-pill-clock">
+            <div class="digital-time" id="clock-digital">00:00:00</div>
+            <div class="clock-center-dot"></div>
+            <div class="clock-hand hour-hand" id="clock-hour"></div>
+            <div class="clock-hand minute-hand" id="clock-minute"></div>
+            <div class="clock-hand second-hand" id="clock-second"></div>
           </div>
-          <div class="list-item" style="border-bottom: none; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #bbb; letter-spacing: 2px;">LOCAL TIME: <span id="slot-timezone">PST</span></div>
-            <div class="analog-pill-clock" style="margin-top: 0; align-self: center;">
-              <div class="digital-time" id="clock-digital">00:00:00</div>
-              <div class="clock-center-dot"></div>
-              <div class="clock-hand hour-hand" id="clock-hour"></div>
-              <div class="clock-hand minute-hand" id="clock-minute"></div>
-              <div class="clock-hand second-hand" id="clock-second"></div>
+        </div>
+      </aside>
+
+      <div class="about-columns">
+        <div>
+          <h3 class="about-block-title">Interested in</h3>
+          <div class="open-list">
+            <div class="open-row">
+              <span class="open-k">Cyber security</span>
+              <span class="open-v">How systems fail, and how they're kept secure.</span>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Interested In Card -->
-      <div class="glass-card brutalist-card bento-col-span-2" style="justify-content: flex-start; text-align: left;">
-        <div class="brutalist-header">
-           <span class="tiny-detail">02 // INTERESTED IN</span>
-        </div>
-        <div class="brutalist-content brutalist-list">
-          <div class="list-item">
-            <span class="item-name" style="width: 150px;">CYBER SECURITY</span>
-            <span class="item-value" style="text-align: left; font-family: inherit;">Eager to learn about system vulnerabilities and the mechanics of secure networks.</span>
-          </div>
-          <div class="list-item">
-            <span class="item-name" style="width: 150px;">SYSTEMS PROG</span>
-            <span class="item-value" style="text-align: left; font-family: inherit;">Fascinated by Linux environments and currently ricing custom window managers like Hyprland.</span>
-          </div>
-          <div class="list-item">
-            <span class="item-name" style="width: 150px;">MACHINE LEARNING</span>
-            <span class="item-value" style="text-align: left; font-family: inherit;">Exploring the intersection of AI and healthcare, with a specific focus on medical imaging analysis.</span>
-          </div>
-          <div class="list-item" style="border-bottom: none;">
-            <span class="item-name" style="width: 150px;">HARDWARE</span>
-            <span class="item-value" style="text-align: left; font-family: inherit;">Curious about the physical layers of computing, from low-level architecture to custom builds.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tackle Next Card -->
-      <div class="glass-card brutalist-card" style="grid-column: 1 / -1; justify-content: flex-start; text-align: left;">
-        <div class="brutalist-header">
-           <span class="tiny-detail">03 // CURRENT FOCUS</span>
-        </div>
-        <div class="brutalist-content brutalist-list" style="padding: 0;">
-          <div class="list-item">
-            <span class="item-name" style="width: 150px;">LEADING</span>
-            <span class="item-value" style="text-align: left; font-family: inherit;">Dedicating my time to the OpenGate club.</span>
-          </div>
-          <div class="list-item">
-            <span class="item-name" style="width: 150px;">STUDYING</span>
-            <span class="item-value" style="text-align: left; font-family: inherit;">Mastering the core mathematics behind Machine Learning models.</span>
-          </div>
-          <div class="list-item" style="border-bottom: none;">
-            <span class="item-name" style="width: 150px;">PURSUING</span>
-            <span class="item-value" style="text-align: left; font-family: inherit;">Looking forward to gaining hands-on project experience, competing in hackathons, and diving into formal research.</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Projects Section -->
-    <div style="margin-top: 6rem;">
-      <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 2rem; color: #fff; text-align: center; text-transform: uppercase; letter-spacing: 4px;">Projects</h2>
-      <div class="glass-card brutalist-card" style="justify-content: center; align-items: center; min-height: 200px; padding: 3rem; max-width: none; width: 100%; box-sizing: border-box;">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-          // Compiling Ideas... [WIP]
-        </div>
-      </div>
-    </div>
-
-    <!-- Literature Section -->
-    <div style="margin-top: 6rem;">
-      <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 3rem; color: #fff; text-align: center; text-transform: uppercase; letter-spacing: 4px;">Literature &amp; Reading</h2>
-      
-      <div class="bento-grid">
-        <!-- Computer Science Row -->
-        <div class="glass-card brutalist-card bento-col-span-3" style="justify-content: flex-start; text-align: left; grid-column: 1 / -1;" data-tilt="" data-tilt-max="1" data-tilt-speed="600">
-          <div class="brutalist-header">
-             <span class="tiny-detail">TOPIC // STUDY MATERIAL</span>
-          </div>
-          <div class="brutalist-content" style="padding: 2rem;">
-            <p style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; line-height: 1.8; color: #ccc; font-weight: 300; margin: 0 0 1rem 0;">From the physical layers of computing and low-level architecture to the complex mathematics and architectures powering artificial intelligence.</p>
-            <p style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; line-height: 1.8; color: #ccc; font-weight: 300; margin: 0 0 2rem 0;">A collection of resources I have gathered and recommend.</p>
-            
-            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
-              
-              <!-- Artificial Intelligence Card -->
-              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%;" data-tilt-max="1">
-                <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-                   <span class="tiny-detail">01 // ARTIFICIAL INTELLIGENCE</span>
-                </div>
-                <div class="brutalist-content brutalist-list grid-3-col" style="padding: 1.5rem; max-height: 600px; overflow-y: auto;">
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">An Introduction to Flow Matching and Diffusion Models <br><span style="font-size: 0.85em; color: #888;">Peter Holderrieth and Ezra Erives</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Build a Large Language Model (From Scratch) <br><span style="font-size: 0.85em; color: #888;">Sebastian Raschka</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Deep Learning <br><span style="font-size: 0.85em; color: #888;">Ian Goodfellow, Yoshua Bengio, and Aaron Courville</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Deep Learning - Foundations and Concepts <br><span style="font-size: 0.85em; color: #888;">Christopher M. Bishop and Hugh Bishop</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Deep Learning with PyTorch <br><span style="font-size: 0.85em; color: #888;">Eli Stevens, Luca Antiga, and Thomas Viehmann</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Dive Into Deep Learning <br><span style="font-size: 0.85em; color: #888;">Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">GANs in Action <br><span style="font-size: 0.85em; color: #888;">Jakub Langr and Vladimir Bok</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Graph Neural Networks in Action <br><span style="font-size: 0.85em; color: #888;">Keita Broadwater and Namid Stillman</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Hands-On Generative AI with Transformers and Diffusion Models <br><span style="font-size: 0.85em; color: #888;">Omar Sanseviero, Pedro Cuenca, Apolinário Passos, and Jonathan Whitaker</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Hands-On Machine Learning with Scikit-Learn and PyTorch <br><span style="font-size: 0.85em; color: #888;">Aurélien Géron</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow <br><span style="font-size: 0.85em; color: #888;">Aurélien Géron</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Machine Learning Algorithms in Depth <br><span style="font-size: 0.85em; color: #888;">Vadim Smolyakov</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Mathematics for AI and Machine Learning <br><span style="font-size: 0.85em; color: #888;">Custom compilation</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Mathematics for Machine Learning <br><span style="font-size: 0.85em; color: #888;">Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Natural Language Processing with Transformers <br><span style="font-size: 0.85em; color: #888;">Lewis Tunstall, Leandro von Werra, and Thomas Wolf</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Numerical Python <br><span style="font-size: 0.85em; color: #888;">Robert Johansson</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Practical Statistics for Data Scientists <br><span style="font-size: 0.85em; color: #888;">Peter Bruce, Andrew Bruce, and Peter Gedeck</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Probabilistic Machine Learning - Advanced Topics <br><span style="font-size: 0.85em; color: #888;">Kevin P. Murphy</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Python Data Science Handbook <br><span style="font-size: 0.85em; color: #888;">Jake VanderPlas</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Reinforcement Learning - An Introduction <br><span style="font-size: 0.85em; color: #888;">Richard S. Sutton and Andrew G. Barto</span></span></div>
-                  <div class="list-item"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Support Vector Machines (Information Science and Statistics) <br><span style="font-size: 0.85em; color: #888;">Ingo Steinwart</span></span></div>
-                  <div class="list-item" style="border-bottom: none;"><span class="item-name">+</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">The Elements of Statistical Learning <br><span style="font-size: 0.85em; color: #888;">Trevor Hastie, Robert Tibshirani, and Jerome Friedman</span></span></div>
-                </div>
-              </div>
-
-              <!-- Systems Programming Card -->
-              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2); max-width: none; width: 100%;" data-tilt-max="1">
-                <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-                   <span class="tiny-detail">02 // SYSTEMS PROGRAMMING</span>
-                </div>
-                <div class="brutalist-content brutalist-list grid-3-col" style="padding: 1.5rem; max-height: 600px; overflow-y: auto;">
-                  <div class="list-item"><span class="item-name">/</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Advanced Programming in the UNIX Environment <br><span style="font-size: 0.85em; color: #888;">W. Richard Stevens and Stephen A. Rago</span></span></div>
-                  <div class="list-item"><span class="item-name">/</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Code: The Hidden Language of Computer Hardware and Software <br><span style="font-size: 0.85em; color: #888;">Charles Petzold</span></span></div>
-                  <div class="list-item"><span class="item-name">/</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Computer Systems - A Programmer's Perspective <br><span style="font-size: 0.85em; color: #888;">Randal E. Bryant and David R. O'Hallaron</span></span></div>
-                  <div class="list-item"><span class="item-name">/</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">Designing Data-Intensive Applications <br><span style="font-size: 0.85em; color: #888;">Martin Kleppmann</span></span></div>
-                  <div class="list-item" style="border-bottom: none;"><span class="item-name">/</span><span class="item-value" style="text-align: left; color: #eee; font-size: 0.95rem;">The Linux Programming Interface <br><span style="font-size: 0.85em; color: #888;">Michael Kerrisk</span></span></div>
-                </div>
-              </div>
-              
+            <div class="open-row">
+              <span class="open-k">Systems prog</span>
+              <span class="open-v">Working close to the hardware — currently fine-tuning a custom Hyprland setup on Linux.</span>
             </div>
-            
-            <div style="margin-top: 3.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 3.5rem;">
-              <p style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #888; margin-bottom: 2rem; font-weight: 300; line-height: 1.6;">Personal notes and summaries compiled while reading these books.</p>
-              <a href="./notes.html" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 2.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 4px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px);" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)'; this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.5)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.03)'; this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                <span style="margin-right: 10px; font-size: 1.2rem;">↬</span> Explore the Notes
-              </a>
+            <div class="open-row">
+              <span class="open-k">Machine learning</span>
+              <span class="open-v">Especially where it meets medicine — I think imaging is where it'll matter most.</span>
+            </div>
+            <div class="open-row">
+              <span class="open-k">Hardware</span>
+              <span class="open-v">What's happening beneath the code, down to the transistors.</span>
             </div>
           </div>
         </div>
 
-        <!-- Dystopian Row -->
-        <div class="glass-card brutalist-card bento-col-span-full" style="justify-content: center; text-align: center;" data-tilt="" data-tilt-max="1" data-tilt-speed="600">
-          <div class="brutalist-header">
-             <span class="tiny-detail">TOPIC // DYSTOPIAN LITERATURE</span>
-          </div>
-          <div class="brutalist-content" style="padding: 2rem;">
-            <p style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; line-height: 1.8; color: #ccc; font-weight: 300; margin: 0 0 2rem 0;">A warning of what humanity can become, an exploration of our vices.</p>
-            
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;">
-              <!-- Read Card -->
-              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="flex: 1 1 300px; max-width: 450px; padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2);">
-                <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-                   <span class="tiny-detail">01 // READ</span>
-                </div>
-                <div class="brutalist-content brutalist-list" style="padding: 0; max-height: 600px; overflow-y: auto;">
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">✓</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">1984 <br><span style="font-size: 0.85em; color: #888;">George Orwell</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">✓</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">Animal Farm <br><span style="font-size: 0.85em; color: #888;">George Orwell</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">✓</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">Brave New World <br><span style="font-size: 0.85em; color: #888;">Aldous Huxley</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">✓</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">Fahrenheit 451 <br><span style="font-size: 0.85em; color: #888;">Ray Bradbury</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">✓</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">We <br><span style="font-size: 0.85em; color: #888;">Yevgeny Zamyatin</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">✓</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">The Handmaid's Tale <br><span style="font-size: 0.85em; color: #888;">Margaret Atwood</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">✓</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">A Clockwork Orange <br><span style="font-size: 0.85em; color: #888;">Anthony Burgess</span></span>
-                  </div>
-                  <div class="list-item" style="border-bottom: none;">
-                    <span class="item-name" style="width: 40px; text-align: center;">✓</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">The Trial <br><span style="font-size: 0.85em; color: #888;">Franz Kafka</span></span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- On Radar Card -->
-              <div class="glass-card brutalist-card scroll-shadow-wrapper" style="flex: 1 1 300px; max-width: 450px; padding: 0; box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0,0,0,0.2);">
-                <div class="brutalist-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-                   <span class="tiny-detail">02 // ON RADAR</span>
-                </div>
-                <div class="brutalist-content brutalist-list" style="padding: 0; max-height: 600px; overflow-y: auto;">
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">→</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">I Have No Mouth, and I Must Scream <br><span style="font-size: 0.85em; color: #888;">Harlan Ellison</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">→</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">Never Let Me Go <br><span style="font-size: 0.85em; color: #888;">Kazuo Ishiguro</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">→</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">The Memory Police <br><span style="font-size: 0.85em; color: #888;">Yōko Ogawa</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">→</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">The Dispossessed <br><span style="font-size: 0.85em; color: #888;">Ursula K. Le Guin</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">→</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">Kallocain <br><span style="font-size: 0.85em; color: #888;">Karin Boye</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">→</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">Blindness <br><span style="font-size: 0.85em; color: #888;">José Saramago</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">→</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">It Can't Happen Here <br><span style="font-size: 0.85em; color: #888;">Sinclair Lewis</span></span>
-                  </div>
-                  <div class="list-item">
-                    <span class="item-name" style="width: 40px; text-align: center;">→</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">Oryx and Crake <br><span style="font-size: 0.85em; color: #888;">Margaret Atwood</span></span>
-                  </div>
-                  <div class="list-item" style="border-bottom: none;">
-                    <span class="item-name" style="width: 40px; text-align: center;">→</span>
-                    <span class="item-value" style="text-align: center; color: #eee; font-size: 0.95rem;">The Iron Heel <br><span style="font-size: 0.85em; color: #888;">Jack London</span></span>
-                  </div>
-                </div>
-              </div>
+        <div>
+          <h3 class="about-block-title">Current focus</h3>
+          <div class="open-list">
+            <div class="open-row">
+              <span class="open-k">Leading</span>
+              <span class="open-v">Running the OpenGate club.</span>
+            </div>
+            <div class="open-row">
+              <span class="open-k">Studying</span>
+              <span class="open-v">The math under machine learning — the parts most tutorials skip.</span>
+            </div>
+            <div class="open-row">
+              <span class="open-k">Pursuing</span>
+              <span class="open-v">Hackathons, hands-on projects, and my first steps into research.</span>
             </div>
           </div>
         </div>
-
-        </div>
-
       </div>
     </div>
+  </section>
 
-    <!-- Include Seniority & Clock Logic -->
-    <script src="./assets/seniority.js"></script>
-    <script src="./assets/clock.js"></script>
-  </div>
+  <!-- ── Interactive Tools ──────────────────────────────────── -->
+  <section class="band band-alt band-tools" data-scene="2">
+    <div class="band-inner">
+      <span class="mono-eyebrow">OpenGate · Teaching tools</span>
+      <h2 class="section-title">Interactive Tools</h2>
+      <p class="band-lede">Browser-based tools I build to make a concept click — several began as demos for my <strong>OpenGate</strong> summer-camp lectures.</p>
+
+      <div class="tool-feature">
+        <div class="tool-banner">
+          <div class="tool-badge">Live · OpenGate</div>
+          <div class="swatches">
+            <span style="background:#1c1a16"></span><span style="background:#9a7b3a"></span><span style="background:#c6a15b"></span><span style="background:#dcbd7f"></span><span style="background:#5fb8ad"></span><span style="background:#6fb8a5"></span><span style="background:#e08a6a"></span><span style="background:#7c9cff"></span>
+          </div>
+        </div>
+        <div class="tool-body">
+          <span class="mono-eyebrow" style="text-align:left;margin-bottom:.5rem;">K-Means</span>
+          <h3>Chroma Lab</h3>
+          <p>Drop in a photo, pick <strong style="color:#fff">K</strong>, watch K-Means reduce it to a palette — all in-browser.</p>
+          <a class="tool-cta" href="./chroma/" rel="noopener">
+            Open lab
+            <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ───────────────────────────────────────────── -->
+  <section class="band band-projects" data-scene="3">
+    <div class="band-inner">
+      <span class="mono-eyebrow">Research &amp; builds</span>
+      <h2 class="section-title">Projects</h2>
+
+      <article class="feature-article">
+        <div class="feature-eyebrow">Independent research</div>
+        <div class="proj-meta">
+          <h3>Lunar Titanium × Magnetism</h3>
+          <span class="proj-lang"><span class="sw" style="background:#3572A5"></span>Python</span>
+        </div>
+        <p class="feature-body">I wanted to know if titanium-rich patches on the Moon line up with its leftover magnetism. I used spatially-blocked ML so the test couldn't fool itself — and it came back <strong>inconclusive</strong>: not enough signal to say either way. I wrote it up honestly instead of forcing a result.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span><span class="proj-tag">Spatial statistics</span><span class="proj-tag">scikit-learn</span><span class="proj-tag">Reproducible research</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/lemoon01110/Lunar-Titanium-Magnetism" target="_blank" rel="noopener">
+            <svg viewbox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.8c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.3.8 1 .8 2.1v3.1c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"></path></svg>
+            Source
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── Literature ─────────────────────────────────────────── -->
+  <section class="band band-alt band-lit" data-scene="4">
+    <div class="band-inner">
+      <span class="mono-eyebrow">Reading shelf</span>
+      <h2 class="section-title">Literature &amp; Reading</h2>
+      <p class="lit-intro">The books I'm working through — from how computers work at the lowest level up to the mathematics behind modern AI. Every one of them comes recommended.</p>
+
+      <div class="shelf-grid">
+        <div>
+          <h3 class="shelf-title">Artificial intelligence</h3>
+          <div class="shelf">
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">An Introduction to Flow Matching and Diffusion Models</span><span class="author">Peter Holderrieth and Ezra Erives</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Build a Large Language Model (From Scratch)</span><span class="author">Sebastian Raschka</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Deep Learning</span><span class="author">Ian Goodfellow, Yoshua Bengio, and Aaron Courville</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Deep Learning — Foundations and Concepts</span><span class="author">Christopher M. Bishop and Hugh Bishop</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Deep Learning with PyTorch</span><span class="author">Eli Stevens, Luca Antiga, and Thomas Viehmann</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Dive Into Deep Learning</span><span class="author">Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">GANs in Action</span><span class="author">Jakub Langr and Vladimir Bok</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Graph Neural Networks in Action</span><span class="author">Keita Broadwater and Namid Stillman</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Hands-On Generative AI with Transformers and Diffusion Models</span><span class="author">Omar Sanseviero, Pedro Cuenca, Apolinário Passos, and Jonathan Whitaker</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Hands-On Machine Learning with Scikit-Learn and PyTorch</span><span class="author">Aurélien Géron</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow</span><span class="author">Aurélien Géron</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Machine Learning Algorithms in Depth</span><span class="author">Vadim Smolyakov</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Mathematics for AI and Machine Learning</span><span class="author">Custom compilation</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Mathematics for Machine Learning</span><span class="author">Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Natural Language Processing with Transformers</span><span class="author">Lewis Tunstall, Leandro von Werra, and Thomas Wolf</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Numerical Python</span><span class="author">Robert Johansson</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Practical Statistics for Data Scientists</span><span class="author">Peter Bruce, Andrew Bruce, and Peter Gedeck</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Probabilistic Machine Learning — Advanced Topics</span><span class="author">Kevin P. Murphy</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Python Data Science Handbook</span><span class="author">Jake VanderPlas</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Reinforcement Learning — An Introduction</span><span class="author">Richard S. Sutton and Andrew G. Barto</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">Support Vector Machines</span><span class="author">Ingo Steinwart</span></div>
+            <div class="shelf-item"><span class="shelf-mark">+</span><span class="title">The Elements of Statistical Learning</span><span class="author">Trevor Hastie, Robert Tibshirani, and Jerome Friedman</span></div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="shelf-title">Systems programming</h3>
+          <div class="shelf">
+            <div class="shelf-item"><span class="shelf-mark">/</span><span class="title">Advanced Programming in the UNIX Environment</span><span class="author">W. Richard Stevens and Stephen A. Rago</span></div>
+            <div class="shelf-item"><span class="shelf-mark">/</span><span class="title">Code: The Hidden Language of Computer Hardware and Software</span><span class="author">Charles Petzold</span></div>
+            <div class="shelf-item"><span class="shelf-mark">/</span><span class="title">Computer Systems — A Programmer's Perspective</span><span class="author">Randal E. Bryant and David R. O'Hallaron</span></div>
+            <div class="shelf-item"><span class="shelf-mark">/</span><span class="title">Designing Data-Intensive Applications</span><span class="author">Martin Kleppmann</span></div>
+            <div class="shelf-item"><span class="shelf-mark">/</span><span class="title">The Linux Programming Interface</span><span class="author">Michael Kerrisk</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lit-bridge" style="padding-left:0;padding-right:0;">
+        <span class="lit-rule"></span>
+        <p class="lit-bridge-quote">In the meanwhile, I love to read about <span class="warn">dystopian literature</span>.</p>
+        <span class="lit-rule"></span>
+      </div>
+
+      <div class="dystopia-band">
+        <p class="dystopia-lede">Bleak futures, mostly. Something about them keeps me reading.</p>
+        <div class="dystopia-cols">
+          <div>
+            <h3 class="shelf-title" style="color:var(--accent-projects);">Read</h3>
+            <div class="shelf" style="max-height:360px;">
+              <div class="shelf-item"><span class="shelf-mark">✓</span><span class="title">1984</span><span class="author">George Orwell</span></div>
+              <div class="shelf-item"><span class="shelf-mark">✓</span><span class="title">Animal Farm</span><span class="author">George Orwell</span></div>
+              <div class="shelf-item"><span class="shelf-mark">✓</span><span class="title">Brave New World</span><span class="author">Aldous Huxley</span></div>
+              <div class="shelf-item"><span class="shelf-mark">✓</span><span class="title">Fahrenheit 451</span><span class="author">Ray Bradbury</span></div>
+              <div class="shelf-item"><span class="shelf-mark">✓</span><span class="title">We</span><span class="author">Yevgeny Zamyatin</span></div>
+              <div class="shelf-item"><span class="shelf-mark">✓</span><span class="title">The Handmaid's Tale</span><span class="author">Margaret Atwood</span></div>
+              <div class="shelf-item"><span class="shelf-mark">✓</span><span class="title">A Clockwork Orange</span><span class="author">Anthony Burgess</span></div>
+              <div class="shelf-item"><span class="shelf-mark">✓</span><span class="title">The Trial</span><span class="author">Franz Kafka</span></div>
+            </div>
+          </div>
+          <div>
+            <h3 class="shelf-title" style="color:var(--accent-projects);">On radar</h3>
+            <div class="shelf" style="max-height:360px;">
+              <div class="shelf-item"><span class="shelf-mark">→</span><span class="title">I Have No Mouth, and I Must Scream</span><span class="author">Harlan Ellison</span></div>
+              <div class="shelf-item"><span class="shelf-mark">→</span><span class="title">Never Let Me Go</span><span class="author">Kazuo Ishiguro</span></div>
+              <div class="shelf-item"><span class="shelf-mark">→</span><span class="title">The Memory Police</span><span class="author">Yōko Ogawa</span></div>
+              <div class="shelf-item"><span class="shelf-mark">→</span><span class="title">The Dispossessed</span><span class="author">Ursula K. Le Guin</span></div>
+              <div class="shelf-item"><span class="shelf-mark">→</span><span class="title">Kallocain</span><span class="author">Karin Boye</span></div>
+              <div class="shelf-item"><span class="shelf-mark">→</span><span class="title">Blindness</span><span class="author">José Saramago</span></div>
+              <div class="shelf-item"><span class="shelf-mark">→</span><span class="title">It Can't Happen Here</span><span class="author">Sinclair Lewis</span></div>
+              <div class="shelf-item"><span class="shelf-mark">→</span><span class="title">Oryx and Crake</span><span class="author">Margaret Atwood</span></div>
+              <div class="shelf-item"><span class="shelf-mark">→</span><span class="title">The Iron Heel</span><span class="author">Jack London</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Notes ──────────────────────────────────────────────── -->
+  <section id="notes" class="band band-notes notes-embed" data-scene="5">
+    <div class="band-inner">
+      <span class="mono-eyebrow">Digital notebook</span>
+      <h2 class="section-title">Notes</h2>
+      <p class="band-lede">Notes I take while reading — informal, and mostly for myself, but collected here in full. Choose a subject:</p>
+
+      <div class="notes-grid">
+        <div class="notes-tile">
+          <span class="tile-n">01 · Linear algebra</span>
+          <h3>Linear Algebra and Matrix Mechanics for Machine Learning</h3>
+          <p>Foundational concepts of vector spaces, matrix representations, and geometric transformations.</p>
+          <a href="notes/linear-algebra.html" class="card-btn">Explore</a>
+        </div>
+        <div class="notes-tile">
+          <span class="tile-n">02 · Matrix decompositions</span>
+          <h3>Matrix Decompositions for Machine Learning</h3>
+          <p>Core algorithms and theorems for factorizing matrices into fundamental components.</p>
+          <a href="notes/matrix-decompositions.html" class="card-btn">Explore</a>
+        </div>
+        <div class="notes-tile">
+          <span class="tile-n">03 · Matrix calculus</span>
+          <h3>Matrix Calculus for Machine Learning</h3>
+          <p>Techniques for computing gradients, derivatives, and optimization over matrix structures.</p>
+          <a href="notes/matrix-calculus.html" class="card-btn">Explore</a>
+        </div>
+        <div class="notes-tile">
+          <span class="tile-n">04 · Optimization</span>
+          <h3>Optimization for Machine Learning</h3>
+          <p>Mathematical methods, iterative algorithms, and frameworks for finding optimal solutions.</p>
+          <a href="notes/optimization.html" class="card-btn">Explore</a>
+        </div>
+        <div class="notes-tile">
+          <span class="tile-n">05 · Probability</span>
+          <h3>Probability for Machine Learning</h3>
+          <p>The fundamental mathematics of uncertainty, random variables, and probability distributions.</p>
+          <a href="notes/probability.html" class="card-btn">Explore</a>
+        </div>
+        <div class="notes-tile">
+          <span class="tile-n">06 · Information theory</span>
+          <h3>Information Theory for Machine Learning</h3>
+          <p>Mathematical approaches to quantifying information, entropy, and statistical divergence.</p>
+          <a href="notes/information-theory.html" class="card-btn">Explore</a>
+        </div>
+        <div class="notes-tile">
+          <span class="tile-n">07 · Reinforcement learning</span>
+          <h3>Reinforcement Learning</h3>
+          <p>Formal frameworks for sequential decision-making, dynamic programming, and agent-based learning.</p>
+          <a href="notes/reinforcement-learning.html" class="card-btn">Explore</a>
+        </div>
+        <div class="notes-tile">
+          <span class="tile-n">08 · Probabilistic models</span>
+          <h3>Probabilistic Models for Machine Learning</h3>
+          <p>Modeling data distributions, variational inference, and modern generative architectures.</p>
+          <a href="notes/probabilistic-ml.html" class="card-btn">Explore</a>
+        </div>
+        <div class="notes-tile">
+          <span class="tile-n">09 · Stochastic dynamics</span>
+          <h3>Stochastic Dynamics</h3>
+          <p>Continuous-time stochastic processes, differential equations, and dynamic sampling methods.</p>
+          <a href="notes/stochastic-dynamics.html" class="card-btn">Explore</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="./assets/seniority.js"></script>
+  <script src="./assets/clock.js"></script>
 </div>
 
 <script src="./assets/ascii-hero.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
-<script>
-  // Initialize Vanilla Tilt for any remaining glass-cards that don't already have data-tilt
-  VanillaTilt.init(document.querySelectorAll(".glass-card:not([data-tilt])"), {
-    max: 2,
-    speed: 400,
-    glare: false,
-    "max-glare": 0,
-  });
-</script>
+<script src="./assets/card-tilt.js"></script>
 
 
 
@@ -451,19 +498,20 @@ ul.task-list li input[type="checkbox"] {
       <!-- Notes Links -->
       <div class="footer-links-col">
         <h4>Notes</h4>
-        <a href="#" onclick="event.preventDefault(); window.location.href = document.querySelector('a.nav-link[href$=\'notes.html\']').href;">All Notes</a>
+        <a href="./#notes">All Notes</a>
       </div>
 
       <!-- Interactives Links -->
       <div class="footer-links-col">
         <h4>Interactives</h4>
-        <span class="coming-soon-text">Coming Soon</span>
+        <a href="./chroma/">Chroma Lab</a>
       </div>
 
       <!-- Projects Links -->
       <div class="footer-links-col">
         <h4>Projects</h4>
-        <a href="https://github.com/lemoon01110/lemoon01110.github.io">GitHub</a>
+        <a href="https://github.com/lemoon01110/Lunar-Titanium-Magnetism" target="_blank" rel="noopener">Lunar × Magnetism</a>
+        <a href="https://github.com/lemoon01110" target="_blank" rel="noopener">All on GitHub</a>
       </div>
     </div>
   </div>
@@ -471,6 +519,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="./assets/notes-nav.js"></script>
 <script src="./assets/navbar-intellisense.js"></script>
 <script src="./assets/dropdown-anim.js"></script>
+<script src="./assets/card-tilt.js"></script>
 <script>
   (function() {
     var footer = document.querySelector('.takara-footer');
@@ -880,7 +929,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
- <!-- /content -->
+</div> <!-- /content -->
 
 
 

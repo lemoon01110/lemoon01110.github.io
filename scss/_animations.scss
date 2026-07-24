@@ -60,10 +60,10 @@
   
   /* Pill Shape & Lighter Background */
   background: rgba(0, 0, 0, 0.25); /* Much lighter background */
-  border: 1px solid rgba(189, 147, 249, 0.4); 
+  border: 1px solid rgba(198,161,91, 0.4); 
   border-radius: 9999px; /* Fully rounded pill shape */
-  color: #bd93f9; /* Purple text */
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4), 0 0 12px rgba(189, 147, 249, 0.1); 
+  color: #c6a15b; /* Purple text */
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4), 0 0 12px rgba(198,161,91, 0.1); 
 }
 
 .white-pill-slot {
@@ -90,8 +90,8 @@
   height: 10px;
   border-radius: 50%; /* Circle LED */
   margin-right: 0.6rem;
-  background-color: #ff5555; /* Solid Red Off */
-  box-shadow: 0 0 8px #ff5555, 0 0 12px #ff5555;
+  background-color: #d0a862; /* Solid Red Off */
+  box-shadow: 0 0 8px #d0a862, 0 0 12px #d0a862;
 }
 
 .ticker-light.ready {
@@ -100,8 +100,8 @@
 
 @keyframes led-blink {
   0%, 49% {
-    background-color: #50fa7b; /* Green On */
-    box-shadow: 0 0 8px #50fa7b, 0 0 12px #50fa7b; /* Green Glow */
+    background-color: #6fb8a5; /* Green On */
+    box-shadow: 0 0 8px #6fb8a5, 0 0 12px #6fb8a5; /* Green Glow */
   }
   50%, 100% {
     background-color: #44475a; /* Grey Off */
@@ -194,9 +194,9 @@
   transition: all 0.2s ease;
   
   &:hover {
-    background: rgba(139, 233, 253, 0.1);
-    color: #8be9fd;
-    border-color: rgba(139, 233, 253, 0.5);
+    background: rgba(95, 184, 173, 0.1);
+    color: #5fb8ad;
+    border-color: rgba(95, 184, 173, 0.5);
     transform: translateY(-2px);
   }
 }
@@ -280,12 +280,12 @@
 .second-hand::after {
   width: 4px;
   height: 4px;
-  background-color: #ff5555;
+  background-color: #d0a862;
 }
 .second-hand::before {
   width: 1px;
   height: 22px;
-  background-color: #ff5555;
+  background-color: #d0a862;
 }
 
 

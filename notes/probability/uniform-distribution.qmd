@@ -2,4 +2,18 @@
 title: "Uniform Distribution"
 ---
 
-Content for Uniform Distribution goes here.
+## Overview
+A continuous uniform distribution has constant probability density over a specific interval $[a, b]$.
+$f(x) = \frac{1}{b-a}$ for $x \in [a, b]$.
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Probability in an Interval
+If $X \sim \text{Uniform}(0, 10)$, what is $P(2 < X < 5)$?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Mean and Variance
+Derive the expectation $\mathbb{E}[X]$ for $X \sim \text{Uniform}(a, b)$.
+:::

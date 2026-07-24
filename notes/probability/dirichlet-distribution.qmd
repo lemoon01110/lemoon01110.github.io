@@ -2,4 +2,17 @@
 title: "Dirichlet Distribution"
 ---
 
-Content for Dirichlet Distribution goes here.
+## Overview
+The multivariate generalization of the Beta distribution. It is used as a prior for Categorical or Multinomial distributions (e.g., in Latent Dirichlet Allocation).
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Dirichlet Support
+If $\boldsymbol{x} \sim \text{Dirichlet}(\boldsymbol{\alpha})$, what constraint must the components $x_1, x_2, \dots, x_K$ satisfy?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Symmetric Dirichlet
+What does it mean for a Dirichlet distribution to be "symmetric", e.g., $\boldsymbol{\alpha} = [0.1, 0.1, 0.1]$? How does $\alpha < 1$ affect the samples?
+:::

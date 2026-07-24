@@ -2,4 +2,17 @@
 title: "Bernoulli Distribution"
 ---
 
-Content for Bernoulli Distribution goes here.
+## Overview
+Models a single trial with two possible outcomes (success/failure), where $P(X=1) = p$ and $P(X=0) = 1-p$.
+
+## Practice Problems
+
+::: {.thm-box .thm-example}
+### Problem 1: Bernoulli Basics
+If $X \sim \text{Bernoulli}(0.7)$, what is the variance of $X$?
+:::
+
+::: {.thm-box .thm-example}
+### Problem 2: Coin Flips
+If you flip a biased coin that lands Heads with probability $0.6$, what is the expected value of an indicator variable that is $1$ if Heads and $0$ if Tails?
+:::
