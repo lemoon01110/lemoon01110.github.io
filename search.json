@@ -382,70 +382,210 @@
     "href": "notes/probability/von-mises-fisher-distribution.html",
     "title": "Von Mises-Fisher Distribution",
     "section": "",
-    "text": "Content for Von Mises-Fisher Distribution goes here."
+    "text": "A probability distribution on the \\((p-1)\\)-dimensional sphere. It is often used in directional statistics (e.g., modeling word embeddings mapped to a hypersphere)."
+  },
+  {
+    "objectID": "notes/probability/von-mises-fisher-distribution.html#overview",
+    "href": "notes/probability/von-mises-fisher-distribution.html#overview",
+    "title": "Von Mises-Fisher Distribution",
+    "section": "",
+    "text": "A probability distribution on the \\((p-1)\\)-dimensional sphere. It is often used in directional statistics (e.g., modeling word embeddings mapped to a hypersphere)."
+  },
+  {
+    "objectID": "notes/probability/von-mises-fisher-distribution.html#practice-problems",
+    "href": "notes/probability/von-mises-fisher-distribution.html#practice-problems",
+    "title": "Von Mises-Fisher Distribution",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Domain\nWhat is the sample space (domain) of a von Mises-Fisher distribution in 3D space?\n\n\nProblem 2: Parameters\nThe vMF distribution has parameters \\(\\boldsymbol{\\mu}\\) and \\(\\kappa\\). What do these parameters represent?"
   },
   {
     "objectID": "notes/probability/transformation-of-random-variables.html",
     "href": "notes/probability/transformation-of-random-variables.html",
     "title": "Transformation of Random Variables",
     "section": "",
-    "text": "Content for Transformation of Random Variables goes here."
+    "text": "If \\(Y = g(X)\\), the distribution of \\(Y\\) can be found from the distribution of \\(X\\). For continuous variables, if \\(g\\) is monotonic, \\(f_Y(y) = f_X(g^{-1}(y)) \\left| \\frac{d}{dy} g^{-1}(y) \\right|\\)."
+  },
+  {
+    "objectID": "notes/probability/transformation-of-random-variables.html#overview",
+    "href": "notes/probability/transformation-of-random-variables.html#overview",
+    "title": "Transformation of Random Variables",
+    "section": "",
+    "text": "If \\(Y = g(X)\\), the distribution of \\(Y\\) can be found from the distribution of \\(X\\). For continuous variables, if \\(g\\) is monotonic, \\(f_Y(y) = f_X(g^{-1}(y)) \\left| \\frac{d}{dy} g^{-1}(y) \\right|\\)."
+  },
+  {
+    "objectID": "notes/probability/transformation-of-random-variables.html#practice-problems",
+    "href": "notes/probability/transformation-of-random-variables.html#practice-problems",
+    "title": "Transformation of Random Variables",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Linear Transformation of Expectation and Variance\nIf \\(\\mathbb{E}[X] = \\mu\\) and \\(\\text{Var}(X) = \\sigma^2\\), what are \\(\\mathbb{E}[aX + b]\\) and \\(\\text{Var}(aX + b)\\) for constants \\(a\\) and \\(b\\)?\n\n\nProblem 2: Continuous Transformation\nLet \\(X \\sim \\text{Uniform}(0, 1)\\). Find the PDF of \\(Y = -\\ln(X)\\)."
   },
   {
     "objectID": "notes/probability/sets-and-cardinality.html",
     "href": "notes/probability/sets-and-cardinality.html",
     "title": "Sets and Cardinality",
     "section": "",
-    "text": "Content for Sets and Cardinality goes here."
+    "text": "Before we can define probability, we need a language to describe “collections of things.” That language is Set Theory.\n\nSets: A well-defined collection of distinct objects (elements). E.g., \\(\\mathcal{S} = \\{1, 2, 3\\}\\).\nCardinality (\\(|\\mathcal{S}|\\)): The number of elements in a set. For \\(\\mathcal{S} = \\{1, 2, 3\\}\\), the cardinality is \\(3\\).\nSet Operations: The basic ways we combine or compare sets:\n\nUnion (\\(\\cup\\)): Elements in either set (or both).\nIntersection (\\(\\cap\\)): Elements in both sets.\nSet Difference (\\(\\setminus\\)): Elements in one set but not the other.\nComplement (\\(\\mathcal{S}^c\\)): Everything in the “universe” that is not in \\(\\mathcal{S}\\)."
+  },
+  {
+    "objectID": "notes/probability/sets-and-cardinality.html#overview",
+    "href": "notes/probability/sets-and-cardinality.html#overview",
+    "title": "Sets and Cardinality",
+    "section": "",
+    "text": "Before we can define probability, we need a language to describe “collections of things.” That language is Set Theory.\n\nSets: A well-defined collection of distinct objects (elements). E.g., \\(\\mathcal{S} = \\{1, 2, 3\\}\\).\nCardinality (\\(|\\mathcal{S}|\\)): The number of elements in a set. For \\(\\mathcal{S} = \\{1, 2, 3\\}\\), the cardinality is \\(3\\).\nSet Operations: The basic ways we combine or compare sets:\n\nUnion (\\(\\cup\\)): Elements in either set (or both).\nIntersection (\\(\\cap\\)): Elements in both sets.\nSet Difference (\\(\\setminus\\)): Elements in one set but not the other.\nComplement (\\(\\mathcal{S}^c\\)): Everything in the “universe” that is not in \\(\\mathcal{S}\\)."
+  },
+  {
+    "objectID": "notes/probability/sets-and-cardinality.html#practice-problems",
+    "href": "notes/probability/sets-and-cardinality.html#practice-problems",
+    "title": "Sets and Cardinality",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Basic Operations\nLet \\(A = \\{1, 2, 3, 4, 5\\}\\) and \\(B = \\{4, 5, 6, 7\\}\\). Find the following sets:\n\n\\(A \\cup B\\)\n\\(A \\cap B\\)\n\\(A \\setminus B\\)\n\n\n\nProblem 2: Cardinality and Power Sets\nThe power set of \\(S\\) is the set of all possible subsets of \\(S\\) (including the empty set \\(\\emptyset\\) and the set \\(S\\) itself).\nIf a set \\(S\\) has cardinality \\(|S| = 4\\), what is the cardinality of its power set?\n\n\nProblem 3: Machine Learning Context\nLet our “universe” (sample space \\(\\Omega\\)) be a dataset of emails. * Let \\(S\\) be the set of all spam emails. * Let \\(W\\) be the set of all emails containing the word “lottery”.\nExpress the following scenarios using set notation (using \\(S\\), \\(W\\), \\(\\cap\\), \\(\\cup\\), and \\(^c\\)):\n\nThe set of emails that are not spam, but do contain the word “lottery”.\nThe set of emails that are either spam or contain the word “lottery” (or both)."
   },
   {
     "objectID": "notes/probability/probability-basics.html",
     "href": "notes/probability/probability-basics.html",
     "title": "Probability Basics",
     "section": "",
-    "text": "Content for Probability Basics goes here."
+    "text": "Probability is a measure of the likelihood of an event occurring, quantified as a number between 0 and 1. Kolmogorov’s axioms state that: 1. \\(P(E) \\ge 0\\) for any event \\(E\\). 2. \\(P(\\Omega) = 1\\) for the sample space \\(\\Omega\\). 3. For mutually exclusive events \\(E_1, E_2, \\dots\\), \\(P(\\bigcup_{i=1}^\\infty E_i) = \\sum_{i=1}^\\infty P(E_i)\\)."
+  },
+  {
+    "objectID": "notes/probability/probability-basics.html#overview",
+    "href": "notes/probability/probability-basics.html#overview",
+    "title": "Probability Basics",
+    "section": "",
+    "text": "Probability is a measure of the likelihood of an event occurring, quantified as a number between 0 and 1. Kolmogorov’s axioms state that: 1. \\(P(E) \\ge 0\\) for any event \\(E\\). 2. \\(P(\\Omega) = 1\\) for the sample space \\(\\Omega\\). 3. For mutually exclusive events \\(E_1, E_2, \\dots\\), \\(P(\\bigcup_{i=1}^\\infty E_i) = \\sum_{i=1}^\\infty P(E_i)\\)."
+  },
+  {
+    "objectID": "notes/probability/probability-basics.html#practice-problems",
+    "href": "notes/probability/probability-basics.html#practice-problems",
+    "title": "Probability Basics",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Basic Axioms\nIf \\(P(A) = 0.4\\), \\(P(B) = 0.5\\), and \\(A\\) and \\(B\\) are mutually exclusive, what is \\(P(A \\cup B)\\)?\n\n\nProblem 2: Complement Rule\nA machine learning model predicts a class correctly with probability \\(0.85\\). What is the probability that it makes an incorrect prediction?"
   },
   {
     "objectID": "notes/probability/marginal-probabilities.html",
     "href": "notes/probability/marginal-probabilities.html",
     "title": "Marginal Probabilities",
     "section": "",
-    "text": "Content for Marginal Probabilities goes here."
+    "text": "Marginalization allows us to find the distribution of one variable by summing or integrating out the other variables from a joint distribution. * Discrete: \\(P(X=x) = \\sum_y P(X=x, Y=y)\\) * Continuous: \\(f_X(x) = \\int f(x,y) dy\\)"
+  },
+  {
+    "objectID": "notes/probability/marginal-probabilities.html#overview",
+    "href": "notes/probability/marginal-probabilities.html#overview",
+    "title": "Marginal Probabilities",
+    "section": "",
+    "text": "Marginalization allows us to find the distribution of one variable by summing or integrating out the other variables from a joint distribution. * Discrete: \\(P(X=x) = \\sum_y P(X=x, Y=y)\\) * Continuous: \\(f_X(x) = \\int f(x,y) dy\\)"
+  },
+  {
+    "objectID": "notes/probability/marginal-probabilities.html#practice-problems",
+    "href": "notes/probability/marginal-probabilities.html#practice-problems",
+    "title": "Marginal Probabilities",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Discrete Marginalization\nUsing the joint PMF: \\(P(0,0)=0.1, P(0,1)=0.2, P(1,0)=0.3, P(1,1)=0.4\\). Find the marginal probability \\(P(X=1)\\).\n\n\nProblem 2: Continuous Marginalization\nGiven \\(f(x, y) = x+y\\) for \\(x,y \\in [0,1]\\), find the marginal PDF \\(f_X(x)\\)."
   },
   {
     "objectID": "notes/probability/independence.html",
     "href": "notes/probability/independence.html",
     "title": "Independence",
     "section": "",
-    "text": "Content for Independence goes here."
+    "text": "Two events A and B are independent if the occurrence of one does not affect the probability of the other: \\(P(A \\cap B) = P(A)P(B)\\), or equivalently, \\(P(A|B) = P(A)\\)."
+  },
+  {
+    "objectID": "notes/probability/independence.html#overview",
+    "href": "notes/probability/independence.html#overview",
+    "title": "Independence",
+    "section": "",
+    "text": "Two events A and B are independent if the occurrence of one does not affect the probability of the other: \\(P(A \\cap B) = P(A)P(B)\\), or equivalently, \\(P(A|B) = P(A)\\)."
+  },
+  {
+    "objectID": "notes/probability/independence.html#practice-problems",
+    "href": "notes/probability/independence.html#practice-problems",
+    "title": "Independence",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Checking Independence\nA fair coin is flipped twice. Let \\(A\\) be the event “first flip is Heads” and \\(B\\) be “second flip is Heads”. Are \\(A\\) and \\(B\\) independent? Show it mathematically.\n\n\nProblem 2: Joint Distribution of Independent Variables\nIf \\(X\\) and \\(Y\\) are independent random variables with \\(P(X=1) = 0.6\\) and \\(P(Y=1) = 0.8\\), what is \\(P(X=1, Y=1)\\)?"
   },
   {
     "objectID": "notes/probability/distribution-summary.html",
     "href": "notes/probability/distribution-summary.html",
     "title": "Distribution Summary",
     "section": "",
-    "text": "Content for Distribution Summary goes here."
+    "text": "A wrap-up of the relationships between the various probability distributions (e.g., Bernoulli \\(\\rightarrow\\) Binomial, Categorical \\(\\rightarrow\\) Multinomial, Beta as conjugate to Binomial)."
+  },
+  {
+    "objectID": "notes/probability/distribution-summary.html#overview",
+    "href": "notes/probability/distribution-summary.html#overview",
+    "title": "Distribution Summary",
+    "section": "",
+    "text": "A wrap-up of the relationships between the various probability distributions (e.g., Bernoulli \\(\\rightarrow\\) Binomial, Categorical \\(\\rightarrow\\) Multinomial, Beta as conjugate to Binomial)."
+  },
+  {
+    "objectID": "notes/probability/distribution-summary.html#practice-problems",
+    "href": "notes/probability/distribution-summary.html#practice-problems",
+    "title": "Distribution Summary",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Conjugate Priors\nMatch the likelihood with its conjugate prior: 1. Bernoulli/Binomial 2. Categorical/Multinomial 3. Gaussian (mean parameter)\nOptions: Beta, Dirichlet, Gaussian.\n\n\nProblem 2: Limiting Cases\nAs the number of trials \\(N \\rightarrow \\infty\\), what continuous distribution does the Binomial distribution approach (by the Central Limit Theorem)?"
   },
   {
     "objectID": "notes/probability/conditional-probabilities.html",
     "href": "notes/probability/conditional-probabilities.html",
     "title": "Conditional Probabilities",
     "section": "",
-    "text": "Content for Conditional Probabilities goes here."
+    "text": "Conditional probability is the probability of an event occurring given that another event has already occurred: \\(P(A|B) = \\frac{P(A \\cap B)}{P(B)}\\)."
+  },
+  {
+    "objectID": "notes/probability/conditional-probabilities.html#overview",
+    "href": "notes/probability/conditional-probabilities.html#overview",
+    "title": "Conditional Probabilities",
+    "section": "",
+    "text": "Conditional probability is the probability of an event occurring given that another event has already occurred: \\(P(A|B) = \\frac{P(A \\cap B)}{P(B)}\\)."
+  },
+  {
+    "objectID": "notes/probability/conditional-probabilities.html#practice-problems",
+    "href": "notes/probability/conditional-probabilities.html#practice-problems",
+    "title": "Conditional Probabilities",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Basic Conditional Probability\nSuppose a medical test is positive \\(90\\%\\) of the time when a patient has a disease. This represents \\(P(\\text{Test} = + \\mid \\text{Disease} = \\text{True}) = 0.9\\). If \\(P(\\text{Test} = + \\text{ and } \\text{Disease} = \\text{True}) = 0.09\\), what is the overall prevalence of the disease \\(P(\\text{Disease} = \\text{True})\\)?\n\n\nProblem 2: Using Joint and Marginal\nUsing the joint PMF \\(P(X,Y)\\) where \\(P(0,0)=0.1, P(0,1)=0.2, P(1,0)=0.3, P(1,1)=0.4\\), compute the conditional probability \\(P(Y=1 \\mid X=1)\\)."
   },
   {
     "objectID": "notes/probability/categorical-and-multinomial-distributions.html",
     "href": "notes/probability/categorical-and-multinomial-distributions.html",
     "title": "Categorical and Multinomial Distributions",
     "section": "",
-    "text": "Content for Categorical and Multinomial Distributions goes here."
+    "text": "Categorical: Generalization of Bernoulli to \\(K\\) categories. (Roll of a \\(K\\)-sided die).\nMultinomial: Generalization of Binomial to \\(K\\) categories. (Counts of outcomes in \\(N\\) rolls of a \\(K\\)-sided die)."
+  },
+  {
+    "objectID": "notes/probability/categorical-and-multinomial-distributions.html#overview",
+    "href": "notes/probability/categorical-and-multinomial-distributions.html#overview",
+    "title": "Categorical and Multinomial Distributions",
+    "section": "",
+    "text": "Categorical: Generalization of Bernoulli to \\(K\\) categories. (Roll of a \\(K\\)-sided die).\nMultinomial: Generalization of Binomial to \\(K\\) categories. (Counts of outcomes in \\(N\\) rolls of a \\(K\\)-sided die)."
+  },
+  {
+    "objectID": "notes/probability/categorical-and-multinomial-distributions.html#practice-problems",
+    "href": "notes/probability/categorical-and-multinomial-distributions.html#practice-problems",
+    "title": "Categorical and Multinomial Distributions",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Categorical Probabilities\nA word in a vocabulary of size 3 can be generated with probabilities \\(\\boldsymbol{p} = [0.2, 0.5, 0.3]\\). What is the probability of observing the sequence (word 2, word 1) assuming independence?\n\n\nProblem 2: Multinomial Support\nIf you draw \\(N=10\\) samples from a categorical distribution with 3 classes, what is the sum of the counts \\(c_1 + c_2 + c_3\\)?"
   },
   {
     "objectID": "notes/probability/bernoulli-distribution.html",
     "href": "notes/probability/bernoulli-distribution.html",
     "title": "Bernoulli Distribution",
     "section": "",
-    "text": "Content for Bernoulli Distribution goes here."
+    "text": "Models a single trial with two possible outcomes (success/failure), where \\(P(X=1) = p\\) and \\(P(X=0) = 1-p\\)."
+  },
+  {
+    "objectID": "notes/probability/bernoulli-distribution.html#overview",
+    "href": "notes/probability/bernoulli-distribution.html#overview",
+    "title": "Bernoulli Distribution",
+    "section": "",
+    "text": "Models a single trial with two possible outcomes (success/failure), where \\(P(X=1) = p\\) and \\(P(X=0) = 1-p\\)."
+  },
+  {
+    "objectID": "notes/probability/bernoulli-distribution.html#practice-problems",
+    "href": "notes/probability/bernoulli-distribution.html#practice-problems",
+    "title": "Bernoulli Distribution",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Bernoulli Basics\nIf \\(X \\sim \\text{Bernoulli}(0.7)\\), what is the variance of \\(X\\)?\n\n\nProblem 2: Coin Flips\nIf you flip a biased coin that lands Heads with probability \\(0.6\\), what is the expected value of an indicator variable that is \\(1\\) if Heads and \\(0\\) if Tails?"
   },
   {
     "objectID": "notes/probabilistic-ml/variational-inference-in-other-domains.html",
@@ -508,42 +648,21 @@
     "href": "notes/probabilistic-ml/chapter16.html",
     "title": "Chapter 16: Variational Inference and Latent Variables",
     "section": "",
-    "text": "[Overview text]"
+    "text": "In many machine learning applications, we assume that the observed data \\(x\\) is generated or influenced by some unobserved, hidden variables called latent variables, denoted as \\(z\\). Latent variable models allow us to describe complex distributions over \\(x\\) by marginalizing over \\(z\\).\nA latent variable model specifies a joint distribution over the observed and latent variables: \\[p(x, z) = p(x | z) p(z)\\]"
   },
   {
-    "objectID": "notes/probabilistic-ml/chapter16.html#overview",
-    "href": "notes/probabilistic-ml/chapter16.html#overview",
+    "objectID": "notes/probabilistic-ml/chapter16.html#introduction-to-latent-variable-models",
+    "href": "notes/probabilistic-ml/chapter16.html#introduction-to-latent-variable-models",
     "title": "Chapter 16: Variational Inference and Latent Variables",
     "section": "",
-    "text": "[Overview text]"
+    "text": "In many machine learning applications, we assume that the observed data \\(x\\) is generated or influenced by some unobserved, hidden variables called latent variables, denoted as \\(z\\). Latent variable models allow us to describe complex distributions over \\(x\\) by marginalizing over \\(z\\).\nA latent variable model specifies a joint distribution over the observed and latent variables: \\[p(x, z) = p(x | z) p(z)\\]"
   },
   {
-    "objectID": "notes/probabilistic-ml/chapter16.html#definitions",
-    "href": "notes/probabilistic-ml/chapter16.html#definitions",
+    "objectID": "notes/probabilistic-ml/chapter16.html#the-inference-problem",
+    "href": "notes/probabilistic-ml/chapter16.html#the-inference-problem",
     "title": "Chapter 16: Variational Inference and Latent Variables",
-    "section": "Definitions",
-    "text": "Definitions\n\nDefinition: [Title]\n[Definition content]"
-  },
-  {
-    "objectID": "notes/probabilistic-ml/chapter16.html#theorems-and-proofs",
-    "href": "notes/probabilistic-ml/chapter16.html#theorems-and-proofs",
-    "title": "Chapter 16: Variational Inference and Latent Variables",
-    "section": "Theorems and Proofs",
-    "text": "Theorems and Proofs\n\nTheorem: [Title]\n[Theorem content]\n\n\nProof\n[Proof content]"
-  },
-  {
-    "objectID": "notes/probabilistic-ml/chapter16.html#examples-and-solutions",
-    "href": "notes/probabilistic-ml/chapter16.html#examples-and-solutions",
-    "title": "Chapter 16: Variational Inference and Latent Variables",
-    "section": "Examples and Solutions",
-    "text": "Examples and Solutions\n\nExample: [Title]\n[Example content]\n\n\nSolution\n[Solution content]"
-  },
-  {
-    "objectID": "notes/probabilistic-ml/chapter16.html#remarks",
-    "href": "notes/probabilistic-ml/chapter16.html#remarks",
-    "title": "Chapter 16: Variational Inference and Latent Variables",
-    "section": "Remarks",
-    "text": "Remarks\n\nRemark\n[Remark content]"
+    "section": "2. The Inference Problem",
+    "text": "2. The Inference Problem\nThe core challenge in probabilistic modeling with latent variables is the inference problem: determining the distribution of the latent variables given the data we have observed.\nMathematically, this means we want to compute the posterior distribution \\(p(z | x)\\) using Bayes’ Theorem:\n\\[p(z | x) = \\frac{p(x | z) p(z)}{p(x)}\\]\n\nDefinition: The Marginal Likelihood (Evidence)\nThe denominator in Bayes’ theorem, \\(p(x)\\), is known as the marginal likelihood or evidence. It is obtained by marginalizing (integrating or summing) the joint distribution over all possible values of the latent variables: \\[p(x) = \\int p(x, z) dz = \\int p(x | z) p(z) dz\\] For discrete latent variables, this integral is replaced by a sum.\n\n\nWhy is this a “Problem”?\nThe difficulty lies entirely in computing the evidence \\(p(x)\\):\n\nHigh Dimensionality: If \\(z\\) is continuous and high-dimensional, the integral \\(\\int p(x, z) dz\\) rarely has a closed-form analytical solution (unless we restrict ourselves to conjugate priors like Gaussians).\nCombinatorial Explosion: If \\(z\\) consists of many discrete variables, the sum involves an exponentially large number of terms, making exact computation intractable.\n\nBecause we cannot compute the denominator \\(p(x)\\), we cannot compute the exact posterior \\(p(z | x)\\).\n\n\nApproaching the Intractability\nSince exact inference is often impossible, we must resort to approximate inference methods. These generally fall into two families:\n\nStochastic Approximation (MCMC): Methods like Markov Chain Monte Carlo that rely on numerical sampling to approximate the posterior. (Often accurate but computationally slow).\nDeterministic Approximation (Variational Inference): Methods that cast the inference problem as an optimization problem, approximating the true posterior with a simpler, tractable distribution. (Often faster and scales well to large datasets)."
   },
   {
     "objectID": "notes/probabilistic-ml/applications-of-score-based-models.html",
@@ -1292,7 +1411,7 @@
     "href": "notes/information-theory/information-content.html#sec-problems",
     "title": "Information Content (Surprisal)",
     "section": "7. Practice Problems",
-    "text": "7. Practice Problems\n\nProblem 1: Additivity of Independent Events\nShow mathematically that if two events are statistically independent, their joint surprisal adds up (\\(h(X, Y) = h(X) + h(Y)\\)).\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nLet \\(X\\) and \\(Y\\) be independent random variables. By the definition of independence, their joint probability is the product of their marginals: \\[\nP(X, Y) = P(X)P(Y)\n\\] Taking the negative log base 2 of both sides: \\[\n\\begin{aligned}\nh(X, Y) &= -\\log_2 P(X, Y) \\\\\n&= -\\log_2 \\big(P(X)P(Y)\\big) \\\\\n&= -\\log_2 P(X) - \\log_2 P(Y) \\\\\n&= h(X) + h(Y)\n\\end{aligned}\n\\] Hence, joint surprisal is additive. \\(\\blacksquare\\)\n\n\n\n\n\nProblem 2: Calculating Surprisal\nCalculate the surprisal of rolling a 6 on a fair 6-sided die, in both bits and nats. How does this compare to the surprisal of flipping two heads in a row on a fair coin?\n\n\nReveal Solution to Problem 2\n\n\n\n\nSolution\n\nDie Roll: The probability of rolling a 6 is \\(P(x) = \\frac{1}{6}\\). In bits (base 2): \\[\nh(x) = -\\log_2\\left(\\frac{1}{6}\\right) = \\log_2(6) \\approx 2.585 \\text{ bits}\n\\] In nats (base \\(e\\)): \\[\nh(x) = -\\ln\\left(\\frac{1}{6}\\right) = \\ln(6) \\approx 1.792 \\text{ nats}\n\\]\nCoin Flips: The probability of flipping two heads in a row is \\(P(y) = \\frac{1}{4}\\). In bits: \\[\nh(y) = -\\log_2\\left(\\frac{1}{4}\\right) = \\log_2(4) = 2 \\text{ bits}\n\\]\nRolling a 6 provides more surprise (2.585 bits) than flipping two heads in a row (2 bits) because \\(\\frac{1}{6}\\) is less probable than \\(\\frac{1}{4}\\)."
+    "text": "7. Practice Problems\n\nProblem 1: Additivity of Independent Events\nShow mathematically that if two events are statistically independent, their joint surprisal adds up (\\(h(X, Y) = h(X) + h(Y)\\)).\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nLet \\(X\\) and \\(Y\\) be independent random variables. By the definition of independence, their joint probability is the product of their marginals: \\[\nP(X, Y) = P(X)P(Y)\n\\] Taking the negative log base 2 of both sides: \\[\n\\begin{aligned}\nh(X, Y) &= -\\log_2 P(X, Y) \\\\\n&= -\\log_2 \\big(P(X)P(Y)\\big) \\\\\n&= -\\log_2 P(X) - \\log_2 P(Y) \\\\\n&= h(X) + h(Y)\n\\end{aligned}\n\\] Hence, joint surprisal is additive. \\(\\blacksquare\\)\n\n\n\n\n\nProblem 2: Calculating Surprisal\nCalculate the surprisal of rolling a 6 on a fair 6-sided die, in both bits and nats. How does this compare to the surprisal of flipping two heads in a row on a fair coin?\n\n\nReveal Solution to Problem 2\n\n\n\n\nSolution\n\nDie Roll: The probability of rolling a 6 is \\(P(x) = \\frac{1}{6}\\). In bits (base 2): \\[\nh(x) = -\\log_2\\left(\\frac{1}{6}\\right) = \\log_2(6) \\approx 2.585 \\text{ bits}\n\\] In nats (base \\(e\\)): \\[\nh(x) = -\\ln\\left(\\frac{1}{6}\\right) = \\ln(6) \\approx 1.792 \\text{ nats}\n\\]\nCoin Flips: The probability of flipping two heads in a row is \\(P(y) = \\frac{1}{4}\\). In bits: \\[\nh(y) = -\\log_2\\left(\\frac{1}{4}\\right) = \\log_2(4) = 2 \\text{ bits}\n\\]\nRolling a 6 provides more surprise (2.585 bits) than flipping two heads in a row (2 bits) because \\(\\frac{1}{6}\\) is less probable than \\(\\frac{1}{4}\\).\n\n\n\n\n\nProblem 3: The Infinite Monkey’s Surprise\nConsider a monkey typing randomly on a keyboard with 50 keys. Each keystroke is chosen uniformly and independently at random. What is the information content (in bits) of the monkey typing the exact sequence “INFORMATION” (11 characters)?\nIf the monkey types at a rate of 10 keys per second, roughly how long (in years) would we expect to wait on average for this specific string to appear, and how does this relate to the information content?\n\n\nReveal Solution to Problem 3\n\n\n\n\nSolution\n\nInformation Content: Since there are 50 keys, the probability of hitting a specific key is \\(\\frac{1}{50}\\). Because each keystroke is independent, the probability of typing a specific 11-character sequence is: \\[\nP(x) = \\left(\\frac{1}{50}\\right)^{11} = 50^{-11}\n\\] The information content (surprisal) is: \\[\nh(x) = -\\log_2(50^{-11}) = 11 \\log_2(50) \\approx 11 \\times 5.6438 = 62.08 \\text{ bits}\n\\]\nExpected Wait Time: The expected number of keystrokes to type this specific sequence is the reciprocal of its probability (mean of a geometric distribution of non-overlapping chunks, though closely approximated for sliding windows): \\[\n\\text{Expected strokes} \\approx 50^{11} \\approx 4.88 \\times 10^{16} \\text{ strokes}\n\\] At 10 strokes per second, the expected time in seconds is \\(4.88 \\times 10^{15}\\). In years (assuming \\(3.15 \\times 10^7\\) seconds per year): \\[\n\\text{Time} \\approx \\frac{4.88 \\times 10^{15}}{3.15 \\times 10^7} \\approx 154,000,000 \\text{ years} (154 \\text{ million years})\n\\]\nInsight: The information content (~62 bits) directly exponentiates to the expected waiting time. A seemingly small linear increase in information content (e.g., adding just one more letter adds ~5.6 bits) leads to an exponential explosion in how rare the event is. This highlights why high-information events are cosmically unlikely to happen by pure chance!\n\n\n\n\n\nProblem 4: Surprisal in Zipf’s Law\nIn natural language processing, word frequencies often follow Zipf’s Law, where the probability of encountering the \\(k\\)-th most common word in a vocabulary of size \\(N\\) is inversely proportional to its rank \\(k\\): \\[\nP(k) = \\frac{1}{H_N \\cdot k}\n\\] where \\(H_N = \\sum_{i=1}^N \\frac{1}{i}\\) is the \\(N\\)-th harmonic number (acting as the normalizing constant).\nFor a vocabulary of \\(N=10,000\\) words (\\(H_{10000} \\approx 9.78\\)), what is the difference in information content (in bits) between observing the most common word (\\(k=1\\)) versus the least common word (\\(k=10,000\\))? Does this difference depend on the vocabulary size \\(N\\)?\n\n\nReveal Solution to Problem 4\n\n\n\n\nSolution\n\nLet’s calculate the surprisal for both words:\nMost common word (\\(k=1\\)): \\[\nh(1) = -\\log_2(P(1)) = -\\log_2\\left(\\frac{1}{H_N}\\right) = \\log_2(H_N)\n\\]\nLeast common word (\\(k=10,000\\)): \\[\nh(10000) = -\\log_2(P(10000)) = -\\log_2\\left(\\frac{1}{10000 \\cdot H_N}\\right) = \\log_2(10000) + \\log_2(H_N)\n\\]\nDifference in Information Content: \\[\nh(10000) - h(1) = (\\log_2(10000) + \\log_2(H_N)) - \\log_2(H_N) = \\log_2(10000) \\approx 13.28 \\text{ bits}\n\\]\nInsight: The difference in surprisal depends only on the ratio of their ranks! The \\(\\log_2(H_N)\\) terms cancel out entirely. This means the difference in information gained between the 1st and 10,000th word is strictly \\(\\sim 13.28\\) bits, regardless of whether your vocabulary has 10,000 words or 10 billion words."
   },
   {
     "objectID": "notes/information-theory/fisher-information.html",
@@ -1670,7 +1789,7 @@
     "href": "notes/information-theory/wasserstein-distance.html#sec-intuitions",
     "title": "Wasserstein Distance",
     "section": "2. Intuitions & Remarks",
-    "text": "2. Intuitions & Remarks\n\nThe Earth Mover’s Distance (EMD)\nThe Wasserstein Distance is intuitively known as the Earth Mover’s Distance.\nImagine probability distributions as physical piles of dirt (Earth). The Wasserstein distance asks: What is the absolute minimum amount of “work” required to physically shovel the dirt from distribution \\(P\\) until it perfectly matches the shape of distribution \\(Q\\)?\nWork in physics is defined as: Amount of dirt moved \\(\\times\\) Distance moved.\nBecause it explicitly measures the physical distance the mass must travel, the Wasserstein distance provides a smooth, meaningful value (and crucially, a non-zero gradient) even when the distributions are miles apart and do not overlap at all."
+    "text": "2. Intuitions & Remarks\n\nThe Earth Mover’s Distance (EMD)\nThe Wasserstein Distance is intuitively known as the Earth Mover’s Distance.\nImagine probability distributions as physical piles of dirt (Earth). The Wasserstein distance asks: What is the absolute minimum amount of “work” required to physically shovel the dirt from distribution \\(P\\) until it perfectly matches the shape of distribution \\(Q\\)?\nWork in physics is defined as: Amount of dirt moved \\(\\times\\) Distance moved.\nBecause it explicitly measures the physical distance the mass must travel, the Wasserstein distance provides a smooth, meaningful value (and crucially, a non-zero gradient) even when the distributions are miles apart and do not overlap at all.\n\n\nInsight: Non-Linear Penalties (\\(p\\)-Wasserstein)\nYou might wonder what happens if the “cost” of moving dirt isn’t strictly linear. In the \\(1^{st}\\) Wasserstein distance (\\(W_1\\)), moving mass 10 meters costs exactly 10x as much as moving it 1 meter.\nHowever, we can generalize this to the \\(p\\)-Wasserstein Distance (\\(W_p\\)), where the cost of moving mass is based on the distance raised to the power of \\(p\\): \\[\nW_p(P, Q) = \\left( \\inf_{\\gamma \\in \\Pi(P, Q)} \\mathbb{E}_{(x, y) \\sim \\gamma} \\big[ \\|x - y\\|^p \\big] \\right)^{1/p}\n\\] When \\(p=2\\) (the \\(2^{nd}\\) Wasserstein distance, \\(W_2\\)), the penalty scales quadratically with distance. This means moving mass a long distance is disproportionately expensive compared to moving it a short distance. If you “skim” (move mass) a little bit, the penalty is small, but if you skim “deeper” (move mass a massive distance), the quadratic penalty blows up. This forces the optimal transport plan to strongly avoid transporting mass across huge distances, heavily penalizing outliers!"
   },
   {
     "objectID": "notes/information-theory/wasserstein-distance.html#sec-properties",
@@ -1705,7 +1824,7 @@
     "href": "notes/information-theory/wasserstein-distance.html#sec-problems",
     "title": "Wasserstein Distance",
     "section": "7. Practice Problems",
-    "text": "7. Practice Problems\n\nProblem 1: Disjoint Supports and Gradients\nExplain mathematically why the Kullback-Leibler (KL) divergence provides a zero gradient when two distributions are completely disjoint, but the Wasserstein distance provides a highly useful constant gradient.\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nLet \\(P\\) be the true data distribution (a spike at \\(x=0\\)) and \\(Q_\\theta\\) be our parameterized model distribution (a spike at \\(x=\\theta\\)). Suppose they are currently disjoint (\\(\\theta &gt; 0\\)).\nFor KL Divergence: The divergence is defined by the point-wise ratio at exactly the same spatial location \\(x\\): \\[\nD_{KL}(P \\| Q_\\theta) = \\sum P(x) \\log \\left( \\frac{P(x)}{Q_\\theta(x)} \\right)\n\\] Since \\(P\\) is only non-zero at \\(x=0\\), we only evaluate the ratio at \\(x=0\\). However, \\(Q_\\theta(0) = 0\\) because \\(Q_\\theta\\) is a spike at \\(\\theta\\). Thus, \\(D_{KL} = 1 \\cdot \\log\\left(\\frac{1}{0}\\right) = \\infty\\).\nBecause it is \\(\\infty\\) for all \\(\\theta &gt; 0\\), the derivative with respect to \\(\\theta\\) is exactly \\(0\\). The loss landscape is a flat, infinite plateau, meaning the network has absolutely no idea which direction to move \\(\\theta\\) to find the true data.\nFor Wasserstein Distance: The Earth Mover’s distance measures the physical work to transport the spike of mass from \\(x=\\theta\\) to \\(x=0\\). Since the total mass is \\(1\\), the work is simply: \\[\nW_1(P, Q_\\theta) = 1 \\cdot \\|\\theta - 0\\| = |\\theta|\n\\] The gradient with respect to \\(\\theta\\) (for \\(\\theta &gt; 0\\)) is exactly \\(1\\).\nThe loss landscape is a perfect V-shape \\(f(\\theta) = |\\theta|\\). This gives a beautiful, constant, non-zero gradient pointing directly toward the true data, allowing the neural network to effortlessly slide \\(\\theta\\) down to \\(0\\) via gradient descent. \\(\\blacksquare\\)"
+    "text": "7. Practice Problems\n\nProblem 1: Disjoint Supports and Gradients\nExplain mathematically why the Kullback-Leibler (KL) divergence provides a zero gradient when two distributions are completely disjoint, but the Wasserstein distance provides a highly useful constant gradient.\n\n\nReveal Solution to Problem 1\n\n\n\n\nSolution\n\nLet \\(P\\) be the true data distribution (a spike at \\(x=0\\)) and \\(Q_\\theta\\) be our parameterized model distribution (a spike at \\(x=\\theta\\)). Suppose they are currently disjoint (\\(\\theta &gt; 0\\)).\nFor KL Divergence: The divergence is defined by the point-wise ratio at exactly the same spatial location \\(x\\): \\[\nD_{KL}(P \\| Q_\\theta) = \\sum P(x) \\log \\left( \\frac{P(x)}{Q_\\theta(x)} \\right)\n\\] Since \\(P\\) is only non-zero at \\(x=0\\), we only evaluate the ratio at \\(x=0\\). However, \\(Q_\\theta(0) = 0\\) because \\(Q_\\theta\\) is a spike at \\(\\theta\\). Thus, \\(D_{KL} = 1 \\cdot \\log\\left(\\frac{1}{0}\\right) = \\infty\\).\nBecause it is \\(\\infty\\) for all \\(\\theta &gt; 0\\), the derivative with respect to \\(\\theta\\) is exactly \\(0\\). The loss landscape is a flat, infinite plateau, meaning the network has absolutely no idea which direction to move \\(\\theta\\) to find the true data.\nFor Wasserstein Distance: The Earth Mover’s distance measures the physical work to transport the spike of mass from \\(x=\\theta\\) to \\(x=0\\). Since the total mass is \\(1\\), the work is simply: \\[\nW_1(P, Q_\\theta) = 1 \\cdot \\|\\theta - 0\\| = |\\theta|\n\\] The gradient with respect to \\(\\theta\\) (for \\(\\theta &gt; 0\\)) is exactly \\(1\\).\nThe loss landscape is a perfect V-shape \\(f(\\theta) = |\\theta|\\). This gives a beautiful, constant, non-zero gradient pointing directly toward the true data, allowing the neural network to effortlessly slide \\(\\theta\\) down to \\(0\\) via gradient descent. \\(\\blacksquare\\)\n\n\n\n\n\nProblem 2: 1D Optimal Transport for Empirical Distributions\nSuppose we have two discrete probability distributions in a 1D space. - Distribution P has mass \\(0.5\\) located at \\(x=1\\) and mass \\(0.5\\) located at \\(x=5\\). - Distribution Q has mass \\(0.5\\) located at \\(y=3\\) and mass \\(0.5\\) located at \\(y=7\\).\nWhat is the 1-Wasserstein distance \\(W_1(P, Q)\\)? Describe the optimal transport plan \\(\\gamma(x, y)\\).\n\n\nReveal Solution to Problem 2\n\n\n\n\nSolution\n\nThe Goal: We must move the mass from P to perfectly match Q, while minimizing the total work (mass \\(\\times\\) distance).\nPossible Transport Plans: Because each point holds exactly 0.5 mass, there are two primary ways to pair the points: 1. Monotonic Plan (Sorted): - Move the mass from \\(x=1\\) to \\(y=3\\). Cost \\(= 0.5 \\times |1 - 3| = 0.5 \\times 2 = 1\\). - Move the mass from \\(x=5\\) to \\(y=7\\). Cost \\(= 0.5 \\times |5 - 7| = 0.5 \\times 2 = 1\\). - Total Cost \\(= 1 + 1 = 2\\).\n\nCrossed Plan:\n\nMove the mass from \\(x=1\\) to \\(y=7\\). Cost \\(= 0.5 \\times |1 - 7| = 0.5 \\times 6 = 3\\).\nMove the mass from \\(x=5\\) to \\(y=3\\). Cost \\(= 0.5 \\times |5 - 3| = 0.5 \\times 2 = 1\\).\nTotal Cost \\(= 3 + 1 = 4\\).\n\n\nOptimal Plan: The monotonic plan costs less work (2 vs 4). In 1D spaces, the optimal transport plan always involves sorting the masses and moving them sequentially from left to right to prevent paths from crossing.\nThus, the optimal transport plan is \\(\\gamma(1, 3) = 0.5, \\gamma(5, 7) = 0.5\\), with all other assignments being \\(0\\).\nThe 1-Wasserstein distance is: \\[\nW_1(P, Q) = 2\n\\]\n\n\n\n\n\nProblem 3: Kantorovich-Rubinstein Duality in Action\nThe Kantorovich-Rubinstein duality states that instead of finding the optimal transport plan, we can calculate the exact same Wasserstein distance by finding a 1-Lipschitz continuous function \\(f(x)\\) that maximizes the difference in expectations: \\[\nW_1(P, Q) = \\sup_{\\|f\\|_L \\le 1} \\left( \\mathbb{E}_{x \\sim P}[f(x)] - \\mathbb{E}_{y \\sim Q}[f(y)] \\right)\n\\] Using the exact same distributions P and Q from Problem 2, propose a valid 1-Lipschitz function \\(f(x)\\) that achieves this supremum. Evaluate the expectations using your function to prove it yields the same result as the Earth Mover calculation.\n\n\nReveal Solution to Problem 3\n\n\n\n\nSolution\n\nDesigning the 1-Lipschitz Function: A function is 1-Lipschitz if its slope (derivative) never exceeds 1 or falls below -1. In mathematical terms, \\(|f(a) - f(b)| \\le |a - b|\\) for all \\(a, b\\).\nTo maximize \\(\\mathbb{E}_{x \\sim P}[f(x)] - \\mathbb{E}_{y \\sim Q}[f(y)]\\), we want \\(f(x)\\) to output large positive values where P has mass (\\(x=1, 5\\)) and large negative values where Q has mass (\\(y=3, 7\\)).\nNotice that P is shifted to the left of Q. Thus, a straight line sloping downward will yield higher values for P and lower values for Q.\nLet’s try the steepest downward sloping line allowed by the 1-Lipschitz constraint: \\[\nf(x) = -x\n\\] Since \\(f'(x) = -1\\), the absolute value of the slope is \\(1 \\le 1\\), meaning it perfectly satisfies the Lipschitz constraint.\nEvaluating the Expectations: 1. Expectation over P: \\[\n   \\mathbb{E}_{x \\sim P}[f(x)] = 0.5 \\times f(1) + 0.5 \\times f(5) = 0.5(-1) + 0.5(-5) = -0.5 - 2.5 = -3\n   \\] 2. Expectation over Q: \\[\n   \\mathbb{E}_{y \\sim Q}[f(y)] = 0.5 \\times f(3) + 0.5 \\times f(7) = 0.5(-3) + 0.5(-7) = -1.5 - 3.5 = -5\n   \\]\nCalculating the Difference: \\[\n\\mathbb{E}_{x \\sim P}[f(x)] - \\mathbb{E}_{y \\sim Q}[f(y)] = -3 - (-5) = -3 + 5 = 2\n\\]\nConclusion: The duality equation evaluates to 2, exactly matching the physical optimal transport cost we calculated in Problem 2! By restricting a discriminator network to be 1-Lipschitz, Wasserstein GANs implicitly learn this optimal \\(f(x)\\) curve, evaluating the distance between distributions without needing to calculate complex transport plans."
   },
   {
     "objectID": "notes/linear-algebra/applications-in-ai-and-optimization.html",
@@ -2412,14 +2531,42 @@
     "href": "notes/probability/bayes'-rule.html",
     "title": "Bayes’ Rule",
     "section": "",
-    "text": "Content for Bayes’ Rule goes here."
+    "text": "Bayes’ theorem relates conditional probabilities and is fundamental in Machine Learning for updating beliefs: \\[P(A|B) = \\frac{P(B|A)P(A)}{P(B)}\\]"
+  },
+  {
+    "objectID": "notes/probability/bayes'-rule.html#overview",
+    "href": "notes/probability/bayes'-rule.html#overview",
+    "title": "Bayes’ Rule",
+    "section": "",
+    "text": "Bayes’ theorem relates conditional probabilities and is fundamental in Machine Learning for updating beliefs: \\[P(A|B) = \\frac{P(B|A)P(A)}{P(B)}\\]"
+  },
+  {
+    "objectID": "notes/probability/bayes'-rule.html#practice-problems",
+    "href": "notes/probability/bayes'-rule.html#practice-problems",
+    "title": "Bayes’ Rule",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Medical Testing\nA disease has a prevalence of \\(1\\%\\) (\\(P(D)=0.01\\)). A test has a true positive rate of \\(95\\%\\) (\\(P(+|D)=0.95\\)) and a false positive rate of \\(5\\%\\) (\\(P(+|D^c)=0.05\\)). If a patient tests positive, what is the probability they actually have the disease \\(P(D|+)\\)?\n\n\nProblem 2: Spam Filtering\nSuppose \\(30\\%\\) of emails are spam. The word “buy” appears in \\(80\\%\\) of spam emails and \\(10\\%\\) of non-spam emails. If you see an email with the word “buy”, what is the probability it is spam?"
   },
   {
     "objectID": "notes/probability/beta-distribution.html",
     "href": "notes/probability/beta-distribution.html",
     "title": "Beta Distribution",
     "section": "",
-    "text": "Content for Beta Distribution goes here."
+    "text": "A continuous distribution on the interval \\([0,1]\\), commonly used as a prior for probability parameters (like the bias of a coin). \\(f(x; \\alpha, \\beta) \\propto x^{\\alpha-1}(1-x)^{\\beta-1}\\)"
+  },
+  {
+    "objectID": "notes/probability/beta-distribution.html#overview",
+    "href": "notes/probability/beta-distribution.html#overview",
+    "title": "Beta Distribution",
+    "section": "",
+    "text": "A continuous distribution on the interval \\([0,1]\\), commonly used as a prior for probability parameters (like the bias of a coin). \\(f(x; \\alpha, \\beta) \\propto x^{\\alpha-1}(1-x)^{\\beta-1}\\)"
+  },
+  {
+    "objectID": "notes/probability/beta-distribution.html#practice-problems",
+    "href": "notes/probability/beta-distribution.html#practice-problems",
+    "title": "Beta Distribution",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Beta as a Prior\nIf you have a Beta\\((2, 2)\\) prior on the probability of a coin landing Heads, what does the PDF shape look like? (Is it uniform, U-shaped, or bell-shaped around 0.5?)\n\n\nProblem 2: Conjugacy (Conceptual)\nWhy is the Beta distribution called the “conjugate prior” to the Binomial distribution?"
   },
   {
     "objectID": "notes/probability/chapter13.html",
@@ -2468,49 +2615,147 @@
     "href": "notes/probability/dirichlet-distribution.html",
     "title": "Dirichlet Distribution",
     "section": "",
-    "text": "Content for Dirichlet Distribution goes here."
+    "text": "The multivariate generalization of the Beta distribution. It is used as a prior for Categorical or Multinomial distributions (e.g., in Latent Dirichlet Allocation)."
+  },
+  {
+    "objectID": "notes/probability/dirichlet-distribution.html#overview",
+    "href": "notes/probability/dirichlet-distribution.html#overview",
+    "title": "Dirichlet Distribution",
+    "section": "",
+    "text": "The multivariate generalization of the Beta distribution. It is used as a prior for Categorical or Multinomial distributions (e.g., in Latent Dirichlet Allocation)."
+  },
+  {
+    "objectID": "notes/probability/dirichlet-distribution.html#practice-problems",
+    "href": "notes/probability/dirichlet-distribution.html#practice-problems",
+    "title": "Dirichlet Distribution",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Dirichlet Support\nIf \\(\\boldsymbol{x} \\sim \\text{Dirichlet}(\\boldsymbol{\\alpha})\\), what constraint must the components \\(x_1, x_2, \\dots, x_K\\) satisfy?\n\n\nProblem 2: Symmetric Dirichlet\nWhat does it mean for a Dirichlet distribution to be “symmetric”, e.g., \\(\\boldsymbol{\\alpha} = [0.1, 0.1, 0.1]\\)? How does \\(\\alpha &lt; 1\\) affect the samples?"
   },
   {
     "objectID": "notes/probability/gaussian-distribution.html",
     "href": "notes/probability/gaussian-distribution.html",
     "title": "Gaussian Distribution",
     "section": "",
-    "text": "Content for Gaussian Distribution goes here."
+    "text": "The Normal (Gaussian) distribution is ubiquitous in ML due to the Central Limit Theorem. \\(f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} \\exp\\left( -\\frac{1}{2} \\left(\\frac{x-\\mu}{\\sigma}\\right)^2 \\right)\\)"
+  },
+  {
+    "objectID": "notes/probability/gaussian-distribution.html#overview",
+    "href": "notes/probability/gaussian-distribution.html#overview",
+    "title": "Gaussian Distribution",
+    "section": "",
+    "text": "The Normal (Gaussian) distribution is ubiquitous in ML due to the Central Limit Theorem. \\(f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} \\exp\\left( -\\frac{1}{2} \\left(\\frac{x-\\mu}{\\sigma}\\right)^2 \\right)\\)"
+  },
+  {
+    "objectID": "notes/probability/gaussian-distribution.html#practice-problems",
+    "href": "notes/probability/gaussian-distribution.html#practice-problems",
+    "title": "Gaussian Distribution",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Standard Normal\nFor a standard normal variable \\(Z \\sim \\mathcal{N}(0, 1)\\), what is the value of the PDF at \\(z=0\\)?\n\n\nProblem 2: Linear Combinations\nIf \\(X \\sim \\mathcal{N}(1, 2)\\) and \\(Y \\sim \\mathcal{N}(0, 3)\\) are independent, what is the distribution of \\(X+Y\\)?"
   },
   {
     "objectID": "notes/probability/joint-probabilities-of-multiple-variables.html",
     "href": "notes/probability/joint-probabilities-of-multiple-variables.html",
     "title": "Joint Probabilities of Multiple Variables",
     "section": "",
-    "text": "Content for Joint Probabilities of Multiple Variables goes here."
+    "text": "Joint probability describes the likelihood of two or more events happening at the same time. For two random variables \\(X\\) and \\(Y\\), their joint distribution is \\(P(X=x, Y=y)\\) or \\(f(x, y)\\)."
+  },
+  {
+    "objectID": "notes/probability/joint-probabilities-of-multiple-variables.html#overview",
+    "href": "notes/probability/joint-probabilities-of-multiple-variables.html#overview",
+    "title": "Joint Probabilities of Multiple Variables",
+    "section": "",
+    "text": "Joint probability describes the likelihood of two or more events happening at the same time. For two random variables \\(X\\) and \\(Y\\), their joint distribution is \\(P(X=x, Y=y)\\) or \\(f(x, y)\\)."
+  },
+  {
+    "objectID": "notes/probability/joint-probabilities-of-multiple-variables.html#practice-problems",
+    "href": "notes/probability/joint-probabilities-of-multiple-variables.html#practice-problems",
+    "title": "Joint Probabilities of Multiple Variables",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Discrete Joint Distribution\nLet \\(X\\) and \\(Y\\) be binary variables (0 or 1). The joint PMF is \\(P(0,0)=0.1, P(0,1)=0.2, P(1,0)=0.3, P(1,1)=0.4\\). Check that this is a valid joint distribution. What is \\(P(X=1, Y=0)\\)?\n\n\nProblem 2: Continuous Joint PDF\nSuppose \\(f(x, y) = c(x+y)\\) for \\(0 \\le x \\le 1\\) and \\(0 \\le y \\le 1\\). What must \\(c\\) be for this to be a valid joint PDF?"
   },
   {
     "objectID": "notes/probability/mixture-distributions.html",
     "href": "notes/probability/mixture-distributions.html",
     "title": "Mixture Distributions",
     "section": "",
-    "text": "Content for Mixture Distributions goes here."
+    "text": "Complex distributions can be formed by taking a weighted sum (mixture) of simpler distributions (e.g., Gaussian Mixture Models). \\(P(x) = \\sum_{k=1}^K \\pi_k P_k(x)\\)"
+  },
+  {
+    "objectID": "notes/probability/mixture-distributions.html#overview",
+    "href": "notes/probability/mixture-distributions.html#overview",
+    "title": "Mixture Distributions",
+    "section": "",
+    "text": "Complex distributions can be formed by taking a weighted sum (mixture) of simpler distributions (e.g., Gaussian Mixture Models). \\(P(x) = \\sum_{k=1}^K \\pi_k P_k(x)\\)"
+  },
+  {
+    "objectID": "notes/probability/mixture-distributions.html#practice-problems",
+    "href": "notes/probability/mixture-distributions.html#practice-problems",
+    "title": "Mixture Distributions",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Mixture Weights\nIn a mixture model \\(P(x) = \\pi_1 P_1(x) + \\pi_2 P_2(x)\\), what constraints must the mixture weights \\(\\pi_1\\) and \\(\\pi_2\\) satisfy?\n\n\nProblem 2: GMM Mean\nFor a Gaussian Mixture Model with two components \\(\\mathcal{N}(\\mu_1, \\sigma_1^2)\\) and \\(\\mathcal{N}(\\mu_2, \\sigma_2^2)\\) and weights \\(\\pi_1, \\pi_2\\), what is the overall expected value \\(\\mathbb{E}[X]\\)?"
   },
   {
     "objectID": "notes/probability/probability-distributions-of-a-single-random-variable.html",
     "href": "notes/probability/probability-distributions-of-a-single-random-variable.html",
     "title": "Probability Distributions of a Single Random Variable",
     "section": "",
-    "text": "Content for Probability Distributions of a Single Random Variable goes here."
+    "text": "A random variable \\(X\\) maps outcomes to real numbers. Its distribution describes how probabilities are assigned to these numbers. * Discrete RV: Uses a Probability Mass Function (PMF) \\(P(X=x)\\). * Continuous RV: Uses a Probability Density Function (PDF) \\(f(x)\\)."
+  },
+  {
+    "objectID": "notes/probability/probability-distributions-of-a-single-random-variable.html#overview",
+    "href": "notes/probability/probability-distributions-of-a-single-random-variable.html#overview",
+    "title": "Probability Distributions of a Single Random Variable",
+    "section": "",
+    "text": "A random variable \\(X\\) maps outcomes to real numbers. Its distribution describes how probabilities are assigned to these numbers. * Discrete RV: Uses a Probability Mass Function (PMF) \\(P(X=x)\\). * Continuous RV: Uses a Probability Density Function (PDF) \\(f(x)\\)."
+  },
+  {
+    "objectID": "notes/probability/probability-distributions-of-a-single-random-variable.html#practice-problems",
+    "href": "notes/probability/probability-distributions-of-a-single-random-variable.html#practice-problems",
+    "title": "Probability Distributions of a Single Random Variable",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Valid PMF\nA discrete random variable \\(X\\) has PMF \\(P(X=k) = c k\\) for \\(k \\in \\{1, 2, 3, 4\\}\\). What must the value of the constant \\(c\\) be?\n\n\nProblem 2: Valid PDF\nA continuous random variable has PDF \\(f(x) = a x^2\\) for \\(x \\in [0, 1]\\), and \\(0\\) otherwise. Find the constant \\(a\\)."
   },
   {
     "objectID": "notes/probability/statistics-basics.html",
     "href": "notes/probability/statistics-basics.html",
     "title": "Statistics Basics",
     "section": "",
-    "text": "Content for Statistics Basics goes here."
+    "text": "Statistics summarize distributions. * Expectation (Mean): \\(\\mathbb{E}[X] = \\sum x P(x)\\) or \\(\\int x f(x) dx\\). * Variance: \\(\\text{Var}(X) = \\mathbb{E}[(X - \\mu)^2] = \\mathbb{E}[X^2] - (\\mathbb{E}[X])^2\\). * Covariance: Measures how two variables change together."
+  },
+  {
+    "objectID": "notes/probability/statistics-basics.html#overview",
+    "href": "notes/probability/statistics-basics.html#overview",
+    "title": "Statistics Basics",
+    "section": "",
+    "text": "Statistics summarize distributions. * Expectation (Mean): \\(\\mathbb{E}[X] = \\sum x P(x)\\) or \\(\\int x f(x) dx\\). * Variance: \\(\\text{Var}(X) = \\mathbb{E}[(X - \\mu)^2] = \\mathbb{E}[X^2] - (\\mathbb{E}[X])^2\\). * Covariance: Measures how two variables change together."
+  },
+  {
+    "objectID": "notes/probability/statistics-basics.html#practice-problems",
+    "href": "notes/probability/statistics-basics.html#practice-problems",
+    "title": "Statistics Basics",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Expectation\nLet \\(X\\) represent the roll of a fair 6-sided die. What is \\(\\mathbb{E}[X]\\)?\n\n\nProblem 2: Variance\nIf \\(\\mathbb{E}[X] = 3.5\\) for a fair 6-sided die, compute \\(\\text{Var}(X)\\). You will need \\(\\mathbb{E}[X^2]\\)."
   },
   {
     "objectID": "notes/probability/uniform-distribution.html",
     "href": "notes/probability/uniform-distribution.html",
     "title": "Uniform Distribution",
     "section": "",
-    "text": "Content for Uniform Distribution goes here."
+    "text": "A continuous uniform distribution has constant probability density over a specific interval \\([a, b]\\). \\(f(x) = \\frac{1}{b-a}\\) for \\(x \\in [a, b]\\)."
+  },
+  {
+    "objectID": "notes/probability/uniform-distribution.html#overview",
+    "href": "notes/probability/uniform-distribution.html#overview",
+    "title": "Uniform Distribution",
+    "section": "",
+    "text": "A continuous uniform distribution has constant probability density over a specific interval \\([a, b]\\). \\(f(x) = \\frac{1}{b-a}\\) for \\(x \\in [a, b]\\)."
+  },
+  {
+    "objectID": "notes/probability/uniform-distribution.html#practice-problems",
+    "href": "notes/probability/uniform-distribution.html#practice-problems",
+    "title": "Uniform Distribution",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nProblem 1: Probability in an Interval\nIf \\(X \\sim \\text{Uniform}(0, 10)\\), what is \\(P(2 &lt; X &lt; 5)\\)?\n\n\nProblem 2: Mean and Variance\nDerive the expectation \\(\\mathbb{E}[X]\\) for \\(X \\sim \\text{Uniform}(a, b)\\)."
   },
   {
     "objectID": "notes/reinforcement-learning/bellman-operators.html",
