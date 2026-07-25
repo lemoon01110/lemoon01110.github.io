@@ -125,6 +125,14 @@ header.masthead{
   border-bottom:1px solid var(--line);
 }
 .brand{display:flex;flex-direction:column;gap:2px;min-width:0}
+.site-crumb{
+  display:inline-flex;align-items:center;gap:6px;width:fit-content;
+  margin:0 0 6px;padding:0;border:0;background:none;
+  font:600 11px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-mute);text-decoration:none;
+}
+.site-crumb:hover{color:var(--accent)}
+.site-crumb svg{width:12px;height:12px;flex:none}
 .eyebrow{
   font-family:var(--font-mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
   color:var(--accent);font-weight:600;
@@ -894,6 +902,10 @@ body.algo-fs-lock{overflow:hidden;touch-action:none}
   <!-- ===================== MASTHEAD ===================== -->
   <header class="masthead reveal">
     <div class="brand">
+      <a class="site-crumb" href="/tools/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        Tools
+      </a>
       <span class="eyebrow">K-Means · colors</span>
       <h1>Chroma <em>Lab</em></h1>
       <p class="tagline">Reduce a photo to <b>K</b> colors. Measure “close” with <b>RGB</b> or <b>LAB</b>.</p>
@@ -1287,6 +1299,8 @@ body.algo-fs-lock{overflow:hidden;touch-action:none}
   <footer class="foot">
     <span>Runs entirely on your device.</span>
     <span>Loop source is in the page comments.</span>
+    <span><a href="/tools/">← All tools</a></span>
+    <span><a href="/">Lemon’s site</a></span>
   </footer>
 </div>
 

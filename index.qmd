@@ -15,24 +15,19 @@ page-layout: custom
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="assets/particles.js"></script>
-<script src="assets/network-bg.js"></script>
+<script src="assets/bg-loop.js"></script>
 
-<!-- Scroll-reactive multi-hue scene atmospheres + particle mode swap.
-     stars  = rushing star-drive (hero / tools / projects)
-     network = connected constellation (about / literature / notes) -->
+<!-- Scroll-reactive scene atmospheres (colour only — bg motion is the time loop). -->
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   var scenes = [
-    ['rgba(167,139,250,.28)','rgba(95,184,173,.18)'],   // 0 hero     — indigo + teal
-    ['rgba(95,184,173,.26)','rgba(198,161,91,.16)'],    // 1 about    — teal + citrus
-    ['rgba(95,184,173,.24)','rgba(224,138,106,.20)'],   // 2 tools    — teal + coral
-    ['rgba(224,138,106,.28)','rgba(167,139,250,.16)'],  // 3 projects — coral + indigo
-    ['rgba(198,161,91,.26)','rgba(124,156,255,.18)'],   // 4 lit      — citrus + indigo
-    ['rgba(124,156,255,.26)','rgba(95,184,173,.16)']    // 5 notes    — indigo + teal
+    ['rgba(167,139,250,.28)','rgba(95,184,173,.18)'],
+    ['rgba(95,184,173,.26)','rgba(198,161,91,.16)'],
+    ['rgba(95,184,173,.24)','rgba(224,138,106,.20)'],
+    ['rgba(224,138,106,.28)','rgba(167,139,250,.16)'],
+    ['rgba(198,161,91,.26)','rgba(124,156,255,.18)'],
+    ['rgba(124,156,255,.26)','rgba(95,184,173,.16)']
   ];
-  // Per-section particle field: star-drive vs network constellation
-  var bgModes = ['stars', 'network', 'stars', 'stars', 'network', 'network'];
   var bg = document.createElement('div'); bg.id = 'scene-bg';
   scenes.forEach(function(s, i){
     var l = document.createElement('div'); l.className = 'scene-layer';
@@ -56,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (best !== current){
       current = best;
       layers.forEach(function(l, i){ l.style.opacity = (i === best) ? '1' : '0'; });
-      document.body.setAttribute('data-bg-mode', bgModes[best] || 'stars');
+      document.body.setAttribute('data-scene-idx', String(best));
     }
   }
   window.addEventListener('scroll', pick, { passive: true });
@@ -161,20 +156,22 @@ document.addEventListener('DOMContentLoaded', function(){
         <div class="tool-banner">
           <div class="tool-badge">Live · OpenGate</div>
           <div class="swatches">
-            <span style="background:#1c1a16"></span><span style="background:#9a7b3a"></span><span style="background:#c6a15b"></span><span style="background:#dcbd7f"></span><span style="background:#5fb8ad"></span><span style="background:#6fb8a5"></span><span style="background:#e08a6a"></span><span style="background:#7c9cff"></span>
+            <span style="background:#1c1a16"></span><span style="background:#5fb8ad"></span><span style="background:#6fb8a5"></span><span style="background:#3d8f86"></span><span style="background:#e08a6a"></span><span style="background:#7c9cff"></span><span style="background:#5a6fb8"></span><span style="background:#2a2d3a"></span>
           </div>
         </div>
         <div class="tool-body">
           <span class="mono-eyebrow" style="text-align:left;margin-bottom:.5rem;">K-Means</span>
           <h3>Chroma Lab</h3>
           <p>Drop in a photo, pick <strong style="color:#fff">K</strong>, watch K-Means reduce it to a palette — all in-browser.</p>
-          <a class="tool-cta" href="/tools/chroma/" rel="noopener">
-            Open lab
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </a>
-          <a class="tool-cta" href="/tools/" rel="noopener" style="margin-left:.55rem;opacity:.85">
-            All tools
-          </a>
+          <div class="tool-cta-row">
+            <a class="tool-cta tool-cta-primary" href="/tools/chroma/" rel="noopener">
+              Open lab
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a class="tool-cta tool-cta-ghost" href="/tools/" rel="noopener">
+              All tools
+            </a>
+          </div>
         </div>
       </div>
     </div>

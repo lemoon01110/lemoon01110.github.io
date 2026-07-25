@@ -320,13 +320,31 @@ body {
 }
 
 // Dual particle fields: star-drive (#particle-canvas) vs network (#network-canvas).
+// Must sit ABOVE the opaque body background (z-index: -1 hid them entirely).
+// pointer-events: none so they never steal clicks; content stacks above via z-index.
 #particle-canvas,
 #network-canvas {
   position: fixed !important;
   inset: 0 auto auto 0;
-  z-index: -1 !important;
+  z-index: 1 !important;
   pointer-events: none !important;
   will-change: opacity;
+}
+
+// Keep page content above the particle fields — but do NOT touch #quarto-header
+// position (it must stay position:fixed from .fixed-top).
+.quarto-container,
+.main-container,
+.container,
+footer.takara-footer,
+#quarto-content,
+#quarto-document-content {
+  position: relative;
+  z-index: 2;
+}
+
+#quarto-header {
+  z-index: 20;
 }
 
 // Cards sit in the grade: teal-grey borders (the glass fill stays).
@@ -628,6 +646,35 @@ body {
   margin: 0 0 1.3rem;
   font-size: 1rem;
 }
+.tool-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.tool-feature .tool-cta-primary {
+  border-color: transparent;
+  background: var(--accent-tools, #5fb8ad);
+  color: #0a0c11 !important;
+  font-weight: 700;
+}
+.tool-feature .tool-cta-primary:hover {
+  background: #7ad0c5;
+  color: #0a0c11 !important;
+  box-shadow: 0 12px 28px -12px rgba(95, 184, 173, 0.75);
+}
+.tool-feature .tool-cta-ghost {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+.tool-feature .tool-cta-ghost:hover {
+  border-color: rgba(95, 184, 173, 0.55);
+  background: rgba(95, 184, 173, 0.1);
+  color: #5fb8ad !important;
+  box-shadow: none;
+  transform: translateY(-1px);
+}
 @media (max-width: 720px) {
   .tool-feature { grid-template-columns: 1fr; }
   .tool-feature .tool-banner { min-height: 160px; }
@@ -746,7 +793,7 @@ body {
 .notes-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.1rem;
+  gap: 1.85rem;
 }
 @media (max-width: 900px) {
   .notes-grid { grid-template-columns: repeat(2, 1fr); }
