@@ -309,7 +309,7 @@ body {
 }
 
 // ── Scroll-reactive SCENE background ──────────────────────────────────
-// A stack of full-screen purple/blue gradient "scenes" behind the constellation.
+// A stack of full-screen purple/blue gradient "scenes" behind the particle fields.
 // As each section scrolls into view, its scene cross-fades in (opacity), so the
 // backdrop transitions instead of being one static particle field.
 #scene-bg { position: fixed; inset: 0; z-index: -3; pointer-events: none; overflow: hidden; }
@@ -317,6 +317,16 @@ body {
   position: absolute; inset: -10%;
   opacity: 0; transition: opacity 1.2s ease;
   mix-blend-mode: screen; will-change: opacity;
+}
+
+// Dual particle fields: star-drive (#particle-canvas) vs network (#network-canvas).
+#particle-canvas,
+#network-canvas {
+  position: fixed !important;
+  inset: 0 auto auto 0;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  will-change: opacity;
 }
 
 // Cards sit in the grade: teal-grey borders (the glass fill stays).
