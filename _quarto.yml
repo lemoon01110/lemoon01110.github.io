@@ -5,6 +5,7 @@ project:
     - "notes/**/*.qmd"
   resources:
   - assets/
+  - tools/
   - chroma/
 website:
   title: Lemon's Website
