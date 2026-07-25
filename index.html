@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9bc38478214335726b5c0d284ec565b2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-6733921f2fb40d0e881ff27d7947f6fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -115,8 +115,11 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="assets/particles.js"></script>
+<script src="assets/network-bg.js"></script>
 
-<!-- Scroll-reactive multi-hue scene atmospheres -->
+<!-- Scroll-reactive multi-hue scene atmospheres + particle mode swap.
+     stars  = rushing star-drive (hero / tools / projects)
+     network = connected constellation (about / literature / notes) -->
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   var scenes = [
@@ -127,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function(){
     ['rgba(198,161,91,.26)','rgba(124,156,255,.18)'],   // 4 lit      — citrus + indigo
     ['rgba(124,156,255,.26)','rgba(95,184,173,.16)']    // 5 notes    — indigo + teal
   ];
+  // Per-section particle field: star-drive vs network constellation
+  var bgModes = ['stars', 'network', 'stars', 'stars', 'network', 'network'];
   var bg = document.createElement('div'); bg.id = 'scene-bg';
   scenes.forEach(function(s, i){
     var l = document.createElement('div'); l.className = 'scene-layer';
@@ -150,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (best !== current){
       current = best;
       layers.forEach(function(l, i){ l.style.opacity = (i === best) ? '1' : '0'; });
+      document.body.setAttribute('data-bg-mode', bgModes[best] || 'stars');
     }
   }
   window.addEventListener('scroll', pick, { passive: true });
@@ -261,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <span class="mono-eyebrow" style="text-align:left;margin-bottom:.5rem;">K-Means</span>
           <h3>Chroma Lab</h3>
           <p>Drop in a photo, pick <strong style="color:#fff">K</strong>, watch K-Means reduce it to a palette — all in-browser.</p>
-          <a class="tool-cta" href="./chroma/" rel="noopener">
+          <a class="tool-cta" href="./tools/chroma/" rel="noopener">
             Open lab
             <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"></path></svg>
           </a>
@@ -504,7 +510,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <!-- Interactives Links -->
       <div class="footer-links-col">
         <h4>Interactives</h4>
-        <a href="./chroma/">Chroma Lab</a>
+        <a href="./tools/chroma/">Chroma Lab</a>
       </div>
 
       <!-- Projects Links -->
@@ -602,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/lemoon01110\.github\.io\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
