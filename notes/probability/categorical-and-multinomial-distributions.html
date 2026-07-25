@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6733921f2fb40d0e881ff27d7947f6fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-bed6e5711c157cc4a642454e283a0203.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -55,35 +55,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -149,26 +120,9 @@ window.Quarto = {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<ul>
-<li><strong>Categorical:</strong> Generalization of Bernoulli to <span class="math inline">\(K\)</span> categories. (Roll of a <span class="math inline">\(K\)</span>-sided die).</li>
-<li><strong>Multinomial:</strong> Generalization of Binomial to <span class="math inline">\(K\)</span> categories. (Counts of outcomes in <span class="math inline">\(N\)</span> rolls of a <span class="math inline">\(K\)</span>-sided die).</li>
-</ul>
-</section>
-<section id="practice-problems" class="level2">
-<h2 class="anchored" data-anchor-id="practice-problems">Practice Problems</h2>
-<section id="problem-1-categorical-probabilities" class="level3 thm-box thm-example">
-<h3 class="anchored" data-anchor-id="problem-1-categorical-probabilities">Problem 1: Categorical Probabilities</h3>
-<p>A word in a vocabulary of size 3 can be generated with probabilities <span class="math inline">\(\boldsymbol{p} = [0.2, 0.5, 0.3]\)</span>. What is the probability of observing the sequence (word 2, word 1) assuming independence?</p>
-</section>
-<section id="problem-2-multinomial-support" class="level3 thm-box thm-example">
-<h3 class="anchored" data-anchor-id="problem-2-multinomial-support">Problem 2: Multinomial Support</h3>
-<p>If you draw <span class="math inline">\(N=10\)</span> samples from a categorical distribution with 3 classes, what is the sum of the counts <span class="math inline">\(c_1 + c_2 + c_3\)</span>?</p>
-</section>
+<p>Content for Categorical and Multinomial Distributions goes here.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <footer class="takara-footer">
@@ -214,7 +168,7 @@ window.Quarto = {
       <!-- Interactives Links -->
       <div class="footer-links-col">
         <h4>Interactives</h4>
-        <a href="../../tools/chroma/">Chroma Lab</a>
+        <a href="../../chroma/">Chroma Lab</a>
       </div>
 
       <!-- Projects Links -->
