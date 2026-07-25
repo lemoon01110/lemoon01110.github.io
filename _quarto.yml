@@ -6,7 +6,6 @@ project:
   resources:
   - assets/
   - tools/
-  - chroma/
 website:
   title: Lemon's Website
   favicon: assets/lemon-emoji.svg
