@@ -172,6 +172,9 @@ document.addEventListener('DOMContentLoaded', function(){
             Open lab
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </a>
+          <a class="tool-cta" href="/tools/" rel="noopener" style="margin-left:.55rem;opacity:.85">
+            All tools
+          </a>
         </div>
       </div>
     </div>

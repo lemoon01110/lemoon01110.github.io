@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tools · Lemon</title>
+<meta name="description" content="Interactive browser tools — each tool lives in its own folder under /tools/.">
+<link rel="icon" href="/assets/lemon-emoji.svg">
+<style>
+  :root {
+    --bg: #070710;
+    --ink: #e8e6f0;
+    --mute: #a7afc2;
+    --line: rgba(150,160,190,.15);
+    --teal: #5fb8ad;
+    --citrus: #c6a15b;
+    --indigo: #7c9cff;
+    --font: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    color: var(--ink);
+    background:
+      radial-gradient(54% 48% at 18% 12%, rgba(95,184,173,.18), transparent 60%),
+      radial-gradient(52% 48% at 86% 8%, rgba(124,156,255,.14), transparent 62%),
+      linear-gradient(180deg, #0a0a13 0%, #070710 55%, #050509 100%);
+    font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  .crumb {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font: 600 11px/1 var(--font); letter-spacing: .08em; text-transform: uppercase;
+    color: var(--mute); text-decoration: none; margin-bottom: 1.25rem;
+  }
+  .crumb:hover { color: var(--teal); }
+  .eyebrow {
+    font: 600 11px/1 var(--font); letter-spacing: .12em; text-transform: uppercase;
+    color: var(--teal); margin: 0 0 .6rem;
+  }
+  h1 {
+    font: 600 clamp(2rem, 5vw, 3rem)/1.1 var(--display);
+    margin: 0 0 .75rem; letter-spacing: -.02em;
+  }
+  .lede { color: var(--mute); max-width: 38rem; margin: 0 0 2rem; }
+  .grid { display: grid; gap: 1rem; }
+  @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .card {
+    display: flex; flex-direction: column; gap: .65rem;
+    padding: 1.15rem 1.2rem 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255,255,255,.03);
+    text-decoration: none; color: inherit;
+    transition: border-color .2s, transform .2s, background .2s;
+  }
+  .card:hover {
+    border-color: rgba(95,184,173,.45);
+    background: rgba(95,184,173,.06);
+    transform: translateY(-2px);
+  }
+  .card .tag {
+    font: 600 10px/1 var(--font); letter-spacing: .1em; text-transform: uppercase;
+    color: var(--citrus);
+  }
+  .card h2 { font: 600 1.25rem/1.2 var(--display); margin: 0; }
+  .card p { margin: 0; color: var(--mute); font-size: .95rem; }
+  .card .go {
+    margin-top: auto; padding-top: .4rem;
+    font: 600 12px/1 var(--font); letter-spacing: .06em; text-transform: uppercase;
+    color: var(--teal);
+  }
+  .note {
+    margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line);
+    color: var(--mute); font-size: .9rem;
+  }
+  .note code {
+    font-family: var(--font); font-size: .82em;
+    color: var(--indigo);
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="crumb" href="/">← Lemon</a>
+    <p class="eyebrow">OpenGate · teaching tools</p>
+    <h1>Tools</h1>
+    <p class="lede">Each tool is its own folder under <code style="font-family:var(--font);color:var(--indigo)">/tools/</code>. Add another by dropping a new directory beside the ones below.</p>
+
+    <div class="grid">
+      <a class="card" href="/tools/chroma/">
+        <span class="tag">K-Means</span>
+        <h2>Chroma Lab</h2>
+        <p>Reduce a photo to K colors. Measure “close” with RGB or LAB — all in-browser.</p>
+        <span class="go">Open lab →</span>
+      </a>
+    </div>
+
+    <p class="note">
+      Layout: <code>tools/&lt;name&gt;/</code> for each tool · this page is <code>tools/index.html</code>.
+    </p>
+  </main>
+</body>
+</html>
